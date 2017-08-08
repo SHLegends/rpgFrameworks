@@ -388,6 +388,9 @@ struct handle: weaponComponent {
     }
 }
 
+//struct crossguard: weaponComponent {
+//    
+//}
 
 
 
