@@ -10,19 +10,19 @@ let startTime = NSDate().timeIntervalSince1970
 // DATA ------------------------------------ DATA ------------------------------------ DATA ------------------------------------ DATA ------------------------------------ DATA ------------------------------------ DATA
 
 let fabrics: [(name: String, value: Int, gripPercent: Int)]
-fabrics = [("Silk", 1000000, 65), ("Wool", 20, 500), ("Hemp", 10, 50), ("Linen", 20, 100), ("Cotton", 15, 80)]
+fabrics = [("Silk", 1000000, 65), ("Wool", 20, 60), ("Hemp", 10, 60), ("Linen", 20, 60), ("Cotton", 15, 60)]
 
 let fabricQualities: [(name: String, modifier: Double)]
 fabricQualities = [("Frayed", 0.8), ("Strong", 1.2), ("Worn", 0.8), ("Damaged", 0.7), ("Smooth", 1.0), ("Thick", 1.2), ("Thin", 1.0)]
 
 let woods: [(name: String, value: Int, gripPercent: Int)]
-woods = [("White Ash", 50, 50), ("Oak", 30, 50), ("White Oak", 40, 50), ("Elm", 25, 50), ("Maple", 25, 50), ("Walnut", 50, 50), ("Cherry", 75, 50), ("Rosewood", 80, 50), ("Ash", 40, 50), ("Hickory", 30, 50), ("Birch", 30, 50), ("Hemlock", 30, 50), ("Cedar", 30, 50), ("Pine", 15, 50)]
+woods = [("White Ash", 50, 70), ("Oak", 30, 70), ("White Oak", 40, 70), ("Elm", 25, 70), ("Maple", 25, 70), ("Walnut", 50, 70), ("Cherry", 75, 70), ("Rosewood", 80, 70), ("Ash", 40, 70), ("Hickory", 30, 70), ("Birch", 30, 70), ("Hemlock", 30, 70), ("Cedar", 30, 70), ("Pine", 15, 70)]
 
 let woodQualities: [(name: String, modifier: Double)]
 woodQualities = [("Burnt", 0.5), ("Ruff", 0.8), ("Smooth", 1.0), ("Lacquered", 1.5)]
 
 let leathers: [(name: String, value: Int, gripPercent: Int)]
-leathers = [("Leather", 100, 5), ("Buckskin", 110, 5), ("Sharkskin", 50000, 10), ("Goat Skin", 50, 4), ("Deerskin", 90, 6), ("Elk Skin", 120, 7), ("Rayskin", 60000, 10), ("Snakeskin", 10000, 4)]
+leathers = [("Leather", 100, 85), ("Buckskin", 110, 85), ("Sharkskin", 50000, 90), ("Goat Skin", 50, 85), ("Deerskin", 90, 85), ("Elk Skin", 120, 85), ("Rayskin", 60000, 90), ("Snakeskin", 10000, 85)]
 
 let leatherQualities: [(name: String, modifier: Double)]
 leatherQualities = [("Ruff", 0.9), ("Worn", 0.8), ("Thick", 1.2), ("Thin", 1.0), ("Strong", 1.2), ("Weak", 0.8), ("Damaged", 0.7), ("Smooth", 1.0), ("Hard", 0.9)]
@@ -134,6 +134,10 @@ protocol baseMaterial {
     func description()
 }
 
+protocol materialWithGrip {
+    var grip: Int {get}
+}
+
 
 struct gemstone: baseMaterial {
     var rawMaterial: (name: String, value: Int)
@@ -163,7 +167,7 @@ struct gemstone: baseMaterial {
     }
 }
 
-struct leather: baseMaterial {
+struct leather: baseMaterial, materialWithGrip {
     var rawMaterial: (name: String, value: Int, gripPercent: Int)
     var quality: (name: String, modifier: Double)
     var baseWeight: Double
@@ -172,6 +176,7 @@ struct leather: baseMaterial {
         self.quality = giveQuality
         self.baseWeight = baseWeight
     }
+    var grip: Int {return self.rawMaterial.gripPercent}
     var name: String {return "\(self.quality.name) \(self.rawMaterial.name)"}
     
     var weight: Double {return self.baseWeight}
@@ -188,7 +193,7 @@ struct leather: baseMaterial {
     }
 }
 
-struct fabric: baseMaterial {
+struct fabric: baseMaterial, materialWithGrip {
     var rawMaterial: (name: String, value: Int, gripPercent: Int)
     var quality: (name: String, modifier: Double)
     var baseWeight: Double
@@ -197,6 +202,7 @@ struct fabric: baseMaterial {
         self.quality = giveQuality
         self.baseWeight = baseWeight
     }
+    var grip: Int {return self.rawMaterial.gripPercent}
     var name: String {return "\(self.quality.name) \(self.rawMaterial.name)"}
     var weight: Double {return 0.05}
     var value: Int {return Int(self.weight * Double(self.rawMaterial.value) * self.quality.modifier)}
@@ -215,7 +221,7 @@ struct fabric: baseMaterial {
     
 }
 
-struct wood: baseMaterial {
+struct wood: baseMaterial, materialWithGrip {
     var rawMaterial: (name: String, value: Int, gripPercent: Int)
     var quality: (name: String, modifier: Double)
     var baseWeight: Double
@@ -225,12 +231,12 @@ struct wood: baseMaterial {
         self.baseWeight = baseWeight
     }
     var name: String {return "\(self.quality.name) \(self.rawMaterial.name)"}
-    
+    var grip: Int {return self.rawMaterial.gripPercent}
     var weight: Double {return self.baseWeight}
     var value: Int {return Int(self.weight * Double(self.rawMaterial.value) * self.quality.modifier)}
     var components: [(name: String, amount: Double)] {return [(self.rawMaterial.name, self.weight * salvageMaterialLoss)]}
     func description() {
-        print("\nFabric\n-------------------------------------------------------------")
+        print("\nWood\n-------------------------------------------------------------")
         print("Description: \(self.name)")
         print("Weight: \(self.weight) lb")
         print("Value: \(self.value) cp")
@@ -241,7 +247,7 @@ struct wood: baseMaterial {
     
 }
 
-struct metal: baseMaterial {
+struct metal: baseMaterial, materialWithGrip {
     var rawMaterial: (name: String, weightModifier: Double, valueModifier: Double, durabilityModifier: Double, sharpnessModifier: Double, value: Int)
     var quality: (name: String, modifier: Double)
     var baseWeight: Double
@@ -251,7 +257,7 @@ struct metal: baseMaterial {
         self.baseWeight = baseWeight
     }
     var name: String {return "\(self.quality.name) \(self.rawMaterial.name)"}
-    
+    var grip: Int {return 50}
     var weight: Double {return self.baseWeight}
     var value: Int {return Int(self.weight * Double(self.rawMaterial.value) * self.quality.modifier)}
     var components: [(name: String, amount: Double)] {return [(self.rawMaterial.name, self.weight * salvageMaterialLoss)]}
@@ -348,17 +354,19 @@ struct pommel: weaponComponent {
 
 
 struct handle: weaponComponent {
+    typealias handleMaterial = baseMaterial & materialWithGrip
     var baseWeight: Double = 0.1
     var labourValue = 15
     var hasWrap: Bool
     var componentWood: wood
-    var wrap: baseMaterial?
+    var wrap: handleMaterial?
     var wrapType: (name: String, multiplier: Double, gripPercent: Int)?
     var hasEtching: Bool
     var componentEtching: etching?
     
+    
     var length: Int = 6
-        init(giveWood: wood? = nil, hasWrap: Bool = returnRandomBool(1, 5), giveWrap: baseMaterial? = nil, giveWrapType: (name: String, multiplier: Double, gripPercent: Int)? = nil, hasEtching: Bool = returnRandomBool(1, 5), giveEtching: etching? = nil) {
+        init(giveWood: wood? = nil, hasWrap: Bool = returnRandomBool(1, 5), giveWrap: handleMaterial? = nil, giveWrapType: (name: String, multiplier: Double, gripPercent: Int)? = nil, hasEtching: Bool = returnRandomBool(1, 5), giveEtching: etching? = nil) {
             self.componentWood = (giveWood != nil ? giveWood! : wood(baseWeight: self.baseWeight))
             if hasWrap { if giveWrap != nil { self.wrap = giveWrap! } else { if returnRandomBool(1, 1) { self.wrap = leather(baseWeight: self.baseWeight) } else { self.wrap = fabric(baseWeight: self.baseWeight) } }
                 self.wrapType = (giveWrapType != nil ? giveWrapType! : returnRandomItem(gripQualities)) } else { self.wrap = nil; self.wrapType = nil }
@@ -366,7 +374,7 @@ struct handle: weaponComponent {
         if hasEtching { self.componentEtching = giveEtching ?? etching(withMetal: returnRandomBool(1, 4)) } else { self.componentEtching = nil }
         self.hasWrap = hasWrap
     }
-    
+    var grip: Int {get {return (self.hasWrap ? self.wrap!.grip : self.componentWood.grip)}}
     var name: String {return "\(self.hasWrap ? "\(self.wrapType!.name) \(self.wrap!.name)\(self.wrap! as? fabric != nil ? " Cord" : "") Handle (\(self.componentWood.name) underneath\(self.hasEtching ? " with \(self.componentEtching!.name)" : ""))" : "\(self.componentWood.name) Handle\(self.hasEtching ? " (with \(self.componentEtching!.name))" : "")")"}
     var weight: Double {return self.componentWood.weight + (self.hasWrap ? self.wrap!.weight : 0.0)}
     var value: Int {return self.componentWood.value + (self.hasEtching ? self.componentEtching!.value : 0) + Int((self.hasWrap ? Double(self.wrap!.value) : 0.0) * (self.hasWrap ? self.wrapType!.multiplier : 0.0)) + self.labourValue}
@@ -377,6 +385,7 @@ struct handle: weaponComponent {
         print("Description: \(self.name)")
         print("Weight: \(self.weight) lb")
         print("Value: \(self.value) cp || \(returnValueInPieces(self.value))")
+        print("Grip Percent: \(self.grip) %")
         print("\nComponents:")
         self.componentWood.description()
         if self.hasWrap { self.wrap!.description() }
@@ -389,7 +398,7 @@ struct handle: weaponComponent {
 }
 
 //struct crossguard: weaponComponent {
-//    
+//
 //}
 
 
