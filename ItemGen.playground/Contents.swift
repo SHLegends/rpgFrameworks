@@ -61,10 +61,10 @@ metalQualities = [("Tarnished", 0.5), ("Scratched", 0.6), ("Poilished", 1.5)]
 
 
 let crossguardSizes: [(name: String, weightModifier: Double)]
-crossguardSizes = [("Narrow", 0.5), ("Broad", 1.5), ("Thin", 0.5), ("Slender", 0.5)]
+crossguardSizes = [("Narrow", 0.9), ("Broad", 1.2), ("Thin", 0.9), ("Slender", 0.9), ("Wide", 1.1), ("Thick", 1.2)]
 
-let crossguardShapes: [(name: String, value: Int)]
-crossguardShapes = [("Straight", 1), ("Up-Curved", 1), ("Serpentine", 2), ("Crescentic", 1), ("Arched", 1), ("Elliptical", 1), ("Bowed", 1), ("Angled", 1), ("Tilted", 1), ("Beveled", 1), ("Bowtie", 1)]
+let crossguardShapes: [(name: String, labourMultiplier: Double)]
+crossguardShapes = [("Straight", 1.0), ("Up-Curved", 1.1), ("Serpentine", 1.5), ("Crescentic", 1.2), ("Arched", 1.2), ("Elliptical", 1.3), ("Bowed", 1.2), ("Angled", 1.1), ("Tilted", 1.1), ("Beveled", 1.1), ("Bowtie", 1.3), ("Wavy", 1.4), ("Corkscrew", 1.3), ("Spiral", 1.3), ("Hooked", 1.2), ("Falcate", 1.2)]
 
 
 
@@ -402,7 +402,53 @@ struct handle: weaponComponent {
     }
 }
 
+struct crossguard: weaponComponent {
+    var labourValue = 75
+    var componentMetal: metal
+    var length = 2
+    var baseWeight: Double
+    var guardShape: (name: String, labourMultiplier: Double)
+    var guardSize: (name: String, weightModifier: Double)
+    var hasEtching: Bool
+    var hasGem: Bool
+    var componentEtching: etching?
+    var componentGemstone: gemstone?
+    init(giveGuardShape: (name: String, labourMultiplier: Double) = returnRandomItem(crossguardShapes), giveGuardSize: (name: String, weightModifier: Double) = returnRandomItem(crossguardSizes), hasEtching: Bool = returnRandomBool(1, 5), hasGem: Bool = returnRandomBool(1, 5), isRare: Bool = returnRandomBool(1, 5), giveMetal: metal? = nil, giveGem: gemstone = gemstone(isPolished: true, hasShape: true), giveEtching: etching = etching(withMetal: returnRandomBool(1, 6)), baseWeight: Double = 0.3) {
+        if isRare && giveMetal == nil { self.componentMetal =  metal(giveRawMaterial: returnRandomItem(metals["rare"]!)) } else if !isRare && giveMetal == nil { self.componentMetal =  metal(giveRawMaterial: returnRandomItem(metals["reg"]!)) } else { self.componentMetal =  giveMetal! }
+        self.guardShape = giveGuardShape
+        self.guardSize = giveGuardSize
+        self.hasEtching = hasEtching
+        self.hasGem = hasGem
+        self.componentEtching = (hasEtching ? giveEtching : nil)
+        self.componentGemstone = (hasGem ? giveGem : nil)
+        self.baseWeight = baseWeight
+        self.componentMetal.baseWeight = baseWeight * self.guardSize.weightModifier
+    }
+    var name: String {return " \(self.guardSize.name) \(self.componentMetal.name) \(self.guardShape.name) Guard\((self.hasGem || self.hasEtching ? " (with ": ""))\(self.hasGem ? "a \(self.componentGemstone!.name)" : "")\((self.hasGem && self.hasEtching ? " and " : ""))\((self.hasEtching ? "\(self.componentEtching!.name)" : ""))\(self.hasGem || self.hasEtching ? ")" : "")"}
+    var weight: Double {return self.componentMetal.weight + (self.hasGem ? self.componentGemstone!.weight : 0)}
+    var value: Int {return self.componentMetal.value + (self.hasEtching ? self.componentEtching!.value : 0) + (self.hasGem ? self.componentGemstone!.value : 0) + Int(Double(self.labourValue) * self.guardShape.labourMultiplier)}
+    var abilities: [String] {return ["block"]}
+    var components: [(name: String, amount: Double)] {return self.componentMetal.components + (self.hasGem ? self.componentGemstone!.components : [])}
+    func description() {
+        print("\nPommel\n-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-")
+        print("Description: \(self.name)")
+        print("Weight: \(self.weight) lb")
+        print("Value: \(self.value) cp || \(returnValueInPieces(self.value))")
+        print("\nComponents:")
+        self.componentMetal.description()
+        if self.hasEtching {self.componentEtching!.description()}
+        if self.hasGem {self.componentGemstone!.description()}
+        print("")
+        print("~~~~~~~~~~~~~~~~~~~~~\nSalvage:")
+        for index in self.components { print("\(index.amount) lb of \(index.name)") }
+        print("~~~~~~~~~~~~~~~~~~~~~")
+    }
+    
+    
+}
 
+var blah = crossguard(hasEtching: true, hasGem: true)
+blah.description()
 
 var foo = handle()
 foo.description()
