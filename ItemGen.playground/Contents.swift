@@ -1,6 +1,10 @@
-// VALUE needs to be based off of WEIGHT ie. $ per lb
+
 // 100 cp -> 1 sp | 100 sp -> 1 gp
 // 10000 cp -> 1 gp
+
+// ADD qualities to etchings
+
+
 
 import Cocoa
 
@@ -64,11 +68,10 @@ crossguardShapes = [("Straight", 1), ("Up-Curved", 1), ("Serpentine", 2), ("Cres
 
 
 
-let crossguardEtchingsOfThing = ["a Wolf", "a Tree", "a Bear", "the Moon", "the Sun", "a Battle", "a Harvest", "a Sunset", "a Sunrise", "a Lion", "a Fish", "a Dragon", "a Crow", "a Boar"]
-let crossguardEtchingStyles = ["Floral", "Swirling", "Interweaving", "Costal", "Fiery", "Hieroglyphic", "Tidal", "Serpentine", "Fish-Scale", "Feather-like"]
-
 let etchings = ["style": ["Floral", "Swirling", "Interweaving", "Costal", "Fiery", "Hieroglyphic", "Tidal", "Serpentine", "Fish-Scale", "Feather-like"], "of thing": ["a Wolf", "a Tree", "a Bear", "the Moon", "the Sun", "a Battle", "a Harvest", "a Sunset", "a Sunrise", "a Lion", "a Fish", "a Dragon", "a Crow", "a Boar"]]
 
+let etchingQualities: [(name: String, modifier: Double)]
+etchingQualities = [("Simple", 0.8), ("Detailed", 1.2), ("Inticate", 0.8), ("Deep", 0.7), ("Shallow", 1.0), ("Ornate", 1.2), ("Basic", 1.0), ("Narrow", 0.9), ("Slender", 0.9)]
 
 let axeSizes: [(name: String, value: Int, weightModifier: Double)]
 axeSizes = [("Broad", 1, 1.5), ("Narrow", 1, 0.5), ("Slender", 1, 0.5), ("Rounded", 1, 1.0)]
@@ -275,19 +278,21 @@ struct metal: baseMaterial, materialWithGrip {
 
 struct etching {
     var etchingType: (name: String, value: Int)
+    var etchingQuality: (name: String, modifier: Double)
     var etchingMetal: (name: String, weightModifier: Double, valueModifier: Double, durabilityModifier: Double, sharpnessModifier: Double, value: Int)?
     var withMetal: Bool
-    init(withMetal: Bool = false, giveEtchingType: (name: String, value: Int)? = nil, giveEtchingMetal: (name: String, weightModifier: Double, valueModifier: Double, durabilityModifier: Double, sharpnessModifier: Double, value: Int) = returnRandomItem(metals["rare"]!)) {
+    init(withMetal: Bool = false, giveEtchingType: (name: String, value: Int)? = nil, giveEtchingMetal: (name: String, weightModifier: Double, valueModifier: Double, durabilityModifier: Double, sharpnessModifier: Double, value: Int) = returnRandomItem(metals["rare"]!), giveEtchingQuality: (name: String, modifier: Double) = returnRandomItem(etchingQualities)) {
         self.withMetal = withMetal
         if giveEtchingType != nil { self.etchingType = giveEtchingType! } else if returnRandomBool(3, 4) {
             self.etchingType = ("\(returnRandomItem(etchings["style"]!)) Etchings", 1000)
         } else {
-            self.etchingType = ("Etching of \(returnRandomItem(etchings["of thing"]!))", 2500)
+            self.etchingType = ("Etchings of \(returnRandomItem(etchings["of thing"]!))", 2500)
         }
         if withMetal { self.etchingMetal = giveEtchingMetal } else { self.etchingMetal = nil }
+        self.etchingQuality = giveEtchingQuality
     }
-    var name: String {return "\((self.withMetal ? "\(self.etchingMetal!.name) " : ""))\(etchingType.name)"}
-    var value: Int {return self.etchingType.value + (self.withMetal ? Int(Double(self.etchingMetal!.value) * 0.001) : 0)}
+    var name: String {return "\(self.etchingQuality.name) \((self.withMetal ? "\(self.etchingMetal!.name) " : ""))\(etchingType.name)"}
+    var value: Int {return Int(Double(self.etchingType.value) * self.etchingQuality.modifier) + (self.withMetal ? Int(Double(self.etchingMetal!.value) * 0.001) : 0)}
     func description() {
         print("\nEtching\n-------------------------------------------------------------")
         print("Description: \(self.name)")
@@ -398,10 +403,11 @@ struct handle: weaponComponent {
 }
 
 
-var foo = handle(hasEtching: true)
+
+var foo = handle()
 foo.description()
 
-var bar = pommel(hasEtching: true)
+var bar = pommel()
 bar.description()
 
 
