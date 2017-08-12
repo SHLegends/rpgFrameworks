@@ -8,8 +8,12 @@
 
 import Foundation
 
-let metalBaseValue = 2 //per "
-let metalBaseWeight = 0.02 //per "
+let gemRarityModifier = 2
+
+let rarityModifier = 10
+
+//let metalBaseValue = 2 //per "
+//let metalBaseWeight = 0.02 //per "
 
 let axeSizes: [(name: String, value: Int, weightModifier: Double)] = [("Broad", 1, 1.5), ("Narrow", 1, 0.5), ("Slender", 1, 0.5), ("Rounded", 1, 1.0)]
 

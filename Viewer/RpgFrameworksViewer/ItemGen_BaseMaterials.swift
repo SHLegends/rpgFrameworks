@@ -33,11 +33,11 @@ struct gemstone: baseMaterial {
     var polish: Bool
     var shape: (name: String, valueModifier: Double)
     var baseWeight: Double
-    init(isPolished: Bool = false, hasShape: Bool = false, giveShape: (name: String, valueModifier: Double) = returnRandomItem(gemShapes), giveRawMaterial: (name: String, value: Int) = returnRandomItem(gems), giveSize: (name: String, modifier: Double) = returnRandomItem(gemSizes), baseWeight: Double = 0.001) {
+    init(isPolished: Bool = returnRandomBool(1, gemRarityModifier), hasShape: Bool = returnRandomBool(1, gemRarityModifier), giveShape: (name: String, valueModifier: Double) = returnRandomItem(gemShapes), giveRawMaterial: (name: String, value: Int) = returnRandomItem(gems), giveSize: (name: String, modifier: Double) = returnRandomItem(gemSizes), baseWeight: Double = 0.001) {
         self.rawMaterial = giveRawMaterial
         self.size = giveSize
         self.polish = isPolished
-        self.shape = (hasShape ? giveShape :  ("Uncut", 0))
+        self.shape = (hasShape ? giveShape :  ("Uncut", 1.0))
         self.baseWeight = baseWeight
     }
     var name: String {return "\(self.size.name) \((self.polish ? "Polished" : "Unpolished")) \(self.shape.name) \(self.rawMaterial.name)"}
