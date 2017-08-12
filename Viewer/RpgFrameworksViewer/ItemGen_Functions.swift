@@ -42,3 +42,7 @@ func returnValueInPieces(_ getCP: Int)-> String {
     }
     return pieces
 }
+
+func returnRandNumInRange(_ start: Int, _ end: Int)-> Int {
+    return Int(arc4random_uniform(UInt32(end + 1 - start))) + start
+}

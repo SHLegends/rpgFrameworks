@@ -20,10 +20,11 @@ protocol weaponComponent {
     var baseWeight: Double {get set}
     var labourValue: Int {get set}
     func description()
+    var simpleDescription: String {get}
 }
 
 protocol bladedComponent {
-    var sharpness: Double {get}
+    var sharpness: Double {get set}
 }
 
 protocol handleComponent {
@@ -70,6 +71,7 @@ struct pommel: weaponComponent {
         for index in self.components { print("\(index.amount) lb of \(index.name)") }
         print("~~~~~~~~~~~~~~~~~~~~~")
     }
+    var simpleDescription: String {return "Pommel: \(self.componentMetal.rawMaterial.name) \(self.componentType.name) Pommel\((self.hasGem || self.hasEtching ? " with ": ""))\(self.hasGem ? "inlaid \(self.componentGemstone!.rawMaterial.name)" : "")\((self.hasGem && self.hasEtching ? " and " : ""))\((self.hasEtching ? self.componentEtching!.etchingType.name : ""))"}
 }
 
 
@@ -116,6 +118,7 @@ struct handle: weaponComponent, handleComponent {
         for index in self.components { print("\(index.amount) lb of \(index.name)") }
         print("~~~~~~~~~~~~~~~~~~~~~")
     }
+    var simpleDescription: String {return "Handle: \(self.hasWrap ? "\(self.wrapType!.name) \(self.wrap!.rawMaterial.name)\(self.wrap! as? fabric != nil ? " Cord" : "") Handle" : "\(self.componentWood.rawMaterial.name) Handle\(self.hasEtching ? " with \(self.componentEtching!.etchingType.name))" : "")")"}
 }
 
 
@@ -131,7 +134,7 @@ struct crossguard: weaponComponent {
     var hasGem: Bool
     var componentEtching: etching?
     var componentGemstone: gemstone?
-    init(giveGuardShape: (name: String, labourMultiplier: Double) = returnRandomItem(crossguardShapes), giveGuardSize: (name: String, weightModifier: Double) = returnRandomItem(crossguardSizes), hasEtching: Bool = returnRandomBool(1, rarityModifier), hasGem: Bool = returnRandomBool(1, rarityModifier), isRare: Bool = returnRandomBool(1, rarityModifier), giveMetal: metal? = nil, giveGem: gemstone = gemstone(isPolished: true, hasShape: true), giveEtching: etching = etching(withMetal: returnRandomBool(1, rarityModifier)), baseWeight: Double = 0.3) {
+    init(giveGuardShape: (name: String, labourMultiplier: Double) = returnRandomItem(crossguardShapes), giveGuardSize: (name: String, weightModifier: Double) = returnRandomItem(crossguardSizes), hasEtching: Bool = returnRandomBool(1, rarityModifier), hasGem: Bool = returnRandomBool(1, rarityModifier), isRare: Bool = returnRandomBool(1, rarityModifier), giveMetal: metal? = nil, giveGem: gemstone = gemstone(isPolished: true, hasShape: true), giveEtching: etching = etching(), baseWeight: Double = 0.3) {
         if isRare && giveMetal == nil { self.componentMetal =  metal(giveRawMaterial: returnRandomItem(metals["rare"]!)) } else if !isRare && giveMetal == nil { self.componentMetal =  metal(giveRawMaterial: returnRandomItem(metals["reg"]!)) } else { self.componentMetal =  giveMetal! }
         self.guardShape = giveGuardShape
         self.guardSize = giveGuardSize
@@ -142,13 +145,13 @@ struct crossguard: weaponComponent {
         self.baseWeight = baseWeight
         self.componentMetal.baseWeight = baseWeight * self.guardSize.weightModifier
     }
-    var name: String {return " \(self.guardSize.name) \(self.componentMetal.name) \(self.guardShape.name) Guard\((self.hasGem || self.hasEtching ? " (with ": ""))\(self.hasGem ? "a \(self.componentGemstone!.name)" : "")\((self.hasGem && self.hasEtching ? " and " : ""))\((self.hasEtching ? "\(self.componentEtching!.name)" : ""))\(self.hasGem || self.hasEtching ? ")" : "")"}
+    var name: String {return "\(self.guardSize.name) \(self.componentMetal.name) \(self.guardShape.name) Guard\((self.hasGem || self.hasEtching ? " (with ": ""))\(self.hasGem ? "a \(self.componentGemstone!.name)" : "")\((self.hasGem && self.hasEtching ? " and " : ""))\((self.hasEtching ? "\(self.componentEtching!.name)" : ""))\(self.hasGem || self.hasEtching ? ")" : "")"}
     var weight: Double {return self.componentMetal.weight + (self.hasGem ? self.componentGemstone!.weight : 0)}
     var value: Int {return self.componentMetal.value + (self.hasEtching ? self.componentEtching!.value : 0) + (self.hasGem ? self.componentGemstone!.value : 0) + Int(Double(self.labourValue) * self.guardShape.labourMultiplier)}
     var abilities: [String] {return ["block"]}
     var components: [(name: String, amount: Double)] {return self.componentMetal.components + (self.hasGem ? self.componentGemstone!.components : [])}
     func description() {
-        print("\nPommel\n-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-")
+        print("\nCrossguard\n-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-")
         print("Description: \(self.name)")
         print("Weight: \(self.weight) lb")
         print("Value: \(self.value) cp || \(returnValueInPieces(self.value))")
@@ -161,9 +164,55 @@ struct crossguard: weaponComponent {
         for index in self.components { print("\(index.amount) lb of \(index.name)") }
         print("~~~~~~~~~~~~~~~~~~~~~")
     }
+    var simpleDescription: String {return "Guard: \(self.componentMetal.rawMaterial.name) \(self.guardShape.name) Guard\((self.hasGem || self.hasEtching ? " with ": ""))\(self.hasGem ? "inlaid \(self.componentGemstone!.rawMaterial.name)" : "")\((self.hasGem && self.hasEtching ? " and " : ""))\((self.hasEtching ? self.componentEtching!.etchingType.name : ""))"}
     
     
 }
 
+struct doubleEdgeBlade: weaponComponent, bladedComponent {
+    var labourValue: Int = 150
+    var componentMetal: metal
+    var componentType: (name: String, labourMultiplier: Double)
+    var componentWidthType: (name: String, labourMultiplier: Double, weightModifier: Double)
+    var length: Int
+    var sharpness: Double
+    var hasEtching: Bool
+    var componentEtching: etching?
+    var baseWeight: Double = 0.07
+    init(length: Int = returnRandNumInRange(6, 60), giveSharpness: Double = 1.0, giveType: (name: String, labourMultiplier: Double) = returnRandomItem(doubleEdgeBladeShapes), giveWidthType: (name: String, labourMultiplier: Double, weightModifier: Double) = returnRandomItem(doubleEdgeBladeSizes), hasEtching: Bool = returnRandomBool(1, rarityModifier), giveMetal: metal = metal(), giveEtching: etching = etching()) {
+        self.componentMetal = giveMetal
+        self.componentType = giveType
+        self.componentWidthType = giveWidthType
+        self.sharpness = giveSharpness
+        self.length = length
+        self.hasEtching = hasEtching
+        self.componentEtching = (hasEtching ? giveEtching : nil)
+        self.componentMetal.baseWeight = self.baseWeight * Double(length)
+        
+    }
 
+    var name: String {return "\(self.length)\" \(self.componentWidthType.name) \(self.componentType.name) \(self.componentMetal.name) Blade\(self.hasEtching ? " (with \(self.componentEtching!.name))" : "")"}
+    var weight: Double {return self.componentMetal.weight * self.componentWidthType.weightModifier}
+    var value: Int {return self.componentMetal.value + (self.hasEtching ? self.componentEtching!.value : 0) + Int(Double(self.labourValue) * self.componentType.labourMultiplier)}
+    var abilities: [String] {return ["slice", "stab", "block"]}
+    var components: [(name: String, amount: Double)] {return self.componentMetal.components}
+    
+    func description() {
+        print("\nDouble Edged Blade\n-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-")
+        print("Description: \(self.name)")
+        print("Weight: \(self.weight) lb")
+        print("Value: \(self.value) cp || \(returnValueInPieces(self.value))")
+        print("\nComponents:")
+        self.componentMetal.description()
+        if self.hasEtching {self.componentEtching!.description()}
+        print("")
+        print("~~~~~~~~~~~~~~~~~~~~~\nSalvage:")
+        for index in self.components { print("\(index.amount) lb of \(index.name)") }
+        print("~~~~~~~~~~~~~~~~~~~~~")
+    }
+    var simpleDescription: String {return "Blade: \(self.length)\" \(self.componentType.name) \(self.componentMetal.rawMaterial.name) Blade\(self.hasEtching ? " with \(self.componentEtching!.etchingType.name)" : "")"}
+
+
+
+}
 

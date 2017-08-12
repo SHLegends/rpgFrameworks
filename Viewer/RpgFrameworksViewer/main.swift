@@ -18,7 +18,7 @@ start: while true {
     if let choice = startChoice {
         if choice == "1" {
             ItemGenLoop: while true {
-                print("\nTypes:\n1. Base Material\t2. Weapon Components\n0. back")
+                print("\nTypes:\n1. Base Material\t2. Weapon Components\t3. Weapons\n0. back")
                 let typeChoice = readLine()
                 if let choice = typeChoice {
                     if choice == "1" {
@@ -51,7 +51,7 @@ start: while true {
                     } else if choice == "2" {
                         print("Weapon Components...")
                         weaponComponentLoop: while true {
-                            print("\n\nWeapon Components:\n1. Pommel\t2. Handle\t3. Crossguard\n0. back")
+                            print("\n\nWeapon Components:\n1. Pommel\t2. Handle\t3. Crossguard\n4. Double Edged Blade\n0. back")
                             let weaponComponentChoice = readLine()
                             if let choice = weaponComponentChoice {
                                 if choice == "1" {
@@ -60,11 +60,30 @@ start: while true {
                                     let foo = handle(); foo.description()
                                 } else if choice == "3" {
                                     let foo = crossguard(); foo.description()
+                                } else if choice == "4" {
+                                    let foo = doubleEdgeBlade(); foo.description()
                                 } else if choice == "0" {
                                     break weaponComponentLoop
                                 }
                             } else {
                                 continue weaponComponentLoop
+                            }
+                        }
+                        
+                    } else if choice == "3" {
+                        print("Weapons...")
+                        weaponsLoop: while true {
+                            print("\n\nWeapons:\n1. Sword\n0. back")
+                            let weaponComponentChoice = readLine()
+                            if let choice = weaponComponentChoice {
+                                if choice == "1" {
+                                    let foo = sword(); foo.description(); foo.basicDescription(); foo.simpleDescription()
+                                
+                                } else if choice == "0" {
+                                    break weaponsLoop
+                                }
+                            } else {
+                                continue weaponsLoop
                             }
                         }
                         

@@ -19,10 +19,12 @@ protocol baseMaterial {
     var components: [(name: String, amount: Double)] {get}
     var baseWeight: Double {get set}
     func description()
+    
 }
 
 protocol materialWithGrip {
     var grip: Int {get}
+    var rawMaterial: (name: String, value: Int, gripPercent: Int) {get set}
 }
 
 
@@ -138,19 +140,21 @@ struct wood: baseMaterial, materialWithGrip {
 
 
 struct metal: baseMaterial, materialWithGrip {
-    var rawMaterial: (name: String, weightModifier: Double, valueModifier: Double, durabilityModifier: Double, sharpnessModifier: Double, value: Int)
+    var baseMaterial: (name: String, weightModifier: Double, valueModifier: Double, durabilityModifier: Double, sharpnessModifier: Double, value: Int)
     var quality: (name: String, modifier: Double)
     var baseWeight: Double
+    var rawMaterial: (name: String, value: Int, gripPercent: Int)
     init(giveRawMaterial: (name: String, weightModifier: Double, valueModifier: Double, durabilityModifier: Double, sharpnessModifier: Double, value: Int) = returnRandomItem(metals["reg"]!), giveQuality: (name: String, modifier: Double) = returnRandomItem(metalQualities), baseWeight: Double = 0.08) {
-        self.rawMaterial = giveRawMaterial
+        self.baseMaterial = giveRawMaterial
         self.quality = giveQuality
         self.baseWeight = baseWeight
+        self.rawMaterial = (baseMaterial.name, baseMaterial.value, 50)
     }
-    var name: String {return "\(self.quality.name) \(self.rawMaterial.name)"}
+    var name: String {return "\(self.quality.name) \(self.baseMaterial.name)"}
     var grip: Int {return 50}
     var weight: Double {return self.baseWeight}
-    var value: Int {return Int(self.weight * Double(self.rawMaterial.value) * self.quality.modifier)}
-    var components: [(name: String, amount: Double)] {return [(self.rawMaterial.name, self.weight * salvageMaterialLoss)]}
+    var value: Int {return Int(self.weight * Double(self.baseMaterial.value) * self.quality.modifier)}
+    var components: [(name: String, amount: Double)] {return [(self.baseMaterial.name, self.weight * salvageMaterialLoss)]}
     func description() {
         print("\nMetal\n-------------------------------------------------------------")
         print("Description: \(self.name)")
@@ -169,7 +173,7 @@ struct etching {
     var etchingQuality: (name: String, modifier: Double)
     var etchingMetal: (name: String, weightModifier: Double, valueModifier: Double, durabilityModifier: Double, sharpnessModifier: Double, value: Int)?
     var withMetal: Bool
-    init(withMetal: Bool = false, giveEtchingType: (name: String, value: Int)? = nil, giveEtchingMetal: (name: String, weightModifier: Double, valueModifier: Double, durabilityModifier: Double, sharpnessModifier: Double, value: Int) = returnRandomItem(metals["rare"]!), giveEtchingQuality: (name: String, modifier: Double) = returnRandomItem(etchingQualities)) {
+    init(withMetal: Bool = returnRandomBool(1, rarityModifier), giveEtchingType: (name: String, value: Int)? = nil, giveEtchingMetal: (name: String, weightModifier: Double, valueModifier: Double, durabilityModifier: Double, sharpnessModifier: Double, value: Int) = returnRandomItem(metals["rare"]!), giveEtchingQuality: (name: String, modifier: Double) = returnRandomItem(etchingQualities)) {
         self.withMetal = withMetal
         if giveEtchingType != nil { self.etchingType = giveEtchingType! } else if returnRandomBool(3, 4) {
             self.etchingType = ("\(returnRandomItem(etchings["style"]!)) Etchings", 1000)

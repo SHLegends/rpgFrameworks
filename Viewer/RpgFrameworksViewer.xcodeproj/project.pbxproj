@@ -12,6 +12,7 @@
 		8E60B3471F3B883B00179D7D /* ItemGen_Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60B3461F3B883B00179D7D /* ItemGen_Data.swift */; };
 		8E60B3491F3B88FE00179D7D /* ItemGen_WeaponComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60B3481F3B88FE00179D7D /* ItemGen_WeaponComponents.swift */; };
 		8E60B34B1F3B897500179D7D /* ItemGen_Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60B34A1F3B897500179D7D /* ItemGen_Functions.swift */; };
+		8EFE67241F3F8C7D0026ADFB /* ItemGen_Weapons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFE67231F3F8C7D0026ADFB /* ItemGen_Weapons.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +34,7 @@
 		8E60B3461F3B883B00179D7D /* ItemGen_Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGen_Data.swift; sourceTree = "<group>"; };
 		8E60B3481F3B88FE00179D7D /* ItemGen_WeaponComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGen_WeaponComponents.swift; sourceTree = "<group>"; };
 		8E60B34A1F3B897500179D7D /* ItemGen_Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGen_Functions.swift; sourceTree = "<group>"; };
+		8EFE67231F3F8C7D0026ADFB /* ItemGen_Weapons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGen_Weapons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				8E60B3481F3B88FE00179D7D /* ItemGen_WeaponComponents.swift */,
 				8E60B3441F3B866C00179D7D /* ItemGen_BaseMaterials.swift */,
 				8E60B34A1F3B897500179D7D /* ItemGen_Functions.swift */,
+				8EFE67231F3F8C7D0026ADFB /* ItemGen_Weapons.swift */,
 			);
 			name = ItemGen;
 			sourceTree = "<group>";
@@ -144,6 +147,7 @@
 				8E60B3491F3B88FE00179D7D /* ItemGen_WeaponComponents.swift in Sources */,
 				8E60B3471F3B883B00179D7D /* ItemGen_Data.swift in Sources */,
 				8E60B3451F3B866C00179D7D /* ItemGen_BaseMaterials.swift in Sources */,
+				8EFE67241F3F8C7D0026ADFB /* ItemGen_Weapons.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +291,7 @@
 				8E60B3431F3B84FF00179D7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
