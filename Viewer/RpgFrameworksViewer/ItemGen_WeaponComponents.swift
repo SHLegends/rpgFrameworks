@@ -22,6 +22,13 @@ protocol weaponComponent {
     func description()
 }
 
+protocol bladedComponent {
+    var sharpness: Double {get}
+}
+
+protocol handleComponent {
+    var grip: Int {get}
+}
 
 
 struct pommel: weaponComponent {
@@ -67,7 +74,7 @@ struct pommel: weaponComponent {
 
 
 
-struct handle: weaponComponent {
+struct handle: weaponComponent, handleComponent {
     typealias handleMaterial = baseMaterial & materialWithGrip
     var baseWeight: Double = 0.1
     var labourValue = 15
@@ -88,7 +95,7 @@ struct handle: weaponComponent {
         if hasEtching { self.componentEtching = giveEtching ?? etching(withMetal: returnRandomBool(1, 4)) } else { self.componentEtching = nil }
         self.hasWrap = hasWrap
     }
-    var grip: Int {get {return (self.hasWrap ? self.wrap!.grip : self.componentWood.grip)}}
+    var grip: Int {return (self.hasWrap ? self.wrap!.grip : self.componentWood.grip)}
     var name: String {return "\(self.hasWrap ? "\(self.wrapType!.name) \(self.wrap!.name)\(self.wrap! as? fabric != nil ? " Cord" : "") Grip (\(self.componentWood.name) Handle\(self.hasEtching ? " with \(self.componentEtching!.name)" : ""))" : "\(self.componentWood.name) Handle\(self.hasEtching ? " (with \(self.componentEtching!.name))" : "")")"}
     var weight: Double {return self.componentWood.weight + (self.hasWrap ? self.wrap!.weight : 0.0)}
     var value: Int {return self.componentWood.value + (self.hasEtching ? self.componentEtching!.value : 0) + Int((self.hasWrap ? Double(self.wrap!.value) : 0.0) * (self.hasWrap ? self.wrapType!.multiplier : 0.0)) + self.labourValue}
@@ -157,3 +164,6 @@ struct crossguard: weaponComponent {
     
     
 }
+
+
+
