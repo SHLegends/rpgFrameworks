@@ -25,6 +25,7 @@ protocol weaponComponent {
 
 protocol bladedComponent {
     var sharpness: Double {get set}
+    var isDoubleEdge: Bool {get set}
 }
 
 protocol handleComponent {
@@ -169,7 +170,8 @@ struct crossguard: weaponComponent {
     
 }
 
-struct doubleEdgeBlade: weaponComponent, bladedComponent {
+struct blade: weaponComponent, bladedComponent {
+    var isDoubleEdge: Bool
     var labourValue: Int = 150
     var componentMetal: metal
     var componentType: (name: String, labourMultiplier: Double)
@@ -179,7 +181,7 @@ struct doubleEdgeBlade: weaponComponent, bladedComponent {
     var hasEtching: Bool
     var componentEtching: etching?
     var baseWeight: Double = 0.07
-    init(length: Int = returnRandNumInRange(6, 60), giveSharpness: Double = 1.0, giveType: (name: String, labourMultiplier: Double) = returnRandomItem(doubleEdgeBladeShapes), giveWidthType: (name: String, labourMultiplier: Double, weightModifier: Double) = returnRandomItem(doubleEdgeBladeSizes), hasEtching: Bool = returnRandomBool(1, rarityModifier), giveMetal: metal = metal(), giveEtching: etching = etching()) {
+    init(length: Int = returnRandNumInRange(6, 60), isDoubleEdge: Bool = returnRandomBool(3, 4), giveSharpness: Double = 1.0, giveType: (name: String, labourMultiplier: Double) = returnRandomItem(doubleEdgeBladeShapes), giveWidthType: (name: String, labourMultiplier: Double, weightModifier: Double) = returnRandomItem(doubleEdgeBladeSizes), hasEtching: Bool = returnRandomBool(1, rarityModifier), giveMetal: metal = metal(), giveEtching: etching = etching()) {
         self.componentMetal = giveMetal
         self.componentType = giveType
         self.componentWidthType = giveWidthType
@@ -188,17 +190,18 @@ struct doubleEdgeBlade: weaponComponent, bladedComponent {
         self.hasEtching = hasEtching
         self.componentEtching = (hasEtching ? giveEtching : nil)
         self.componentMetal.baseWeight = self.baseWeight * Double(length)
+        self.isDoubleEdge = isDoubleEdge
         
     }
 
-    var name: String {return "\(self.length)\" \(self.componentWidthType.name) \(self.componentType.name) \(self.componentMetal.name) Blade\(self.hasEtching ? " (with \(self.componentEtching!.name))" : "")"}
+    var name: String {return "\(self.length)\" \(self.componentWidthType.name) \(self.componentType.name) \(self.componentMetal.name) \(self.isDoubleEdge ? "Double-Edged" : "Single-Edged") Blade\(self.hasEtching ? " (with \(self.componentEtching!.name))" : "")"}
     var weight: Double {return self.componentMetal.weight * self.componentWidthType.weightModifier}
     var value: Int {return self.componentMetal.value + (self.hasEtching ? self.componentEtching!.value : 0) + Int(Double(self.labourValue) * self.componentType.labourMultiplier)}
     var abilities: [String] {return ["slice", "stab", "block"]}
     var components: [(name: String, amount: Double)] {return self.componentMetal.components}
     
     func description() {
-        print("\nDouble Edged Blade\n-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-")
+        print("\nBlade\n-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-")
         print("Description: \(self.name)")
         print("Weight: \(self.weight) lb")
         print("Value: \(self.value) cp || \(returnValueInPieces(self.value))")
@@ -210,7 +213,7 @@ struct doubleEdgeBlade: weaponComponent, bladedComponent {
         for index in self.components { print("\(index.amount) lb of \(index.name)") }
         print("~~~~~~~~~~~~~~~~~~~~~")
     }
-    var simpleDescription: String {return "Blade: \(self.length)\" \(self.componentType.name) \(self.componentMetal.rawMaterial.name) Blade\(self.hasEtching ? " with \(self.componentEtching!.etchingType.name)" : "")"}
+    var simpleDescription: String {return "Blade: \(self.length)\" \(self.componentType.name) \(self.componentMetal.rawMaterial.name) \(self.isDoubleEdge ? "Double-Edged" : "Single-Edged") Blade\(self.hasEtching ? " with \(self.componentEtching!.etchingType.name)" : "")"}
 
 
 
