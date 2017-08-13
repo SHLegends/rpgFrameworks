@@ -118,7 +118,7 @@ struct handle: weaponComponent, handleComponent {
         for index in self.components { print("\(index.amount) lb of \(index.name)") }
         print("~~~~~~~~~~~~~~~~~~~~~")
     }
-    var simpleDescription: String {return "Handle: \(self.hasWrap ? "\(self.wrapType!.name) \(self.wrap!.rawMaterial.name)\(self.wrap! as? fabric != nil ? " Cord" : "") Handle" : "\(self.componentWood.rawMaterial.name) Handle\(self.hasEtching ? " with \(self.componentEtching!.etchingType.name))" : "")")"}
+    var simpleDescription: String {return "Handle: \(self.hasWrap ? "\(self.wrapType!.name) \(self.wrap!.rawMaterial.name)\(self.wrap! as? fabric != nil ? " Cord" : "") Handle" : "\(self.componentWood.rawMaterial.name) Handle\(self.hasEtching ? " with \(self.componentEtching!.etchingType.name)" : "")")"}
 }
 
 
