@@ -8,7 +8,7 @@
 
 import Foundation
 
-
+// add: longSwordHandle, shaft, weaponHead(i.e. axe/hammer/pick), maceHead
 
 protocol weaponComponent {
     var name: String {get}
