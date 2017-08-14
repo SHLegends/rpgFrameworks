@@ -171,6 +171,8 @@ struct crossguard: weaponComponent {
 }
 
 struct blade: weaponComponent, bladedComponent {
+    var withFuller: Bool
+    var fuller: (name: String, weightModifier: Double, valueMultiplier: Double)?
     var isDoubleEdge: Bool
     var labourValue: Int = 150
     var componentMetal: metal
@@ -181,7 +183,7 @@ struct blade: weaponComponent, bladedComponent {
     var hasEtching: Bool
     var componentEtching: etching?
     var baseWeight: Double = 0.07
-    init(length: Int = returnRandNumInRange(6, 60), isDoubleEdge: Bool = returnRandomBool(3, 4), giveSharpness: Double = 1.0, giveType: (name: String, labourMultiplier: Double) = returnRandomItem(doubleEdgeBladeShapes), giveWidthType: (name: String, labourMultiplier: Double, weightModifier: Double) = returnRandomItem(doubleEdgeBladeSizes), hasEtching: Bool = returnRandomBool(1, rarityModifier), giveMetal: metal = metal(), giveEtching: etching = etching()) {
+    init(length: Int = returnRandNumInRange(6, 60), isDoubleEdge: Bool = returnRandomBool(3, 4), giveSharpness: Double = 1.0, giveType: (name: String, labourMultiplier: Double) = returnRandomItem(doubleEdgeBladeShapes), giveWidthType: (name: String, labourMultiplier: Double, weightModifier: Double) = returnRandomItem(doubleEdgeBladeSizes), hasEtching: Bool = returnRandomBool(1, rarityModifier), giveMetal: metal = metal(), giveEtching: etching = etching(), withFuller: Bool = returnRandomBool(1, 5), giveFuller: (name: String, weightModifier: Double, valueMultiplier: Double) = returnRandomItem(fullerTypes) ) {
         self.componentMetal = giveMetal
         self.componentType = giveType
         self.componentWidthType = giveWidthType
@@ -191,12 +193,12 @@ struct blade: weaponComponent, bladedComponent {
         self.componentEtching = (hasEtching ? giveEtching : nil)
         self.componentMetal.baseWeight = self.baseWeight * Double(length)
         self.isDoubleEdge = isDoubleEdge
-        
+        self.withFuller = withFuller
+        self.fuller = (withFuller ? giveFuller : nil)
     }
-
-    var name: String {return "\(self.length)\" \(self.componentWidthType.name) \(self.componentType.name) \(self.componentMetal.name) \(self.isDoubleEdge ? "Double-Edged" : "Single-Edged") Blade\(self.hasEtching ? " (with \(self.componentEtching!.name))" : "")"}
-    var weight: Double {return self.componentMetal.weight * self.componentWidthType.weightModifier}
-    var value: Int {return self.componentMetal.value + (self.hasEtching ? self.componentEtching!.value : 0) + Int(Double(self.labourValue) * self.componentType.labourMultiplier)}
+    var name: String {return "\(self.length)\" \(self.componentWidthType.name) \(self.componentType.name) \(self.isDoubleEdge ? "Double-Edged" : "Single-Edged") \(self.componentMetal.name) Blade\(self.withFuller ? " with a \(self.fuller!.name) Fuller" : "")\(self.hasEtching ? " (with \(self.componentEtching!.name))" : "")"}
+    var weight: Double {return self.componentMetal.weight * self.componentWidthType.weightModifier * (self.withFuller ? self.fuller!.weightModifier : 1.0)}
+    var value: Int {return self.componentMetal.value + (self.hasEtching ? self.componentEtching!.value : 0) + Int(Double(self.labourValue) * self.componentType.labourMultiplier * (self.withFuller ? self.fuller!.valueMultiplier : 1.0))}
     var abilities: [String] {return ["slice", "stab", "block"]}
     var components: [(name: String, amount: Double)] {return self.componentMetal.components}
     
@@ -213,9 +215,9 @@ struct blade: weaponComponent, bladedComponent {
         for index in self.components { print("\(index.amount) lb of \(index.name)") }
         print("~~~~~~~~~~~~~~~~~~~~~")
     }
-    var simpleDescription: String {return "Blade: \(self.length)\" \(self.componentType.name) \(self.componentMetal.rawMaterial.name) \(self.isDoubleEdge ? "Double-Edged" : "Single-Edged") Blade\(self.hasEtching ? " with \(self.componentEtching!.etchingType.name)" : "")"}
-
-
-
+    var simpleDescription: String {return "Blade: \(self.length)\" \(self.componentType.name) \(self.isDoubleEdge ? "Double-Edged" : "Single-Edged") \(self.componentMetal.rawMaterial.name) Blade\(self.withFuller ? " with a \(self.fuller!.name) Fuller" : "")\(self.hasEtching ? " with \(self.componentEtching!.etchingType.name)" : "")"}
 }
 
+struct shaft {
+    
+}

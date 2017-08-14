@@ -56,7 +56,6 @@ protocol bladedWeapon {
     var cBlade: blade {get set}
     var isDoubleEdge: Bool {get}
 }
-
 extension bladedWeapon {
     var isDoubleEdge: Bool {return self.cBlade.isDoubleEdge}
 }
