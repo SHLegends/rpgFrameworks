@@ -8,7 +8,7 @@
 
 import Foundation
 
-let gemRarityModifier = 2
+let gemRarityModifier = 1
 
 let rarityModifier = 10
 
@@ -64,3 +64,5 @@ let doubleEdgeBladeShapes: [(name: String, labourMultiplier: Double)] = [("Strai
 let doubleEdgeBladeSizes: [(name: String, labourMultiplier: Double, weightModifier: Double)] = [("Wide", 1.05, 1.4), ("Slender", 1.0, 0.9), ("Broad", 1.05, 1.4), ("Narrow", 1.0, 0.9), ("Typical", 1.0, 1.0)]
 
 let fullerTypes: [(name: String, weightModifier: Double, valueMultiplier: Double)] = [("Deep", 0.8, 1.1), ("Double", 0.8, 1.2), ("Shallow", 0.9, 1.1), ("Half-length", 0.9, 1.1)]
+
+let IntToString: [Int: String] = [0: "Zero", 1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five", 6: "Six", 7: "Seven", 8: "Eight", 9: "Nine", 10: "Ten", 11: "Eleven", 12: "Twelve"]

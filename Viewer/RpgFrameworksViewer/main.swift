@@ -51,7 +51,7 @@ start: while true {
                     } else if choice == "2" {
                         print("Weapon Components...")
                         weaponComponentLoop: while true {
-                            print("\n\nWeapon Components:\n1. Pommel\t2. Handle\t3. Crossguard\n4. Blade\n0. back")
+                            print("\n\nWeapon Components:\n1. Pommel\t2. Handle\t3. Crossguard\n4. Blade\t5. Long Handle\n0. back")
                             let weaponComponentChoice = readLine()
                             if let choice = weaponComponentChoice {
                                 if choice == "1" {
@@ -62,6 +62,8 @@ start: while true {
                                     let foo = crossguard(); foo.description()
                                 } else if choice == "4" {
                                     let foo = blade(); foo.description()
+                                } else if choice == "5" {
+                                    let foo = longHandle(); foo.description(); print(foo.simpleDescription)
                                 } else if choice == "0" {
                                     break weaponComponentLoop
                                 }
