@@ -27,6 +27,7 @@ extension weapon {
         print("Description: \(self.name)")
         print("Weight: \(self.weight) lb")
         print("Value: \(self.value) cp || \(returnValueInPieces(self.value))")
+        print("Full Length: \(self.length)\"")
         for item in cList { item.description() }
         print("\n\n~~~~~~~~~~~~~~~~~~~~~\nFULL Salvage:")
         for index in self.components { print("\(index.amount) lb of \(index.name)") }
