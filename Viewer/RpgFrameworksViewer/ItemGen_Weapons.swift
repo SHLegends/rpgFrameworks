@@ -61,6 +61,23 @@ extension bladedWeapon {
     var isDoubleEdge: Bool {return self.cBlade.isDoubleEdge}
 }
 
+struct swordStaff: weapon, bladedWeapon {
+    var typeName: String = "Sword Staff"
+    var cMetal: metal
+    var cBlade: blade
+    var cHaft: haft
+    var cList: [weaponComponent]
+    init(giveMetal: metal = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveBlade: blade? = nil,  giveHaft: haft? = nil) {
+        self.cMetal = giveMetal
+        if giveBlade != nil { self.cBlade = giveBlade! } else { self.cBlade = blade(length: returnRandNumInRange(12, 24), giveMetal: self.cMetal) }
+        if giveHaft != nil { self.cHaft = giveHaft! } else { self.cHaft = haft(length: returnRandNumInRange(36, 60))}
+        self.cList = [self.cBlade, self.cHaft]
+    }
+    var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
+    var name: String {return "\(self.length)\" \(self.typeName)"}
+    var grip: Int {return self.cHaft.grip}
+}
+
 struct longSword: weapon, bladedWeapon {
     var typeName: String = "Long Sword"
     var cMetal: metal
