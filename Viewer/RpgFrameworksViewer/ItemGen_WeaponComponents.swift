@@ -79,7 +79,7 @@ struct pommel: weaponComponent {
 
 struct handle: weaponComponent, handleComponent {
     typealias handleMaterial = baseMaterial & materialWithGrip
-    var baseWeight: Double = 0.1
+    var baseWeight: Double = 0.05
     var labourValue = 15
     var hasWrap: Bool
     var componentWood: wood
@@ -91,10 +91,11 @@ struct handle: weaponComponent, handleComponent {
     init(giveWood: wood? = nil, hasWrap: Bool = returnRandomBool(1, rarityModifier), giveWrap: handleMaterial? = nil, giveWrapType: (name: String, multiplier: Double, gripPercent: Int)? = nil, hasEtching: Bool = returnRandomBool(1, rarityModifier), giveEtching: etching? = nil) {
         self.componentWood = (giveWood != nil ? giveWood! : wood(baseWeight: self.baseWeight))
         if hasWrap { if giveWrap != nil { self.wrap = giveWrap! } else { if returnRandomBool(1, rarityModifier) { self.wrap = leather(baseWeight: self.baseWeight) } else { self.wrap = fabric(baseWeight: self.baseWeight) } }
-            self.wrapType = (giveWrapType != nil ? giveWrapType! : returnRandomItem(gripQualities)) } else { self.wrap = nil; self.wrapType = nil }
+        self.wrapType = (giveWrapType != nil ? giveWrapType! : returnRandomItem(gripQualities)) } else { self.wrap = nil; self.wrapType = nil }
         self.hasEtching = hasEtching
         if hasEtching { self.componentEtching = giveEtching ?? etching(withMetal: returnRandomBool(1, 4)) } else { self.componentEtching = nil }
         self.hasWrap = hasWrap
+        self.componentWood.baseWeight *= Double(self.length)
     }
     var grip: Int {return (self.hasWrap ? self.wrap!.grip : self.componentWood.grip)}
     var name: String {return "\(self.hasWrap ? "\(self.wrapType!.name) \(self.wrap!.name)\(self.wrap! as? fabric != nil ? " Cord" : "") Grip (\(self.componentWood.name) Handle\(self.hasEtching ? " with \(self.componentEtching!.name)" : ""))" : "\(self.componentWood.name) Handle\(self.hasEtching ? " (with \(self.componentEtching!.name))" : "")")"}
@@ -220,7 +221,7 @@ struct longHandle: weaponComponent, handleComponent {
     var numOfHolds: Int
     var ringMetal: metal
     typealias handleMaterial = baseMaterial & materialWithGrip
-    var baseWeight: Double = 0.1
+    var baseWeight: Double = 0.05
     var labourValue = 15
     var hasWrap: Bool
     var componentWood: wood
@@ -238,6 +239,7 @@ struct longHandle: weaponComponent, handleComponent {
         self.hasEtching = hasEtching
         if hasEtching { self.componentEtching = giveEtching ?? etching(withMetal: returnRandomBool(1, 4)) } else { self.componentEtching = nil }
         self.hasWrap = hasWrap
+        self.componentWood.baseWeight *= Double(self.length)
     }
     var length: Int {return self.numOfHolds * 6}
     var grip: Int {return (self.hasWrap ? self.wrap!.grip : self.componentWood.grip)}
@@ -247,7 +249,7 @@ struct longHandle: weaponComponent, handleComponent {
     var abilities: [String] = [""]
     var components: [(name: String, amount: Double)] {return self.componentWood.components + (self.hasWrap ? self.wrap!.components : [])}
     func description() {
-    print("\nLong Handle\n-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-")
+        print("\nLong Handle\n-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-")
         print("Description: \(self.name)")
         print("Weight: \(self.weight) lb")
         print("Value: \(self.value) cp || \(returnValueInPieces(self.value))")
@@ -261,18 +263,51 @@ struct longHandle: weaponComponent, handleComponent {
         for index in self.components { print("\(index.amount) lb of \(index.name)") }
         print("~~~~~~~~~~~~~~~~~~~~~")
     }
-    var simpleDescription: String {return "Long Handle: \(IntToString[self.numOfHolds]!) Hold \(self.hasWrap ? "\(self.wrapType!.name) \(self.wrap!.rawMaterial.name)\(self.wrap! as? fabric != nil ? " Cord" : "") Long Handle with \(self.ringMetal.name) Rings" : "\(self.componentWood.rawMaterial.name) Long Handle with \(self.ringMetal.name) Rings\(self.hasEtching ? " with \(self.componentEtching!.etchingType.name)" : "")")"}
+    var simpleDescription: String {return "Long Handle: \(IntToString[self.numOfHolds]!) Hold \(self.hasWrap ? "\(self.wrapType!.name) \(self.wrap!.rawMaterial.name)\(self.wrap! as? fabric != nil ? " Cord" : "") Long Handle with \(self.ringMetal.rawMaterial.name) Rings" : "\(self.componentWood.rawMaterial.name) Long Handle with \(self.ringMetal.rawMaterial.name) Rings\(self.hasEtching ? " with \(self.componentEtching!.etchingType.name)" : "")")"}
 }
 
 
-//struct shaft: weaponComponent, handleComponent {
-//
-//    var length: Int
-//
-//    init(length: Int = returnRandNumInRange(<#T##start: Int##Int#>, <#T##end: Int##Int#>)) {
-//
-//    }
-//
-//
-//}
+struct haft: weaponComponent, handleComponent {
+    var componentWood: wood
+    var componentType: (name: String, weightModifier: Double)
+    var length: Int
+    var baseWeight = 0.05
+    var labourValue = 1
+    var hasEtching: Bool
+    var componentEtching: etching?
+
+    init(giveMaterial: wood = wood(), length: Int = returnRandNumInRange(24, 72), giveType: (name: String, weightModifier: Double) = returnRandomItem(haftTypes), hasEtching: Bool = returnRandomBool(1, rarityModifier), giveEtching: etching = etching()) {
+        self.componentWood = giveMaterial
+        self.length = length
+        self.componentType = giveType
+        self.componentWood.baseWeight = self.baseWeight * Double(self.length) * self.componentType.weightModifier
+        self.labourValue *= self.length
+        self.hasEtching = hasEtching
+        self.componentEtching = (self.hasEtching ? giveEtching : nil)
+        
+    }
+    
+    var grip: Int {return 75}
+    var name: String {return "\(self.componentType.name) \(self.length)\" \(self.componentWood.name) Haft\(self.hasEtching ? " (with \(self.componentEtching!.name))" : "")"}
+    var weight: Double {return self.componentWood.weight}
+    var value: Int {return self.componentWood.value + self.labourValue}
+    var abilities: [String] = ["block"]
+    var components: [(name: String, amount: Double)] {return self.componentWood.components}
+    func description() {
+        print("\nHaft\n-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-")
+        print("Description: \(self.name)")
+        print("Weight: \(self.weight) lb")
+        print("Value: \(self.value) cp || \(returnValueInPieces(self.value))")
+        print("Grip Percent: \(self.grip) %")
+        print("\nComponents:")
+        self.componentWood.description()
+        if self.hasEtching {self.componentEtching!.description()}
+        print("")
+        print("~~~~~~~~~~~~~~~~~~~~~\nSalvage:")
+        for index in self.components { print("\(index.amount) lb of \(index.name)") }
+        print("~~~~~~~~~~~~~~~~~~~~~")
+    }
+    var simpleDescription: String {return "Haft: \(self.length)\" \(self.componentWood.rawMaterial.name) Haft\(self.hasEtching ? " with \(self.componentEtching!.etchingType.name)" : "")"}
+
+}
 
