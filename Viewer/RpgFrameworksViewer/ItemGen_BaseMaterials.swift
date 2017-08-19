@@ -13,18 +13,18 @@ import Foundation
 
 
 protocol baseMaterial {
+    var rawMaterial: (name: String, value: Int, gripPercent: Int) {get set}
     var name: String {get}
     var weight: Double {get}
     var value: Int {get}
     var components: [(name: String, amount: Double)] {get}
     var baseWeight: Double {get set}
     func description()
-    
 }
 
 protocol materialWithGrip {
     var grip: Int {get}
-    var rawMaterial: (name: String, value: Int, gripPercent: Int) {get set}
+    
 }
 
 
@@ -192,6 +192,9 @@ struct etching {
     }
 }
 
+//struct bone: baseMaterial, materialWithGrip {
+//    
+//}
 
 
 

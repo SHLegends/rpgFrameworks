@@ -9,6 +9,7 @@
 import Foundation
 
 protocol weapon {
+    var cMaterial: baseMaterial {get set}
     var name: String {get}
     var weight: Double {get}
     var value: Int {get}
@@ -63,13 +64,13 @@ extension bladedWeapon {
 
 struct shortAxe: weapon {
     var typeName: String = "One-Handed Axe"
-    var cMetal: metal
+    var cMaterial: baseMaterial
     var cAxeHead: axeHead
     var cHaft: haft
     var cList: [weaponComponent]
-    init(giveMetal: metal = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveAxe: axeHead? = nil,  giveHaft: haft? = nil) {
-        self.cMetal = giveMetal
-        if giveAxe != nil { self.cAxeHead = giveAxe! } else { self.cAxeHead = axeHead(giveMetal: self.cMetal) }
+    init(cMaterial: metal = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveAxe: axeHead? = nil,  giveHaft: haft? = nil) {
+        self.cMaterial = cMaterial
+        if giveAxe != nil { self.cAxeHead = giveAxe! } else { self.cAxeHead = axeHead(cMaterial: self.cMaterial) }
         if giveHaft != nil { self.cHaft = giveHaft! } else { self.cHaft = haft(length: returnRandNumInRange(12, 24))}
         self.cList = [self.cAxeHead, self.cHaft]
     }
@@ -89,6 +90,40 @@ struct longAxe: weapon {
         if giveAxe != nil { self.cAxeHead = giveAxe! } else { self.cAxeHead = axeHead(giveMetal: self.cMetal) }
         if giveHaft != nil { self.cHaft = giveHaft! } else { self.cHaft = haft(length: returnRandNumInRange(36, 48))}
         self.cList = [self.cAxeHead, self.cHaft]
+    }
+    var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
+    var name: String {return "\(self.length)\" \(self.typeName)"}
+    var grip: Int {return self.cHaft.grip}
+}
+
+struct shortMace: weapon {
+    var typeName: String = "One-Handed Mace"
+    var cMetal: metal
+    var cMaceHead: maceHead
+    var cHaft: haft
+    var cList: [weaponComponent]
+    init(giveMetal: metal = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveMace: maceHead? = nil,  giveHaft: haft? = nil) {
+        self.cMetal = giveMetal
+        if giveMace != nil { self.cMaceHead = giveMace! } else { self.cMaceHead = maceHead(giveMetal: self.cMetal) }
+        if giveHaft != nil { self.cHaft = giveHaft! } else { self.cHaft = haft(length: returnRandNumInRange(12, 24))}
+        self.cList = [self.cMaceHead, self.cHaft]
+    }
+    var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
+    var name: String {return "\(self.length)\" \(self.typeName)"}
+    var grip: Int {return self.cHaft.grip}
+}
+
+struct longMace: weapon {
+    var typeName: String = "Two-Handed Mace"
+    var cMetal: metal
+    var cMaceHead: maceHead
+    var cHaft: haft
+    var cList: [weaponComponent]
+    init(giveMetal: metal = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveMace: maceHead? = nil,  giveHaft: haft? = nil) {
+        self.cMetal = giveMetal
+        if giveMace != nil { self.cMaceHead = giveMace! } else { self.cMaceHead = maceHead(giveMetal: self.cMetal) }
+        if giveHaft != nil { self.cHaft = giveHaft! } else { self.cHaft = haft(length: returnRandNumInRange(36, 48))}
+        self.cList = [self.cMaceHead, self.cHaft]
     }
     var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
     var name: String {return "\(self.length)\" \(self.typeName)"}

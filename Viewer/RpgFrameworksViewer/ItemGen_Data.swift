@@ -66,3 +66,5 @@ let fullerTypes: [(name: String, weightModifier: Double, valueMultiplier: Double
 let IntToString: [Int: String] = [0: "Zero", 1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five", 6: "Six", 7: "Seven", 8: "Eight", 9: "Nine", 10: "Ten", 11: "Eleven", 12: "Twelve"]
 
 let haftTypes: [(name: String, weightModifier: Double)] = [("Thin", 0.9), ("Slender", 0.9), ("Thick", 1.1), ("Light", 0.9), ("Heavy", 1.1)]
+
+let maceTypes: [(name: String, value: Int, weightModifier: Double)] = [("Heavy", 1, 1.5), ("Light", 1, 0.8), ("Spiked", 1, 1.0), ("Oval", 1, 1.0), ("Round", 1, 1.0), ("Bladed", 1, 1.0)]
