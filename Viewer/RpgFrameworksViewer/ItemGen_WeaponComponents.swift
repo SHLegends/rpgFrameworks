@@ -25,7 +25,6 @@ protocol weaponComponent {
 
 protocol bladedComponent {
     var sharpness: Double {get set}
-    var isDoubleEdge: Bool {get set}
 }
 
 protocol handleComponent {
@@ -309,5 +308,55 @@ struct haft: weaponComponent, handleComponent {
     }
     var simpleDescription: String {return "Haft: \(self.length)\" \(self.componentWood.rawMaterial.name) Haft\(self.hasEtching ? " with \(self.componentEtching!.etchingType.name)" : "")"}
 
+}
+
+struct axeHead: weaponComponent, bladedComponent {
+    var componentMetal: metal
+    var hasDoubleHead: Bool
+    
+    var componentType: (name: String, value: Int, weightModifier: Double)
+    var length = 8
+    var baseWeight = 1.0
+    var labourValue = 20
+    var hasEtching: Bool
+    var componentEtching: etching?
+    var sharpness: Double
+    
+    init(giveMetal: metal = metal(), isDoubleHead: Bool = returnRandomBool(1, rarityModifier), giveType: (name: String, value: Int, weightModifier: Double) = returnRandomItem(axeTypes), hasEtching: Bool = returnRandomBool(1, rarityModifier), giveEtching: etching = etching(), giveSharpness: Double = 1.0) {
+        self.componentMetal = giveMetal
+        self.hasDoubleHead = isDoubleHead
+        self.componentType = giveType
+        self.hasEtching = hasEtching
+        self.componentEtching = giveEtching
+        self.sharpness = giveSharpness
+        self.componentMetal.baseWeight = self.baseWeight * self.componentType.weightModifier
+        self.baseWeight *= (self.hasDoubleHead ? 1.5 : 1.0)
+        self.labourValue *= self.componentType.value
+        
+    }
+    
+    
+    var name: String {return "\(self.componentType.name) \(self.componentMetal.name)\(self.hasDoubleHead ? " Double" : "") Axe Head\(self.hasEtching ? " (with \(self.componentEtching!.name))" : "")"}
+    var weight: Double {return self.componentMetal.weight}
+    var value: Int {return self.componentMetal.value + self.labourValue}
+    var abilities: [String] = ["chop"]
+    var components: [(name: String, amount: Double)] {return self.componentMetal.components}
+    
+    func description() {
+        print("\nHaft\n-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-")
+        print("Description: \(self.name)")
+        print("Weight: \(self.weight) lb")
+        print("Value: \(self.value) cp || \(returnValueInPieces(self.value))")
+        print("\nComponents:")
+        self.componentMetal.description()
+        if self.hasEtching {self.componentEtching!.description()}
+        print("")
+        print("~~~~~~~~~~~~~~~~~~~~~\nSalvage:")
+        for index in self.components { print("\(index.amount) lb of \(index.name)") }
+        print("~~~~~~~~~~~~~~~~~~~~~")
+    }
+    
+    var simpleDescription: String {return "Axe Head: \(self.componentType.name) \(self.componentMetal.rawMaterial.name)\(self.hasDoubleHead ? " Double" : "") Axe Head\(self.hasEtching ? " with \(self.componentEtching!.etchingType.name)" : "")"}
+    
 }
 

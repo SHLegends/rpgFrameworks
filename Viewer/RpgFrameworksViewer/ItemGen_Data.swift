@@ -15,9 +15,7 @@ let rarityModifier = 10
 //let metalBaseValue = 2 //per "
 //let metalBaseWeight = 0.02 //per "
 
-let axeSizes: [(name: String, value: Int, weightModifier: Double)] = [("Broad", 1, 1.5), ("Narrow", 1, 0.5), ("Slender", 1, 0.5), ("Rounded", 1, 1.0)]
-
-let wrapAmounts: [(name: String, gripModifier: Double)] = [("Half Length", 1.2), ("Quarter Length", 1.1)]
+let axeTypes: [(name: String, value: Int, weightModifier: Double)] = [("Broad", 1, 1.5), ("Narrow", 1, 0.8), ("Slender", 1, 0.8), ("Rounded", 1, 1.0), ("Heavy", 1, 1.6), ("Light", 1, 0.6), ("Curved", 1, 1.0), ("Recurved", 1, 1.0)]
 
 let randomChance = 4
 
@@ -60,7 +58,7 @@ let crossguardSizes: [(name: String, weightModifier: Double)] = [("Narrow", 0.9)
 
 let crossguardShapes: [(name: String, labourMultiplier: Double)] = [("Straight", 1.0), ("Up-Curved", 1.1), ("Serpentine", 1.5), ("Crescentic", 1.2), ("Arched", 1.2), ("Elliptical", 1.3), ("Bowed", 1.2), ("Angled", 1.1), ("Tilted", 1.1), ("Beveled", 1.1), ("Bowtie", 1.3), ("Wavy", 1.4), ("Corkscrew", 1.3), ("Spiral", 1.3), ("Hooked", 1.2), ("Falcate", 1.2)]
 
-let doubleEdgeBladeShapes: [(name: String, labourMultiplier: Double)] = [("Straight", 1.0), ("Straight", 1.0), ("Straight", 1.0), ("Straight", 1.0), ("Straight", 1.0), ("Curved", 1.1), ("Hooked", 1.2), ("Serpintine", 1.3), ("Leaf-Shape", 1.2)]
+let doubleEdgeBladeShapes: [(name: String, labourMultiplier: Double)] = [("Straight", 1.0), ("Straight", 1.0), ("Straight", 1.0), ("Straight", 1.0), ("Straight", 1.0), ("Curved", 1.1), ("Hooked", 1.2), ("Serpintine", 1.3), ("Leaf-Shape", 1.2), ("Recurved", 1.1)]
 let doubleEdgeBladeSizes: [(name: String, labourMultiplier: Double, weightModifier: Double)] = [("Wide", 1.05, 1.4), ("Slender", 1.0, 0.9), ("Broad", 1.05, 1.4), ("Narrow", 1.0, 0.9), ("Typical", 1.0, 1.0)]
 
 let fullerTypes: [(name: String, weightModifier: Double, valueMultiplier: Double)] = [("Deep", 0.8, 1.1), ("Double", 0.8, 1.2), ("Shallow", 0.9, 1.1), ("Half-length", 0.9, 1.1)]

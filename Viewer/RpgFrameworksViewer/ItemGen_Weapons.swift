@@ -61,6 +61,40 @@ extension bladedWeapon {
     var isDoubleEdge: Bool {return self.cBlade.isDoubleEdge}
 }
 
+struct shortAxe: weapon {
+    var typeName: String = "One-Handed Axe"
+    var cMetal: metal
+    var cAxeHead: axeHead
+    var cHaft: haft
+    var cList: [weaponComponent]
+    init(giveMetal: metal = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveAxe: axeHead? = nil,  giveHaft: haft? = nil) {
+        self.cMetal = giveMetal
+        if giveAxe != nil { self.cAxeHead = giveAxe! } else { self.cAxeHead = axeHead(giveMetal: self.cMetal) }
+        if giveHaft != nil { self.cHaft = giveHaft! } else { self.cHaft = haft(length: returnRandNumInRange(12, 24))}
+        self.cList = [self.cAxeHead, self.cHaft]
+    }
+    var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
+    var name: String {return "\(self.length)\" \(self.typeName)"}
+    var grip: Int {return self.cHaft.grip}
+}
+
+struct longAxe: weapon {
+    var typeName: String = "Two-Handed Axe"
+    var cMetal: metal
+    var cAxeHead: axeHead
+    var cHaft: haft
+    var cList: [weaponComponent]
+    init(giveMetal: metal = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveAxe: axeHead? = nil,  giveHaft: haft? = nil) {
+        self.cMetal = giveMetal
+        if giveAxe != nil { self.cAxeHead = giveAxe! } else { self.cAxeHead = axeHead(giveMetal: self.cMetal) }
+        if giveHaft != nil { self.cHaft = giveHaft! } else { self.cHaft = haft(length: returnRandNumInRange(36, 48))}
+        self.cList = [self.cAxeHead, self.cHaft]
+    }
+    var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
+    var name: String {return "\(self.length)\" \(self.typeName)"}
+    var grip: Int {return self.cHaft.grip}
+}
+
 struct swordStaff: weapon, bladedWeapon {
     var typeName: String = "Sword Staff"
     var cMetal: metal
