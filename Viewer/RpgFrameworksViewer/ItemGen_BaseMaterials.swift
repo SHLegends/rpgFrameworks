@@ -12,8 +12,7 @@ import Foundation
 // 10000 cp -> 1 gp
 
 
-protocol baseMaterial {
-    var rawMaterial: (name: String, value: Int, gripPercent: Int) {get set}
+protocol materialOutline {
     var name: String {get}
     var weight: Double {get}
     var value: Int {get}
@@ -24,12 +23,14 @@ protocol baseMaterial {
 
 protocol materialWithGrip {
     var grip: Int {get}
-    
+    var rawMaterial: (name: String, value: Int, gripPercent: Int) {get set}
+
 }
 
+typealias baseMaterial = materialOutline & materialWithGrip
 
 
-struct gemstone: baseMaterial {
+struct gemstone: materialOutline {
     var rawMaterial: (name: String, value: Int)
     var size: (name: String, modifier: Double)
     var polish: Bool
@@ -57,7 +58,7 @@ struct gemstone: baseMaterial {
     }
 }
 
-struct leather: baseMaterial, materialWithGrip {
+struct leather: baseMaterial {
     var rawMaterial: (name: String, value: Int, gripPercent: Int)
     var quality: (name: String, modifier: Double)
     var baseWeight: Double
@@ -83,7 +84,7 @@ struct leather: baseMaterial, materialWithGrip {
     }
 }
 
-struct fabric: baseMaterial, materialWithGrip {
+struct fabric: baseMaterial {
     var rawMaterial: (name: String, value: Int, gripPercent: Int)
     var quality: (name: String, modifier: Double)
     var baseWeight: Double
@@ -112,7 +113,7 @@ struct fabric: baseMaterial, materialWithGrip {
 }
 
 
-struct wood: baseMaterial, materialWithGrip {
+struct wood: baseMaterial {
     var rawMaterial: (name: String, value: Int, gripPercent: Int)
     var quality: (name: String, modifier: Double)
     var baseWeight: Double
@@ -139,7 +140,7 @@ struct wood: baseMaterial, materialWithGrip {
 }
 
 
-struct metal: baseMaterial, materialWithGrip {
+struct metal: baseMaterial {
     var baseMaterial: (name: String, weightModifier: Double, valueModifier: Double, durabilityModifier: Double, sharpnessModifier: Double, value: Int)
     var quality: (name: String, modifier: Double)
     var baseWeight: Double

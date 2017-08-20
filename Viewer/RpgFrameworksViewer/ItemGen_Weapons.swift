@@ -68,7 +68,7 @@ struct shortAxe: weapon {
     var cAxeHead: axeHead
     var cHaft: haft
     var cList: [weaponComponent]
-    init(cMaterial: metal = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveAxe: axeHead? = nil,  giveHaft: haft? = nil) {
+    init(cMaterial: baseMaterial = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveAxe: axeHead? = nil,  giveHaft: haft? = nil) {
         self.cMaterial = cMaterial
         if giveAxe != nil { self.cAxeHead = giveAxe! } else { self.cAxeHead = axeHead(cMaterial: self.cMaterial) }
         if giveHaft != nil { self.cHaft = giveHaft! } else { self.cHaft = haft(length: returnRandNumInRange(12, 24))}
@@ -81,13 +81,13 @@ struct shortAxe: weapon {
 
 struct longAxe: weapon {
     var typeName: String = "Two-Handed Axe"
-    var cMetal: metal
+    var cMaterial: baseMaterial
     var cAxeHead: axeHead
     var cHaft: haft
     var cList: [weaponComponent]
-    init(giveMetal: metal = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveAxe: axeHead? = nil,  giveHaft: haft? = nil) {
-        self.cMetal = giveMetal
-        if giveAxe != nil { self.cAxeHead = giveAxe! } else { self.cAxeHead = axeHead(giveMetal: self.cMetal) }
+    init(cMaterial: baseMaterial = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveAxe: axeHead? = nil,  giveHaft: haft? = nil) {
+        self.cMaterial = cMaterial
+        if giveAxe != nil { self.cAxeHead = giveAxe! } else { self.cAxeHead = axeHead(cMaterial: self.cMaterial) }
         if giveHaft != nil { self.cHaft = giveHaft! } else { self.cHaft = haft(length: returnRandNumInRange(36, 48))}
         self.cList = [self.cAxeHead, self.cHaft]
     }
@@ -98,13 +98,13 @@ struct longAxe: weapon {
 
 struct shortMace: weapon {
     var typeName: String = "One-Handed Mace"
-    var cMetal: metal
+    var cMaterial: baseMaterial
     var cMaceHead: maceHead
     var cHaft: haft
     var cList: [weaponComponent]
-    init(giveMetal: metal = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveMace: maceHead? = nil,  giveHaft: haft? = nil) {
-        self.cMetal = giveMetal
-        if giveMace != nil { self.cMaceHead = giveMace! } else { self.cMaceHead = maceHead(giveMetal: self.cMetal) }
+    init(cMaterial: baseMaterial = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveMace: maceHead? = nil,  giveHaft: haft? = nil) {
+        self.cMaterial = cMaterial
+        if giveMace != nil { self.cMaceHead = giveMace! } else { self.cMaceHead = maceHead(cMaterial: self.cMaterial) }
         if giveHaft != nil { self.cHaft = giveHaft! } else { self.cHaft = haft(length: returnRandNumInRange(12, 24))}
         self.cList = [self.cMaceHead, self.cHaft]
     }
@@ -115,13 +115,13 @@ struct shortMace: weapon {
 
 struct longMace: weapon {
     var typeName: String = "Two-Handed Mace"
-    var cMetal: metal
+    var cMaterial: baseMaterial
     var cMaceHead: maceHead
     var cHaft: haft
     var cList: [weaponComponent]
-    init(giveMetal: metal = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveMace: maceHead? = nil,  giveHaft: haft? = nil) {
-        self.cMetal = giveMetal
-        if giveMace != nil { self.cMaceHead = giveMace! } else { self.cMaceHead = maceHead(giveMetal: self.cMetal) }
+    init(cMaterial: baseMaterial = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveMace: maceHead? = nil,  giveHaft: haft? = nil) {
+        self.cMaterial = cMaterial
+        if giveMace != nil { self.cMaceHead = giveMace! } else { self.cMaceHead = maceHead(cMaterial: self.cMaterial) }
         if giveHaft != nil { self.cHaft = giveHaft! } else { self.cHaft = haft(length: returnRandNumInRange(36, 48))}
         self.cList = [self.cMaceHead, self.cHaft]
     }
@@ -132,13 +132,13 @@ struct longMace: weapon {
 
 struct swordStaff: weapon, bladedWeapon {
     var typeName: String = "Sword Staff"
-    var cMetal: metal
+    var cMaterial: baseMaterial
     var cBlade: blade
     var cHaft: haft
     var cList: [weaponComponent]
-    init(giveMetal: metal = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveBlade: blade? = nil,  giveHaft: haft? = nil) {
-        self.cMetal = giveMetal
-        if giveBlade != nil { self.cBlade = giveBlade! } else { self.cBlade = blade(length: returnRandNumInRange(12, 24), giveMetal: self.cMetal) }
+    init(cMaterial: baseMaterial = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveBlade: blade? = nil,  giveHaft: haft? = nil) {
+        self.cMaterial = cMaterial
+        if giveBlade != nil { self.cBlade = giveBlade! } else { self.cBlade = blade(length: returnRandNumInRange(12, 24), cMaterial: self.cMaterial) }
         if giveHaft != nil { self.cHaft = giveHaft! } else { self.cHaft = haft(length: returnRandNumInRange(36, 60))}
         self.cList = [self.cBlade, self.cHaft]
     }
@@ -149,83 +149,83 @@ struct swordStaff: weapon, bladedWeapon {
 
 struct longSword: weapon, bladedWeapon {
     var typeName: String = "Long Sword"
-    var cMetal: metal
+    var cMaterial: baseMaterial
     var cBlade: blade
     var cGuard: crossguard
     var cHandle: longHandle
     var cPommel: pommel
     var cList: [weaponComponent]
-    init(giveMetal: metal = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveBlade: blade? = nil, giveGuard: crossguard? = nil, giveHandle: longHandle? = nil, givePommel: pommel? = nil) {
-        self.cMetal = giveMetal
+    init(cMaterial: baseMaterial = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveBlade: blade? = nil, giveGuard: crossguard? = nil, giveHandle: longHandle? = nil, givePommel: pommel? = nil) {
+        self.cMaterial = cMaterial
         let rareMetal = (isRare ? metal(giveRawMaterial: returnRandomItem(metals["rare"]!)) : nil)
-        if giveBlade != nil { self.cBlade = giveBlade! } else { self.cBlade = blade(length: returnRandNumInRange(45, 60), giveMetal: self.cMetal) }
-        if giveGuard != nil { self.cGuard = giveGuard! } else if isRare { self.cGuard = crossguard(giveMetal: rareMetal!) } else { self.cGuard = crossguard(giveMetal: self.cMetal) }
-        if giveHandle != nil { self.cHandle = giveHandle! } else { self.cHandle = longHandle(giveMetal: giveMetal)}
-        if givePommel != nil { self.cPommel = givePommel! } else if isRare { self.cPommel = pommel(giveMetal: rareMetal!) } else { self.cPommel = pommel(giveMetal: self.cMetal) }
+        if giveBlade != nil { self.cBlade = giveBlade! } else { self.cBlade = blade(length: returnRandNumInRange(45, 60), cMaterial: self.cMaterial) }
+        if giveGuard != nil { self.cGuard = giveGuard! } else if isRare { self.cGuard = crossguard(cMaterial: rareMetal!) } else { self.cGuard = crossguard(cMaterial: self.cMaterial) }
+        if giveHandle != nil { self.cHandle = giveHandle! } else { self.cHandle = longHandle(ringMaterial: self.cMaterial)}
+        if givePommel != nil { self.cPommel = givePommel! } else if isRare { self.cPommel = pommel(cMaterial: rareMetal!) } else { self.cPommel = pommel(cMaterial: self.cMaterial) }
         self.cList = [self.cBlade, self.cGuard, self.cHandle, self.cPommel]
     }
     var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
-    var name: String {return "\(self.cBlade.length)\" \(self.cMetal.rawMaterial.name) \(self.typeName)"}
+    var name: String {return "\(self.cBlade.length)\" \(self.cMaterial.rawMaterial.name) \(self.typeName)"}
     var grip: Int {return self.cHandle.grip}
 }
 
 struct sword: weapon, bladedWeapon {
     var typeName: String = "Sword"
-    var cMetal: metal
+    var cMaterial: baseMaterial
     var cBlade: blade
     var cGuard: crossguard
     var cHandle: handle
     var cPommel: pommel
     var cList: [weaponComponent]
-    init(giveMetal: metal = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveBlade: blade? = nil, giveGuard: crossguard? = nil, giveHandle: handle? = nil, givePommel: pommel? = nil) {
-        self.cMetal = giveMetal
+    init(cMaterial: baseMaterial = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveBlade: blade? = nil, giveGuard: crossguard? = nil, giveHandle: handle? = nil, givePommel: pommel? = nil) {
+        self.cMaterial = cMaterial
         let rareMetal = (isRare ? metal(giveRawMaterial: returnRandomItem(metals["rare"]!)) : nil)
-        if giveBlade != nil { self.cBlade = giveBlade! } else { self.cBlade = blade(length: returnRandNumInRange(26, 40), giveMetal: self.cMetal) }
-        if giveGuard != nil { self.cGuard = giveGuard! } else if isRare { self.cGuard = crossguard(giveMetal: rareMetal!) } else { self.cGuard = crossguard(giveMetal: self.cMetal) }
+        if giveBlade != nil { self.cBlade = giveBlade! } else { self.cBlade = blade(length: returnRandNumInRange(26, 40), cMaterial: self.cMaterial) }
+        if giveGuard != nil { self.cGuard = giveGuard! } else if isRare { self.cGuard = crossguard(cMaterial: rareMetal!) } else { self.cGuard = crossguard(cMaterial: self.cMaterial) }
         if giveHandle != nil { self.cHandle = giveHandle! } else { self.cHandle = handle()}
-        if givePommel != nil { self.cPommel = givePommel! } else if isRare { self.cPommel = pommel(giveMetal: rareMetal!) } else { self.cPommel = pommel(giveMetal: self.cMetal) }
+        if givePommel != nil { self.cPommel = givePommel! } else if isRare { self.cPommel = pommel(cMaterial: rareMetal!) } else { self.cPommel = pommel(cMaterial: self.cMaterial) }
         self.cList = [self.cBlade, self.cGuard, self.cHandle, self.cPommel]
     }
     var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
-    var name: String {return "\(self.cBlade.length)\" \(self.cMetal.rawMaterial.name) \(self.typeName)"}
+    var name: String {return "\(self.cBlade.length)\" \(self.cMaterial.rawMaterial.name) \(self.typeName)"}
     var grip: Int {return self.cHandle.grip}
 }
 
 struct dagger: weapon {
     var typeName: String = "Dagger"
-    var cMetal: metal
+    var cMaterial: baseMaterial
     var cBlade: blade
     var cGuard: crossguard
     var cHandle: handle
     var cPommel: pommel
     var cList: [weaponComponent]
-    init(giveMetal: metal = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveBlade: blade? = nil, giveGuard: crossguard? = nil, giveHandle: handle? = nil, givePommel: pommel? = nil) {
-        self.cMetal = giveMetal
+    init(cMaterial: baseMaterial = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveBlade: blade? = nil, giveGuard: crossguard? = nil, giveHandle: handle? = nil, givePommel: pommel? = nil) {
+        self.cMaterial = cMaterial
         let rareMetal = (isRare ? metal(giveRawMaterial: returnRandomItem(metals["rare"]!)) : nil)
-        if giveBlade != nil { self.cBlade = giveBlade! } else { self.cBlade = blade(length: returnRandNumInRange(12, 20), giveMetal: self.cMetal) }
-        if giveGuard != nil { self.cGuard = giveGuard! } else if isRare { self.cGuard = crossguard(giveMetal: rareMetal) } else { self.cGuard = crossguard(giveMetal: self.cMetal) }
+        if giveBlade != nil { self.cBlade = giveBlade! } else { self.cBlade = blade(length: returnRandNumInRange(12, 20), cMaterial: self.cMaterial) }
+        if giveGuard != nil { self.cGuard = giveGuard! } else if isRare { self.cGuard = crossguard(cMaterial: rareMetal) } else { self.cGuard = crossguard(cMaterial: self.cMaterial) }
         if giveHandle != nil { self.cHandle = giveHandle! } else { self.cHandle = handle()}
-        if givePommel != nil { self.cPommel = givePommel! } else if isRare { self.cPommel = pommel(giveMetal: rareMetal) } else { self.cPommel = pommel(giveMetal: self.cMetal) }
+        if givePommel != nil { self.cPommel = givePommel! } else if isRare { self.cPommel = pommel(cMaterial: rareMetal) } else { self.cPommel = pommel(cMaterial: self.cMaterial) }
         self.cList = [self.cBlade, self.cGuard, self.cHandle, self.cPommel]
     }
     var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
-    var name: String {return "\(self.cBlade.length)\" \(self.cMetal.rawMaterial.name) \(self.typeName)"}
+    var name: String {return "\(self.cBlade.length)\" \(self.cMaterial.rawMaterial.name) \(self.typeName)"}
     var grip: Int {return self.cHandle.grip}
 }
 
 struct knife: weapon {
     var typeName: String = "Knife"
-    var cMetal: metal
+    var cMaterial: baseMaterial
     var cBlade: blade
     var cHandle: handle
     var cList: [weaponComponent]
-    init(giveMetal: metal = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveBlade: blade? = nil, giveHandle: handle? = nil) {
-        self.cMetal = giveMetal
-        if giveBlade != nil { self.cBlade = giveBlade! } else { self.cBlade = blade(length: returnRandNumInRange(6, 11), giveMetal: self.cMetal) }
+    init(cMaterial: baseMaterial = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveBlade: blade? = nil, giveHandle: handle? = nil) {
+        self.cMaterial = cMaterial
+        if giveBlade != nil { self.cBlade = giveBlade! } else { self.cBlade = blade(length: returnRandNumInRange(6, 11), cMaterial: self.cMaterial) }
         if giveHandle != nil { self.cHandle = giveHandle! } else { self.cHandle = handle()}
         self.cList = [self.cBlade, self.cHandle]
     }
     var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
-    var name: String {return "\(self.cBlade.length)\" \(self.cMetal.rawMaterial.name) \(self.typeName)"}
+    var name: String {return "\(self.cBlade.length)\" \(self.cMaterial.rawMaterial.name) \(self.typeName)"}
     var grip: Int {return self.cHandle.grip}
 }
