@@ -47,6 +47,9 @@ extension weapon {
         for item in self.cList {
             print(">>> \(item.name) ")
         }
+        print("W: \(self.weight) lb")
+        print("V: \(returnValueInPieces(self.value))")
+        print("L: \(self.length)\"")
         print("------------------------\n")
     }
     var weight: Double {var weight = 0.0; for item in self.cList {weight += item.weight}; return weight}
@@ -67,15 +70,18 @@ struct shortAxe: weapon {
     var cMaterial: baseMaterial
     var cAxeHead: axeHead
     var cHaft: haft
+    var cPommel: pommel
     var cList: [weaponComponent]
-    init(cMaterial: baseMaterial = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveAxe: axeHead? = nil,  giveHaft: haft? = nil) {
+    init(cMaterial: baseMaterial = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveAxe: axeHead? = nil,  giveHaft: haft? = nil, givePommel: pommel? = nil) {
         self.cMaterial = cMaterial
+        let rareMetal = (isRare ? metal(giveRawMaterial: returnRandomItem(metals["rare"]!)) : nil)
         if giveAxe != nil { self.cAxeHead = giveAxe! } else { self.cAxeHead = axeHead(cMaterial: self.cMaterial) }
         if giveHaft != nil { self.cHaft = giveHaft! } else { self.cHaft = haft(length: returnRandNumInRange(12, 24))}
-        self.cList = [self.cAxeHead, self.cHaft]
+        if givePommel != nil { self.cPommel = givePommel! } else if isRare { self.cPommel = pommel(cMaterial: rareMetal!) } else { self.cPommel = pommel(cMaterial: self.cMaterial) }
+        self.cList = [self.cAxeHead, self.cHaft, self.cPommel]
     }
     var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
-    var name: String {return "\(self.length)\" \(self.typeName)"}
+    var name: String {return "\(self.weight) lb \(self.typeName)"}
     var grip: Int {return self.cHaft.grip}
 }
 
@@ -92,7 +98,7 @@ struct longAxe: weapon {
         self.cList = [self.cAxeHead, self.cHaft]
     }
     var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
-    var name: String {return "\(self.length)\" \(self.typeName)"}
+    var name: String {return "\(self.weight) lb \(self.typeName)"}
     var grip: Int {return self.cHaft.grip}
 }
 
@@ -101,15 +107,18 @@ struct shortMace: weapon {
     var cMaterial: baseMaterial
     var cMaceHead: maceHead
     var cHaft: haft
+    var cPommel: pommel
     var cList: [weaponComponent]
-    init(cMaterial: baseMaterial = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveMace: maceHead? = nil,  giveHaft: haft? = nil) {
+    init(cMaterial: baseMaterial = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveMace: maceHead? = nil,  giveHaft: haft? = nil, givePommel: pommel? = nil) {
         self.cMaterial = cMaterial
+        let rareMetal = (isRare ? metal(giveRawMaterial: returnRandomItem(metals["rare"]!)) : nil)
         if giveMace != nil { self.cMaceHead = giveMace! } else { self.cMaceHead = maceHead(cMaterial: self.cMaterial) }
         if giveHaft != nil { self.cHaft = giveHaft! } else { self.cHaft = haft(length: returnRandNumInRange(12, 24))}
-        self.cList = [self.cMaceHead, self.cHaft]
+        if givePommel != nil { self.cPommel = givePommel! } else if isRare { self.cPommel = pommel(cMaterial: rareMetal!) } else { self.cPommel = pommel(cMaterial: self.cMaterial) }
+        self.cList = [self.cMaceHead, self.cHaft, self.cPommel]
     }
     var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
-    var name: String {return "\(self.length)\" \(self.typeName)"}
+    var name: String {return "\(self.weight) lb \(self.typeName)"}
     var grip: Int {return self.cHaft.grip}
 }
 
@@ -126,7 +135,7 @@ struct longMace: weapon {
         self.cList = [self.cMaceHead, self.cHaft]
     }
     var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
-    var name: String {return "\(self.length)\" \(self.typeName)"}
+    var name: String {return "\(self.weight) lb \(self.typeName)"}
     var grip: Int {return self.cHaft.grip}
 }
 

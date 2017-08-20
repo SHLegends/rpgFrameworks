@@ -11,7 +11,6 @@ import Foundation
 let startTime = NSDate().timeIntervalSince1970
 
 
-
 start: while true {
     print("\nModules:\n1. ItemGen\n0. exit")
     let startChoice = readLine()
