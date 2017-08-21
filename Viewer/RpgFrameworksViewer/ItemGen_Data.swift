@@ -68,3 +68,8 @@ let IntToString: [Int: String] = [0: "Zero", 1: "One", 2: "Two", 3: "Three", 4: 
 let haftTypes: [(name: String, weightModifier: Double)] = [("Thin", 0.9), ("Slender", 0.9), ("Thick", 1.1), ("Light", 0.9), ("Heavy", 1.1)]
 
 let maceTypes: [(name: String, value: Int, weightModifier: Double)] = [("Heavy", 1, 1.5), ("Light", 1, 0.8), ("Spiked", 1, 1.0), ("Oval", 1, 1.0), ("Round", 1, 1.0), ("Bladed", 1, 1.0)]
+
+let bones: [(name: String, value: Int, gripPercent: Int)] = [("Whale Bone", 300, 70), ("Whale Ivory", 10000, 70), ("Walrus Ivory", 10000, 70), ("Elephant Ivory", 10000, 70), ("Mammoth Ivory", 100000, 70)]
+
+let boneQualities: [(name: String, modifier: Double)] = [("Rough", 0.8), ("Smooth", 1.0), ("Lacquered", 1.5), ("Coarse", 0.8), ("Marred", 0.9), ("Gnarled", 0.9), ("Discolored", 0.9)]
+

@@ -193,9 +193,30 @@ struct etching {
     }
 }
 
-//struct bone: baseMaterial, materialWithGrip {
-//    
-//}
+struct bone: baseMaterial {
+    var rawMaterial: (name: String, value: Int, gripPercent: Int)
+    var quality: (name: String, modifier: Double)
+    var baseWeight: Double
+    init(isRare: Bool = returnRandomBool(1, rarityModifier), giveRawMaterial: (name: String, value: Int, gripPercent: Int)? = nil, giveQuality: (name: String, modifier: Double) = returnRandomItem(boneQualities), baseWeight: Double = 0.06) {
+        if giveRawMaterial != nil { self.rawMaterial = giveRawMaterial! } else if isRare { self.rawMaterial = returnRandomItem(bones) } else { self.rawMaterial = ("Bone", 20, 70) }
+        self.quality = giveQuality
+        self.baseWeight = baseWeight
+    }
+    var name: String {return "\(self.quality.name) \(self.rawMaterial.name)"}
+    var grip: Int {return self.rawMaterial.gripPercent}
+    var weight: Double {return self.baseWeight}
+    var value: Int {return Int(self.weight * Double(self.rawMaterial.value) * self.quality.modifier)}
+    var components: [(name: String, amount: Double)] {return [(self.rawMaterial.name, self.weight * salvageMaterialLoss)]}
+    func description() {
+        print("\nWood\n-------------------------------------------------------------")
+        print("Description: \(self.name)")
+        print("Weight: \(self.weight) lb")
+        print("Value: \(self.value) cp")
+        //        print("~~~~~~~~~~~~~~~~~~~~~\nSalvage:")
+        //        for index in self.components { print("\(index.amount) lb of \(index.name)") }
+        //        print("~~~~~~~~~~~~~~~~~~~~~")
+    }
+}
 
 
 

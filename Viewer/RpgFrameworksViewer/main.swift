@@ -23,7 +23,7 @@ start: while true {
                     if choice == "1" {
                         print("Base Material...")
                         baseMaterialLoop: while true {
-                            print("\n\nBase Materials:\n1. Gemstone\n2. Fabric\n3. Leather\n4. Wood\n5. Metal\n6. Etching\n0. back")
+                            print("\n\nBase Materials:\n1. Gemstone\n2. Fabric\n3. Leather\n4. Wood\n5. Metal\n6. Etching\n7. Bone\n0. back")
                             let baseMaterialChoice = readLine()
                             if let choice = baseMaterialChoice {
                                 if choice == "1" {
@@ -38,6 +38,8 @@ start: while true {
                                     let foo = metal(); foo.description()
                                 } else if choice == "6" {
                                     let foo = etching(); foo.description()
+                                } else if choice == "7" {
+                                    let foo = bone(); foo.description()
                                 } else if choice == "0" {
                                     break baseMaterialLoop
                                 } else {
@@ -84,7 +86,7 @@ start: while true {
                             let weaponComponentChoice = readLine()
                             if let choice = weaponComponentChoice {
                                 if choice == "1" {
-                                    let foo = sword(); foo.description(); foo.basicDescription(); foo.simpleDescription()
+                                    var foo = sword(); foo.cPommel.cMaterial = bone(); foo.description(); foo.basicDescription(); foo.simpleDescription()
                                 } else if choice == "2" {
                                     let foo = dagger(); foo.description(); foo.basicDescription(); foo.simpleDescription()
                                 } else if choice == "3" {
