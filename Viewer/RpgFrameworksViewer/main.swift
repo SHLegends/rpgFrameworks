@@ -52,7 +52,7 @@ start: while true {
                     } else if choice == "2" {
                         print("Weapon Components...")
                         weaponComponentLoop: while true {
-                            print("\n\nWeapon Components:\n1. Pommel\n2. Handle\n3. Crossguard\n4. Blade\n5. Long Handle\n6. Haft\n7. Axe Head\n8. Mace Head\n0. back")
+                            print("\n\nWeapon Components:\n1. Pommel\n2. Handle\n3. Crossguard\n4. Blade\n5. Long Handle\n6. Haft\n7. Axe Head\n8. Mace Head\n9. Spear Head\n0. back")
                             let weaponComponentChoice = readLine()
                             if let choice = weaponComponentChoice {
                                 if choice == "1" {
@@ -71,6 +71,9 @@ start: while true {
                                     let foo = axeHead(); foo.description(); print(foo.simpleDescription)
                                 } else if choice == "8" {
                                     let foo = maceHead(); foo.description(); print(foo.simpleDescription)
+                                } else if choice == "9" {
+                                    let foo = spearHead(); foo.description(); print(foo.simpleDescription)
+                                    
                                 } else if choice == "0" {
                                     break weaponComponentLoop
                                 }
@@ -86,7 +89,7 @@ start: while true {
                             let weaponComponentChoice = readLine()
                             if let choice = weaponComponentChoice {
                                 if choice == "1" {
-                                    var foo = sword(); foo.cPommel.cMaterial = bone(); foo.description(); foo.basicDescription(); foo.simpleDescription()
+                                    let foo = sword(); foo.description(); foo.basicDescription(); foo.simpleDescription()
                                 } else if choice == "2" {
                                     let foo = dagger(); foo.description(); foo.basicDescription(); foo.simpleDescription()
                                 } else if choice == "3" {

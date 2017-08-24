@@ -101,7 +101,7 @@ struct longAxe: weapon {
     var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
     var name: String {return "\(self.weight) lb \(self.typeName)"}
     var grip: Int {return self.cHaft.grip}
-}
+} 
 
 struct shortMace: weapon {
     var typeName: String = "One-Handed Mace"
