@@ -271,7 +271,7 @@ struct haft: weaponComponent, handleComponent {
     var cMaterial: baseMaterial
     var componentType: (name: String, weightModifier: Double)
     var length: Int
-    var baseWeight = 0.05
+    var baseWeight = 0.025
     var labourValue = 1
     var hasEtching: Bool
     var componentEtching: etching?
@@ -407,9 +407,9 @@ struct spearHead: weaponComponent {
     var componentEtching: etching?
     var sharpness: Double
     
-    init(giveMaterial: baseMaterial = metal(), length: Int = 8, hasWings: Bool = returnRandomBool(1, rarityModifier), giveSize: (name: String, labourMultiplier: Double, weightMultiplier: Double) = returnRandomItem(spearHeadSizes), giveWingType: (name: String, labourMultiplier: Double) = returnRandomItem(wingTypes), giveWingSize: (name: String, labourMultiplier: Double, weightMultiplier: Double) = returnRandomItem(wingSizes), sharpness: Double = 1.0, hasEtching: Bool = returnRandomBool(1, rarityModifier), giveEtching: etching = etching()) {
+    init(cMaterial: baseMaterial = metal(), length: Int = 8, hasWings: Bool = returnRandomBool(1, rarityModifier), giveSize: (name: String, labourMultiplier: Double, weightMultiplier: Double) = returnRandomItem(spearHeadSizes), giveWingType: (name: String, labourMultiplier: Double) = returnRandomItem(wingTypes), giveWingSize: (name: String, labourMultiplier: Double, weightMultiplier: Double) = returnRandomItem(wingSizes), sharpness: Double = 1.0, hasEtching: Bool = returnRandomBool(1, rarityModifier), giveEtching: etching = etching()) {
         
-        self.cMaterial = giveMaterial
+        self.cMaterial = cMaterial
         self.hasWings = hasWings
         self.length = length
         self.hasEtching = hasEtching
@@ -422,7 +422,7 @@ struct spearHead: weaponComponent {
         self.labourValue = Int(Double(self.labourValue) * self.cSize.labourMultiplier * (self.hasWings ? self.wingSize!.labourMultiplier : 1.0) * (self.hasWings ? self.wingType!.labourMultiplier : 1.0))
         
     }
-    var name: String {return "\(self.length)\" \(self.cSize.name) Spear Head\(self.hasWings ? " with \(self.wingSize!.name) \(self.wingType!.name) Wings" : "")\(self.hasEtching ? " (with \(self.componentEtching!.name))" : "")"}
+    var name: String {return "\(self.length)\" \(self.cSize.name) \(self.cMaterial.name) Spear Head\(self.hasWings ? " with \(self.wingSize!.name) \(self.wingType!.name) Wings" : "")\(self.hasEtching ? " (with \(self.componentEtching!.name))" : "")"}
     var weight: Double {return cMaterial.weight}
     var value: Int {return self.cMaterial.value + self.labourValue}
     var abilities: [String] = ["stab"]
@@ -440,7 +440,7 @@ struct spearHead: weaponComponent {
         for index in self.components { print("\(index.amount) lb of \(index.name)") }
         print("~~~~~~~~~~~~~~~~~~~~~")
     }
-    var simpleDescription: String {return " \(self.length)\" Spear Head\(self.hasWings ? " with \(self.wingType!.name) Wings" : "")\(self.hasEtching ? " with \(self.componentEtching!.name)" : "")"}
+    var simpleDescription: String {return " \(self.length)\" \(self.cMaterial.rawMaterial.name) Spear Head\(self.hasWings ? " with \(self.wingType!.name) Wings" : "")\(self.hasEtching ? " with \(self.componentEtching!.name)" : "")"}
 
 }
 

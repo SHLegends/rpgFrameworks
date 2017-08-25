@@ -74,7 +74,7 @@ let bones: [(name: String, value: Int, gripPercent: Int)] = [("Whale Bone", 300,
 
 let boneQualities: [(name: String, modifier: Double)] = [("Rough", 0.8), ("Smooth", 1.0), ("Lacquered", 1.5), ("Coarse", 0.8), ("Marred", 0.9), ("Gnarled", 0.9), ("Discolored", 0.9)]
 
-let spearHeadSizes: [(name: String, labourMultiplier: Double, weightMultiplier: Double)] = [("Wide", 1.1, 1.2), ("Narrow", 1.0, 0.8), ("Slender", 1.0, 0.8), ("Broad", 1.1, 1.2), ("Fat", 1.1, 1.3), ("Heavy", 1.1, 1.3), ("Light", 1.0, 0.8)]
+let spearHeadSizes: [(name: String, labourMultiplier: Double, weightMultiplier: Double)] = [("Wide", 1.1, 1.2), ("Narrow", 1.0, 0.8), ("Slender", 1.0, 0.8), ("Broad", 1.1, 1.2), ("Heavy", 1.1, 1.3), ("Light", 1.0, 0.8)]
 
 let wingTypes: [(name: String, labourMultiplier: Double)] = [("Curved", 1.1), ("Spiraled", 1.2), ("Curled", 1.2), ("Rounded", 1.1), ("Straight", 1.0)]
 

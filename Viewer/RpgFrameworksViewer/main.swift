@@ -85,7 +85,7 @@ start: while true {
                     } else if choice == "3" {
                         print("Weapons...")
                         weaponsLoop: while true {
-                            print("\n\nWeapons:\n1. Sword\n2. Dagger\n3. Knife\n4. Long Sword\n5. Sword Staff\n6. One-Handed Axe\n7. Two-Handed Axe\n8. One-Handed Mace\n9. Two-Handed Mace\n0. back")
+                            print("\n\nWeapons:\n1. Sword\n2. Dagger\n3. Knife\n4. Long Sword\n5. Sword Staff\n6. One-Handed Axe\n7. Two-Handed Axe\n8. One-Handed Mace\n9. Two-Handed Mace\n10. Spear\n0. back")
                             let weaponComponentChoice = readLine()
                             if let choice = weaponComponentChoice {
                                 if choice == "1" {
@@ -106,6 +106,8 @@ start: while true {
                                     let foo = shortMace(); foo.description(); foo.basicDescription(); foo.simpleDescription()
                                 } else if choice == "9" {
                                     let foo = longMace(); foo.description(); foo.basicDescription(); foo.simpleDescription()
+                                } else if choice == "10" {
+                                    let foo = spear(); foo.description(); foo.basicDescription(); foo.simpleDescription()
                                 } else if choice == "0" {
                                     break weaponsLoop
                                 }

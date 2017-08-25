@@ -237,3 +237,19 @@ struct knife: weapon {
     var name: String {return "\(self.cBlade.length)\" \(self.cMaterial.rawMaterial.name) \(self.typeName)"}
     var grip: Int {return self.cHandle.grip}
 }
+
+struct spear: weapon {
+    var typeName: String = "Spear"
+    var cMaterial: baseMaterial
+    var cHead: spearHead
+    var cHaft: haft
+    init(cMaterial: baseMaterial = metal(), isRare: Bool = returnRandomBool(1, rarityModifier), giveHead: spearHead? = nil,  giveHaft: haft? = nil) {
+        self.cMaterial = cMaterial
+        if giveHead != nil { self.cHead = giveHead! } else { self.cHead = spearHead(cMaterial: self.cMaterial, length: returnRandNumInRange(5, 12)) }
+        if giveHaft != nil { self.cHaft = giveHaft! } else { self.cHaft = haft(length: returnRandNumInRange(48, 84))}
+    }
+    var cList: [weaponComponent] {return [self.cHead, self.cHaft]}
+    var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
+    var name: String {return "\(self.length)\" \(self.typeName)"}
+    var grip: Int {return self.cHaft.grip}
+}
