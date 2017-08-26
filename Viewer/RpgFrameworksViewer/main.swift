@@ -11,7 +11,6 @@ import Foundation
 let startTime = NSDate().timeIntervalSince1970
 
 
-
 start: while true {
     print("\nModules:\n1. ItemGen\n0. exit")
     let startChoice = readLine()
@@ -24,7 +23,7 @@ start: while true {
                     if choice == "1" {
                         print("Base Material...")
                         baseMaterialLoop: while true {
-                            print("\n\nBase Materials:\n1. Gemstone\n2. Fabric\n3. Leather\n4. Wood\n5. Metal\n6. Etching\n0. back")
+                            print("\n\nBase Materials:\n1. Gemstone\n2. Fabric\n3. Leather\n4. Wood\n5. Metal\n6. Etching\n7. Bone\n0. back")
                             let baseMaterialChoice = readLine()
                             if let choice = baseMaterialChoice {
                                 if choice == "1" {
@@ -39,6 +38,8 @@ start: while true {
                                     let foo = metal(); foo.description()
                                 } else if choice == "6" {
                                     let foo = etching(); foo.description()
+                                } else if choice == "7" {
+                                    let foo = bone(); foo.description()
                                 } else if choice == "0" {
                                     break baseMaterialLoop
                                 } else {
@@ -51,7 +52,7 @@ start: while true {
                     } else if choice == "2" {
                         print("Weapon Components...")
                         weaponComponentLoop: while true {
-                            print("\n\nWeapon Components:\n1. Pommel\n2. Handle\n3. Crossguard\n4. Blade\n5. Long Handle\n6. Haft\n7. Axe Head\n8. Mace Head\n0. back")
+                            print("\n\nWeapon Components:\n1. Pommel\n2. Handle\n3. Crossguard\n4. Blade\n5. Long Handle\n6. Haft\n7. Axe Head\n8. Mace Head\n9. Spear Head\n0. back")
                             let weaponComponentChoice = readLine()
                             if let choice = weaponComponentChoice {
                                 if choice == "1" {
@@ -70,6 +71,9 @@ start: while true {
                                     let foo = axeHead(); foo.description(); print(foo.simpleDescription)
                                 } else if choice == "8" {
                                     let foo = maceHead(); foo.description(); print(foo.simpleDescription)
+                                } else if choice == "9" {
+                                    let foo = spearHead(); foo.description(); print(foo.simpleDescription)
+                                    
                                 } else if choice == "0" {
                                     break weaponComponentLoop
                                 }
@@ -81,7 +85,7 @@ start: while true {
                     } else if choice == "3" {
                         print("Weapons...")
                         weaponsLoop: while true {
-                            print("\n\nWeapons:\n1. Sword\n2. Dagger\n3. Knife\n4. Long Sword\n5. Sword Staff\n6. One-Handed Axe\n7. Two-Handed Axe\n8. One-Handed Mace\n9. Two-Handed Mace\n0. back")
+                            print("\n\nWeapons:\n1. Sword\n2. Dagger\n3. Knife\n4. Long Sword\n5. Sword Staff\n6. One-Handed Axe\n7. Two-Handed Axe\n8. One-Handed Mace\n9. Two-Handed Mace\n10. Spear\n0. back")
                             let weaponComponentChoice = readLine()
                             if let choice = weaponComponentChoice {
                                 if choice == "1" {
@@ -102,6 +106,8 @@ start: while true {
                                     let foo = shortMace(); foo.description(); foo.basicDescription(); foo.simpleDescription()
                                 } else if choice == "9" {
                                     let foo = longMace(); foo.description(); foo.basicDescription(); foo.simpleDescription()
+                                } else if choice == "10" {
+                                    let foo = spear(); foo.description(); foo.basicDescription(); foo.simpleDescription()
                                 } else if choice == "0" {
                                     break weaponsLoop
                                 }

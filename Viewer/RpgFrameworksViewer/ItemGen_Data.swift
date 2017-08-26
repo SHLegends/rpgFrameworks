@@ -52,13 +52,14 @@ let pommelTypes: [(name: String, labourMultiplier: Double, weight: Double)] = [(
 
 let carvedAnimals = ["Eagle", "Dog", "Crow", "Horse", "Dragon", "Wolf", "Snake", "Boar", "Deer", "Moose", "Lion", "Panther", "Tiger", "Lynx", "Goat", "Owl", "Fox", "Puma", "Cougar", "Viper", "Cobra", "Lizard", "Weasel", "Rabbit", "Hare", "Bison", "Newt"]
 
-let gripQualities: [(name: String, multiplier: Double, gripPercent: Int)] = [("Simple", 1.0, 25), ("Interwoven", 1.1, 30), ("Ornate", 1.5, 30), ("Elegant", 1.8, 20), ("Braided", 1.6, 30)]
+let gripQualities: [(name: String, multiplier: Double, gripPercent: Int)] = [("Simple", 1.0, 25), ("Interwoven", 1.1, 30), ("Ornate", 1.5, 30), ("Elegant", 1.8, 20), ("Braided", 1.6, 30), ("Spiraled", 1.6, 30)]
 
 let crossguardSizes: [(name: String, weightModifier: Double)] = [("Narrow", 0.9), ("Broad", 1.2), ("Thin", 0.9), ("Slender", 0.9), ("Wide", 1.1), ("Thick", 1.2)]
 
 let crossguardShapes: [(name: String, labourMultiplier: Double)] = [("Straight", 1.0), ("Up-Curved", 1.1), ("Serpentine", 1.5), ("Crescentic", 1.2), ("Arched", 1.2), ("Elliptical", 1.3), ("Bowed", 1.2), ("Angled", 1.1), ("Tilted", 1.1), ("Beveled", 1.1), ("Bowtie", 1.3), ("Wavy", 1.4), ("Corkscrew", 1.3), ("Spiral", 1.3), ("Hooked", 1.2), ("Falcate", 1.2)]
 
 let doubleEdgeBladeShapes: [(name: String, labourMultiplier: Double)] = [("Straight", 1.0), ("Straight", 1.0), ("Straight", 1.0), ("Straight", 1.0), ("Straight", 1.0), ("Curved", 1.1), ("Hooked", 1.2), ("Serpintine", 1.3), ("Leaf-Shape", 1.2), ("Recurved", 1.1)]
+
 let doubleEdgeBladeSizes: [(name: String, labourMultiplier: Double, weightModifier: Double)] = [("Wide", 1.05, 1.4), ("Slender", 1.0, 0.9), ("Broad", 1.05, 1.4), ("Narrow", 1.0, 0.9), ("Typical", 1.0, 1.0)]
 
 let fullerTypes: [(name: String, weightModifier: Double, valueMultiplier: Double)] = [("Deep", 0.8, 1.1), ("Double", 0.8, 1.2), ("Shallow", 0.9, 1.1), ("Half-length", 0.9, 1.1)]
@@ -68,3 +69,14 @@ let IntToString: [Int: String] = [0: "Zero", 1: "One", 2: "Two", 3: "Three", 4: 
 let haftTypes: [(name: String, weightModifier: Double)] = [("Thin", 0.9), ("Slender", 0.9), ("Thick", 1.1), ("Light", 0.9), ("Heavy", 1.1)]
 
 let maceTypes: [(name: String, value: Int, weightModifier: Double)] = [("Heavy", 1, 1.5), ("Light", 1, 0.8), ("Spiked", 1, 1.0), ("Oval", 1, 1.0), ("Round", 1, 1.0), ("Bladed", 1, 1.0)]
+
+let bones: [(name: String, value: Int, gripPercent: Int)] = [("Whale Bone", 300, 70), ("Whale Ivory", 10000, 70), ("Walrus Ivory", 10000, 70), ("Elephant Ivory", 10000, 70), ("Mammoth Ivory", 100000, 70)]
+
+let boneQualities: [(name: String, modifier: Double)] = [("Rough", 0.8), ("Smooth", 1.0), ("Lacquered", 1.5), ("Coarse", 0.8), ("Marred", 0.9), ("Gnarled", 0.9), ("Discolored", 0.9)]
+
+let spearHeadSizes: [(name: String, labourMultiplier: Double, weightMultiplier: Double)] = [("Wide", 1.1, 1.2), ("Narrow", 1.0, 0.8), ("Slender", 1.0, 0.8), ("Broad", 1.1, 1.2), ("Heavy", 1.1, 1.3), ("Light", 1.0, 0.8)]
+
+let wingTypes: [(name: String, labourMultiplier: Double)] = [("Curved", 1.1), ("Spiraled", 1.2), ("Curled", 1.2), ("Rounded", 1.1), ("Straight", 1.0)]
+
+let wingSizes: [(name: String, labourMultiplier: Double, weightMultiplier: Double)] = [("Wide", 1.1, 1.2), ("Narrow", 1.0, 0.8), ("Slender", 1.0, 0.8), ("Broad", 1.1, 1.2), ("Long", 1.2, 1.1)]
+

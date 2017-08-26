@@ -12,8 +12,7 @@ import Foundation
 // 10000 cp -> 1 gp
 
 
-protocol baseMaterial {
-    var rawMaterial: (name: String, value: Int, gripPercent: Int) {get set}
+protocol materialOutline {
     var name: String {get}
     var weight: Double {get}
     var value: Int {get}
@@ -24,12 +23,14 @@ protocol baseMaterial {
 
 protocol materialWithGrip {
     var grip: Int {get}
-    
+    var rawMaterial: (name: String, value: Int, gripPercent: Int) {get set}
+
 }
 
+typealias baseMaterial = materialOutline & materialWithGrip
 
 
-struct gemstone: baseMaterial {
+struct gemstone: materialOutline {
     var rawMaterial: (name: String, value: Int)
     var size: (name: String, modifier: Double)
     var polish: Bool
@@ -57,7 +58,7 @@ struct gemstone: baseMaterial {
     }
 }
 
-struct leather: baseMaterial, materialWithGrip {
+struct leather: baseMaterial {
     var rawMaterial: (name: String, value: Int, gripPercent: Int)
     var quality: (name: String, modifier: Double)
     var baseWeight: Double
@@ -83,7 +84,7 @@ struct leather: baseMaterial, materialWithGrip {
     }
 }
 
-struct fabric: baseMaterial, materialWithGrip {
+struct fabric: baseMaterial {
     var rawMaterial: (name: String, value: Int, gripPercent: Int)
     var quality: (name: String, modifier: Double)
     var baseWeight: Double
@@ -112,7 +113,7 @@ struct fabric: baseMaterial, materialWithGrip {
 }
 
 
-struct wood: baseMaterial, materialWithGrip {
+struct wood: baseMaterial {
     var rawMaterial: (name: String, value: Int, gripPercent: Int)
     var quality: (name: String, modifier: Double)
     var baseWeight: Double
@@ -139,7 +140,7 @@ struct wood: baseMaterial, materialWithGrip {
 }
 
 
-struct metal: baseMaterial, materialWithGrip {
+struct metal: baseMaterial {
     var baseMaterial: (name: String, weightModifier: Double, valueModifier: Double, durabilityModifier: Double, sharpnessModifier: Double, value: Int)
     var quality: (name: String, modifier: Double)
     var baseWeight: Double
@@ -192,9 +193,30 @@ struct etching {
     }
 }
 
-//struct bone: baseMaterial, materialWithGrip {
-//    
-//}
+struct bone: baseMaterial {
+    var rawMaterial: (name: String, value: Int, gripPercent: Int)
+    var quality: (name: String, modifier: Double)
+    var baseWeight: Double
+    init(isRare: Bool = returnRandomBool(1, rarityModifier), giveRawMaterial: (name: String, value: Int, gripPercent: Int)? = nil, giveQuality: (name: String, modifier: Double) = returnRandomItem(boneQualities), baseWeight: Double = 0.06) {
+        if giveRawMaterial != nil { self.rawMaterial = giveRawMaterial! } else if isRare { self.rawMaterial = returnRandomItem(bones) } else { self.rawMaterial = ("Bone", 20, 70) }
+        self.quality = giveQuality
+        self.baseWeight = baseWeight
+    }
+    var name: String {return "\(self.quality.name) \(self.rawMaterial.name)"}
+    var grip: Int {return self.rawMaterial.gripPercent}
+    var weight: Double {return self.baseWeight}
+    var value: Int {return Int(self.weight * Double(self.rawMaterial.value) * self.quality.modifier)}
+    var components: [(name: String, amount: Double)] {return [(self.rawMaterial.name, self.weight * salvageMaterialLoss)]}
+    func description() {
+        print("\nWood\n-------------------------------------------------------------")
+        print("Description: \(self.name)")
+        print("Weight: \(self.weight) lb")
+        print("Value: \(self.value) cp")
+        //        print("~~~~~~~~~~~~~~~~~~~~~\nSalvage:")
+        //        for index in self.components { print("\(index.amount) lb of \(index.name)") }
+        //        print("~~~~~~~~~~~~~~~~~~~~~")
+    }
+}
 
 
 
