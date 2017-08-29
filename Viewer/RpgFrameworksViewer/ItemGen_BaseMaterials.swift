@@ -13,6 +13,7 @@ import Foundation
 
 
 protocol materialOutline {
+    
     var name: String {get}
     var weight: Double {get}
     var value: Int {get}
@@ -21,13 +22,17 @@ protocol materialOutline {
     func description()
 }
 
+protocol withQuality {
+    var nameWithQuality: String {get}
+}
+
 protocol materialWithGrip {
     var grip: Int {get}
     var rawMaterial: (name: String, value: Int, gripPercent: Int) {get set}
 
 }
 
-typealias baseMaterial = materialOutline & materialWithGrip
+typealias baseMaterial = materialOutline & materialWithGrip & withQuality
 
 
 struct gemstone: materialOutline {
@@ -68,8 +73,8 @@ struct leather: baseMaterial {
         self.baseWeight = baseWeight
     }
     var grip: Int {return self.rawMaterial.gripPercent}
-    var name: String {return "\(self.quality.name) \(self.rawMaterial.name)"}
-    
+    var name: String {return "\(self.rawMaterial.name)"}
+    var nameWithQuality: String {return "\(self.quality.name) \(self.rawMaterial.name)"}
     var weight: Double {return self.baseWeight}
     var value: Int {return Int(Double(self.rawMaterial.value) * weight * self.quality.modifier)}
     var components: [(name: String, amount: Double)] {return [(self.rawMaterial.name, self.weight * salvageMaterialLoss)]}
@@ -94,7 +99,8 @@ struct fabric: baseMaterial {
         self.baseWeight = baseWeight
     }
     var grip: Int {return self.rawMaterial.gripPercent}
-    var name: String {return "\(self.quality.name) \(self.rawMaterial.name)"}
+    var name: String {return "\(self.rawMaterial.name)"}
+    var nameWithQuality: String {return "\(self.quality.name) \(self.rawMaterial.name)"}
     var weight: Double {return 0.05}
     var value: Int {return Int(self.weight * Double(self.rawMaterial.value) * self.quality.modifier)}
     var components: [(name: String, amount: Double)] {return [(self.rawMaterial.name, self.weight * salvageMaterialLoss)]}
@@ -122,7 +128,8 @@ struct wood: baseMaterial {
         self.quality = giveQuality
         self.baseWeight = baseWeight
     }
-    var name: String {return "\(self.quality.name) \(self.rawMaterial.name)"}
+    var name: String {return "\(self.rawMaterial.name)"}
+    var nameWithQuality: String {return "\(self.quality.name) \(self.rawMaterial.name)"}
     var grip: Int {return self.rawMaterial.gripPercent}
     var weight: Double {return self.baseWeight}
     var value: Int {return Int(self.weight * Double(self.rawMaterial.value) * self.quality.modifier)}
@@ -151,7 +158,8 @@ struct metal: baseMaterial {
         self.baseWeight = baseWeight
         self.rawMaterial = (baseMaterial.name, baseMaterial.value, 50)
     }
-    var name: String {return "\(self.quality.name) \(self.baseMaterial.name)"}
+    var name: String {return "\(self.baseMaterial.name)"}
+    var nameWithQuality: String {return "\(self.quality.name) \(self.baseMaterial.name)"}
     var grip: Int {return 50}
     var weight: Double {return self.baseWeight}
     var value: Int {return Int(self.weight * Double(self.baseMaterial.value) * self.quality.modifier)}
@@ -202,7 +210,8 @@ struct bone: baseMaterial {
         self.quality = giveQuality
         self.baseWeight = baseWeight
     }
-    var name: String {return "\(self.quality.name) \(self.rawMaterial.name)"}
+    var name: String {return "\(self.rawMaterial.name)"}
+    var nameWithQuality: String {return "\(self.quality.name) \(self.rawMaterial.name)"}
     var grip: Int {return self.rawMaterial.gripPercent}
     var weight: Double {return self.baseWeight}
     var value: Int {return Int(self.weight * Double(self.rawMaterial.value) * self.quality.modifier)}

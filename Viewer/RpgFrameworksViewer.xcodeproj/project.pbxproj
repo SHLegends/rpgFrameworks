@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E2DC5E61F54D1910023945B /* amour_data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DC5E51F54D1900023945B /* amour_data.swift */; };
+		8E2DC5EA1F54D6950023945B /* amour_classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DC5E91F54D6950023945B /* amour_classes.swift */; };
 		8E60B33E1F3B84FF00179D7D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60B33D1F3B84FF00179D7D /* main.swift */; };
 		8E60B3451F3B866C00179D7D /* ItemGen_BaseMaterials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60B3441F3B866C00179D7D /* ItemGen_BaseMaterials.swift */; };
 		8E60B3471F3B883B00179D7D /* ItemGen_Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60B3461F3B883B00179D7D /* ItemGen_Data.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8E2DC5E51F54D1900023945B /* amour_data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = amour_data.swift; sourceTree = "<group>"; };
+		8E2DC5E91F54D6950023945B /* amour_classes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = amour_classes.swift; sourceTree = "<group>"; };
 		8E60B33A1F3B84FF00179D7D /* RpgFrameworksViewer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RpgFrameworksViewer; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E60B33D1F3B84FF00179D7D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		8E60B3441F3B866C00179D7D /* ItemGen_BaseMaterials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGen_BaseMaterials.swift; sourceTree = "<group>"; };
@@ -48,6 +52,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E2DC5E71F54D19C0023945B /* Weapons */ = {
+			isa = PBXGroup;
+			children = (
+				8E60B3481F3B88FE00179D7D /* ItemGen_WeaponComponents.swift */,
+				8EFE67231F3F8C7D0026ADFB /* ItemGen_Weapons.swift */,
+			);
+			name = Weapons;
+			sourceTree = "<group>";
+		};
+		8E2DC5E81F54D1B00023945B /* Armour */ = {
+			isa = PBXGroup;
+			children = (
+				8E2DC5E91F54D6950023945B /* amour_classes.swift */,
+			);
+			name = Armour;
+			sourceTree = "<group>";
+		};
+		8E2DC5EB1F55DC5F0023945B /* data */ = {
+			isa = PBXGroup;
+			children = (
+				8E2DC5E51F54D1900023945B /* amour_data.swift */,
+				8E60B3461F3B883B00179D7D /* ItemGen_Data.swift */,
+			);
+			name = data;
+			sourceTree = "<group>";
+		};
 		8E60B3311F3B84FF00179D7D = {
 			isa = PBXGroup;
 			children = (
@@ -76,11 +106,11 @@
 		8E60B34C1F3B89B000179D7D /* ItemGen */ = {
 			isa = PBXGroup;
 			children = (
-				8E60B3461F3B883B00179D7D /* ItemGen_Data.swift */,
-				8E60B3481F3B88FE00179D7D /* ItemGen_WeaponComponents.swift */,
 				8E60B3441F3B866C00179D7D /* ItemGen_BaseMaterials.swift */,
 				8E60B34A1F3B897500179D7D /* ItemGen_Functions.swift */,
-				8EFE67231F3F8C7D0026ADFB /* ItemGen_Weapons.swift */,
+				8E2DC5EB1F55DC5F0023945B /* data */,
+				8E2DC5E81F54D1B00023945B /* Armour */,
+				8E2DC5E71F54D19C0023945B /* Weapons */,
 			);
 			name = ItemGen;
 			sourceTree = "<group>";
@@ -143,11 +173,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E60B33E1F3B84FF00179D7D /* main.swift in Sources */,
+				8E2DC5E61F54D1910023945B /* amour_data.swift in Sources */,
 				8E60B34B1F3B897500179D7D /* ItemGen_Functions.swift in Sources */,
 				8E60B3491F3B88FE00179D7D /* ItemGen_WeaponComponents.swift in Sources */,
 				8E60B3471F3B883B00179D7D /* ItemGen_Data.swift in Sources */,
 				8E60B3451F3B866C00179D7D /* ItemGen_BaseMaterials.swift in Sources */,
 				8EFE67241F3F8C7D0026ADFB /* ItemGen_Weapons.swift in Sources */,
+				8E2DC5EA1F54D6950023945B /* amour_classes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
