@@ -11,13 +11,14 @@ import Foundation
 let startTime = NSDate().timeIntervalSince1970
 
 
+
 start: while true {
     print("\nModules:\n1. ItemGen\n0. exit")
     let startChoice = readLine()
     if let choice = startChoice {
         if choice == "1" {
             ItemGenLoop: while true {
-                print("\nTypes:\n1. Base Material\n2. Weapon Components\n3. Weapons\n0. back")
+                print("\nTypes:\n1. Base Material\n2. Weapon Components\n3. Weapons\n4. Armour\n0. back")
                 let typeChoice = readLine()
                 if let choice = typeChoice {
                     if choice == "1" {
@@ -115,7 +116,22 @@ start: while true {
                                 continue weaponsLoop
                             }
                         }
-                        
+                    } else if choice == "4" {
+                        print("Armour...")
+                        armourLoop: while true {
+                            print("\n1. Cape\n0. back")
+                            let weaponComponentChoice = readLine()
+                            if let choice = weaponComponentChoice {
+                                if choice == "1" {
+                                    let foo = cape(); foo.description()
+                                
+                                } else if choice == "0" {
+                                    break armourLoop
+                                }
+                            } else {
+                                continue armourLoop
+                            }
+                        }
                     } else if choice == "0" {
                         break ItemGenLoop
                         

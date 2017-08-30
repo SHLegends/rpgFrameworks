@@ -17,13 +17,7 @@ func returnRandomBool(_ chance: Int, _ inNum: Int)-> Bool {
 }
 
 func returnLength(_ inchs: Int) -> String {
-    if inchs < 12 {
-        return "\(inchs)\""
-    } else {
-        let numOfFeet = Int(inchs / 12)
-        return "\(numOfFeet)\'\(inchs != numOfFeet * 12 ? " \(inchs - numOfFeet * 12)\"" : "")"
-        
-    }
+    if inchs < 12 { return "\(inchs)\"" } else { let numOfFeet = Int(inchs / 12); return "\(numOfFeet)\'\(inchs != numOfFeet * 12 ? " \(inchs - numOfFeet * 12)\"" : "")" }
 }
 
 func returnValueInPieces(_ getCP: Int)-> String {
@@ -45,4 +39,12 @@ func returnValueInPieces(_ getCP: Int)-> String {
 
 func returnRandNumInRange(_ start: Int, _ end: Int)-> Int {
     return Int(arc4random_uniform(UInt32(end + 1 - start))) + start
+}
+
+func returnListToString(_ strings: [String])-> String {
+    return strings.dropLast().joined(separator: ", ") + (strings.count == 1 ? "\(strings.last!)" : ", and \(strings.last!)")
+}
+
+func combineTwoStrings(_ strings: [String])-> String {
+    if strings[0] != "" && strings[1] != "" { return "\(strings[0]) and \(strings[1])" } else if strings[0] != "" && strings[1] == "" { return strings[0] } else if strings[0] == "" && strings[1] != "" { return strings[1] } else { return "" }
 }

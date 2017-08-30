@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8E2DC5E61F54D1910023945B /* amour_data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DC5E51F54D1900023945B /* amour_data.swift */; };
 		8E2DC5EA1F54D6950023945B /* amour_classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DC5E91F54D6950023945B /* amour_classes.swift */; };
+		8E2DC5ED1F56E58A0023945B /* amour_components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DC5EC1F56E58A0023945B /* amour_components.swift */; };
 		8E60B33E1F3B84FF00179D7D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60B33D1F3B84FF00179D7D /* main.swift */; };
 		8E60B3451F3B866C00179D7D /* ItemGen_BaseMaterials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60B3441F3B866C00179D7D /* ItemGen_BaseMaterials.swift */; };
 		8E60B3471F3B883B00179D7D /* ItemGen_Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60B3461F3B883B00179D7D /* ItemGen_Data.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		8E2DC5E51F54D1900023945B /* amour_data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = amour_data.swift; sourceTree = "<group>"; };
 		8E2DC5E91F54D6950023945B /* amour_classes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = amour_classes.swift; sourceTree = "<group>"; };
+		8E2DC5EC1F56E58A0023945B /* amour_components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = amour_components.swift; sourceTree = "<group>"; };
 		8E60B33A1F3B84FF00179D7D /* RpgFrameworksViewer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RpgFrameworksViewer; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E60B33D1F3B84FF00179D7D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		8E60B3441F3B866C00179D7D /* ItemGen_BaseMaterials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGen_BaseMaterials.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				8E2DC5E91F54D6950023945B /* amour_classes.swift */,
+				8E2DC5EC1F56E58A0023945B /* amour_components.swift */,
 			);
 			name = Armour;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				8E60B3451F3B866C00179D7D /* ItemGen_BaseMaterials.swift in Sources */,
 				8EFE67241F3F8C7D0026ADFB /* ItemGen_Weapons.swift in Sources */,
 				8E2DC5EA1F54D6950023945B /* amour_classes.swift in Sources */,
+				8E2DC5ED1F56E58A0023945B /* amour_components.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
