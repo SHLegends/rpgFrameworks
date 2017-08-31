@@ -20,14 +20,44 @@ protocol headPiece {
     
 }
 
-
+typealias colour = (name: String, value: Int, effect: (type: String, amount: Int))
 
 struct clothing {
-    
+    var cTypeName: String
+    var style: (name: String, valueModifier: Double, effect: (type: String, amount: Int))
+    var cColours: [colour]
+    var cPelts: [pelt]?
+    var cMaterial: baseMaterial
+    var embroidery: colour?
+    var cSymbol: symbol?
+    var baseValue = 500
+    init(cTypeName: String = (returnRandomBool(1, 3) ? "Garments" : "Clothing"), cMaterial: baseMaterial = (returnRandomBool(1, rarityModifier) ? leather() : fabric()), style: (name: String, valueModifier: Double, effect: (type: String, amount: Int)) = returnRandomItem(clothingStyles), cColours: [colour] = [returnRandomItem(colours)], cPelts: [pelt]? = (returnRandomBool(1, rarityModifier) ? [pelt()] : nil), embroidery: colour? = (returnRandomBool(1, rarityModifier) ? returnRandomItem(colours) : nil), cSymbol: symbol? = (returnRandomBool(1, rarityModifier) ? symbol() : nil)) {
+        self.cTypeName = cTypeName
+        self.style = style
+        self.cColours = cColours
+        self.cPelts = cPelts
+        self.cMaterial = cMaterial
+        self.embroidery = embroidery
+        self.cSymbol = cSymbol
+        if self.cMaterial as? leather != nil { self.cColours = [("", 0, ("I", 2))] }
+        self.cMaterial.baseWeight = 1.0
+    }
+    var cEffects: [String: Int] {get{var effects = ["N": 0, "I": 0]; effects[(self.cMaterial as? leather != nil ? "I" : "N")]! += self.style.effect.amount;effects[self.style.effect.type]! += self.style.effect.amount; for item in self.cColours {effects[item.effect.type]! += item.effect.amount}; if embroidery != nil {effects["N"]! += 4};if self.cSymbol != nil {effects[self.cSymbol!.cType.effect.type]! += self.cSymbol!.cType.effect.amount};if self.cPelts != nil {for item in self.cPelts! {effects[item.cPelt.effect.type]! += item.cPelt.effect.amount}};if self.cMaterial as? fabric != nil && self.cMaterial.rawMaterial.name == "Silk" { effects["N"]! += 5 }; return effects}}
+    var name: String {let first = self.style.name; let second = returnListToString(self.cColours.map({$0.name})); let third = "\(self.cMaterial.name) \(self.cTypeName)"; return (first != "" ? "\(first) " : "") + (second != "" ? "\(second) " : "") + third}
+    var value: Int {var value = cMaterial.value; if cPelts != nil { for item in cPelts! {value += item.cMaterial.value} }; if embroidery != nil { value += Int(Double(embroidery!.value) * 0.25) + 500 }; for item in self.cColours {value += item.value}; if self.cSymbol != nil {value += self.cSymbol!.value}; return value + self.baseValue}
+    func description() {
+        print("\nCape\n----------------------------------")
+        print(self.name)
+        if self.cPelts != nil { print("+ " + returnListToString(self.cPelts!.map({$0.cMaterial.name}))) }
+        if self.embroidery != nil { print("+ \(self.embroidery!.name) Embroidery") }
+        if self.cSymbol != nil { print("+ \(self.cSymbol!.name)") }
+        print("\nNobility: \(self.cEffects["N"]!)\tIntimidation: \(self.cEffects["I"]!)")
+        print("Value: \(returnValueInPieces(self.value))")
+    }
 }
 
 
-typealias colour = (name: String, value: Int, effect: (type: String, amount: Int))
+
 
 
 struct cape: wearable {

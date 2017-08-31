@@ -119,7 +119,7 @@ start: while true {
                     } else if choice == "4" {
                         print("Armour...")
                         armourLoop: while true {
-                            print("\n1. Cape\n2. Shield\n3. Armour\n0. back")
+                            print("\n1. Cape\n2. Shield\n3. Armour\n4. Clothing\n0. back")
                             let weaponComponentChoice = readLine()
                             if let choice = weaponComponentChoice {
                                 if choice == "1" {
@@ -129,7 +129,8 @@ start: while true {
                                     let foo = shield(); foo.description()
                                 } else if choice == "3" {
                                     let foo = armour(); foo.description()
-                                    
+                                } else if choice == "4" {
+                                    let foo = clothing(); foo.description()
                                 } else if choice == "0" {
                                     break armourLoop
                                 }
