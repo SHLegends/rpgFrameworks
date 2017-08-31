@@ -119,12 +119,17 @@ start: while true {
                     } else if choice == "4" {
                         print("Armour...")
                         armourLoop: while true {
-                            print("\n1. Cape\n0. back")
+                            print("\n1. Cape\n2. Shield\n3. Armour\n0. back")
                             let weaponComponentChoice = readLine()
                             if let choice = weaponComponentChoice {
                                 if choice == "1" {
                                     let foo = cape(); foo.description()
                                 
+                                } else if choice == "2" {
+                                    let foo = shield(); foo.description()
+                                } else if choice == "3" {
+                                    let foo = armour(); foo.description()
+                                    
                                 } else if choice == "0" {
                                     break armourLoop
                                 }
@@ -132,6 +137,11 @@ start: while true {
                                 continue armourLoop
                             }
                         }
+                    } else if choice == "g" {
+                        let a = cape(); a.description()
+                        let b = armour(); b.description()
+                        let c = shield(); c.description()
+                        let d = sword(); d.basicDescription()
                     } else if choice == "0" {
                         break ItemGenLoop
                         

@@ -18,3 +18,6 @@ let capeSizes: [(name: String, valueModifier: Double, effect: Int)] = [("Short",
 
 let capeLengths: [(name: String, valueModifier: Double, effect: Int)] = [("Wide", 1.2, 3), ("Slender", 0.8, 1), ("", 1.0, 2), ("Narrow", 0.6, 1)]
 
+let shieldTypes: [(name: String, valueModifier: Double, effect: Int)] = [("Kite Shield", 1.3, 3), ("Buckler", 0.6, 1), ("Heater Shield", 1.1, 2), ("Coffin Shield", 1.3, 4), ("Oval Shield", 1.0, 2)]
+
+let armourTypes: [(name: String, valueModifier: Double, effect: Int)] = [("Splint Armour", 1.0, 3), ("Banded Armour", 1.0, 4), ("Laminar Armour", 1.1, 3), ("Lammelar Armour", 1.1, 3), ("Scale Armour", 1.0, 4), ("Plate Armour", 1.5, 7), ("Brigandine Armour", 1.1, 5), ("Ring Armour", 0.9, 2)]

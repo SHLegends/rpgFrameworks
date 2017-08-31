@@ -8,7 +8,7 @@
 
 import Foundation
 
-let gemRarityModifier = 1
+let gemRarityModifier = 5
 
 let rarityModifier = 10
 

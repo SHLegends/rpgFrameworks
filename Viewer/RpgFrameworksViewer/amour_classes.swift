@@ -22,7 +22,7 @@ protocol headPiece {
 
 
 
-protocol clothing {
+struct clothing {
     
 }
 
@@ -68,17 +68,73 @@ struct cape: wearable {
 
 
 
-protocol armour {
+struct armour {
+    var cType: (name: String, valueModifier: Double, effect: Int)
+    var cMaterial: baseMaterial
+    var cSymbol: symbol?
+    var edging: baseMaterial?
+    var baseValue: Int = 50
+    
+    init(cType: (name: String, valueModifier: Double, effect: Int) = returnRandomItem(armourTypes), cMaterial: baseMaterial = metal(), cSymbol: symbol? = (returnRandomBool(1, rarityModifier) ? symbol() : nil), edging: baseMaterial? = (returnRandomBool(1, rarityModifier) ? metal(giveRawMaterial: returnRandomItem(metals["reg"]! + metals["rare"]!)) : nil)) {
+        self.cType = cType
+        self.cMaterial = cMaterial
+        self.cSymbol = cSymbol
+        self.edging = edging
+        self.cMaterial.baseWeight = 40.0 * cType.valueModifier
+        if self.edging != nil {self.edging!.baseWeight = 0.05}
+    }
+    var name: String {return "\(cMaterial.name) \(cType.name)"}
+    var cEffects: [String: Int] {get{var effects = ["N": 0, "I": 0]; effects["I"]! += self.cType.effect; if self.cSymbol != nil {effects[self.cSymbol!.cType.effect.type]! += self.cSymbol!.cType.effect.amount};if edging != nil {if let edge = edging! as? metal {if metals["rare"]!.filter({$0 == edge.baseMaterial}).count > 0 { effects["N"]! += 4 } else { effects["I"]! += 3 }} else { effects["I"]! += 3}}; return effects}}
+    var value: Int {var value = cMaterial.value; if self.cSymbol != nil {value += self.cSymbol!.value}; if edging != nil {value += edging!.value}; return value + self.baseValue}
+    
+    func description() {
+        print("\nArmour\n----------------------------------")
+        print(self.name)
+        if self.edging != nil { print("+ \(self.edging!.name) Edging") }
+        if self.cSymbol != nil { print("+ \(self.cSymbol!.name)") }
+        print("\nNobility: \(self.cEffects["N"]!)\tIntimidation: \(self.cEffects["I"]!)")
+        print("Value: \(returnValueInPieces(self.value))")
+    }
     
 }
 
 
 
 
-protocol shield {
+struct shield: wearable {
+    var cType: (name: String, valueModifier: Double, effect: Int)
+    var cMaterial: baseMaterial
+    var painted: [colour]?
+    var cSymbol: symbol?
+    var edging: baseMaterial?
+    var baseValue: Int = 50
+    
+    init(cType: (name: String, valueModifier: Double, effect: Int) = returnRandomItem(shieldTypes), cMaterial: baseMaterial = (returnRandomBool(1, Int(rarityModifier/2)) ? metal() : wood()), painted: [colour]? = (returnRandomBool(1, rarityModifier) ? [returnRandomItem(colours)] : nil), cSymbol: symbol? = (returnRandomBool(1, rarityModifier) ? symbol() : nil), edging: baseMaterial? = (returnRandomBool(1, rarityModifier) ? metal(giveRawMaterial: returnRandomItem(metals["reg"]! + metals["rare"]!)) : nil)) {
+        self.cType = cType
+        self.cMaterial = cMaterial
+        self.painted = painted
+        self.cSymbol = cSymbol
+        self.edging = edging
+        self.cMaterial.baseWeight = 10.0 * cType.valueModifier
+        if self.edging != nil {self.edging!.baseWeight = 0.05}
+    }
+    var name: String {let first: String = (self.painted != nil ? "\(returnListToString(self.painted!.map({$0.name}))) Painted " : ""); let second = "\(cMaterial.name) \(cType.name)"; return first + second}
+    
+    var cEffects: [String: Int] {get{var effects = ["N": 0, "I": 0]; effects[(self.cMaterial as? metal != nil ? "N" : "I")]! += self.cType.effect; if self.painted != nil { for item in self.painted! {effects[item.effect.type]! += item.effect.amount} }; if self.cSymbol != nil {effects[self.cSymbol!.cType.effect.type]! += self.cSymbol!.cType.effect.amount};if edging != nil {if let edge = edging! as? metal {if metals["rare"]!.filter({$0 == edge.baseMaterial}).count > 0 { effects["N"]! += 4 } else { effects["I"]! += 3 }} else { effects["I"]! += 3}}; return effects}}
+    
+    var value: Int {var value = cMaterial.value; if self.painted != nil {for item in self.painted! {value += item.value}}; if self.cSymbol != nil {value += self.cSymbol!.value}; if edging != nil {value += edging!.value}; return value + self.baseValue}
+    
+    func description() {
+        print("\nShield\n----------------------------------")
+        print(self.name)
+        if self.edging != nil { print("+ \(self.edging!.name) Edging") }
+        if self.cSymbol != nil { print("+ \(self.cSymbol!.name)") }
+        print("\nNobility: \(self.cEffects["N"]!)\tIntimidation: \(self.cEffects["I"]!)")
+        print("Value: \(returnValueInPieces(self.value))")
+    }
+        
     
 }
-
 
 
 // Ornate Gold Crown with Diamonds, Rubies, and Saphires
@@ -89,6 +145,7 @@ protocol shield {
 // Black Smooth Wool Cape
 // Blue Fine Silk Cloak with White Embroidery (with a Symbol of a Sunrise)
 // Long Panther Pelt Cloak
+
 
 // Red, Green, and Blue Fine Silk Garments with Gold Embroidery
 // Black Wool Garments with Mink and Fox Pelts
@@ -102,6 +159,3 @@ protocol shield {
 // Small Bronze Buckler
 
 
-
-
-// for pelts pass a pelt to a leather struct
