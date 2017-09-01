@@ -119,18 +119,23 @@ start: while true {
                     } else if choice == "4" {
                         print("Armour...")
                         armourLoop: while true {
-                            print("\n1. Cape\n2. Shield\n3. Armour\n4. Clothing\n0. back")
+                            print("\n1. Cape\n2. Shield\n3. Armour\n4. Clothing\n5. Headpiece\n6. Hood\n7. Crown\n0. back")
                             let weaponComponentChoice = readLine()
                             if let choice = weaponComponentChoice {
                                 if choice == "1" {
                                     let foo = cape(); foo.description()
-                                
                                 } else if choice == "2" {
                                     let foo = shield(); foo.description()
                                 } else if choice == "3" {
                                     let foo = armour(); foo.description()
                                 } else if choice == "4" {
                                     let foo = clothing(); foo.description()
+                                } else if choice == "5" {
+                                    let foo = headdress(); foo.description()
+                                } else if choice == "6" {
+                                    let foo = hood(); foo.description()
+                                } else if choice == "7" {
+                                    let foo = crown(); foo.description()
                                 } else if choice == "0" {
                                     break armourLoop
                                 }
@@ -139,10 +144,13 @@ start: while true {
                             }
                         }
                     } else if choice == "g" {
-                        let a = cape(); a.description()
-                        let b = armour(); b.description()
-                        let c = shield(); c.description()
-                        let d = sword(); d.basicDescription()
+                        print("\n---\n")
+                        let a = cape(); print(a.name)
+                        let b = armour(); print(b.name)
+                        let e = crown(); print(e.name)
+                        let c = shield(); print(c.name)
+                        let d = sword(); print(d.name)
+                        print("\n---\n")
                     } else if choice == "0" {
                         break ItemGenLoop
                         

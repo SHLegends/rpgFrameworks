@@ -6,7 +6,15 @@
 //  Copyright © 2017 Joel Huggett. All rights reserved.
 //
 
+
 import Foundation
+
+
+let vowels = ["a", "i", "o", "u", "e"]
+
+
+
+
 
 func returnRandomItem<T>( _ list: [T])-> T {
     return list[Int(arc4random_uniform(UInt32(list.count)))]
@@ -47,4 +55,8 @@ func returnListToString(_ strings: [String])-> String {
 
 func combineTwoStrings(_ strings: [String])-> String {
     if strings[0] != "" && strings[1] != "" { return "\(strings[0]) and \(strings[1])" } else if strings[0] != "" && strings[1] == "" { return strings[0] } else if strings[0] == "" && strings[1] != "" { return strings[1] } else { return "" }
+}
+
+func returnAOrAn(_ word: String)-> String {
+    switch String(word.first!).lowercased() {case "a", "i", "o", "u", "e": return "an \(word)"; default: return "a \(word)" }
 }

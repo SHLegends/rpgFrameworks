@@ -441,7 +441,6 @@ struct spearHead: weaponComponent {
         print("~~~~~~~~~~~~~~~~~~~~~")
     }
     var simpleDescription: String {return "Spear Head: \(self.length)\" \(self.cMaterial.rawMaterial.name) Spear Head\(self.hasWings ? " with \(self.wingType!.name) Wings" : "")\(self.hasEtching ? " with \(self.componentEtching!.name)" : "")"}
-
 }
 
 

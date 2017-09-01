@@ -21,7 +21,7 @@ let randomChance = 4
 
 let salvageMaterialLoss = 0.999
 
-let gems: [(name: String, value: Int)] = [("Quartz", 50000), ("Agate", 60000), ("Bloodstone", 200000), ("Emerald", 10000000), ("Ruby", 10000000), ("Garnet", 400000), ("Amethyst", 100000), ("Aquamarine", 200000), ("Topaz", 100000), ("Opal", 5000000), ("Carnelian", 200000), ("Tourmaline", 800000), ("Diamond", 100000000), ("Jasper", 10000), ("Onyx", 500000), ("Peridot", 2500000), ("Malichite", 300000), ("Beryl", 1000000), ("Citrine", 100000), ("Spinel", 1000000)]
+let gems: [(name: String, value: Int)] = [("Quartz", 500), ("Agate", 600), ("Bloodstone", 20000), ("Emerald", 20000), ("Ruby", 30000), ("Garnet", 4000), ("Amethyst", 1000), ("Aquamarine", 20000), ("Topaz", 10000), ("Opal", 10000), ("Carnelian", 20000), ("Tourmaline", 80000), ("Diamond", 100000), ("Jasper", 1000), ("Onyx", 50000), ("Peridot", 25000), ("Malichite", 30000), ("Beryl", 10000), ("Citrine", 10000), ("Spinel", 10000)]
 
 let gemShapes: [(name: String, valueModifier: Double)] = [("Circular", 1.1), ("Oval", 1.15), ("Square", 1.175), ("Pentagonal", 1.2), ("Hexagonal", 1.3), ("Octagonal", 1.4), ("Pear", 1.25), ("Marquise", 1.41), ("Triangle", 1.19)]
 

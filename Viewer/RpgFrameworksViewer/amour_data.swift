@@ -22,4 +22,10 @@ let shieldTypes: [(name: String, valueModifier: Double, effect: Int)] = [("Kite 
 
 let armourTypes: [(name: String, valueModifier: Double, effect: Int)] = [("Splint Armour", 1.0, 3), ("Banded Armour", 1.0, 4), ("Laminar Armour", 1.1, 3), ("Lammelar Armour", 1.1, 3), ("Scale Armour", 1.0, 4), ("Plate Armour", 1.5, 7), ("Brigandine Armour", 1.1, 5), ("Ring Armour", 0.9, 2)]
 
-let clothingStyles: [(name: String, valueModifier: Double, effect: (type: String, amount: Int))] = [("Elegant", 1.0, ("N", 4)), ("Elaborate", 1.0, ("N", 4)), ("Simple", 1.0, ("N", 1)), ("Plain", 1.0, ("N", 0)), ("Torn", 1.0, ("I", 1)), ("Fine", 1.0, ("N", 3))]
+let clothingStyles: [(name: String, valueModifier: Double, effect: (type: String, amount: Int))] = [("Elegant", 1.0, ("N", 4)), ("Elaborate", 1.0, ("N", 4)), ("Simple", 1.0, ("N", 1)), ("Plain", 1.0, ("N", 0)), ("Torn", 1.0, ("I", 1)), ("Fine", 1.0, ("N", 3)), ("Extravagant", 1.0, ("N", 8))]
+
+let wSkulls: [(name: String, effect: Int)] = [("Human", 10), ("Wolf", 6), ("Lion", 8), ("Bull", 5), ("Ram", 5)]
+
+let wHeads: [(name: String, effect: Int)] = [("Wolf", 6), ("Lion", 8), ("Bull", 5), ("Ram", 5), ("Fox", 4)]
+
+let crownTypes: [(name: String, valueModifier: Double, effect: Int)] = [("Simple", 1.0, 1), ("Extravagant", 1.6, 10), ("Plain", 1.0, 1), ("Smooth", 1.1, 2), ("Broken", 0.8, 0), ("Ridged", 1.1, 2), ("Ornate", 1.3, 4), ("Elegant", 1.4, 5), ("Interwoven", 1.1, 3)]

@@ -83,7 +83,7 @@ struct shortAxe: weapon {
     }
     var cList: [weaponComponent] {return [self.cAxeHead, self.cHaft, self.cHandle, self.cPommel]}
     var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
-    var name: String {return "\(self.weight) lb \(self.typeName)"}
+    var name: String {return "\(self.weight) lb \(self.cAxeHead.componentType.name) \(self.typeName)"}
     var grip: Int {return self.cHaft.grip}
 }
 
@@ -99,7 +99,7 @@ struct longAxe: weapon {
     }
     var cList: [weaponComponent] {return [self.cAxeHead, self.cHaft]}
     var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
-    var name: String {return "\(self.weight) lb \(self.typeName)"}
+    var name: String {return "\(self.weight) lb \(self.cAxeHead.componentType.name) \(self.typeName) with \(returnAOrAn(self.cHaft.cMaterial.name)) Haft"}
     var grip: Int {return self.cHaft.grip}
 } 
 
@@ -120,7 +120,7 @@ struct shortMace: weapon {
     }
     var cList: [weaponComponent] {return [self.cMaceHead, self.cHaft, self.cHandle, self.cPommel]}
     var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
-    var name: String {return "\(self.weight) lb \(self.typeName)"}
+    var name: String {return "\(self.weight) lb \(self.cMaceHead.componentType.name) \(self.typeName)"}
     var grip: Int {return self.cHaft.grip}
 }
 
@@ -136,7 +136,7 @@ struct longMace: weapon {
     }
     var cList: [weaponComponent] {return [self.cMaceHead, self.cHaft]}
     var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
-    var name: String {return "\(self.weight) lb \(self.typeName)"}
+    var name: String {return "\(self.weight) lb \(self.cMaceHead.componentType.name) \(self.typeName) with \(returnAOrAn(self.cHaft.cMaterial.name)) Haft"}
     var grip: Int {return self.cHaft.grip}
 }
 
@@ -152,7 +152,7 @@ struct swordStaff: weapon, bladedWeapon {
     }
     var cList: [weaponComponent] {return [self.cBlade, self.cHaft]}
     var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
-    var name: String {return "\(self.length)\" \(self.typeName)"}
+    var name: String {return "\(self.length)\" \(self.cBlade.componentType.name) \(self.typeName) with \(returnAOrAn(self.cHaft.cMaterial.name)) Haft"}
     var grip: Int {return self.cHaft.grip}
 }
 
@@ -173,7 +173,7 @@ struct longSword: weapon, bladedWeapon {
     }
     var cList: [weaponComponent] {return [self.cBlade, self.cGuard, self.cHandle, self.cPommel]}
     var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
-    var name: String {return "\(self.cBlade.length)\" \(self.cMaterial.rawMaterial.name) \(self.typeName)"}
+    var name: String {return "\(self.cBlade.length)\" \(self.cBlade.componentType.name) \(self.cMaterial.rawMaterial.name) \(self.typeName) with \(returnAOrAn(self.cGuard.cMaterial.name)) Hilt"}
     var grip: Int {return self.cHandle.grip}
 }
 
@@ -195,7 +195,7 @@ struct sword: weapon, bladedWeapon {
     }
     var cList: [weaponComponent] {return [self.cBlade, self.cGuard, self.cHandle, self.cPommel]}
     var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
-    var name: String {return "\(self.cBlade.length)\" \(self.cMaterial.rawMaterial.name) \(self.typeName)"}
+    var name: String {return "\(self.cBlade.length)\" \(self.cBlade.componentType.name) \(self.cMaterial.rawMaterial.name) \(self.typeName) with \(returnAOrAn(self.cGuard.cMaterial.name)) Hilt"}
     var grip: Int {return self.cHandle.grip}
 }
 
@@ -250,6 +250,6 @@ struct spear: weapon {
     }
     var cList: [weaponComponent] {return [self.cHead, self.cHaft]}
     var length: Int {var length = 0; for item in self.cList {length += item.length}; return length}
-    var name: String {return "\(self.length)\" \(self.typeName)"}
+    var name: String {return "\(self.length)\" \(self.typeName) with \(returnAOrAn(self.cHaft.cMaterial.name)) Haft"}
     var grip: Int {return self.cHaft.grip}
 }
