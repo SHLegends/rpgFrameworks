@@ -33,7 +33,7 @@ struct headdress: headWearable {
     var name: String {get{return "\(self.cKind.name) \(self.cType) Headdress"}}
     var value: Int {get{return 50}}
     func description() {
-        print("\nHeadpiece\n----------------------------------")
+        print("\nHeaddress\n----------------------------------")
         print(self.name)
         print("\nNobility: \(self.cEffects["N"]!)\tIntimidation: \(self.cEffects["I"]!)")
         print("Value: \(returnValueInPieces(self.value))")
@@ -102,9 +102,30 @@ struct hood: headWearable {
     }
 }
 
-//struct helmet: headWearable {
-//
-//}
+struct helmet: headWearable {
+    var cMaterial: baseMaterial
+    var edging: baseMaterial?
+    var cType: (name: String, valueModifier: Double, effect: (I: Int, N: Int))
+    
+    init(cMaterial: baseMaterial = metal(), cType: (name: String, valueModifier: Double, effect: (I: Int, N: Int)) = returnRandomItem(helmetTypes), edging: baseMaterial? = (returnRandomBool(1, rarityModifier) ? metal(giveRawMaterial: returnRandomItem(metals["reg"]! + metals["rare"]!)) : nil)) {
+        self.cMaterial = cMaterial
+        self.edging = edging
+        self.cType = cType
+        self.cMaterial.baseWeight = 1.0 * self.cType.valueModifier
+    }
+    
+    var name: String {return "\(self.cMaterial.name) \(self.cType.name)\((self.edging != nil ? " with \(edging!.name) Edging" : ""))"}
+    var value: Int {return self.cMaterial.value + (self.edging != nil ? self.edging!.value : 0)}
+    var cEffects: [String : Int] {var effects = ["I": 0, "N": 0];effects["I"]! += self.cType.effect.I;effects["N"]! += self.cType.effect.N;if edging != nil {if let edge = edging! as? metal {if metals["rare"]!.filter({$0 == edge.baseMaterial}).count > 0 { effects["N"]! += 3 } else { effects["I"]! += 1 }} else { effects["I"]! += 1}}; return effects}
+
+    func description() {
+        print("\nHelmet\n----------------------------------")
+        print(self.name)
+        if self.edging != nil { print("+ \(self.edging!.name) Edging") }
+        print("\nNobility: \(self.cEffects["N"]!)\tIntimidation: \(self.cEffects["I"]!)")
+        print("Value: \(returnValueInPieces(self.value))")
+    }
+}
 
 
 
@@ -226,7 +247,6 @@ struct shield: wearable {
     var cSymbol: symbol?
     var edging: baseMaterial?
     var baseValue: Int = 50
-    
     init(cType: (name: String, valueModifier: Double, effect: Int) = returnRandomItem(shieldTypes), cMaterial: baseMaterial = (returnRandomBool(1, Int(rarityModifier/2)) ? metal() : wood()), painted: [colour]? = (returnRandomBool(1, rarityModifier) ? [returnRandomItem(colours)] : nil), cSymbol: symbol? = (returnRandomBool(1, rarityModifier) ? symbol() : nil), edging: baseMaterial? = (returnRandomBool(1, rarityModifier) ? metal(giveRawMaterial: returnRandomItem(metals["reg"]! + metals["rare"]!)) : nil)) {
         self.cType = cType
         self.cMaterial = cMaterial
@@ -237,11 +257,8 @@ struct shield: wearable {
         if self.edging != nil {self.edging!.baseWeight = 0.05}
     }
     var name: String {let first: String = (self.painted != nil ? "\(returnListToString(self.painted!.map({$0.name}))) Painted " : ""); let second = "\(cMaterial.name) \(cType.name)"; return first + second}
-    
     var cEffects: [String: Int] {get{var effects = ["N": 0, "I": 0]; effects[(self.cMaterial as? metal != nil ? "N" : "I")]! += self.cType.effect; if self.painted != nil { for item in self.painted! {effects[item.effect.type]! += item.effect.amount} }; if self.cSymbol != nil {effects[self.cSymbol!.cType.effect.type]! += self.cSymbol!.cType.effect.amount};if edging != nil {if let edge = edging! as? metal {if metals["rare"]!.filter({$0 == edge.baseMaterial}).count > 0 { effects["N"]! += 4 } else { effects["I"]! += 3 }} else { effects["I"]! += 3}}; return effects}}
-    
     var value: Int {var value = cMaterial.value; if self.painted != nil {for item in self.painted! {value += item.value}}; if self.cSymbol != nil {value += self.cSymbol!.value}; if edging != nil {value += edging!.value}; return value + self.baseValue}
-    
     func description() {
         print("\nShield\n----------------------------------")
         print(self.name)
@@ -250,8 +267,6 @@ struct shield: wearable {
         print("\nNobility: \(self.cEffects["N"]!)\tIntimidation: \(self.cEffects["I"]!)")
         print("Value: \(returnValueInPieces(self.value))")
     }
-        
-    
 }
 
 
