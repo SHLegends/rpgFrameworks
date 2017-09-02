@@ -50,7 +50,11 @@ func returnRandNumInRange(_ start: Int, _ end: Int)-> Int {
 }
 
 func returnListToString(_ strings: [String])-> String {
-    return strings.dropLast().joined(separator: ", ") + (strings.count == 1 ? "\(strings.last!)" : ", and \(strings.last!)")
+    if strings.count == 2 {return "\(strings[0]) and \(strings[1])"} else if strings.count == 1 {return "\(strings[0])"} else if strings.count > 0 {return strings.dropLast().joined(separator: ", ") + (strings.count == 1 ? "\(strings.last!)" : ", and \(strings.last!)")} else {return ""}
+}
+
+func stripEmptyStrings(_ strings: [String])-> [String] {
+    return strings.filter({$0 != ""})
 }
 
 func combineTwoStrings(_ strings: [String])-> String {
@@ -59,4 +63,8 @@ func combineTwoStrings(_ strings: [String])-> String {
 
 func returnAOrAn(_ word: String)-> String {
     switch String(word.first!).lowercased() {case "a", "i", "o", "u", "e": return "an \(word)"; default: return "a \(word)" }
+}
+
+func addWith(_ string: String)-> String {
+    if !string.isEmpty {return " with \(string)"} else {return ""}
 }

@@ -149,7 +149,7 @@ start: while true {
                         print("\n---\n")
                         let a = cape(); print(a.name)
                         let b = armour(); print(b.name)
-                        let e = crown(); print(e.name)
+                        let e = helmet(); print(e.name)
                         let c = shield(); print(c.name)
                         let d = sword(); print(d.name)
                         print("\n---\n")
