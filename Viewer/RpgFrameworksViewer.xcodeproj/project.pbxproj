@@ -15,6 +15,7 @@
 		8E60B3471F3B883B00179D7D /* ItemGen_Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60B3461F3B883B00179D7D /* ItemGen_Data.swift */; };
 		8E60B3491F3B88FE00179D7D /* ItemGen_WeaponComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60B3481F3B88FE00179D7D /* ItemGen_WeaponComponents.swift */; };
 		8E60B34B1F3B897500179D7D /* ItemGen_Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60B34A1F3B897500179D7D /* ItemGen_Functions.swift */; };
+		8EC256601F5B372C0081FF42 /* nameGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC2565F1F5B372C0081FF42 /* nameGen.swift */; };
 		8EFE67241F3F8C7D0026ADFB /* ItemGen_Weapons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFE67231F3F8C7D0026ADFB /* ItemGen_Weapons.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		8E60B3461F3B883B00179D7D /* ItemGen_Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGen_Data.swift; sourceTree = "<group>"; };
 		8E60B3481F3B88FE00179D7D /* ItemGen_WeaponComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGen_WeaponComponents.swift; sourceTree = "<group>"; };
 		8E60B34A1F3B897500179D7D /* ItemGen_Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGen_Functions.swift; sourceTree = "<group>"; };
+		8EC2565F1F5B372C0081FF42 /* nameGen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nameGen.swift; sourceTree = "<group>"; };
 		8EFE67231F3F8C7D0026ADFB /* ItemGen_Weapons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGen_Weapons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				8E60B33D1F3B84FF00179D7D /* main.swift */,
+				8EC2565E1F5B35410081FF42 /* NameGen */,
 				8E60B34C1F3B89B000179D7D /* ItemGen */,
 			);
 			path = RpgFrameworksViewer;
@@ -116,6 +119,14 @@
 				8E2DC5E71F54D19C0023945B /* Weapons */,
 			);
 			name = ItemGen;
+			sourceTree = "<group>";
+		};
+		8EC2565E1F5B35410081FF42 /* NameGen */ = {
+			isa = PBXGroup;
+			children = (
+				8EC2565F1F5B372C0081FF42 /* nameGen.swift */,
+			);
+			name = NameGen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +189,7 @@
 				8E60B33E1F3B84FF00179D7D /* main.swift in Sources */,
 				8E2DC5E61F54D1910023945B /* amour_data.swift in Sources */,
 				8E60B34B1F3B897500179D7D /* ItemGen_Functions.swift in Sources */,
+				8EC256601F5B372C0081FF42 /* nameGen.swift in Sources */,
 				8E60B3491F3B88FE00179D7D /* ItemGen_WeaponComponents.swift in Sources */,
 				8E60B3471F3B883B00179D7D /* ItemGen_Data.swift in Sources */,
 				8E60B3451F3B866C00179D7D /* ItemGen_BaseMaterials.swift in Sources */,
