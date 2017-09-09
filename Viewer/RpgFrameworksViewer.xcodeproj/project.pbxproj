@@ -16,6 +16,10 @@
 		8E60B3491F3B88FE00179D7D /* ItemGen_WeaponComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60B3481F3B88FE00179D7D /* ItemGen_WeaponComponents.swift */; };
 		8E60B34B1F3B897500179D7D /* ItemGen_Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60B34A1F3B897500179D7D /* ItemGen_Functions.swift */; };
 		8EC256601F5B372C0081FF42 /* nameGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC2565F1F5B372C0081FF42 /* nameGen.swift */; };
+		8EC256621F5DDB770081FF42 /* titleGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC256611F5DDB770081FF42 /* titleGen.swift */; };
+		8EC256651F5DDBBD0081FF42 /* titleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC256641F5DDBBD0081FF42 /* titleData.swift */; };
+		8EC256681F5E28E10081FF42 /* MapGen_Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC256671F5E28E10081FF42 /* MapGen_Data.swift */; };
+		8EC2566A1F5E291E0081FF42 /* MapGen_WorldGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC256691F5E291E0081FF42 /* MapGen_WorldGen.swift */; };
 		8EFE67241F3F8C7D0026ADFB /* ItemGen_Weapons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFE67231F3F8C7D0026ADFB /* ItemGen_Weapons.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +46,10 @@
 		8E60B3481F3B88FE00179D7D /* ItemGen_WeaponComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGen_WeaponComponents.swift; sourceTree = "<group>"; };
 		8E60B34A1F3B897500179D7D /* ItemGen_Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGen_Functions.swift; sourceTree = "<group>"; };
 		8EC2565F1F5B372C0081FF42 /* nameGen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nameGen.swift; sourceTree = "<group>"; };
+		8EC256611F5DDB770081FF42 /* titleGen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = titleGen.swift; sourceTree = "<group>"; };
+		8EC256641F5DDBBD0081FF42 /* titleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = titleData.swift; sourceTree = "<group>"; };
+		8EC256671F5E28E10081FF42 /* MapGen_Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapGen_Data.swift; sourceTree = "<group>"; };
+		8EC256691F5E291E0081FF42 /* MapGen_WorldGen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapGen_WorldGen.swift; sourceTree = "<group>"; };
 		8EFE67231F3F8C7D0026ADFB /* ItemGen_Weapons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemGen_Weapons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,6 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				8E60B33D1F3B84FF00179D7D /* main.swift */,
+				8EC256661F5E28770081FF42 /* MapGen */,
+				8EC256631F5DDB830081FF42 /* TitleGen */,
 				8EC2565E1F5B35410081FF42 /* NameGen */,
 				8E60B34C1F3B89B000179D7D /* ItemGen */,
 			);
@@ -127,6 +137,24 @@
 				8EC2565F1F5B372C0081FF42 /* nameGen.swift */,
 			);
 			name = NameGen;
+			sourceTree = "<group>";
+		};
+		8EC256631F5DDB830081FF42 /* TitleGen */ = {
+			isa = PBXGroup;
+			children = (
+				8EC256611F5DDB770081FF42 /* titleGen.swift */,
+				8EC256641F5DDBBD0081FF42 /* titleData.swift */,
+			);
+			name = TitleGen;
+			sourceTree = "<group>";
+		};
+		8EC256661F5E28770081FF42 /* MapGen */ = {
+			isa = PBXGroup;
+			children = (
+				8EC256671F5E28E10081FF42 /* MapGen_Data.swift */,
+				8EC256691F5E291E0081FF42 /* MapGen_WorldGen.swift */,
+			);
+			name = MapGen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,13 +217,17 @@
 				8E60B33E1F3B84FF00179D7D /* main.swift in Sources */,
 				8E2DC5E61F54D1910023945B /* amour_data.swift in Sources */,
 				8E60B34B1F3B897500179D7D /* ItemGen_Functions.swift in Sources */,
+				8EC2566A1F5E291E0081FF42 /* MapGen_WorldGen.swift in Sources */,
 				8EC256601F5B372C0081FF42 /* nameGen.swift in Sources */,
 				8E60B3491F3B88FE00179D7D /* ItemGen_WeaponComponents.swift in Sources */,
+				8EC256681F5E28E10081FF42 /* MapGen_Data.swift in Sources */,
 				8E60B3471F3B883B00179D7D /* ItemGen_Data.swift in Sources */,
 				8E60B3451F3B866C00179D7D /* ItemGen_BaseMaterials.swift in Sources */,
 				8EFE67241F3F8C7D0026ADFB /* ItemGen_Weapons.swift in Sources */,
 				8E2DC5EA1F54D6950023945B /* amour_classes.swift in Sources */,
 				8E2DC5ED1F56E58A0023945B /* amour_components.swift in Sources */,
+				8EC256651F5DDBBD0081FF42 /* titleData.swift in Sources */,
+				8EC256621F5DDB770081FF42 /* titleGen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
