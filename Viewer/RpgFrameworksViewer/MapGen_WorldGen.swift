@@ -18,9 +18,25 @@ func scan(_ distance: Int, _ point: coor)-> [coor] {
             coors += [(i, t)]
         }
     }
-    return coors.filter({$0 != point})
+    return coors
 }
 
+func ring(_ distance: Int, _ point: coor)-> [coor] {
+    var coors = [coor]()
+    for i in point.x-distance+1...point.x+distance-1 {
+        coors += [(i, point.y+distance)]
+    }
+    for i in point.x-distance+1...point.x+distance-1 {
+        coors += [(i, point.y-distance)]
+    }
+    for i in point.y-distance+1...point.y+distance-1 {
+        coors += [(point.x-distance, i)]
+    }
+    for i in point.y-distance+1...point.y+distance-1 {
+        coors += [(point.x+distance, i)]
+    }
+    return coors
+}
 
 var cIDs = [randName]()
 
@@ -37,16 +53,16 @@ func getNewID()-> randName {
     }
 }
 
-func getDirection(point: inout coor)-> coor {
+func getDirection(point: inout coor, _ distance: Int)-> coor {
     switch returnRandNumInRange(1, 4) {
     case 1:
-        return coor((point.x+1, point.y))
+        return coor((point.x+distance, point.y))
     case 2:
-        return coor((point.x-1, point.y))
+        return coor((point.x-distance, point.y))
     case 3:
-        return coor((point.x, point.y+1))
+        return coor((point.x, point.y+distance))
     case 4:
-        return coor((point.x, point.y-1))
+        return coor((point.x, point.y-distance))
     default:
         return point
         
@@ -56,7 +72,7 @@ func getDirection(point: inout coor)-> coor {
 
 struct location {
     var continentID: randName?
-    var landClass: (name: String, symbol: String) = ("water", "--")
+    var landClass: (name: String, symbol: String) = ("water", ". ")
     var symbol: String {get{return self.landClass.symbol}}
     var lType: String {get{return self.landClass.name}}
 }
@@ -75,8 +91,7 @@ struct sector {
     }
     var readable: String {get{var readable = ""; for i in 0...self.gridSize.height {readable += "\n"; for t in 0...self.gridSize.width {readable += self.locations[i]![t]!.symbol}}; return readable}}
     
-    mutating func genContinent(_ cSize: Int) {
-        let size = 5
+    mutating func genContinent(_ cSize: Int, _ size: Int) {
         for p in 1...25 {
             let randPoint: coor = (returnRandNumInRange(0, self.gridSize.width)-10, returnRandNumInRange(0, self.gridSize.height)-10)
             if scan(size, randPoint).filter({self.locations[$0.y] == nil || self.locations[$0.y]![$0.x] == nil || self.locations[$0.y]![$0.x]!.lType != "water"}).count > 0 {
@@ -87,23 +102,30 @@ struct sector {
                 print("<NEW CONTINENT> <\(cID.readable)> START POINT: \(randPoint)")
                 let startPoint = randPoint
                 var point = startPoint
-                for _ in 1...cSize {
-                    self.locations[point.y]![point.x]!.landClass = ("land", "\(cID.readable.first!)\(cID.readable.first!)")
-                    self.locations[point.y]![point.x]!.continentID = cID
-                    let sScan = scan(2, point).filter({$0.x < 0 || $0.x > self.gridSize.width || $0.y < 0 || $0.y > self.gridSize.height || self.locations[$0.y]![$0.x]!.continentID != nil && self.locations[$0.y]![$0.x]!.continentID!.readable != cID.readable})
+                self.locations[point.y]![point.x]!.landClass = ("land", "\(cID.readable.first!) ")
+                self.locations[point.y]![point.x]!.continentID = cID
+
+                for p in 1...cSize {
+                    let sScan = scan(5, point).filter({$0.x < 0 || $0.x > self.gridSize.width || $0.y < 0 || $0.y > self.gridSize.height || self.locations[$0.y]![$0.x]!.continentID != nil && self.locations[$0.y]![$0.x]!.continentID!.readable != cID.readable})
                     if sScan.count > 0 {
-                        print("\(cID.readable)-DRAW SCAN-OUT OF BOUNDS-LOG: last point: \(point);\nfailing points: \(sScan)")
+                        print("\(cID.readable)-DRAW SCAN-OUT OF BOUNDS-LOG: last point: \(point) {MOVE #\(p)/\(cSize)};\nfailing points: \(sScan)")
                         point = startPoint
                     } else {
-                        point = getDirection(point: &point)
+                        point = getDirection(point: &point, 2)
+                        let scanedPoint = scan(1, point)
+                        print("\(cID.readable)-DRAW SUCCESS-POINTS: \(scanedPoint) {MOVE #\(p)/\(cSize)}")
+                        scanedPoint.map({self.locations[$0.y]![$0.x]!.landClass = ("land", "\(cID.readable.first!) "); self.locations[$0.y]![$0.x]!.continentID = cID})
+                        ring(2, point).map({if returnRandomBool(1, 2) { self.locations[$0.y]![$0.x]!.landClass = ("land", "\(cID.readable.first!) "); self.locations[$0.y]![$0.x]!.continentID = cID}})
+                        
                     }
                 }
-                print("Complete")
+                print("|\(cID.readable) - Complete|")
                 break
             }
         }
     }
 }
+
 
 struct worldMap {
     var gridSize: dimensions
