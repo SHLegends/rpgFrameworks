@@ -209,15 +209,15 @@ start: while true {
                 let mapChoice = readLine()
                 if let choice = mapChoice {
                     if choice == "1" {
-                        var foo = worldMap(gridSize: (50, 50)); foo.genContinent(500, 5); print(foo.readable); foo.landMassDescription()
+                        var foo = worldMap(gridSize: (50, 50)); foo.genContinent(500, 5); foo.fullMapScan(); print(foo.readable); foo.landMassDescription()
                     } else if choice == "2" {
-                        var foo = worldMap(gridSize: (100, 100)); foo.genContinent(1000, 5); foo.genContinent(1000, 5); print(foo.readable); foo.landMassDescription()
+                        var foo = worldMap(gridSize: (100, 100)); foo.genContinent(1000, 5); foo.genContinent(1000, 5); foo.fullMapScan(); print(foo.readable); foo.landMassDescription()
                     } else if choice == "3" {
-                        var foo = worldMap(gridSize: (150, 150)); foo.genContinent(1500, 5); foo.genContinent(1500, 5); foo.genContinent(1500, 5); print(foo.readable); foo.landMassDescription()
+                        var foo = worldMap(gridSize: (150, 150)); foo.genContinent(1500, 5); foo.genContinent(1500, 5); foo.genContinent(1500, 5); foo.fullMapScan(); print(foo.readable); foo.landMassDescription()
                     } else if choice == "4" {
-                        var foo = worldMap(gridSize: (75, 75)); foo.genContinent(500, 5); foo.genContinent(20, 5); foo.genContinent(15, 5); foo.genContinent(10, 5); foo.genContinent(5, 5); print(foo.readable); foo.landMassDescription()
+                        var foo = worldMap(gridSize: (75, 75)); foo.genContinent(500, 5); foo.genContinent(20, 5); foo.genContinent(15, 5); foo.genContinent(10, 5); foo.genContinent(5, 5); foo.fullMapScan(); print(foo.readable); foo.landMassDescription()
                     } else if choice == "5" {
-                        var foo = worldMap(gridSize: (200, 200)); foo.genContinent(2000, 5); foo.genContinent(1500, 5); foo.genContinent(1500, 5); foo.genContinent(1500, 5); foo.genContinent(1500, 5); foo.genContinent(15, 5); foo.genContinent(15, 5); foo.genContinent(15, 5); foo.genContinent(15, 5); foo.genContinent(15, 5); foo.genContinent(15, 5); foo.genContinent(15, 5); print(foo.readable); foo.landMassDescription()
+                        var foo = worldMap(gridSize: (200, 200)); foo.genContinent(2000, 5); foo.genContinent(1500, 5); foo.genContinent(1500, 5); foo.genContinent(1500, 5); foo.genContinent(1500, 5); foo.genContinent(15, 5); foo.genContinent(15, 5); foo.genContinent(15, 5); foo.genContinent(15, 5); foo.genContinent(15, 5); foo.genContinent(15, 5); foo.genContinent(15, 5); foo.fullMapScan(); print(foo.readable); foo.landMassDescription()
                     } else if choice == "0" {
                         break mapLoop
                     } else {

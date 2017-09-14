@@ -65,49 +65,64 @@ func getDirection(point: inout coor, _ distance: Int)-> coor {
     // choose a random direction and return the modified point
     switch returnRandNumInRange(1, 4) {
     case 1:
-        return coor((point.x+distance, point.y))
+        return coor((point.x+distance, point.y)) // east
     case 2:
-        return coor((point.x-distance, point.y))
+        return coor((point.x-distance, point.y)) // west
     case 3:
-        return coor((point.x, point.y+distance))
+        return coor((point.x, point.y+distance)) // north
     case 4:
-        return coor((point.x, point.y-distance))
+        return coor((point.x, point.y-distance)) // south
     default:
         return point
         
     }
 }
 
+func removeOutlyingCoors(coors: [coor], mapSize: dimensions)-> [coor] {
+    // strip coors outlying mapSize
+    var coorsToReturn = [coor]()
+    for i in coors {if 0 <= i.x && i.x <= mapSize.width && 0 <= i.y && i.y <= mapSize.height {coorsToReturn.append(i)}}
+    return coorsToReturn
+}
+
 struct landMass {
     // continents, islands, etc. (contains info pertaining to interacting with the landMass itself)
     var name: randName = getNewID()
-    var coors = [coor]()
+    
+    var coors = [coor]() // all of its coors
+    
+    var inlandCoors = [coor]() // all inland coors
+    
+    var shoreCoors = [coor]() // shoreline coors
+    
+    var coastalCoors = [coor]() // coastal coors
+    
     
 }
 
 
 struct location {
     // points on worldMap (~60 km by ~60 km)
-    // continentID - name of its landmass
-    var continentID: randName?
-    // landClass - type of land and its representive symbol
-    var landClass: (name: String, symbol: String) = ("water", ". ")
-    // symbol - pictoral representation of landClass (landClass.symbol)
-    var symbol: String {get{return self.landClass.symbol}}
-    // lType - type of land (landClass.name)
-    var lType: String {get{return self.landClass.name}}
+    
+    var continentID: randName? // name of its landmass
+    
+    var landClass: (name: String, symbol: String) = ("water", ". ") // type of land and its representive symbol
+    
+    var symbol: String {get{return self.landClass.symbol}} // pictoral representation of landClass (landClass.symbol)
+    
+    var lType: String {get{return self.landClass.name}} // type of land (landClass.name)
 }
 
 
 struct worldMap {
-    // landMasses - array of all landMasses (continents, etc.)
-    var landMasses = [landMass]()
-    // gridSize - width and height of map
-    var gridSize: dimensions
-    // locations - reference points for all coordinates (i.e. the map)
-    var locations = [Int: [Int: location]]()
-    // numOfCon - stat for # of continents
-    var numOfCon: Int = 0
+    
+    var landMasses = [landMass]() // array of all landMasses (continents, etc.)
+    
+    var gridSize: dimensions // width and height of map
+    
+    var locations = [Int: [Int: location]]() // reference points for all coordinates (i.e. the map)
+    
+    var numOfCon: Int = 0 // stat for # of continents
     init(gridSize: dimensions) {
         self.gridSize = gridSize
         // Generating blank canvas for the map
@@ -115,8 +130,8 @@ struct worldMap {
         for i in 0...self.gridSize.height {self.locations[i] = [:]; for t in 0...self.gridSize.width {self.locations[i]![t] = location(); print("Blank Map - \(gridSize) {y: \(i), x: \(t)}")}}
         print("Finished Blank Map")
     }
-    // readable - pictoral representation of map
-    var readable: String {get{var readable = ""; for i in 0...self.gridSize.height {readable += "\n"; for t in 0...self.gridSize.width {readable += self.locations[i]![t]!.symbol}}; return readable}}
+    
+    var readable: String {get{var readable = ""; for i in 0...self.gridSize.height {readable += "\n"; for t in 0...self.gridSize.width {readable += self.locations[i]![t]!.symbol}}; return readable}} // pictoral representation of map
     
     mutating func genContinent(_ cSize: Int, _ size: Int) {
         // add a landMass to worldMap
@@ -131,13 +146,13 @@ struct worldMap {
                 continue
             } else {
                 // scan succeded, starting the drawing process
-                // newLandMass - generate a new landMass
-                var newLandMass = landMass()
+                
+                var newLandMass = landMass() // generate a new landMass
                 print("<NEW CONTINENT> <\(newLandMass.name.readable)> START POINT: \(randPoint)")
-                // startPoint - landMass' starting point
-                let startPoint = randPoint
-                // point - the pointer for where to draw (being set to startPoint)
-                var point = startPoint
+                
+                let startPoint = randPoint // landMass' starting point
+                
+                var point = startPoint // the pointer for where to draw (being set to startPoint)
                 // draw land on point and add coors to newLandMass coors
                 if self.locations[point.y]![point.x]!.landClass.name == "water" {newLandMass.coors.append(point)}
                 self.locations[point.y]![point.x]!.landClass = ("land", "\(newLandMass.name.readable.first!) ")
@@ -154,10 +169,10 @@ struct worldMap {
                         // loop again
                     } else {
                         // scan succeeded
-                        // move point in random direction by distance of 2
-                        point = getDirection(point: &point, 2)
-                        // scanedPoint - scan around new point by distance of 1
-                        let scanedPoint = scan(1, point)
+                        
+                        point = getDirection(point: &point, 2) // move point in random direction by distance of 2
+                        
+                        let scanedPoint = scan(1, point) // scan around new point by distance of 1
                         print("\(newLandMass.name.readable)-DRAW SUCCESS-POINTS: \(scanedPoint) {MOVE #\(p)/\(cSize)}")
                         // set scanned coordinates as land
                         for v in scanedPoint {if self.locations[v.y]![v.x]!.landClass.name == "water" {newLandMass.coors.append(v)}; self.locations[v.y]![v.x]!.landClass = ("land", "L "); self.locations[v.y]![v.x]!.continentID = newLandMass.name}
@@ -173,11 +188,18 @@ struct worldMap {
         }
     }
     
-    func fullMapScan() {
+    mutating func fullMapScan() {
         // goes through every location in map for various uses
         for i in 0...self.gridSize.height {
             for t in 0...self.gridSize.width {
-                // for later use
+                print("SCANNING - {y: \(i), x: \(t)}")
+                if self.locations[i]![t]!.lType != "water" {
+                    let smallScan = removeOutlyingCoors(coors: scan(2, (t, i)), mapSize: self.gridSize)
+                    if smallScan.filter({self.locations[$0.y]![$0.x]!.lType == "water"}).count == 0 {
+                        self.locations[i]![t]!.landClass.symbol = "X "
+                    }
+                }
+                
             }
         }
     }
