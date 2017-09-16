@@ -143,13 +143,13 @@ struct worldMap {
         // add a landMass to worldMap
         // looking for point to place landmass
         let size = d + 7
-        for p in 1...500 {
+        for p in 1...10000 {
             // get random coordinate (height - 10, width - 10)
             let randPoint: coor = (returnRandNumInRange(0, self.gridSize.width)-10, returnRandNumInRange(0, self.gridSize.height)-10)
             // scan around the point by a distance of parameter "size" checking if the scan is all "water"
             if scan(size, randPoint).filter({self.locations[$0.y] == nil || self.locations[$0.y]![$0.x] == nil || self.locations[$0.y]![$0.x]!.lType != "water"}).count > 0 {
                 // scan failed ... try again
-                print("Scan Attempt #\(p)/500")
+                print("Scan Attempt #\(p)/10000")
                 continue
             } else {
                 // scan succeded, starting the drawing process
