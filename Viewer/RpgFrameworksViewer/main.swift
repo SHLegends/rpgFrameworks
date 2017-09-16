@@ -205,27 +205,59 @@ start: while true {
             }
         } else if choice == "4" {
             mapLoop: while true {
-                print("1. Gen Map(small)\n2. Gen Map(medium)\n3. Gen Map(large)\n4. Gen Map(small with islands)\n5. Gen Map(MASSIVE)\n0. Back")
-                let mapChoice = readLine()
-                if let choice = mapChoice {
-                    if choice == "1" {
-                        var foo = worldMap(gridSize: (50, 50)); foo.genContinent(500, 5); foo.fullMapScan(); print(foo.readable); foo.landMassDescription()
-                    } else if choice == "2" {
-                        var foo = worldMap(gridSize: (100, 100)); foo.genContinent(1000, 5); foo.genContinent(1000, 5); foo.fullMapScan(); print(foo.readable); foo.landMassDescription()
-                    } else if choice == "3" {
-                        var foo = worldMap(gridSize: (150, 150)); foo.genContinent(1500, 5); foo.genContinent(1500, 5); foo.genContinent(1500, 5); foo.fullMapScan(); print(foo.readable); foo.landMassDescription()
-                    } else if choice == "4" {
-                        var foo = worldMap(gridSize: (75, 75)); foo.genContinent(500, 5); foo.genContinent(20, 5); foo.genContinent(15, 5); foo.genContinent(10, 5); foo.genContinent(5, 5); foo.fullMapScan(); print(foo.readable); foo.landMassDescription()
-                    } else if choice == "5" {
-                        var foo = worldMap(gridSize: (200, 200)); foo.genContinent(2000, 5); foo.genContinent(1500, 5); foo.genContinent(1500, 5); foo.genContinent(1500, 5); foo.genContinent(1500, 5); foo.genContinent(15, 5); foo.genContinent(15, 5); foo.genContinent(15, 5); foo.genContinent(15, 5); foo.genContinent(15, 5); foo.genContinent(15, 5); foo.genContinent(15, 5); foo.fullMapScan(); print(foo.readable); foo.landMassDescription()
-                    } else if choice == "0" {
-                        break mapLoop
-                    } else {
-                        continue mapLoop
-                    }
-                } else {
-                    continue mapLoop
-                }
+                
+                print("Welcome to the Map Generator\nPlease Enter Map Height(e.g. 100)")
+                let h = readLine()
+                if let h = h {
+                    if let intH = Int(h) {
+                        let height = intH
+                        print("Thank you...\nPlease Enter Map Width(e.g. 100):")
+                        let w = readLine()
+                        if let w = w {
+                            if let intW = Int(w) {
+                                let width = intW
+                                var foo = worldMap((height, width))
+                                print("Your Map has been Generated")
+                                mapOptionLoop: while true {
+                                    print("1. Add Landmass\n2. Scan Map\n3. Print Map\n4. Print Info\n0. Exit")
+                                    let option = readLine()
+                                    if let option = option {
+                                        if option == "1" {
+                                            print("Please Enter Size(e.g. 100):")
+                                            let s = readLine()
+                                            if let s = s {
+                                                if let s = Int(s) {
+                                                    let size = s
+                                                    print("Thank you...\nPlease Enter Draw Size(e.g. 1 (do NOT exceed 3)):")
+                                                    let ds = readLine()
+                                                    if let ds = ds {
+                                                        if let ds = Int(ds) {
+                                                            foo.genContinent(size, ds)
+                                                            print("Complete...")
+                                                        }  else {print("Let us try this again...");continue mapOptionLoop}
+                                                    } else {print("Let us try this again...");continue mapOptionLoop}
+                                                } else {print("Let us try this again...");continue mapOptionLoop}
+                                            } else {print("Let us try this again...");continue mapOptionLoop}
+                                        } else if option == "2" {
+                                            foo.fullMapScan()
+                                            print("Map Scanned")
+                                        } else if option == "3" {
+                                            print(foo.readable)
+                                            print("Map Printed...")
+                                        } else if option == "4" {
+                                            foo.landMassDescription()
+                                            print("Info Printed...")
+                                        } else if option == "0" {
+                                            print("Farewell...")
+                                            break mapOptionLoop
+                                        } else {print("Let us try this again...");continue mapOptionLoop}
+                                    
+                                    } else {print("Let us try this again...");continue mapOptionLoop}
+                                }
+                            } else {print("Let us try this again...");continue mapLoop}
+                        } else {print("Let us try this again...");break mapLoop}
+                    } else {print("Let us try this again...");break mapLoop}
+                } else {print("Let us try this again...");continue mapLoop}
             }
         } else if choice == "0" {
             break start

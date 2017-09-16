@@ -89,13 +89,19 @@ struct landMass {
     // continents, islands, etc. (contains info pertaining to interacting with the landMass itself)
     var name: randName = getNewID()
     
+    
+    
     var coors = [coor]() // all of its coors
+    
+    var kmSize: Int {get{return self.coors.count}}
     
     var inlandCoors = [coor]() // all inland coors
     
     var shoreCoors = [coor]() // shoreline coors
     
     var coastalCoors = [coor]() // coastal coors
+    
+    var mountains = [coor]() // mountain coors
     
     
 }
@@ -116,14 +122,14 @@ struct location {
 
 struct worldMap {
     
-    var landMasses = [landMass]() // array of all landMasses (continents, etc.)
+    var landMasses = [String: landMass]() // array of all landMasses (continents, etc.)
     
     var gridSize: dimensions // width and height of map
     
     var locations = [Int: [Int: location]]() // reference points for all coordinates (i.e. the map)
     
     var numOfCon: Int = 0 // stat for # of continents
-    init(gridSize: dimensions) {
+    init(_ gridSize: dimensions) {
         self.gridSize = gridSize
         // Generating blank canvas for the map
         print("Creating Blank Map - \(gridSize)")
@@ -133,9 +139,10 @@ struct worldMap {
     
     var readable: String {get{var readable = ""; for i in 0...self.gridSize.height {readable += "\n"; for t in 0...self.gridSize.width {readable += self.locations[i]![t]!.symbol}}; return readable}} // pictoral representation of map
     
-    mutating func genContinent(_ cSize: Int, _ size: Int) {
+    mutating func genContinent(_ cSize: Int, _ d: Int) {
         // add a landMass to worldMap
         // looking for point to place landmass
+        let size = d + 7
         for p in 1...50 {
             // get random coordinate (height - 10, width - 10)
             let randPoint: coor = (returnRandNumInRange(0, self.gridSize.width)-10, returnRandNumInRange(0, self.gridSize.height)-10)
@@ -160,7 +167,7 @@ struct worldMap {
                 // start drawing loop
                 for p in 1...cSize {
                     // scan point by a distance of 5 looking for out of bounds or other landMasses
-                    let sScan = scan(5, point).filter({$0.x < 0 || $0.x > self.gridSize.width || $0.y < 0 || $0.y > self.gridSize.height || self.locations[$0.y]![$0.x]!.continentID != nil && self.locations[$0.y]![$0.x]!.continentID!.readable != newLandMass.name.readable})
+                    let sScan = scan(d+5, point).filter({$0.x < 0 || $0.x > self.gridSize.width || $0.y < 0 || $0.y > self.gridSize.height || self.locations[$0.y]![$0.x]!.continentID != nil && self.locations[$0.y]![$0.x]!.continentID!.readable != newLandMass.name.readable})
                     if sScan.count > 0 {
                         // scan has picked up an out of bounds or other landMass
                         print("\(newLandMass.name.readable)-DRAW SCAN-OUT OF BOUNDS-LOG: last point: \(point) {MOVE #\(p)/\(cSize)};\nfailing points: \(sScan)")
@@ -170,17 +177,17 @@ struct worldMap {
                     } else {
                         // scan succeeded
                         
-                        point = getDirection(point: &point, 2) // move point in random direction by distance of 2
+                        point = getDirection(point: &point, d) // move point in random direction by distance of 2
                         
-                        let scanedPoint = scan(1, point) // scan around new point by distance of 1
+                        let scanedPoint = scan(d, point) // scan around new point by distance of 1
                         print("\(newLandMass.name.readable)-DRAW SUCCESS-POINTS: \(scanedPoint) {MOVE #\(p)/\(cSize)}")
                         // set scanned coordinates as land
-                        for v in scanedPoint {if self.locations[v.y]![v.x]!.landClass.name == "water" {newLandMass.coors.append(v)}; self.locations[v.y]![v.x]!.landClass = ("land", "L "); self.locations[v.y]![v.x]!.continentID = newLandMass.name}
+                        for v in scanedPoint {if self.locations[v.y]![v.x]!.landClass.name == "water" {newLandMass.coors.append(v)}; self.locations[v.y]![v.x]!.landClass = ("land", "X "); self.locations[v.y]![v.x]!.continentID = newLandMass.name}
                         // add random coordinated around the scan by distance of one (it causes the landMass to form in a more natural apperance)
-                        for v in ring(2, point) {if self.locations[v.y]![v.x]!.landClass.name == "water" {newLandMass.coors.append(v)};if returnRandomBool(1, 2) { self.locations[v.y]![v.x]!.landClass = ("land", "L "); self.locations[v.y]![v.x]!.continentID = newLandMass.name}}}
+                        for v in ring(d+1, point) {if returnRandomBool(1, 2) { if self.locations[v.y]![v.x]!.landClass.name == "water" {newLandMass.coors.append(v); self.locations[v.y]![v.x]!.landClass = ("land", "X "); self.locations[v.y]![v.x]!.continentID = newLandMass.name}}}}
                 }
                 // add newLandMass to landMasses
-                self.landMasses.append(newLandMass)
+                self.landMasses[newLandMass.name.readable] = newLandMass
                 print("|\(newLandMass.name.readable) - Complete|")
                 // DONE
                 break
@@ -192,14 +199,28 @@ struct worldMap {
         // goes through every location in map for various uses
         for i in 0...self.gridSize.height {
             for t in 0...self.gridSize.width {
-                print("SCANNING - {y: \(i), x: \(t)}")
+                //print("SCANNING - {y: \(i), x: \(t)}")
                 if self.locations[i]![t]!.lType != "water" {
-                    let smallScan = removeOutlyingCoors(coors: scan(2, (t, i)), mapSize: self.gridSize)
-                    if smallScan.filter({self.locations[$0.y]![$0.x]!.lType == "water"}).count == 0 {
-                        self.locations[i]![t]!.landClass.symbol = "X "
+                    let smallScan = removeOutlyingCoors(coors: scan(1, (t, i)), mapSize: self.gridSize)
+                    if smallScan.filter({self.locations[$0.y]![$0.x]!.lType == "water"}).count > 0 {
+                        self.locations[i]![t]!.landClass.symbol = "S "
+                        self.landMasses[self.locations[i]![t]!.continentID!.readable]!.shoreCoors.append((t, i))
+                    } else if removeOutlyingCoors(coors: ring(3, (t, i)), mapSize: self.gridSize).filter({self.locations[$0.y]![$0.x]!.lType == "water"}).count > 0 {
+                        self.locations[i]![t]!.landClass.symbol = "C "
+                        self.landMasses[self.locations[i]![t]!.continentID!.readable]!.coastalCoors.append((t, i))
+                    } else {
+                        self.locations[i]![t]!.landClass.symbol = "L "
+                        self.landMasses[self.locations[i]![t]!.continentID!.readable]!.inlandCoors.append((t, i))
                     }
                 }
-                
+            }
+        }
+    }
+    
+    mutating func genMountains() {
+        for (_, mass) in self.landMasses {
+            if mass.inlandCoors.count > 100 {
+                print()
             }
         }
     }
@@ -207,8 +228,12 @@ struct worldMap {
     func landMassDescription() {
         // print out info on all the landMasses
         print("LandMasses")
-        for i in self.landMasses {
-            print("\(i.name.readable): \(i.coors.count) * 60 kilometers squared = \(i.coors.count * 60) km squared")
+        for (_, mass) in self.landMasses {
+            print("\(mass.name.readable): \(mass.kmSize) * 60 kilometers squared = \(mass.coors.count * 60) km squared")
+            print("\(mass.name.readable): Shore: \(mass.shoreCoors.count) * 60 kilometers squared = \(mass.shoreCoors.count * 60) km squared")
+            print("\(mass.name.readable): Coastal: \(mass.coastalCoors.count) * 60 kilometers squared = \(mass.coastalCoors.count * 60) km squared")
+            print("\(mass.name.readable): Inland: \(mass.inlandCoors.count) * 60 kilometers squared = \(mass.inlandCoors.count * 60) km squared")
+            print("\n")
         }
     }
 }
