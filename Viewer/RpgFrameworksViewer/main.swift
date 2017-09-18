@@ -8,9 +8,12 @@
 
 import Foundation
 
+import Cocoa
+
+
 let startTime = NSDate().timeIntervalSince1970
 
-print("RPGFrameworks/Viewer/Ver.0.0.1.8")
+print("\n\nRPGFrameworks/Viewer/Ver.0.0.2.0\n(designed for terminal with background: black and font: green)\n")
 
 
 start: while true {
@@ -242,7 +245,7 @@ start: while true {
                                             foo.fullMapScan()
                                             print("Map Scanned")
                                         } else if option == "3" {
-                                            print(foo.readable)
+                                            foo.printOut()
                                             print("Map Printed...")
                                         } else if option == "4" {
                                             foo.landMassDescription()
@@ -259,11 +262,14 @@ start: while true {
                     } else {print("Let us try this again...");break mapLoop}
                 } else {print("Let us try this again...");continue mapLoop}
             }
+        } else if choice == "m" {
+            var foo = worldMap((100, 100)); foo.genContinent(500, 2); foo.genContinent(500, 2); foo.genContinent(500, 2); foo.genContinent(100, 1); foo.genContinent(100, 1); foo.genContinent(100, 1); foo.genContinent(100, 1); foo.genContinent(100, 1); foo.fullMapScan(); foo.landMassDescription(); foo.printOut()
         } else if choice == "0" {
             break start
         } else {
             continue start
         }
+    
     } else {
         continue start
     }
