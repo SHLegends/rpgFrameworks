@@ -14,6 +14,8 @@
 		8E84506F1F845564005094C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E84506E1F845564005094C0 /* Assets.xcassets */; };
 		8E8450721F845564005094C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E8450701F845564005094C0 /* LaunchScreen.storyboard */; };
 		8E84507A1F845986005094C0 /* InterfaceColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8450791F845986005094C0 /* InterfaceColors.swift */; };
+		8E84507C1F867B91005094C0 /* opponentObjec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E84507B1F867B91005094C0 /* opponentObjec.swift */; };
+		8E84507E1F867FCE005094C0 /* nameGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E84507D1F867FCE005094C0 /* nameGen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		8E8450711F845564005094C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8E8450731F845564005094C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E8450791F845986005094C0 /* InterfaceColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceColors.swift; sourceTree = "<group>"; };
+		8E84507B1F867B91005094C0 /* opponentObjec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = opponentObjec.swift; sourceTree = "<group>"; };
+		8E84507D1F867FCE005094C0 /* nameGen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nameGen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,8 @@
 				8E8450701F845564005094C0 /* LaunchScreen.storyboard */,
 				8E8450731F845564005094C0 /* Info.plist */,
 				8E8450791F845986005094C0 /* InterfaceColors.swift */,
+				8E84507B1F867B91005094C0 /* opponentObjec.swift */,
+				8E84507D1F867FCE005094C0 /* nameGen.swift */,
 			);
 			path = Duel;
 			sourceTree = "<group>";
@@ -141,8 +147,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E84507C1F867B91005094C0 /* opponentObjec.swift in Sources */,
 				8E84506A1F845563005094C0 /* SecondViewController.swift in Sources */,
 				8E8450661F845563005094C0 /* AppDelegate.swift in Sources */,
+				8E84507E1F867FCE005094C0 /* nameGen.swift in Sources */,
 				8E8450681F845563005094C0 /* FirstViewController.swift in Sources */,
 				8E84507A1F845986005094C0 /* InterfaceColors.swift in Sources */,
 			);
