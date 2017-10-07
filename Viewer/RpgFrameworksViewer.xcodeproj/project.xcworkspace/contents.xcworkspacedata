@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:RpgFrameworksViewer.xcodeproj">
+      location = "group:/Users/jhuggett/Documents/Sandbox/rpgFrameworks-dev/Viewer/RpgFrameworksViewer/ItemGen">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

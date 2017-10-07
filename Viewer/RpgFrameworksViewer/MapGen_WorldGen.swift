@@ -242,14 +242,14 @@ class worldMap {
                 var point = startPoint // the pointer for where to draw (being set to startPoint)
                 // draw land on point and add coors to newLandMass coors
                 if self.locations[point.y]![point.x]!.landClass.name == "water" {newLandMass.coors.append(point)}
-                self.locations[point.y]![point.x]!.landClass = ("land", "\(newLandMass.name.readable.first!) ")
+                self.locations[point.y]![point.x]!.landClass = ("land", "\u{001B}[0;33m\(newLandMass.name.readable.first!)\(newLandMass.name.readable.first!)\u{001B}[0;32m")
                 self.locations[point.y]![point.x]!.continentID = newLandMass.name
                 // start drawing loop
                 var x = 0
                 var oldDirection: String? = nil
                 for _ in 0...cSize {
                     if x == 10 {
-                        self.locations[point.y]![point.x]!.landClass.symbol = "\u{001B}[0;31mX \u{001B}[0;32m"
+                        self.locations[point.y]![point.x]!.landClass.symbol = "\u{001B}[0;31mXX\u{001B}[0;32m"
 //                        print("\u{001B}[2J")
                         print(self.readable)
                         x = 0

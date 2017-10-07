@@ -13,5 +13,6 @@ enum Colors {
     static let border = UIColor.darkGray
     static let background = UIColor.brown
     static let firstBackground = UIColor.blue
-    static let secondBackground = UIColor.orange
+    static let secondBackground = UIColor.black
+    static let hitBorder = UIColor.green.cgColor
 }
