@@ -28,8 +28,8 @@ class CombatButton: UIButton {
         self.layer.cornerRadius = self.bounds.size.width / 2
         self.clipsToBounds = true
         self.backgroundColor = color
-        self.layer.borderWidth = 4.0
-        self.layer.borderColor = UIColor.red.cgColor
+//        self.layer.borderWidth = 4.0
+//        self.layer.borderColor = UIColor.red.cgColor
         self.setTitleColor(color, for: .normal)
 //        self.titleLabel?.font = UIFont(name: btnFont, size: 25)
 //        self.titleLabel?.adjustsFontSizeToFitWidth = true
