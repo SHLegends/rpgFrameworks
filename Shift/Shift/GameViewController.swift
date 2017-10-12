@@ -33,10 +33,7 @@ class GameViewController: UIViewController {
     var colorIndex = 1
     
     var buttons = [ColorCircle]()
-    
-    
-    
-    
+    var buttons2D = [Int: [Int: ColorCircle]]()
     
     var nextRoundUUID = String()
     var timer = Timer()
@@ -61,7 +58,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         self.buttons = [NW!, N!, NE!, W!, C!, E!, SW!, S!, SE!]
-        
+        self.buttons2D = [0: [0: NW!, 1: N!, 2: NE!], 1: [0: W!, 1: C!, 2: E!], 2: [0: SW!, 1: S!, 2: SE!]]
         
         
         
@@ -178,13 +175,6 @@ class GameViewController: UIViewController {
     
     func checkAllSame(_ but: ColorCircle) {
         print("\(but) PRESSED")
-        
-        
-        
-//        but.pulsate(duration: 0.2)
-//        self.score += 1
-//        ScoreLabel.text = String(self.score)
-        
         if self.buttons.filter({$0.colorIndex != self.colorIndex}).count == 1 && but.colorIndex != self.colorIndex {
             print("1 button left of diff color")
             but.colorIndex = self.colorIndex
@@ -193,6 +183,9 @@ class GameViewController: UIViewController {
         } else {
             let oldColor = but.colorIndex + 0
             var butNums = 0
+            
+            
+            
             for i in self.buttons {
                 if i.colorIndex == oldColor {
                     print("----------------\nfound but of index \(i.colorIndex)")
@@ -204,15 +197,6 @@ class GameViewController: UIViewController {
                     butNums += 1
                 }
             }
-            
-//            let newColor = returnRandomItem(self.colourBin.filter({$0 != but.colorIndex}))
-//            print("\n\nchanged to \(newColor)")
-//            but.pulsate(duration: 0.2)
-//            but.changeColor(self.masterColors[newColor])
-//            butNums += 1
-//            print("butNums = \(butNums)")
-
-            
             if oldColor == self.colorIndex {
                 print("was different color")
                 self.timeLeft -= 5
@@ -232,56 +216,6 @@ class GameViewController: UIViewController {
         
         
         
-        /*
-         
-        
-        
-        if checks.count == 1 {
-            if self.masterColourBin.count >= 2 {
-                for i in buttons {
-                    if i.backgroundColor != self.view.backgroundColor {
-                        self.colourBin = [self.view.backgroundColor!]
-                    }
-                    
-                }
-            }
-            
-            
-        }
-        
-        score += 1
-        ScoreLabel.text = String(score)
-        but.pulsate(duration: 0.2)
-        but.changeColor(colorDifferent(than: but.backgroundColor, from: self.colourBin))
-        
-        checks = buttons.filter({$0.backgroundColor != self.view.backgroundColor})
-        
-        if checks.count == 0 {
-                    if buttons.filter({$0.backgroundColor != self.view.backgroundColor}).count == 0 {
-                    UIView.animate(withDuration: 0.5, animations: {
-                        self.colourBin = self.masterColourBin
-                        self.round += 1
-                        self.TimeLabel.text = String(self.round)
-                        self.TimeLabel.changeColor(self.view.backgroundColor, 0.5)
-                        self.ScoreLabel.changeColor(self.view.backgroundColor, 0.5)
-                        self.view.backgroundColor = self.colorDifferent(than: self.view.backgroundColor, from: self.colourBin)
-                        if self.round % 3 == 0 {
-                            if let newColor = self.grabNewColor(self.colourBin) {
-                                self.colourBin.append(newColor)
-                                self.masterColourBin = self.colourBin
-                                print("\(self.colourBin)\n\(newColor)")
-                                print("SUCCESS GRAB NEW COLOR")
-                            } else {print("FAILED GRAB NEW COLOR")}
-                            
-                        }
-                    })
-                    
-                }
-                
-            
-        }
-        
-        */
     }
     
     @IBAction func pressedNW(_ sender: Any) {

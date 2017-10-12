@@ -293,8 +293,6 @@ class worldMap {
     
     
     func generatorBrancher(point: coor, ringSizes: Int) {
-        
-        
         var newLandMass = landMass()
         if self.locations[point.y]![point.x]!.landClass.name == "water" {newLandMass.coors.append(point)}
         self.locations[point.y]![point.x]!.landClass = ("land", "\(newLandMass.name.readable.first!) ")
