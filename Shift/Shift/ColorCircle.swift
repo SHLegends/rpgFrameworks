@@ -14,6 +14,12 @@ public class ColorCircle: UIButton {
 
     var foo = 0
     
+    func getColor()-> UIColor? {
+        return self.backgroundColor
+    }
+    
+    var colorIndex = 0
+    
     override public func awakeFromNib() {
         super.awakeFromNib()
         
@@ -103,7 +109,7 @@ extension UIButton {
     }
     func changeColor(_ toColor: UIColor?) {
         
-        UIView.animate(withDuration: 0.2, animations: {self.backgroundColor = toColor})
+        UIView.animate(withDuration: 0.2, delay: 0, options: .allowUserInteraction, animations: {self.backgroundColor = toColor})
     }
 }
 

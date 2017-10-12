@@ -12,5 +12,8 @@ func chance(of: Int, over: Int)-> Bool {
     return (of >= Int(arc4random_uniform(UInt32(over))) ? true : false)
 }
 
+func returnRandomItem<T>( _ list: [T])-> T {
+    return list[Int(arc4random_uniform(UInt32(list.count)))]
+}
 
 
