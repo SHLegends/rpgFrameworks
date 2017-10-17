@@ -22,10 +22,11 @@ class GameViewController: UIViewController {
     @IBOutlet weak var SW: ColorCircle!
     @IBOutlet weak var S: ColorCircle!
     @IBOutlet weak var SE: ColorCircle!
-    @IBOutlet weak var TimerLabel: UILabel!
     
     var round = 0
     var score = 0
+    
+    let grid = (xMin: 0, xMax: 8, yMin: 0, yMax: 8)
     
     let masterColors = Colors
     var colorIndices = [Int]()
@@ -59,20 +60,17 @@ class GameViewController: UIViewController {
         
         self.buttons = [NW!, N!, NE!, W!, C!, E!, SW!, S!, SE!]
         self.buttons2D = [0: [0: NW!, 1: N!, 2: NE!], 1: [0: W!, 1: C!, 2: E!], 2: [0: SW!, 1: S!, 2: SE!]]
-        
+        for i in 0..<self.buttons2D.count {
+            for t in 0..<self.buttons2D[i]!.count {
+                self.buttons2D[i]![t]!.selfCoor = (t, i)
+            }
+        }
         
         
         print("View Loaded")
-        colorIndices = randomizeColors()
+//        colorIndices = randomizeColors()
         print("Created self.colorIndices: \(self.colorIndices)")
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {_ in
-            if self.timeLeft - 1 <= 0 {
-                self.endGame()
-            } else {
-                self.timeLeft -= 1
-                self.TimerLabel.text = String(self.timeLeft)
-            }
-        })
+        
         print("Setup timer")
         
         
@@ -87,32 +85,7 @@ class GameViewController: UIViewController {
         self.colorIndex = self.colourBin[1]
         UIView.animate(withDuration: 1.0, animations: {self.view.backgroundColor = self.masterColors[self.colourBin[1]]})
         print("Basic Game Setup DONE")
-        
-//        let b4resizing: [[ColorCircle]] = [[NW, N, NE], [W, C, E], [SW, S, SE]]
-//        let screenHeight = Double(UIScreen.main.bounds.height)
-//        var row = 0
-//        var column = 0
-//        for i in b4resizing {
-//            row += 1
-//            for t in i {
-//                column += 1
-//
-//                t.bounds.size.height = CGFloat(screenHeight / 7)
-//                t.bounds.size.width = t.bounds.size.height
-//                t.layer.cornerRadius = t.bounds.width / 2
-//                //screenWidth*0.1+ screenHeight*0.3+
-//                //t.center = CGPoint(x: screenWidth*0.4*Double(column), y: screenHeight*0.4*Double(row))
-//
-//            }
-//        }
-//
-//
-//        C.center = CGPoint(x: self.view.bounds.width/2, y: self.view.bounds.height/2)
-//        N.center = CGPoint(x: self.view.bounds.width/2, y: self.view.bounds.height/2*0.65)
-//        S.center = CGPoint(x: self.view.bounds.width/2, y: self.view.bounds.height/2*1.35)
-//        NW.center = CGPoint(x: self.view.bounds.width/2*0.4, y: self.view.bounds.height/2*0.65)
-//
-        
+ 
 
         // Do any additional setup after loading the view.
     }
@@ -128,10 +101,8 @@ class GameViewController: UIViewController {
     
     func nextRound() {
         print("\n\nSetting up next round\n\n")
-        self.timeLeft += 20
-        self.TimerLabel.text = String(self.timeLeft)
         self.round += 1
-        self.TimerLabel.changeColor(self.masterColors[self.colorIndex], 0.5)
+        
         self.TimeLabel.changeColor(self.masterColors[self.colorIndex], 0.5)
         self.ScoreLabel.changeColor(self.masterColors[self.colorIndex], 0.5)
         if self.round % self.round == 0 {
@@ -173,8 +144,9 @@ class GameViewController: UIViewController {
         }
     }
     
-    func checkAllSame(_ but: ColorCircle) {
-        print("\(but) PRESSED")
+    func checkAllSame(_ but: ColorCircle, _ point: coor) {
+        but.pulsate(duration: 0.2)
+        print("\(but) PRESSED POINT: ", point)
         if self.buttons.filter({$0.colorIndex != self.colorIndex}).count == 1 && but.colorIndex != self.colorIndex {
             print("1 button left of diff color")
             but.colorIndex = self.colorIndex
@@ -186,25 +158,45 @@ class GameViewController: UIViewController {
             
             
             
+            
             for i in self.buttons {
                 if i.colorIndex == oldColor {
                     print("----------------\nfound but of index \(i.colorIndex)")
                     let newColor = returnRandomItem(self.colourBin.filter({$0 != i.colorIndex}))
                     print("\nchanged to \(newColor) | self.colorIndex = \(self.colorIndex)")
                     i.colorIndex = newColor
-                    i.pulsate(duration: 0.2)
-                    i.changeColor(self.masterColors[newColor])
+//                    if but.selfCoor.x - i.selfCoor.x != 0 {
+//                        if but.selfCoor.x - i.selfCoor.x < 0 {
+//                            i.pulsate(duration: Double((but.selfCoor.x - i.selfCoor.x) * -1))
+//                            i.changeColor(self.masterColors[newColor], duration: Double((but.selfCoor.x - i.selfCoor.x)) * -1)
+//                        } else {
+//                            i.pulsate(duration: Double((but.selfCoor.x - i.selfCoor.x)))
+//                            i.changeColor(self.masterColors[newColor], duration: Double((but.selfCoor.x - i.selfCoor.x)))
+//                        }
+//                    } else if but.selfCoor.y - i.selfCoor.y != 0 {
+//                        if but.selfCoor.y - i.selfCoor.y < 0 {
+//                            i.pulsate(duration: Double((but.selfCoor.y - i.selfCoor.y) * -1))
+//                            i.changeColor(self.masterColors[newColor], duration: Double((but.selfCoor.y - i.selfCoor.y) * -1))
+//                        } else {
+//                            i.pulsate(duration: Double((but.selfCoor.y - i.selfCoor.y)))
+//                            i.changeColor(self.masterColors[newColor], duration: Double((but.selfCoor.y - i.selfCoor.y)))
+//                        }
+//                    } else {
+//
+//                    }
+//                    i.pulsate(duration: 0.2)
+                    i.changeColor(self.masterColors[newColor], duration: 0.5)
+                    
                     butNums += 1
                 }
             }
+            
+            
             if oldColor == self.colorIndex {
+                
+                ScoreLabel.shake()
                 print("was different color")
-                self.timeLeft -= 5
-                if self.timeLeft <= 0 {
-                    endGame()
-                } else {
-                    self.TimerLabel.text = String(self.timeLeft)
-                }
+                
                 self.score -= butNums * 4
                 if self.score < 0 {self.score = 0}
             } else {
@@ -219,31 +211,31 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func pressedNW(_ sender: Any) {
-        checkAllSame(NW)
+        checkAllSame(NW, (0, 0))
     }
     @IBAction func pressedN(_ sender: Any) {
-        checkAllSame(N)
+        checkAllSame(N, (1, 0))
     }
     @IBAction func pressedNE(_ sender: Any) {
-        checkAllSame(NE)
+        checkAllSame(NE, (2, 0))
     }
     @IBAction func pressedW(_ sender: Any) {
-        checkAllSame(W)
+        checkAllSame(W, (0, 1))
     }
     @IBAction func pressedC(_ sender: Any) {
-        checkAllSame(C)
+        checkAllSame(C, (1, 1))
     }
     @IBAction func pressedE(_ sender: Any) {
-        checkAllSame(E)
+        checkAllSame(E, (2, 1))
     }
     @IBAction func pressedSW(_ sender: Any) {
-        checkAllSame(SW)
+        checkAllSame(SW, (0, 2))
     }
     @IBAction func pressedS(_ sender: Any) {
-        checkAllSame(S)
+        checkAllSame(S, (1, 2))
     }
     @IBAction func pressedSE(_ sender: Any) {
-        checkAllSame(SE)
+        checkAllSame(SE, (2, 2))
     }
     
     
@@ -265,5 +257,19 @@ class GameViewController: UIViewController {
 extension UILabel {
     func changeColor(_ to: UIColor?, _ time: Double) {
         UIView.animate(withDuration: time, animations: {self.textColor = to})
+    }
+    
+    func shake() {
+        let shake = CABasicAnimation(keyPath: "position")
+        shake.duration = 0.1
+        shake.repeatCount = 2
+        shake.autoreverses = true
+        let fromPoint = CGPoint(x: center.x - 5, y: center.y)
+        let fromValue = NSValue(cgPoint: fromPoint)
+        let toPoint = CGPoint(x: center.x + 5, y: center.y)
+        let toValue = NSValue(cgPoint: toPoint)
+        shake.fromValue = fromValue
+        shake.toValue = toValue
+        layer.add(shake, forKey: "position")
     }
 }
