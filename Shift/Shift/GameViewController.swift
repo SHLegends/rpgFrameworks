@@ -22,6 +22,9 @@ class GameViewController: UIViewController {
     @IBOutlet weak var SW: ColorCircle!
     @IBOutlet weak var S: ColorCircle!
     @IBOutlet weak var SE: ColorCircle!
+    @IBOutlet weak var warningLabel: UILabel!
+    
+    var numOfSameColorTaps = 0
     
     var round = 0
     var score = 0
@@ -96,13 +99,13 @@ class GameViewController: UIViewController {
     }
     
     func endGame() {
-        fatalError()
+        self.dismiss(animated: true, completion: nil)
     }
     
     func nextRound() {
         print("\n\nSetting up next round\n\n")
         self.round += 1
-        
+        self.numOfSameColorTaps = 0
         self.TimeLabel.changeColor(self.masterColors[self.colorIndex], 0.5)
         self.ScoreLabel.changeColor(self.masterColors[self.colorIndex], 0.5)
         if self.round % self.round == 0 {
@@ -193,15 +196,25 @@ class GameViewController: UIViewController {
             
             
             if oldColor == self.colorIndex {
+                self.numOfSameColorTaps += 1
+                if self.numOfSameColorTaps >= 2 {
+                    endGame()
+                } else {
+                    warningLabel.text = "Don't tap same color as background"
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {self.warningLabel.text = ""})
+                    ScoreLabel.shake()
+                    print("was different color")
                 
-                ScoreLabel.shake()
-                print("was different color")
-                
-                self.score -= butNums * 4
-                if self.score < 0 {self.score = 0}
+                    self.score -= butNums * 4
+                    if self.score < 0 {
+                        self.score = 0
+                        
+                    }
+                }
             } else {
                 self.score += butNums
             }
+            
             ScoreLabel.text = String(self.score)
             checkForComplete()
         }

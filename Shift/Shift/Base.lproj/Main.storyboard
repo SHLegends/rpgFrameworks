@@ -151,12 +151,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEU-Mw-BaP">
+                                <rect key="frame" x="207" y="607" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="BhX-U6-vSe" firstAttribute="bottom" secondItem="0do-fJ-Tlh" secondAttribute="bottom" constant="20" id="2KA-DE-RJd"/>
+                            <constraint firstItem="HEU-Mw-BaP" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="3PK-j8-muY"/>
                             <constraint firstItem="0do-fJ-Tlh" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="AkR-Ii-4HT"/>
                             <constraint firstItem="6Wa-t1-c1h" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="CmN-os-jfq"/>
+                            <constraint firstItem="0do-fJ-Tlh" firstAttribute="top" secondItem="HEU-Mw-BaP" secondAttribute="bottom" constant="40.670000000000002" id="NfR-uQ-Q0n"/>
                             <constraint firstItem="6Wa-t1-c1h" firstAttribute="top" secondItem="BhX-U6-vSe" secondAttribute="top" constant="20" id="VGG-Yf-Zdz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BhX-U6-vSe"/>
@@ -173,6 +181,7 @@
                         <outlet property="ScoreLabel" destination="0do-fJ-Tlh" id="WnC-nj-GyZ"/>
                         <outlet property="TimeLabel" destination="6Wa-t1-c1h" id="JIS-Ri-Net"/>
                         <outlet property="W" destination="4Ud-zL-74R" id="c7e-m2-Idq"/>
+                        <outlet property="warningLabel" destination="HEU-Mw-BaP" id="ncy-xw-NKM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xzE-Ld-as6" userLabel="First Responder" sceneMemberID="firstResponder"/>
