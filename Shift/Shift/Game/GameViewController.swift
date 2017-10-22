@@ -24,6 +24,10 @@ class GameViewController: UIViewController {
     @IBOutlet weak var SE: ColorCircle!
     @IBOutlet weak var warningLabel: UILabel!
     
+    
+    
+    var isFirstTap = true
+    
     var numOfSameColorTaps = 0
     
     var round = 0
@@ -31,8 +35,9 @@ class GameViewController: UIViewController {
     
     let grid = (xMin: 0, xMax: 8, yMin: 0, yMax: 8)
     
+    var timeSinceLastTap = Date()
+    
     let masterColors = Colors
-    var colorIndices = [Int]()
     var colourBin = [Int]()
     var colorIndex = 1
     
@@ -60,6 +65,7 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         
         self.buttons = [NW!, N!, NE!, W!, C!, E!, SW!, S!, SE!]
         self.buttons2D = [0: [0: NW!, 1: N!, 2: NE!], 1: [0: W!, 1: C!, 2: E!], 2: [0: SW!, 1: S!, 2: SE!]]
@@ -69,10 +75,11 @@ class GameViewController: UIViewController {
             }
         }
         
+        warningLabel.presentTextToStay(newText: "Tap a circle", duration: 1)
         
         print("View Loaded")
 //        colorIndices = randomizeColors()
-        print("Created self.colorIndices: \(self.colorIndices)")
+        print("Created self.colorIndices: \(colorIndices)")
         
         print("Setup timer")
         
@@ -82,11 +89,13 @@ class GameViewController: UIViewController {
         print("COLOR_BIN: \(self.colourBin)\n")
 
         
-        for i in buttons {i.changeColor(self.masterColors[self.colourBin[0]]); i.colorIndex = self.colourBin[0]}
+        for i in buttons {i.changeColor(self.masterColors[self.colourBin[0]]); i.colorIndex = self.colourBin[0]; i.changeBorderColor(to: self.masterColors[self.colourBin[1]])}
+        warningLabel.changeColor(self.masterColors[self.colourBin[0]], 0.2)
         ScoreLabel.changeColor(self.masterColors[self.colourBin[0]], 0.2)
         TimeLabel.changeColor(self.masterColors[self.colourBin[0]], 0.2)
         self.colorIndex = self.colourBin[1]
-        UIView.animate(withDuration: 1.0, animations: {self.view.backgroundColor = self.masterColors[self.colourBin[1]]})
+//        UIView.animate(withDuration: 1.0, animations: {self.view.backgroundColor = self.masterColors[self.colourBin[1]]})
+        self.view.backgroundColor = themeColor
         print("Basic Game Setup DONE")
  
 
@@ -99,30 +108,99 @@ class GameViewController: UIViewController {
     }
     
     func endGame() {
-        self.dismiss(animated: true, completion: nil)
+        
+//        let storyBoard: UIStoryboard = UIStoryboard(name: "GameOver", bundle: nil)
+//        let newViewController = storyBoard.instantiateViewController(withIdentifier: "GameOverView") as! GameOverViewController
+//        present(newViewController, animated: true, completion: nil)
+//        self.dismiss(animated: true, completion: {})
+        gameScore = self.score
+        performSegue(withIdentifier: "gameOverSegue", sender: nil)
+        
+        
+    }
+    
+    func calcPoints(numOfButtons: Int, timeBetweenTaps: Double)-> Int {
+        
+        if timeBetweenTaps < 1.0 {
+            switch Double(Int(timeBetweenTaps * 10))/10 {
+            case 0.0:
+                return numOfButtons * 100
+            case 0.1:
+                return numOfButtons * 75
+            case 0.2:
+                return numOfButtons * 50
+            case 0.3:
+                return numOfButtons * 25
+            case 0.4:
+                return numOfButtons * 10
+            case 0.5:
+                return numOfButtons * 9
+            case 0.6:
+                return numOfButtons * 8
+            case 0.7:
+                return numOfButtons * 7
+            case 0.8:
+                return numOfButtons * 6
+            case 0.9:
+                return numOfButtons * 5
+            default:
+                return 0
+            }
+            
+        } else if timeBetweenTaps < 2.0 {
+            return numOfButtons * 4
+        } else if timeBetweenTaps < 3.0 {
+            return numOfButtons * 3
+        } else if timeBetweenTaps < 4.0 {
+            return numOfButtons * 2
+        } else {
+            return numOfButtons * 1
+        }
+        
     }
     
     func nextRound() {
         print("\n\nSetting up next round\n\n")
+        
+        
+        
         self.round += 1
+        
+        
+        if self.round == 1 {
+            warningLabel.presentTextToStay(newText: "Match the colors to the rings", duration: 0.5)
+        } else if self.round == 2 {
+            warningLabel.presentTextToStay(newText: "Get higher scores by playing faster", duration: 0.5)
+        } else {
+            warningLabel.dismissText(duration: 0.5)
+        }
+        
+        
+        
         self.numOfSameColorTaps = 0
-        self.TimeLabel.changeColor(self.masterColors[self.colorIndex], 0.5)
-        self.ScoreLabel.changeColor(self.masterColors[self.colorIndex], 0.5)
         if self.round % self.round == 0 {
-            if self.colourBin.count < self.colorIndices.count {
-                self.colourBin.append(self.colorIndices[self.colourBin.count])
+            if self.colourBin.count < colorIndices.count {
+                self.colourBin.append(colorIndices[self.colourBin.count])
                 print("\(self.colourBin)\n")
                 print("SUCCESS GRAB NEW COLOR")
             } else {
                 print("FAILED GRAB NEW COLOR")}
         }
         
+        self.TimeLabel.text = String(self.round)
         let newColor = returnRandomItem(self.colourBin.filter({$0 != self.colorIndex}))
         self.colorIndex = newColor
-        UIView.animate(withDuration: 1, delay: 0, options: .allowUserInteraction, animations: {
-            self.TimeLabel.text = String(self.round)
-            self.view.backgroundColor = self.masterColors[newColor]
-        })
+        self.warningLabel.changeColor(self.masterColors[self.colorIndex], 0.5)
+        self.TimeLabel.changeColor(self.masterColors[self.colorIndex], 0.5)
+        self.ScoreLabel.changeColor(self.masterColors[self.colorIndex], 0.5)
+        for i in self.buttons {
+            i.pulsate(duration: 0.2)
+            i.changeBorderColor(to: self.masterColors[self.colorIndex], duration: 0.5)
+        }
+//        UIView.animate(withDuration: 1, delay: 0, options: .allowUserInteraction, animations: {
+//
+//            self.view.backgroundColor = self.masterColors[newColor]
+//        })
     }
     
     func checkAfter() {
@@ -148,12 +226,23 @@ class GameViewController: UIViewController {
     }
     
     func checkAllSame(_ but: ColorCircle, _ point: coor) {
-        but.pulsate(duration: 0.2)
+        
+        if self.isFirstTap {
+            warningLabel.dismissText(duration: 1)
+        }
+        self.isFirstTap = false
+        
+        let elapsedTime = Date().timeIntervalSince(self.timeSinceLastTap)
+        self.timeSinceLastTap = Date()
+        
+        
         print("\(but) PRESSED POINT: ", point)
         if self.buttons.filter({$0.colorIndex != self.colorIndex}).count == 1 && but.colorIndex != self.colorIndex {
             print("1 button left of diff color")
             but.colorIndex = self.colorIndex
             but.changeColor(self.masterColors[self.colorIndex])
+            but.pulsate(duration: 0.2)
+            self.score += calcPoints(numOfButtons: 1, timeBetweenTaps: elapsedTime)
             checkAfter()
         } else {
             let oldColor = but.colorIndex + 0
@@ -197,22 +286,31 @@ class GameViewController: UIViewController {
             
             if oldColor == self.colorIndex {
                 self.numOfSameColorTaps += 1
-                if self.numOfSameColorTaps >= 2 {
+                if self.numOfSameColorTaps >= 3 {
                     endGame()
                 } else {
-                    warningLabel.text = "Don't tap same color as background"
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {self.warningLabel.text = ""})
+                    self.view.bringSubview(toFront: but)
+                    but.pulsate(duration: 0.2, from: 1.0, to: 4.0)
+                    if numOfSameColorTaps == 1 {
+                        warningLabel.presentText(newText: "Warning: Don't tap single colored buttons", duration: 1, stayFor: 2)
+                    } else if numOfSameColorTaps == 2 {
+                        warningLabel.presentText(newText: "Warning: Last Chance", duration: 1, stayFor: 2)
+                    }
+                    
                     ScoreLabel.shake()
                     print("was different color")
                 
-                    self.score -= butNums * 4
+                    self.score = Int(Double(self.score) * 0.75)
                     if self.score < 0 {
                         self.score = 0
                         
                     }
                 }
             } else {
-                self.score += butNums
+                but.pulsate(duration: 0.2)
+//                print("\nbutNums: \(butNums)\nelapsedTime: \(elapsedTime)\nelapsedTime + 1: \(Double(Int(elapsedTime) + 1))\ntime - wholeNum: \(elapsedTime - Double(Int(elapsedTime)))\nfinal: \(Int(Double(butNums) / (elapsedTime - Double(Int(elapsedTime))) / Double(Int(elapsedTime) + 1)))\n")
+//                self.score += Int(Double(butNums) / (elapsedTime - Double(Int(elapsedTime))) / Double(Int(elapsedTime) + 1))
+                self.score += calcPoints(numOfButtons: butNums, timeBetweenTaps: elapsedTime)
             }
             
             ScoreLabel.text = String(self.score)
@@ -268,8 +366,9 @@ class GameViewController: UIViewController {
 }
 
 extension UILabel {
-    func changeColor(_ to: UIColor?, _ time: Double) {
-        UIView.animate(withDuration: time, animations: {self.textColor = to})
+    func changeColor(_ to: UIColor?, _ time: Double, delay: Double = 0.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {UIView.transition(with: self, duration: time, options: .transitionCrossDissolve, animations: {self.textColor = to})})
+        
     }
     
     func shake() {
@@ -284,5 +383,42 @@ extension UILabel {
         shake.fromValue = fromValue
         shake.toValue = toValue
         layer.add(shake, forKey: "position")
+    }
+    
+    func presentText(newText: String, duration: Double, stayFor: Double) {
+//        var oldText = ""
+//        if self.text != nil && self.text! != "" {
+//            oldText = self.text!
+//        }
+        self.text = newText
+        UIView.animate(withDuration: duration, delay: 0, options: .allowUserInteraction, animations: {
+            self.alpha = 1.0
+        })
+        DispatchQueue.main.asyncAfter(deadline: .now() + stayFor, execute: {
+            UIView.animate(withDuration: duration, delay: 0, options: .allowUserInteraction, animations: {
+                self.alpha = 0.0
+            })
+//            if oldText != "" {
+//                self.text = oldText
+//                UIView.animate(withDuration: duration, delay: 0, options: .allowUserInteraction, animations: {
+//                    self.alpha = 1.0
+//                })
+//            }
+            
+        })
+        
+    }
+    
+    func presentTextToStay(newText: String, duration: Double) {
+        self.text = newText
+        UIView.animate(withDuration: duration, delay: 0, options: .allowUserInteraction, animations: {
+            self.alpha = 1.0
+        })
+    }
+    
+    func dismissText(duration: Double) {
+        UIView.animate(withDuration: duration, delay: 0, options: .allowUserInteraction, animations: {
+            self.alpha = 0.0
+        })
     }
 }

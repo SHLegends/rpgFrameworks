@@ -27,6 +27,7 @@ public class ColorCircle: UIButton {
         self.layer.cornerRadius = self.bounds.size.width / 2
         self.clipsToBounds = true
         self.backgroundColor = self.color
+        self.layer.borderWidth = 8
        
     }
 
@@ -41,11 +42,11 @@ public class ColorCircle: UIButton {
 }
 
 extension UIButton {
-    func pulsate(duration: Double) {
+    func pulsate(duration: Double, from: Double = 1, to: Double = 0.8) {
         let pulse = CASpringAnimation(keyPath: "transform.scale")
         pulse.duration = duration 
-        pulse.fromValue = 1
-        pulse.toValue = 0.8
+        pulse.fromValue = from
+        pulse.toValue = to
         pulse.autoreverses = true
         pulse.repeatCount = 0
         pulse.initialVelocity = 4
@@ -59,17 +60,17 @@ extension UIButton {
         flash.toValue = 0.0
         flash.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         flash.autoreverses = true
-        flash.repeatCount = 4
+        flash.repeatCount = 2
         layer.add(flash, forKey: nil)
     }
     func shake() {
         let shake = CABasicAnimation(keyPath: "position")
-        shake.duration = 0.1
+        shake.duration = 0.2
         shake.repeatCount = 2
         shake.autoreverses = true
-        let fromPoint = CGPoint(x: center.x - 5, y: center.y)
+        let fromPoint = CGPoint(x: center.x - 10, y: center.y)
         let fromValue = NSValue(cgPoint: fromPoint)
-        let toPoint = CGPoint(x: center.x + 5, y: center.y)
+        let toPoint = CGPoint(x: center.x + 10, y: center.y)
         let toValue = NSValue(cgPoint: toPoint)
         shake.fromValue = fromValue
         shake.toValue = toValue
@@ -77,6 +78,11 @@ extension UIButton {
     }
     func changeColor(_ toColor: UIColor?, duration: Double = 0.2) {
         UIView.animate(withDuration: duration , delay: 0, options: .allowUserInteraction, animations: {self.backgroundColor = toColor})
+    }
+    func changeBorderColor(to: UIColor, duration: Double = 0.2, delay: Double = 0) {
+        UIView.animate(withDuration: duration, delay: delay, options: .allowUserInteraction, animations: {
+            self.layer.borderColor = to.cgColor
+            })
     }
 }
 

@@ -146,14 +146,20 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Wa-t1-c1h">
-                                <rect key="frame" x="193" y="39.999999999999993" width="28" height="68.333333333333314"/>
+                                <rect key="frame" x="193" y="40.000000000000007" width="28" height="68.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="50"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZU-Yc-sMA">
+                                <rect key="frame" x="200" y="618" width="14" height="0.0"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEU-Mw-BaP">
-                                <rect key="frame" x="207" y="607" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="207" y="624" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -164,8 +170,10 @@
                             <constraint firstItem="HEU-Mw-BaP" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="3PK-j8-muY"/>
                             <constraint firstItem="0do-fJ-Tlh" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="AkR-Ii-4HT"/>
                             <constraint firstItem="6Wa-t1-c1h" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="CmN-os-jfq"/>
-                            <constraint firstItem="0do-fJ-Tlh" firstAttribute="top" secondItem="HEU-Mw-BaP" secondAttribute="bottom" constant="40.670000000000002" id="NfR-uQ-Q0n"/>
+                            <constraint firstItem="CZU-Yc-sMA" firstAttribute="centerY" secondItem="Weq-4f-PB4" secondAttribute="centerY" constant="250" id="J5Z-yY-YAe"/>
                             <constraint firstItem="6Wa-t1-c1h" firstAttribute="top" secondItem="BhX-U6-vSe" secondAttribute="top" constant="20" id="VGG-Yf-Zdz"/>
+                            <constraint firstItem="0do-fJ-Tlh" firstAttribute="top" secondItem="HEU-Mw-BaP" secondAttribute="bottom" constant="23.670000000000002" id="ZxR-yg-cGx"/>
+                            <constraint firstItem="0do-fJ-Tlh" firstAttribute="top" secondItem="CZU-Yc-sMA" secondAttribute="bottom" constant="29.670000000000002" id="m0i-bZ-paA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BhX-U6-vSe"/>
                     </view>
@@ -182,11 +190,20 @@
                         <outlet property="TimeLabel" destination="6Wa-t1-c1h" id="JIS-Ri-Net"/>
                         <outlet property="W" destination="4Ud-zL-74R" id="c7e-m2-Idq"/>
                         <outlet property="warningLabel" destination="HEU-Mw-BaP" id="ncy-xw-NKM"/>
+                        <segue destination="mhk-35-4Zt" kind="presentation" identifier="gameOverSegue" modalTransitionStyle="crossDissolve" id="ESm-qB-teW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xzE-Ld-as6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1414.4927536231885" y="97.826086956521749"/>
+            <point key="canvasLocation" x="1362" y="78"/>
+        </scene>
+        <!--GameOver-->
+        <scene sceneID="9YU-eQ-nq8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="GameOver" id="mhk-35-4Zt" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hZO-h7-r4h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2087" y="101"/>
         </scene>
     </scenes>
 </document>

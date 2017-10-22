@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aix-RQ-z5j">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Book</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Game Over View Controller-->
+        <scene sceneID="mlk-Qz-3p8">
+            <objects>
+                <viewController storyboardIdentifier="GameOverView" id="aix-RQ-z5j" customClass="GameOverViewController" customModule="Shift" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Amv-cs-vCq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEa-cQ-dz1">
+                                <rect key="frame" x="20" y="686" width="84" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <state key="normal" title="Play Again"/>
+                                <connections>
+                                    <action selector="playAgainPressed:" destination="aix-RQ-z5j" eventType="touchUpInside" id="YIb-52-1Dt"/>
+                                    <segue destination="heD-ng-Rvt" kind="presentation" modalTransitionStyle="crossDissolve" id="X5Z-Wt-Agn"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIc-Kr-HpU">
+                                <rect key="frame" x="193.33333333333334" y="335" width="27.333333333333314" height="67"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="49"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VfF-v2-TFL">
+                                <rect key="frame" x="187" y="397" width="41" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hoV-mZ-yM2">
+                                <rect key="frame" x="302" y="686" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <state key="normal" title="Main Menu"/>
+                                <connections>
+                                    <action selector="mainMenuPressed:" destination="aix-RQ-z5j" eventType="touchUpInside" id="kvX-hw-klL"/>
+                                    <segue destination="sb7-w1-8Cw" kind="presentation" modalTransitionStyle="flipHorizontal" id="qbg-7c-3Ah"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Over" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bie-Vt-5aY">
+                                <rect key="frame" x="160" y="141" width="94" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PIc-Kr-HpU" firstAttribute="centerY" secondItem="Amv-cs-vCq" secondAttribute="centerY" id="ElB-Co-let"/>
+                            <constraint firstItem="PIc-Kr-HpU" firstAttribute="centerX" secondItem="Amv-cs-vCq" secondAttribute="centerX" id="gV0-X2-zPS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="X7B-T7-Qpr"/>
+                    </view>
+                    <connections>
+                        <outlet property="gameOver" destination="bie-Vt-5aY" id="hra-66-9dF"/>
+                        <outlet property="mainMenu" destination="hoV-mZ-yM2" id="vA7-3Y-e3C"/>
+                        <outlet property="playAgain" destination="HEa-cQ-dz1" id="KhC-IH-Vp9"/>
+                        <outlet property="scoreNum" destination="PIc-Kr-HpU" id="A3J-IJ-k0a"/>
+                        <outlet property="scoreWord" destination="VfF-v2-TFL" id="H8p-iE-32u"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RDm-LV-D69" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-343.19999999999999" y="-18.440779610194905"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="V7c-Bo-TYF">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="heD-ng-Rvt" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z6J-CE-W6X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="570" y="-130"/>
+        </scene>
+        <!--MainMenu-->
+        <scene sceneID="Ryq-ow-drd">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MainMenu" id="sb7-w1-8Cw" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zh5-3C-wLV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="518" y="37"/>
+        </scene>
+    </scenes>
+</document>
