@@ -21,7 +21,9 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = colorTableViewCell()
         
-        row.textLabel?.text = "b;agad"
+        row.textLabel?.text = row.cColorScheme.name
+        row.textLabel?.textColor = foreground
+        row.backgroundColor = themeColor
         
         return row
         
@@ -36,6 +38,10 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
         
         colorTableView.delegate = self
         colorTableView.dataSource = self
+        
+        colorTableView.backgroundColor = themeColor
+        colorTableView.separatorColor = foreground
+        
         
         self.view.backgroundColor = themeColor
         DoneButton.setTitleColor(foreground, for: .normal)

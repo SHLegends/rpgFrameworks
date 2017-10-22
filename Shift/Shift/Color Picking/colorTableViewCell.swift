@@ -12,6 +12,8 @@ class colorTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UIView!
     
+    var cColorScheme: colorScheme = colorSets[0]
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

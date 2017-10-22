@@ -27,44 +27,24 @@ class GameViewController: UIViewController {
     
     
     var isFirstTap = true
-    
     var numOfSameColorTaps = 0
-    
     var round = 0
     var score = 0
-    
     let grid = (xMin: 0, xMax: 8, yMin: 0, yMax: 8)
-    
     var timeSinceLastTap = Date()
-    
     let masterColors = Colors
     var colourBin = [Int]()
     var colorIndex = 1
-    
     var buttons = [ColorCircle]()
     var buttons2D = [Int: [Int: ColorCircle]]()
-    
     var nextRoundUUID = String()
-    var timer = Timer()
-    var timeLeft = 60000
     
-    func randomizeColors()-> [Int] {
-        var colors = [Int]()
-        for i in 0..<masterColors.count {
-            colors.append(i)
-        }
-        var rColors = [Int]()
-        for _ in colors {
-            let newColor: Int = returnRandomItem(colors)
-            rColors.append(newColor)
-            colors = colors.filter({$0 != newColor})
-        }
-        return rColors
-    }
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        colorIndices = randomizeColors(masterColors: Colors)
        
         
         self.buttons = [NW!, N!, NE!, W!, C!, E!, SW!, S!, SE!]
@@ -77,42 +57,26 @@ class GameViewController: UIViewController {
         
         warningLabel.presentTextToStay(newText: "Tap a circle", duration: 1)
         
-        print("View Loaded")
-//        colorIndices = randomizeColors()
-        print("Created self.colorIndices: \(colorIndices)")
         
-        print("Setup timer")
-        
-        
-        print("MASTER_COLORS: \(self.masterColors)\n")
         colourBin = [colorIndices[0], colorIndices[1]]
-        print("COLOR_BIN: \(self.colourBin)\n")
 
         
         for i in buttons {i.changeColor(self.masterColors[self.colourBin[0]]); i.colorIndex = self.colourBin[0]; i.changeBorderColor(to: self.masterColors[self.colourBin[1]])}
-        warningLabel.changeColor(self.masterColors[self.colourBin[0]], 0.2)
-        ScoreLabel.changeColor(self.masterColors[self.colourBin[0]], 0.2)
-        TimeLabel.changeColor(self.masterColors[self.colourBin[0]], 0.2)
+
+        warningLabel.textColor = foreground
+        ScoreLabel.textColor = foreground
+        TimeLabel.textColor = foreground
+        
         self.colorIndex = self.colourBin[1]
-//        UIView.animate(withDuration: 1.0, animations: {self.view.backgroundColor = self.masterColors[self.colourBin[1]]})
+        
+        
         self.view.backgroundColor = themeColor
         print("Basic Game Setup DONE")
- 
-
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func endGame() {
         
-//        let storyBoard: UIStoryboard = UIStoryboard(name: "GameOver", bundle: nil)
-//        let newViewController = storyBoard.instantiateViewController(withIdentifier: "GameOverView") as! GameOverViewController
-//        present(newViewController, animated: true, completion: nil)
-//        self.dismiss(animated: true, completion: {})
         gameScore = self.score
         performSegue(withIdentifier: "gameOverSegue", sender: nil)
         
@@ -124,13 +88,13 @@ class GameViewController: UIViewController {
         if timeBetweenTaps < 1.0 {
             switch Double(Int(timeBetweenTaps * 10))/10 {
             case 0.0:
-                return numOfButtons * 100
+                return numOfButtons * 20
             case 0.1:
-                return numOfButtons * 75
+                return numOfButtons * 17
             case 0.2:
-                return numOfButtons * 50
+                return numOfButtons * 15
             case 0.3:
-                return numOfButtons * 25
+                return numOfButtons * 12
             case 0.4:
                 return numOfButtons * 10
             case 0.5:
@@ -178,7 +142,12 @@ class GameViewController: UIViewController {
         
         
         self.numOfSameColorTaps = 0
-        if self.round % self.round == 0 {
+        
+        
+        
+//        if self.round % self.round == 0 {
+        
+        if true {
             if self.colourBin.count < colorIndices.count {
                 self.colourBin.append(colorIndices[self.colourBin.count])
                 print("\(self.colourBin)\n")
@@ -190,9 +159,11 @@ class GameViewController: UIViewController {
         self.TimeLabel.text = String(self.round)
         let newColor = returnRandomItem(self.colourBin.filter({$0 != self.colorIndex}))
         self.colorIndex = newColor
-        self.warningLabel.changeColor(self.masterColors[self.colorIndex], 0.5)
-        self.TimeLabel.changeColor(self.masterColors[self.colorIndex], 0.5)
-        self.ScoreLabel.changeColor(self.masterColors[self.colorIndex], 0.5)
+        
+//        self.warningLabel.changeColor(self.masterColors[self.colorIndex], 0.5)
+//        self.TimeLabel.changeColor(self.masterColors[self.colorIndex], 0.5)
+//        self.ScoreLabel.changeColor(self.masterColors[self.colorIndex], 0.5)
+        
         for i in self.buttons {
             i.pulsate(duration: 0.2)
             i.changeBorderColor(to: self.masterColors[self.colorIndex], duration: 0.5)
@@ -257,26 +228,7 @@ class GameViewController: UIViewController {
                     let newColor = returnRandomItem(self.colourBin.filter({$0 != i.colorIndex}))
                     print("\nchanged to \(newColor) | self.colorIndex = \(self.colorIndex)")
                     i.colorIndex = newColor
-//                    if but.selfCoor.x - i.selfCoor.x != 0 {
-//                        if but.selfCoor.x - i.selfCoor.x < 0 {
-//                            i.pulsate(duration: Double((but.selfCoor.x - i.selfCoor.x) * -1))
-//                            i.changeColor(self.masterColors[newColor], duration: Double((but.selfCoor.x - i.selfCoor.x)) * -1)
-//                        } else {
-//                            i.pulsate(duration: Double((but.selfCoor.x - i.selfCoor.x)))
-//                            i.changeColor(self.masterColors[newColor], duration: Double((but.selfCoor.x - i.selfCoor.x)))
-//                        }
-//                    } else if but.selfCoor.y - i.selfCoor.y != 0 {
-//                        if but.selfCoor.y - i.selfCoor.y < 0 {
-//                            i.pulsate(duration: Double((but.selfCoor.y - i.selfCoor.y) * -1))
-//                            i.changeColor(self.masterColors[newColor], duration: Double((but.selfCoor.y - i.selfCoor.y) * -1))
-//                        } else {
-//                            i.pulsate(duration: Double((but.selfCoor.y - i.selfCoor.y)))
-//                            i.changeColor(self.masterColors[newColor], duration: Double((but.selfCoor.y - i.selfCoor.y)))
-//                        }
-//                    } else {
-//
-//                    }
-//                    i.pulsate(duration: 0.2)
+
                     i.changeColor(self.masterColors[newColor], duration: 0.5)
                     
                     butNums += 1

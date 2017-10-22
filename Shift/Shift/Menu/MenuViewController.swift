@@ -27,27 +27,27 @@ class MenuViewController: UIViewController {
     
     
     
-    func randomColorDifferent(than: [Int])-> [Int] {
-        // returns list of numbers different than passed set
-        var colors = [Int]()
-        for i in 0..<masterColors.count {
-            colors.append(i)
-        }
-        var rColors = [Int]()
-        rColors.append(returnRandomItem(colors.filter({$0 != than[0]})))
-        colors = colors.filter({$0 != rColors[0]})
-        rColors.append(returnRandomItem(colors.filter({$0 != than[1]})))
-        colors = colors.filter({$0 != rColors[1]})
-        for _ in colors {
-            let newColor: Int = returnRandomItem(colors)
-            rColors.append(newColor)
-            colors = colors.filter({$0 != newColor})
-        }
-        return rColors
-    }
+//    func randomColorDifferent(than: [Int])-> [Int] {
+//        // returns list of numbers different than passed set
+//        var colors = [Int]()
+//        for i in 0..<masterColors.count {
+//            colors.append(i)
+//        }
+//        var rColors = [Int]()
+//        rColors.append(returnRandomItem(colors.filter({$0 != than[0]})))
+//        colors = colors.filter({$0 != rColors[0]})
+//        rColors.append(returnRandomItem(colors.filter({$0 != than[1]})))
+//        colors = colors.filter({$0 != rColors[1]})
+//        for _ in colors {
+//            let newColor: Int = returnRandomItem(colors)
+//            rColors.append(newColor)
+//            colors = colors.filter({$0 != newColor})
+//        }
+//        return rColors
+//    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        colorIndices = randomizeColors(masterColors: Colors)
+//        colorIndices = randomizeColors(masterColors: Colors)
         
         self.view.backgroundColor = themeColor
         let newColor = self.masterColors[colorIndices[0]]
@@ -59,7 +59,7 @@ class MenuViewController: UIViewController {
         self.F.textColor = newColor
         self.T.textColor = newColor
         
-        var timer = Timer.scheduledTimer(timeInterval: 0.5, target: self,   selector: (#selector(self.animateTitle)), userInfo: nil, repeats: true)
+        var _ = Timer.scheduledTimer(timeInterval: 0.5, target: self,   selector: (#selector(self.animateTitle)), userInfo: nil, repeats: true)
         
 
 
@@ -83,8 +83,7 @@ class MenuViewController: UIViewController {
     */
     
     @objc func animateTitle() {
-        colorIndices = randomColorDifferent(than: [colorIndices[0], colorIndices[1]])
-        let newColor = self.masterColors[colorIndices[0]]
+        let newColor = masterColors[0]
         self.S.changeColor(newColor, 0.5, delay: 0.0)
         self.H.changeColor(newColor, 0.5, delay: 0.2)
         self.I.changeColor(newColor, 0.5, delay: 0.4)
