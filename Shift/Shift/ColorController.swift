@@ -28,7 +28,6 @@ func randomizeColors(masterColors: [UIColor])-> [Int] {
 
 typealias colorScheme = (name: String, background: UIColor, foreground: UIColor, bin: [UIColor])
 
-let colorSets: [colorScheme] = [("alpha", UIColor.black, UIColor.white, [UIColor.blue, UIColor.white, UIColor.red, UIColor.green, UIColor.brown, UIColor.cyan, UIColor.magenta, UIColor.gray, UIColor.orange, UIColor.purple]), ("beta white", UIColor.white, UIColor.black, [UIColor.blue, UIColor.red, UIColor.black, UIColor.green, UIColor.purple]), ("beta black", UIColor.black, UIColor.white, [UIColor.blue, UIColor.red, UIColor.white, UIColor.green, UIColor.purple])]
 
 
 
@@ -40,19 +39,29 @@ enum colorBins {
     static let betaWhite: colorScheme = ("beta white", UIColor.white, UIColor.black, [UIColor.blue, UIColor.red, UIColor.black, UIColor.green, UIColor.purple])
     
     static let betaBlack: colorScheme = ("beta black", UIColor.black, UIColor.white, [UIColor.blue, UIColor.red, UIColor.white, UIColor.green, UIColor.purple])
+    
+    static let greyWhite: colorScheme = ("Grey White", UIColor.white, UIColor.black, [UIColor.init(red: 0.1, green: 0.1, blue: 0.1, alpha: 1), UIColor.init(red: 0.2, green: 0.2, blue: 0.2, alpha: 1), UIColor.init(red: 0.3, green: 0.3, blue: 0.3, alpha: 1), UIColor.init(red: 0.4, green: 0.4, blue: 0.4, alpha: 1), UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)])
+    
+    static let flat: colorScheme = ("Flat", UIColor.black, UIColor.init(red: 253/255, green: 227/255, blue: 167/255, alpha: 1), [UIColor.init(red: 235/255, green: 149/255, blue: 50/255, alpha: 1), UIColor.init(red: 247/255, green: 202/255, blue: 24/255, alpha: 1), UIColor.init(red: 63/255, green: 195/255, blue: 128/255, alpha: 1), UIColor.init(red: 27/255, green: 163/255, blue: 156/255, alpha: 1), UIColor.init(red: 148/255, green: 124/255, blue: 176/255, alpha: 1)])
+    
+    static let beta2Black: colorScheme = ("beta2 black", UIColor.black, UIColor.orange, [UIColor.brown, UIColor.cyan, UIColor.magenta, UIColor.gray, UIColor.orange])
+    
+    static let beta2White: colorScheme = ("beta2 black", UIColor.white, UIColor.orange, [UIColor.brown, UIColor.cyan, UIColor.magenta, UIColor.gray, UIColor.orange])
 }
+
+let colorSets: [colorScheme] = [colorBins.alpha, colorBins.betaBlack, colorBins.betaWhite, colorBins.greyWhite, colorBins.flat, colorBins.beta2Black, colorBins.beta2White]
 
 
 
 var currentScheme: colorScheme = colorBins.betaBlack
 
-var themeColor = currentScheme.background
+var themeColor: UIColor {get{return currentScheme.background}}
 
-var Colors = currentScheme.bin
+var Colors: [UIColor] {get{return currentScheme.bin}}
 
 var colorIndices = randomizeColors(masterColors: Colors)
 
-var foreground = currentScheme.foreground
+var foreground: UIColor {get{return currentScheme.foreground}}
 
 func randColor(_ colors: [UIColor])-> UIColor? {
     if colors.isEmpty {
@@ -65,5 +74,9 @@ func randColor(_ colors: [UIColor])-> UIColor? {
         print(foo)
         return colors[foo]
     }
+}
+
+func getRandColorOther(than: Int, of: [Int])-> Int {
+    return returnRandomItem(of.filter({$0 != than}))
 }
 

@@ -163,6 +163,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUf-zz-V03">
+                                <rect key="frame" x="187" y="701" width="41" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="lives" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GIS-5d-gVN">
+                                <rect key="frame" x="188" y="8" width="40" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -189,6 +203,8 @@
                         <outlet property="ScoreLabel" destination="0do-fJ-Tlh" id="WnC-nj-GyZ"/>
                         <outlet property="TimeLabel" destination="6Wa-t1-c1h" id="JIS-Ri-Net"/>
                         <outlet property="W" destination="4Ud-zL-74R" id="c7e-m2-Idq"/>
+                        <outlet property="liveslabel" destination="GIS-5d-gVN" id="i5Q-ns-3hr"/>
+                        <outlet property="scorelabell" destination="TUf-zz-V03" id="yM8-G9-5Xw"/>
                         <outlet property="warningLabel" destination="HEU-Mw-BaP" id="ncy-xw-NKM"/>
                         <segue destination="mhk-35-4Zt" kind="presentation" identifier="gameOverSegue" modalTransitionStyle="crossDissolve" id="ESm-qB-teW"/>
                     </connections>

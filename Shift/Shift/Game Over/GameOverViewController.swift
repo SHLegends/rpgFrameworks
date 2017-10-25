@@ -17,6 +17,10 @@ class GameOverViewController: UIViewController {
     @IBOutlet weak var playAgain: UIButton!
     @IBOutlet weak var mainMenu: UIButton!
     
+    @IBOutlet weak var creditsLabel: UILabel!
+    @IBOutlet weak var creditsNum: UILabel!
+    @IBOutlet weak var highscoreNum: UILabel!
+    @IBOutlet weak var highScoreLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -27,9 +31,25 @@ class GameOverViewController: UIViewController {
         scoreWord.textColor = foreground
         playAgain.setTitleColor(foreground, for: .normal)
         mainMenu.setTitleColor(foreground, for: .normal)
+        creditsLabel.textColor = foreground
+        creditsNum.textColor = foreground
+        highscoreNum.textColor = foreground
+        highScoreLabel.textColor = foreground
         
         
         scoreNum.text = String(gameScore)
+        
+        if gameScore > highscore {
+            highscore = gameScore
+            highScoreLabel.text = "New Highscore!"
+        }
+        
+        highscoreNum.text = String(highscore)
+        
+        totalCredits += gameScore
+        
+        creditsNum.text = String(totalCredits)
+        
 
         // Do any additional setup after loading the view.
     }

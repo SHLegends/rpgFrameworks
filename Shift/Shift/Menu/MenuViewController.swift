@@ -59,7 +59,7 @@ class MenuViewController: UIViewController {
         self.F.textColor = newColor
         self.T.textColor = newColor
         
-        var _ = Timer.scheduledTimer(timeInterval: 0.5, target: self,   selector: (#selector(self.animateTitle)), userInfo: nil, repeats: true)
+        self.colorTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self,   selector: (#selector(self.animateTitle)), userInfo: nil, repeats: true)
         
 
 
@@ -72,18 +72,19 @@ class MenuViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        self.colorTimer.invalidate()
     }
-    */
+ 
     
     @objc func animateTitle() {
-        let newColor = masterColors[0]
+        let newColor = randColor(Colors)
         self.S.changeColor(newColor, 0.5, delay: 0.0)
         self.H.changeColor(newColor, 0.5, delay: 0.2)
         self.I.changeColor(newColor, 0.5, delay: 0.4)

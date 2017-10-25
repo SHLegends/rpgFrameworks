@@ -22,19 +22,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdD-W6-LJd">
-                                <rect key="frame" x="311" y="647" width="55" height="53"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="30"/>
-                                <state key="normal" title="Play">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="startGame:" destination="hxL-Nw-y0j" eventType="touchUpInside" id="ajG-2O-ZND"/>
-                                    <segue destination="nMw-al-LXF" kind="presentation" modalTransitionStyle="flipHorizontal" id="2Kr-KY-S7S"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qkj-zc-0GI">
-                                <rect key="frame" x="48" y="647" width="87" height="53"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qkj-zc-0GI">
+                                <rect key="frame" x="20" y="663" width="87" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="30"/>
                                 <state key="normal" title="Colors">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -79,14 +69,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdD-W6-LJd">
+                                <rect key="frame" x="339" y="662" width="55" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="30"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="startGame:" destination="hxL-Nw-y0j" eventType="touchUpInside" id="ajG-2O-ZND"/>
+                                    <segue destination="nMw-al-LXF" kind="presentation" modalTransitionStyle="flipHorizontal" id="2Kr-KY-S7S"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Qkj-zc-0GI" firstAttribute="leading" secondItem="Hau-Hi-2VV" secondAttribute="leading" constant="48" id="1l4-c6-fz9"/>
-                            <constraint firstItem="Hau-Hi-2VV" firstAttribute="bottom" secondItem="UdD-W6-LJd" secondAttribute="bottom" constant="36" id="Olo-1V-cjh"/>
-                            <constraint firstItem="Hau-Hi-2VV" firstAttribute="trailing" secondItem="UdD-W6-LJd" secondAttribute="trailing" constant="48" id="X4F-bf-GIp"/>
-                            <constraint firstItem="Hau-Hi-2VV" firstAttribute="bottom" secondItem="Qkj-zc-0GI" secondAttribute="bottom" constant="36" id="qnH-Vj-9zq"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Hau-Hi-2VV"/>
                     </view>
                     <connections>

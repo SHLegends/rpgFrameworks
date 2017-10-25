@@ -39,7 +39,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VfF-v2-TFL">
-                                <rect key="frame" x="187" y="397" width="41" height="19"/>
+                                <rect key="frame" x="186" y="399" width="41" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <nil key="textColor"/>
@@ -55,23 +55,58 @@
                                     <segue destination="sb7-w1-8Cw" kind="presentation" modalTransitionStyle="flipHorizontal" id="qbg-7c-3Ah"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Over" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bie-Vt-5aY">
-                                <rect key="frame" x="160" y="141" width="94" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3u-IN-aPB">
+                                <rect key="frame" x="200.66666666666666" y="463.33333333333326" width="14" height="35.666666666666686"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Highscore" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZiK-O2-0cw">
+                                <rect key="frame" x="169.33333333333337" y="499" width="76.666666666666657" height="23.333333333333371"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOd-hQ-d0L">
+                                <rect key="frame" x="202.66666666666666" y="54.999999999999993" width="9.6666666666666856" height="23.333333333333321"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Credits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgz-OO-aJu">
+                                <rect key="frame" x="179" y="33" width="55" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Over" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bie-Vt-5aY">
+                                <rect key="frame" x="140" y="176" width="135" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="HOd-hQ-d0L" firstAttribute="centerY" secondItem="Amv-cs-vCq" secondAttribute="centerY" constant="-301.5" id="8zF-y0-7GF"/>
                             <constraint firstItem="PIc-Kr-HpU" firstAttribute="centerY" secondItem="Amv-cs-vCq" secondAttribute="centerY" id="ElB-Co-let"/>
+                            <constraint firstItem="HOd-hQ-d0L" firstAttribute="centerX" secondItem="Amv-cs-vCq" secondAttribute="centerX" id="KWj-dz-d02"/>
+                            <constraint firstItem="ZiK-O2-0cw" firstAttribute="centerX" secondItem="Amv-cs-vCq" secondAttribute="centerX" id="aXD-OE-aL7"/>
+                            <constraint firstItem="i3u-IN-aPB" firstAttribute="centerX" secondItem="Amv-cs-vCq" secondAttribute="centerX" id="ag3-yJ-rtM"/>
+                            <constraint firstItem="i3u-IN-aPB" firstAttribute="centerY" secondItem="Amv-cs-vCq" secondAttribute="centerY" constant="113" id="dOt-ts-UMU"/>
                             <constraint firstItem="PIc-Kr-HpU" firstAttribute="centerX" secondItem="Amv-cs-vCq" secondAttribute="centerX" id="gV0-X2-zPS"/>
+                            <constraint firstItem="ZiK-O2-0cw" firstAttribute="centerY" secondItem="Amv-cs-vCq" secondAttribute="centerY" constant="142.5" id="v0r-Zb-2q8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="X7B-T7-Qpr"/>
                     </view>
                     <connections>
+                        <outlet property="creditsLabel" destination="lgz-OO-aJu" id="s0A-ds-E4n"/>
+                        <outlet property="creditsNum" destination="HOd-hQ-d0L" id="miI-s6-W9S"/>
                         <outlet property="gameOver" destination="bie-Vt-5aY" id="hra-66-9dF"/>
+                        <outlet property="highScoreLabel" destination="ZiK-O2-0cw" id="b8x-lQ-PK4"/>
+                        <outlet property="highscoreNum" destination="i3u-IN-aPB" id="fct-aU-236"/>
                         <outlet property="mainMenu" destination="hoV-mZ-yM2" id="vA7-3Y-e3C"/>
                         <outlet property="playAgain" destination="HEa-cQ-dz1" id="KhC-IH-Vp9"/>
                         <outlet property="scoreNum" destination="PIc-Kr-HpU" id="A3J-IJ-k0a"/>
@@ -80,7 +115,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RDm-LV-D69" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-343.19999999999999" y="-18.440779610194905"/>
+            <point key="canvasLocation" x="-343.47826086956525" y="-18.75"/>
         </scene>
         <!--Main-->
         <scene sceneID="V7c-Bo-TYF">

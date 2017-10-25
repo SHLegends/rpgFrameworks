@@ -10,3 +10,7 @@ import Foundation
 
 var gameScore = 0
 
+var highscore = 0
+
+var totalCredits = 0
+

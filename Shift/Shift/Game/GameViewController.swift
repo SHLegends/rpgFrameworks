@@ -23,11 +23,13 @@ class GameViewController: UIViewController {
     @IBOutlet weak var S: ColorCircle!
     @IBOutlet weak var SE: ColorCircle!
     @IBOutlet weak var warningLabel: UILabel!
+    @IBOutlet weak var liveslabel: UILabel!
+    @IBOutlet weak var scorelabell: UILabel!
     
     
     
     var isFirstTap = true
-    var numOfSameColorTaps = 0
+    var numOfSameColorTaps = 3
     var round = 0
     var score = 0
     let grid = (xMin: 0, xMax: 8, yMin: 0, yMax: 8)
@@ -46,6 +48,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         colorIndices = randomizeColors(masterColors: Colors)
        
+        self.TimeLabel.text = String(self.numOfSameColorTaps)
         
         self.buttons = [NW!, N!, NE!, W!, C!, E!, SW!, S!, SE!]
         self.buttons2D = [0: [0: NW!, 1: N!, 2: NE!], 1: [0: W!, 1: C!, 2: E!], 2: [0: SW!, 1: S!, 2: SE!]]
@@ -66,6 +69,8 @@ class GameViewController: UIViewController {
         warningLabel.textColor = foreground
         ScoreLabel.textColor = foreground
         TimeLabel.textColor = foreground
+        liveslabel.textColor = foreground
+        scorelabell.textColor = foreground
         
         self.colorIndex = self.colourBin[1]
         
@@ -141,7 +146,7 @@ class GameViewController: UIViewController {
         
         
         
-        self.numOfSameColorTaps = 0
+        self.numOfSameColorTaps += 1
         
         
         
@@ -156,7 +161,7 @@ class GameViewController: UIViewController {
                 print("FAILED GRAB NEW COLOR")}
         }
         
-        self.TimeLabel.text = String(self.round)
+        self.TimeLabel.text = String(self.numOfSameColorTaps)
         let newColor = returnRandomItem(self.colourBin.filter({$0 != self.colorIndex}))
         self.colorIndex = newColor
         
@@ -200,6 +205,8 @@ class GameViewController: UIViewController {
         
         if self.isFirstTap {
             warningLabel.dismissText(duration: 1)
+            scorelabell.changeColor(themeColor, 0.5)
+            liveslabel.changeColor(themeColor, 0.5)
         }
         self.isFirstTap = false
         
@@ -237,22 +244,23 @@ class GameViewController: UIViewController {
             
             
             if oldColor == self.colorIndex {
-                self.numOfSameColorTaps += 1
-                if self.numOfSameColorTaps >= 3 {
+                self.numOfSameColorTaps -= 1
+                self.TimeLabel.text = String(self.numOfSameColorTaps)
+                if self.numOfSameColorTaps == 0 {
                     endGame()
                 } else {
                     self.view.bringSubview(toFront: but)
                     but.pulsate(duration: 0.2, from: 1.0, to: 4.0)
-                    if numOfSameColorTaps == 1 {
+                    if numOfSameColorTaps > 1 {
                         warningLabel.presentText(newText: "Warning: Don't tap single colored buttons", duration: 1, stayFor: 2)
-                    } else if numOfSameColorTaps == 2 {
+                    } else if numOfSameColorTaps == 1 {
                         warningLabel.presentText(newText: "Warning: Last Chance", duration: 1, stayFor: 2)
                     }
                     
                     ScoreLabel.shake()
                     print("was different color")
                 
-                    self.score = Int(Double(self.score) * 0.75)
+//                    self.score = Int(Double(self.score) * 0.75)
                     if self.score < 0 {
                         self.score = 0
                         
