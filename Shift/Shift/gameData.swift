@@ -10,7 +10,38 @@ import Foundation
 
 var gameScore = 0
 
-var highscore = 0
 
-var totalCredits = 0
 
+
+struct GameDataManager {
+    let defaults = UserDefaults.standard
+    
+    var highScore: Int {
+        get {
+            return defaults.integer(forKey: "highScore")
+        }
+        set {
+            defaults.set(newValue, forKey: "highScore")
+        }
+    }
+    
+    var totalCredits: Int {
+        get {
+            return defaults.integer(forKey: "totalCredits")
+        }
+        set {
+            defaults.set(newValue, forKey: "totalCredits")
+        }
+    }
+    
+    var themeInUse: Int {
+        get {
+            return defaults.integer(forKey: "themeInUse")
+        }
+        set {
+            defaults.set(newValue, forKey: "themeInUse")
+        }
+    }
+}
+
+var DataManager =  GameDataManager()

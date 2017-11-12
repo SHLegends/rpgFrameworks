@@ -22,7 +22,7 @@ class GameOverViewController: UIViewController {
     @IBOutlet weak var highscoreNum: UILabel!
     @IBOutlet weak var highScoreLabel: UILabel!
     
-    
+    let transitionManager = TransitionManager()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = themeColor
@@ -39,16 +39,16 @@ class GameOverViewController: UIViewController {
         
         scoreNum.text = String(gameScore)
         
-        if gameScore > highscore {
-            highscore = gameScore
+        if gameScore > DataManager.highScore {
+           DataManager.highScore = gameScore
             highScoreLabel.text = "New Highscore!"
         }
         
-        highscoreNum.text = String(highscore)
+        highscoreNum.text = String(DataManager.highScore)
         
-        totalCredits += gameScore
+        DataManager.totalCredits = DataManager.totalCredits + gameScore
         
-        creditsNum.text = String(totalCredits)
+        creditsNum.text = String(DataManager.totalCredits)
         
 
         // Do any additional setup after loading the view.
@@ -77,14 +77,19 @@ class GameOverViewController: UIViewController {
     }
     
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        let toViewController = segue.destination as UIViewController
+        self.transitionManager.direction = "S"
+        toViewController.transitioningDelegate = self.transitionManager
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+ 
 
 }

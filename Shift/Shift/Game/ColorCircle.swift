@@ -11,6 +11,8 @@ import UIKit
 
 public class ColorCircle: UIButton {
     @IBInspectable var color: UIColor? = nil
+    
+    
 
     var foo = 0
     
@@ -21,6 +23,8 @@ public class ColorCircle: UIButton {
     var colorIndex = 0
     var selfCoor: coor = (0, 0)
     
+    var dateSinceTouchDown = Date()
+    
     override public func awakeFromNib() {
         super.awakeFromNib()
         self.bounds.size.height = self.bounds.size.width
@@ -30,6 +34,54 @@ public class ColorCircle: UIButton {
         self.layer.borderWidth = 8
        
     }
+    
+    override public func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.scale(time: 0.2, x: 1, y: 1)
+    }
+    
+    public func handleTouch(_ touches: Set<UITouch>) {
+        let touch = touches.first
+        if traitCollection.forceTouchCapability == .available {
+            print(touch!.force )
+            let time = 0.2
+            switch Int(touch!.force) {
+            case 1:
+                self.scale(time: time, x: 0.8, y: 0.8)
+            case 2:
+                self.scale(time: time, x: 0.6, y: 0.6)
+            case 3:
+                self.scale(time: time, x: 0.5, y: 0.5)
+            case 4:
+                self.scale(time: time, x: 0.4, y: 0.4)
+            case 5:
+                self.scale(time: time, x: 0.3, y: 0.3)
+            case 6:
+                self.scale(time: time, x: 0.2, y: 0.2)
+                
+            default:
+                self.scale(time: time, x: 0.9, y: 0.9)
+            }
+        } else {
+            self.scale(time: 0.2, x: 0.8, y: 0.8)
+        }
+        
+    }
+    
+    
+    
+//    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        handleTouch(touches)
+//    }
+//
+    override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        handleTouch(touches)
+    }
+//
+//    override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        self.scale(time: 0.2, x: 1, y: 1)
+//
+//    }
+    
 
     /*
      // Only override draw() if you perform custom drawing.
@@ -42,6 +94,24 @@ public class ColorCircle: UIButton {
 }
 
 extension UIButton {
+    
+    func scale(time: Double, x: Double, y: Double) {
+        UIView.animate(withDuration: time, delay: 0, options: .allowUserInteraction, animations: {
+            self.transform = CGAffineTransform(scaleX: CGFloat(x), y: CGFloat(y))
+        })
+        
+    }
+    
+    func scaling(_ actions: [(time: Double, x: Double, y: Double)]) {
+        var waitTime = 0.0
+        for i in actions {
+            DispatchQueue.main.asyncAfter(deadline: .now() + waitTime, execute: {self.scale(time: i.time, x: i.x, y: i.y)})
+            waitTime += i.time
+        }
+    }
+    
+    
+    
     func pulsate(duration: Double, from: Double = 1, to: Double = 0.8) {
         let pulse = CASpringAnimation(keyPath: "transform.scale")
         pulse.duration = duration 
@@ -76,8 +146,10 @@ extension UIButton {
         shake.toValue = toValue
         layer.add(shake, forKey: "position")
     }
-    func changeColor(_ toColor: UIColor?, duration: Double = 0.2) {
-        UIView.animate(withDuration: duration , delay: 0, options: .allowUserInteraction, animations: {self.backgroundColor = toColor})
+    func changeColor(_ toColor: UIColor?, duration: Double = 0.2, delay: Double = 0.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {
+            UIView.animate(withDuration: duration , delay: 0, options: .allowUserInteraction,   animations: {self.backgroundColor = toColor})
+        })
     }
     func changeBorderColor(to: UIColor, duration: Double = 0.2, delay: Double = 0) {
         UIView.animate(withDuration: duration, delay: delay, options: .allowUserInteraction, animations: {

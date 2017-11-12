@@ -10,7 +10,11 @@ import UIKit
 
 class colorTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var nameLabel: UIView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    
+    
+    
     
     var cColorScheme: colorScheme = colorSets[0]
     

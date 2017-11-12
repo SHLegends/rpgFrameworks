@@ -12,17 +12,21 @@ class MenuViewController: UIViewController {
 
     override var prefersStatusBarHidden: Bool {return true}
     
+    @IBOutlet weak var tapLabel: UILabel!
     
-    @IBOutlet weak var PlayLabel: UIButton!
-    @IBOutlet weak var ColorsLabel: UIButton!
+    @IBOutlet weak var resetButton: UIButton!
+    
+    @IBOutlet weak var swipeMessage: UILabel!
+    @IBOutlet weak var highscoreLabel: UILabel!
+    
     @IBOutlet weak var S: UILabel!
     @IBOutlet weak var H: UILabel!
     @IBOutlet weak var I: UILabel!
     @IBOutlet weak var F: UILabel!
     @IBOutlet weak var T: UILabel!
-    
+    let transitionManager = TransitionManager()
     var colorTimer = Timer()
-    var masterColors = Colors
+    var masterColors: [UIColor] {get{return Colors}}
     
     
     
@@ -51,8 +55,12 @@ class MenuViewController: UIViewController {
         
         self.view.backgroundColor = themeColor
         let newColor = self.masterColors[colorIndices[0]]
-        self.PlayLabel.setTitleColor(foreground, for: .normal)
-        self.ColorsLabel.setTitleColor(foreground, for: .normal)
+        
+        self.swipeMessage.textColor = foreground
+        self.tapLabel.textColor = foreground
+        self.highscoreLabel.textColor = foreground
+        self.highscoreLabel.text = "Highscore: \(DataManager.highScore)"
+        
         self.S.textColor = newColor
         self.H.textColor = newColor
         self.I.textColor = newColor
@@ -72,6 +80,13 @@ class MenuViewController: UIViewController {
     }
     
 
+    @IBAction func resetData(_ sender: Any) {
+        DataManager.totalCredits = 0
+        DataManager.highScore = 0
+        DataManager.themeInUse = 0
+        
+        self.highscoreLabel.text = "RESET"
+    }
     
     // MARK: - Navigation
 
@@ -80,8 +95,18 @@ class MenuViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         self.colorTimer.invalidate()
+        let toViewController = segue.destination as UIViewController
+        self.transitionManager.direction = "N"
+        toViewController.transitioningDelegate = self.transitionManager
     }
  
+    @IBAction func rresetData(_ sender: Any) {
+        DataManager.totalCredits = 0
+        DataManager.highScore = 0
+        DataManager.themeInUse = 0
+        
+        self.highscoreLabel.text = "RESET"
+    }
     
     @objc func animateTitle() {
         let newColor = randColor(Colors)
