@@ -1,21 +1,19 @@
 //
-//  CombatView.swift
-//  Duel
+//  LaunchViewController.swift
+//  Shift
 //
-//  Created by Joel Huggett on 2017-10-06.
+//  Created by Joel Huggett on 2017-11-14.
 //  Copyright © 2017 Joel Huggett. All rights reserved.
 //
 
 import UIKit
 
-class CombatView: UIViewController {
+class LaunchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.backgroundColor = UIColor.black
-        
-        
+        self.view.backgroundColor = colorSets[DataManager.themeInUse].background
+
         // Do any additional setup after loading the view.
     }
 

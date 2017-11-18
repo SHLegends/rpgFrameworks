@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Duel
 //
-//  Created by Joel Huggett on 2017-10-06.
+//  Created by Joel Huggett on 2017-11-14.
 //  Copyright © 2017 Joel Huggett. All rights reserved.
 //
 

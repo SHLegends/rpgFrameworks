@@ -7,31 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8E8450A21F88067D005094C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8450A11F88067D005094C0 /* AppDelegate.swift */; };
-		8E8450A41F88067D005094C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8450A31F88067D005094C0 /* ViewController.swift */; };
-		8E8450A71F88067D005094C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E8450A51F88067D005094C0 /* Main.storyboard */; };
-		8E8450AA1F88067D005094C0 /* Duel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8E8450A81F88067D005094C0 /* Duel.xcdatamodeld */; };
-		8E8450AC1F88067D005094C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E8450AB1F88067D005094C0 /* Assets.xcassets */; };
-		8E8450AF1F88067D005094C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E8450AD1F88067D005094C0 /* LaunchScreen.storyboard */; };
-		8E8450B71F8808DE005094C0 /* CombatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8450B61F8808DE005094C0 /* CombatView.swift */; };
-		8E8450B91F881F61005094C0 /* CombatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8450B81F881F61005094C0 /* CombatButton.swift */; };
+		8EE3C6811FBB4D350027D562 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3C6801FBB4D350027D562 /* AppDelegate.swift */; };
+		8EE3C6831FBB4D350027D562 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3C6821FBB4D350027D562 /* ViewController.swift */; };
+		8EE3C6861FBB4D350027D562 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EE3C6841FBB4D350027D562 /* Main.storyboard */; };
+		8EE3C6891FBB4D350027D562 /* Duel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3C6871FBB4D350027D562 /* Duel.xcdatamodeld */; };
+		8EE3C68B1FBB4D350027D562 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EE3C68A1FBB4D350027D562 /* Assets.xcassets */; };
+		8EE3C68E1FBB4D350027D562 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EE3C68C1FBB4D350027D562 /* LaunchScreen.storyboard */; };
+		8EE3C6981FBB4E100027D562 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3C6971FBB4E100027D562 /* CustomCollectionViewCell.swift */; };
+		8EE3C69C1FBBC0810027D562 /* Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3C69B1FBBC0810027D562 /* Classes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8E84509E1F88067D005094C0 /* Duel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Duel.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8E8450A11F88067D005094C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8E8450A31F88067D005094C0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8E8450A61F88067D005094C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8E8450A91F88067D005094C0 /* Duel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Duel.xcdatamodel; sourceTree = "<group>"; };
-		8E8450AB1F88067D005094C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8E8450AE1F88067D005094C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8E8450B01F88067D005094C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8E8450B61F8808DE005094C0 /* CombatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombatView.swift; sourceTree = "<group>"; };
-		8E8450B81F881F61005094C0 /* CombatButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombatButton.swift; sourceTree = "<group>"; };
+		8EE3C67D1FBB4D350027D562 /* Duel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Duel.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EE3C6801FBB4D350027D562 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8EE3C6821FBB4D350027D562 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8EE3C6851FBB4D350027D562 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8EE3C6881FBB4D350027D562 /* Duel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Duel.xcdatamodel; sourceTree = "<group>"; };
+		8EE3C68A1FBB4D350027D562 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8EE3C68D1FBB4D350027D562 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8EE3C68F1FBB4D350027D562 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8EE3C6971FBB4E100027D562 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		8EE3C69B1FBBC0810027D562 /* Classes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		8E84509B1F88067D005094C0 /* Frameworks */ = {
+		8EE3C67A1FBB4D350027D562 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,34 +41,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8E8450951F88067D005094C0 = {
+		8EE3C6741FBB4D350027D562 = {
 			isa = PBXGroup;
 			children = (
-				8E8450A01F88067D005094C0 /* Duel */,
-				8E84509F1F88067D005094C0 /* Products */,
+				8EE3C67F1FBB4D350027D562 /* Duel */,
+				8EE3C67E1FBB4D350027D562 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		8E84509F1F88067D005094C0 /* Products */ = {
+		8EE3C67E1FBB4D350027D562 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8E84509E1F88067D005094C0 /* Duel.app */,
+				8EE3C67D1FBB4D350027D562 /* Duel.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8E8450A01F88067D005094C0 /* Duel */ = {
+		8EE3C67F1FBB4D350027D562 /* Duel */ = {
 			isa = PBXGroup;
 			children = (
-				8E8450A11F88067D005094C0 /* AppDelegate.swift */,
-				8E8450A31F88067D005094C0 /* ViewController.swift */,
-				8E8450A51F88067D005094C0 /* Main.storyboard */,
-				8E8450B61F8808DE005094C0 /* CombatView.swift */,
-				8E8450AB1F88067D005094C0 /* Assets.xcassets */,
-				8E8450AD1F88067D005094C0 /* LaunchScreen.storyboard */,
-				8E8450B01F88067D005094C0 /* Info.plist */,
-				8E8450A81F88067D005094C0 /* Duel.xcdatamodeld */,
-				8E8450B81F881F61005094C0 /* CombatButton.swift */,
+				8EE3C6801FBB4D350027D562 /* AppDelegate.swift */,
+				8EE3C6821FBB4D350027D562 /* ViewController.swift */,
+				8EE3C6841FBB4D350027D562 /* Main.storyboard */,
+				8EE3C68A1FBB4D350027D562 /* Assets.xcassets */,
+				8EE3C68C1FBB4D350027D562 /* LaunchScreen.storyboard */,
+				8EE3C68F1FBB4D350027D562 /* Info.plist */,
+				8EE3C6871FBB4D350027D562 /* Duel.xcdatamodeld */,
+				8EE3C6971FBB4E100027D562 /* CustomCollectionViewCell.swift */,
+				8EE3C69B1FBBC0810027D562 /* Classes.swift */,
 			);
 			path = Duel;
 			sourceTree = "<group>";
@@ -76,13 +76,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8E84509D1F88067D005094C0 /* Duel */ = {
+		8EE3C67C1FBB4D350027D562 /* Duel */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8E8450B31F88067D005094C0 /* Build configuration list for PBXNativeTarget "Duel" */;
+			buildConfigurationList = 8EE3C6921FBB4D350027D562 /* Build configuration list for PBXNativeTarget "Duel" */;
 			buildPhases = (
-				8E84509A1F88067D005094C0 /* Sources */,
-				8E84509B1F88067D005094C0 /* Frameworks */,
-				8E84509C1F88067D005094C0 /* Resources */,
+				8EE3C6791FBB4D350027D562 /* Sources */,
+				8EE3C67A1FBB4D350027D562 /* Frameworks */,
+				8EE3C67B1FBB4D350027D562 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -90,25 +90,26 @@
 			);
 			name = Duel;
 			productName = Duel;
-			productReference = 8E84509E1F88067D005094C0 /* Duel.app */;
+			productReference = 8EE3C67D1FBB4D350027D562 /* Duel.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		8E8450961F88067D005094C0 /* Project object */ = {
+		8EE3C6751FBB4D350027D562 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Joel Huggett";
 				TargetAttributes = {
-					8E84509D1F88067D005094C0 = {
+					8EE3C67C1FBB4D350027D562 = {
 						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 8E8450991F88067D005094C0 /* Build configuration list for PBXProject "Duel" */;
+			buildConfigurationList = 8EE3C6781FBB4D350027D562 /* Build configuration list for PBXProject "Duel" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -116,57 +117,57 @@
 				en,
 				Base,
 			);
-			mainGroup = 8E8450951F88067D005094C0;
-			productRefGroup = 8E84509F1F88067D005094C0 /* Products */;
+			mainGroup = 8EE3C6741FBB4D350027D562;
+			productRefGroup = 8EE3C67E1FBB4D350027D562 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8E84509D1F88067D005094C0 /* Duel */,
+				8EE3C67C1FBB4D350027D562 /* Duel */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8E84509C1F88067D005094C0 /* Resources */ = {
+		8EE3C67B1FBB4D350027D562 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E8450AF1F88067D005094C0 /* LaunchScreen.storyboard in Resources */,
-				8E8450AC1F88067D005094C0 /* Assets.xcassets in Resources */,
-				8E8450A71F88067D005094C0 /* Main.storyboard in Resources */,
+				8EE3C68E1FBB4D350027D562 /* LaunchScreen.storyboard in Resources */,
+				8EE3C68B1FBB4D350027D562 /* Assets.xcassets in Resources */,
+				8EE3C6861FBB4D350027D562 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		8E84509A1F88067D005094C0 /* Sources */ = {
+		8EE3C6791FBB4D350027D562 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E8450B71F8808DE005094C0 /* CombatView.swift in Sources */,
-				8E8450AA1F88067D005094C0 /* Duel.xcdatamodeld in Sources */,
-				8E8450A41F88067D005094C0 /* ViewController.swift in Sources */,
-				8E8450B91F881F61005094C0 /* CombatButton.swift in Sources */,
-				8E8450A21F88067D005094C0 /* AppDelegate.swift in Sources */,
+				8EE3C6891FBB4D350027D562 /* Duel.xcdatamodeld in Sources */,
+				8EE3C6831FBB4D350027D562 /* ViewController.swift in Sources */,
+				8EE3C6811FBB4D350027D562 /* AppDelegate.swift in Sources */,
+				8EE3C69C1FBBC0810027D562 /* Classes.swift in Sources */,
+				8EE3C6981FBB4E100027D562 /* CustomCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8E8450A51F88067D005094C0 /* Main.storyboard */ = {
+		8EE3C6841FBB4D350027D562 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8E8450A61F88067D005094C0 /* Base */,
+				8EE3C6851FBB4D350027D562 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		8E8450AD1F88067D005094C0 /* LaunchScreen.storyboard */ = {
+		8EE3C68C1FBB4D350027D562 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8E8450AE1F88067D005094C0 /* Base */,
+				8EE3C68D1FBB4D350027D562 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -174,7 +175,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		8E8450B11F88067D005094C0 /* Debug */ = {
+		8EE3C6901FBB4D350027D562 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -231,7 +232,7 @@
 			};
 			name = Debug;
 		};
-		8E8450B21F88067D005094C0 /* Release */ = {
+		8EE3C6911FBB4D350027D562 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -281,11 +282,12 @@
 			};
 			name = Release;
 		};
-		8E8450B41F88067D005094C0 /* Debug */ = {
+		8EE3C6931FBB4D350027D562 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 56H4SFH58P;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VQGGJMJDBA;
 				INFOPLIST_FILE = Duel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fnslabs.Duel;
@@ -295,11 +297,12 @@
 			};
 			name = Debug;
 		};
-		8E8450B51F88067D005094C0 /* Release */ = {
+		8EE3C6941FBB4D350027D562 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 56H4SFH58P;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VQGGJMJDBA;
 				INFOPLIST_FILE = Duel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fnslabs.Duel;
@@ -312,20 +315,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8E8450991F88067D005094C0 /* Build configuration list for PBXProject "Duel" */ = {
+		8EE3C6781FBB4D350027D562 /* Build configuration list for PBXProject "Duel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8E8450B11F88067D005094C0 /* Debug */,
-				8E8450B21F88067D005094C0 /* Release */,
+				8EE3C6901FBB4D350027D562 /* Debug */,
+				8EE3C6911FBB4D350027D562 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8E8450B31F88067D005094C0 /* Build configuration list for PBXNativeTarget "Duel" */ = {
+		8EE3C6921FBB4D350027D562 /* Build configuration list for PBXNativeTarget "Duel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8E8450B41F88067D005094C0 /* Debug */,
-				8E8450B51F88067D005094C0 /* Release */,
+				8EE3C6931FBB4D350027D562 /* Debug */,
+				8EE3C6941FBB4D350027D562 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -333,17 +336,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		8E8450A81F88067D005094C0 /* Duel.xcdatamodeld */ = {
+		8EE3C6871FBB4D350027D562 /* Duel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				8E8450A91F88067D005094C0 /* Duel.xcdatamodel */,
+				8EE3C6881FBB4D350027D562 /* Duel.xcdatamodel */,
 			);
-			currentVersion = 8E8450A91F88067D005094C0 /* Duel.xcdatamodel */;
+			currentVersion = 8EE3C6881FBB4D350027D562 /* Duel.xcdatamodel */;
 			path = Duel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
 	};
-	rootObject = 8E8450961F88067D005094C0 /* Project object */;
+	rootObject = 8EE3C6751FBB4D350027D562 /* Project object */;
 }
