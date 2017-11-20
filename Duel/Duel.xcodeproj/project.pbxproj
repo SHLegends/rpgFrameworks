@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E149E671FC11CEE00F752A1 /* ArenaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E149E661FC11CEE00F752A1 /* ArenaCollectionViewCell.swift */; };
 		8EE3C6811FBB4D350027D562 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3C6801FBB4D350027D562 /* AppDelegate.swift */; };
 		8EE3C6831FBB4D350027D562 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3C6821FBB4D350027D562 /* ViewController.swift */; };
 		8EE3C6861FBB4D350027D562 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EE3C6841FBB4D350027D562 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E149E661FC11CEE00F752A1 /* ArenaCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArenaCollectionViewCell.swift; sourceTree = "<group>"; };
 		8EE3C67D1FBB4D350027D562 /* Duel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Duel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EE3C6801FBB4D350027D562 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8EE3C6821FBB4D350027D562 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				8EE3C6871FBB4D350027D562 /* Duel.xcdatamodeld */,
 				8EE3C6971FBB4E100027D562 /* CustomCollectionViewCell.swift */,
 				8EE3C69B1FBBC0810027D562 /* Classes.swift */,
+				8E149E661FC11CEE00F752A1 /* ArenaCollectionViewCell.swift */,
 			);
 			path = Duel;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 				8EE3C6831FBB4D350027D562 /* ViewController.swift in Sources */,
 				8EE3C6811FBB4D350027D562 /* AppDelegate.swift in Sources */,
 				8EE3C69C1FBBC0810027D562 /* Classes.swift in Sources */,
+				8E149E671FC11CEE00F752A1 /* ArenaCollectionViewCell.swift in Sources */,
 				8EE3C6981FBB4E100027D562 /* CustomCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

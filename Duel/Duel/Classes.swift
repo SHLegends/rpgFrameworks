@@ -161,7 +161,7 @@ class enemyEntity: entity {
         
     }
     
-    func flee(thingToFollow: entity, currentArena: arena, entities: [entity]) {
+    func flee(_ thingToFollow: entity, currentArena: arena, entities: [entity]) {
         let locationDifference: coor = (self.location.x - thingToFollow.location.x, self.location.y - thingToFollow.location.y)
         print(locationDifference)
         let directionType = returnRandomBool(1, 2)
@@ -201,7 +201,7 @@ class enemyEntity: entity {
         
     }
     
-    func follow(thingToFollow: entity, currentArena: arena, entities: [entity]) {
+    func follow(_ thingToFollow: entity, currentArena: arena, entities: [entity]) {
         let locationDifference: coor = (self.location.x - thingToFollow.location.x, self.location.y - thingToFollow.location.y)
         print(locationDifference)
         let directionType = returnRandomBool(1, 2)
@@ -246,7 +246,7 @@ class enemyEntity: entity {
         case .moved, .failedMove:
             // follow player
             if true {
-                follow(thingToFollow: player, currentArena: currentArena, entities: [player])
+                follow(player, currentArena: currentArena, entities: [player])
                 
             }
             
