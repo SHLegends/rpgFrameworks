@@ -395,7 +395,7 @@ class GameViewController: UIViewController {
         self.ScoreLabel.textColor = themeColor
         
         let toViewController = segue.destination as UIViewController
-        self.transitionManager.direction = "E"
+        self.transitionManager.direction = "normal"
         toViewController.transitioningDelegate = self.transitionManager
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.

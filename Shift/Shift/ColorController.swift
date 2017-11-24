@@ -49,7 +49,7 @@ enum colorBins {
     static let beta2White: colorScheme = ("beta2 white", UIColor.white, UIColor.orange, [UIColor.brown, UIColor.cyan, UIColor.magenta, UIColor.gray, UIColor.orange], 6000)
 }
 
-let colorSets: [colorScheme] = [colorBins.betaBlack, colorBins.alpha, colorBins.betaWhite, colorBins.greyWhite, colorBins.flat, colorBins.beta2Black, colorBins.beta2White]
+let colorSets: [colorScheme] = [colorBins.betaBlack, colorBins.betaWhite, colorBins.flat, colorBins.greyWhite, colorBins.beta2Black, colorBins.beta2White]
 
 
 

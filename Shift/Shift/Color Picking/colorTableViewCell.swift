@@ -13,6 +13,11 @@ class colorTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     
+    @IBOutlet weak var firstColor: UILabel!
+    @IBOutlet weak var secondColor: UILabel!
+    @IBOutlet weak var thirdColor: UILabel!
+    @IBOutlet weak var fourthColor: UILabel!
+    @IBOutlet weak var fifthColor: UILabel!
     
     
     
@@ -21,6 +26,9 @@ class colorTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        self.selectionStyle = .none
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

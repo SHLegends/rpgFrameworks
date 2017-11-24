@@ -53,6 +53,8 @@ class MenuViewController: UIViewController {
         super.viewDidLoad()
 //        colorIndices = randomizeColors(masterColors: Colors)
         
+        self.transitionManager.sourceViewController = self
+        
         self.view.backgroundColor = themeColor
         let newColor = self.masterColors[colorIndices[0]]
         
@@ -66,7 +68,7 @@ class MenuViewController: UIViewController {
         self.I.textColor = newColor
         self.F.textColor = newColor
         self.T.textColor = newColor
-        
+        self.animateTitle()
         self.colorTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self,   selector: (#selector(self.animateTitle)), userInfo: nil, repeats: true)
         
 
@@ -96,7 +98,7 @@ class MenuViewController: UIViewController {
         // Pass the selected object to the new view controller.
         self.colorTimer.invalidate()
         let toViewController = segue.destination as UIViewController
-        self.transitionManager.direction = "N"
+        self.transitionManager.direction = "W"
         toViewController.transitioningDelegate = self.transitionManager
     }
  

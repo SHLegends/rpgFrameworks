@@ -23,6 +23,7 @@ class GameOverViewController: UIViewController {
     @IBOutlet weak var highScoreLabel: UILabel!
     
     let transitionManager = TransitionManager()
+    var transitionType = "normal"
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = themeColor
@@ -60,6 +61,7 @@ class GameOverViewController: UIViewController {
     }
     
     @IBAction func playAgainPressed(_ sender: Any) {
+        self.transitionType = "normal"
 //
 //        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 //        let newViewController = storyBoard.instantiateViewController(withIdentifier: "GameView") as! GameViewController
@@ -68,6 +70,7 @@ class GameOverViewController: UIViewController {
     }
     
     @IBAction func mainMenuPressed(_ sender: Any) {
+        self.transitionType = "W"
 //        
 //        let storyBoard: UIStoryboard = UIStoryboard(name: "MainMenu", bundle: nil)
 //        let newViewController = storyBoard.instantiateViewController(withIdentifier: "MainMenuView") as! MenuViewController
@@ -85,7 +88,7 @@ class GameOverViewController: UIViewController {
         
         
         let toViewController = segue.destination as UIViewController
-        self.transitionManager.direction = "S"
+        self.transitionManager.direction = self.transitionType
         toViewController.transitioningDelegate = self.transitionManager
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.

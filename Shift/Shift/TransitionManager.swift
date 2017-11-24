@@ -12,6 +12,37 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
     
     private var interactive = false
     
+    // private so can only be referenced within this object
+    private var enterPanGesture: UIScreenEdgePanGestureRecognizer!
+    
+    func handleOnstagePan(pan: UIPanGestureRecognizer) {
+        
+        let translation = pan.translation(in: pan.view!)
+        
+        let d = translation.x / pan.view!.bounds.width * 0.5
+        
+//        switch (pan.state) {
+//        case .began:
+//            self.interactive = true
+//            self.sourceViewController.performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
+//        }
+        
+    }
+    
+    // not private, so can also be used from other objects :)
+    var sourceViewController: UIViewController! {
+        didSet {
+//            self.enterPanGesture = UIScreenEdgePanGestureRecognizer()
+//            self.enterPanGesture.addTarget(self, action: "handleOnstagePan")
+//            self.enterPanGesture.edges = UIRectEdge.left
+//            self.sourceViewController.view.addGestureRecognizer(self.enterPanGesture)
+        }
+    }
+    
+    
+    
+    
+    
     
     func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return nil
@@ -48,6 +79,8 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
         case "W":
             offScreenRight = CGAffineTransform(translationX: -container.frame.width, y: 0)
             offScreenLeft = CGAffineTransform(translationX: container.frame.width, y: 0)
+        case "normal":
+            let _ = 0
         default:
             offScreenRight = CGAffineTransform(translationX: container.frame.width, y: 0)
             offScreenLeft = CGAffineTransform(translationX: -container.frame.width, y: 0)
