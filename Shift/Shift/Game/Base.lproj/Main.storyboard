@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="efS-jn-s1g">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="efS-jn-s1g">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -158,7 +158,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0do-fJ-Tlh">
-                                <rect key="frame" x="193" y="647.66666666666652" width="28" height="68.333333333333371"/>
+                                <rect key="frame" x="193" y="647.66666666666663" width="28" height="68.333333333333371"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="50"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -188,12 +188,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Wa-t1-c1h">
-                                <rect key="frame" x="-37" y="0.0" width="126" height="69"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="50"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEU-Mw-BaP">
                                 <rect key="frame" x="193" y="109" width="28" height="23.333333333333343"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
@@ -209,10 +203,8 @@
                             <constraint firstItem="HEU-Mw-BaP" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="7t1-g9-34A"/>
                             <constraint firstItem="HEU-Mw-BaP" firstAttribute="centerY" secondItem="Weq-4f-PB4" secondAttribute="centerY" constant="-247.33000000000001" id="8x2-GO-Jr2"/>
                             <constraint firstItem="0do-fJ-Tlh" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="AkR-Ii-4HT"/>
-                            <constraint firstItem="6Wa-t1-c1h" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="E2R-Ap-nJE"/>
                             <constraint firstItem="CZU-Yc-sMA" firstAttribute="centerY" secondItem="Weq-4f-PB4" secondAttribute="centerY" constant="250" id="J5Z-yY-YAe"/>
                             <constraint firstItem="0do-fJ-Tlh" firstAttribute="top" secondItem="CZU-Yc-sMA" secondAttribute="bottom" constant="29.670000000000002" id="m0i-bZ-paA"/>
-                            <constraint firstItem="6Wa-t1-c1h" firstAttribute="centerY" secondItem="Weq-4f-PB4" secondAttribute="centerY" constant="-277.5" id="r2E-dj-4yl"/>
                             <constraint firstItem="GIS-5d-gVN" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="r4X-bg-FHT"/>
                             <constraint firstItem="1VR-dP-M4J" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="szQ-ls-FKp"/>
                         </constraints>
@@ -228,7 +220,6 @@
                         <outlet property="SE" destination="1HD-ek-THk" id="Ekv-78-nPs"/>
                         <outlet property="SW" destination="nFP-RR-pxX" id="0LT-Q4-5GP"/>
                         <outlet property="ScoreLabel" destination="0do-fJ-Tlh" id="WnC-nj-GyZ"/>
-                        <outlet property="TimeLabel" destination="6Wa-t1-c1h" id="JIS-Ri-Net"/>
                         <outlet property="W" destination="4Ud-zL-74R" id="c7e-m2-Idq"/>
                         <outlet property="liveslabel" destination="GIS-5d-gVN" id="i5Q-ns-3hr"/>
                         <outlet property="multiplierLabel" destination="1VR-dP-M4J" id="jNe-oa-b7G"/>

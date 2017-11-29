@@ -62,20 +62,12 @@ class GameOverViewController: UIViewController {
     
     @IBAction func playAgainPressed(_ sender: Any) {
         self.transitionType = "normal"
-//
-//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let newViewController = storyBoard.instantiateViewController(withIdentifier: "GameView") as! GameViewController
-//        present(newViewController, animated: true, completion: nil)
-//        self.dismiss(animated: true, completion: {})
+
     }
     
     @IBAction func mainMenuPressed(_ sender: Any) {
         self.transitionType = "W"
-//        
-//        let storyBoard: UIStoryboard = UIStoryboard(name: "MainMenu", bundle: nil)
-//        let newViewController = storyBoard.instantiateViewController(withIdentifier: "MainMenuView") as! MenuViewController
-//        present(newViewController, animated: true, completion: nil)
-//        self.dismiss(animated: true, completion: {})
+
         
     }
     

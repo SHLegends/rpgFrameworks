@@ -60,6 +60,7 @@ class TransitionManager: UIPercentDrivenInteractiveTransition, UIViewControllerA
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let container = transitionContext.containerView
+        container.backgroundColor = colorHandler.background
         let fromView = transitionContext.view(forKey: UITransitionContextViewKey.from)!
         let toView = transitionContext.view(forKey: UITransitionContextViewKey.to)!
         

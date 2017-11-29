@@ -12,7 +12,6 @@ class GameViewController: UIViewController {
     
     override var prefersStatusBarHidden: Bool {return true}
     @IBOutlet weak var ScoreLabel: UILabel!
-    @IBOutlet weak var TimeLabel: UILabel!
     @IBOutlet weak var NW: ColorCircle!
     @IBOutlet weak var N: ColorCircle!
     @IBOutlet weak var NE: ColorCircle!
@@ -58,14 +57,13 @@ class GameViewController: UIViewController {
             endGame()
         }
         
-        self.TimeLabel.text = "\(Double(Int(self.tapTimerValue * 10))/10)"
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         colorIndices = randomizeColors(masterColors: Colors)
        
-        self.TimeLabel.text = ""
         self.multiplierLabel.text = ""
         
         self.scorelabell.text = ""
@@ -93,7 +91,6 @@ class GameViewController: UIViewController {
 
         warningLabel.textColor = foreground
         ScoreLabel.textColor = foreground
-        TimeLabel.textColor = themeColor
         liveslabel.textColor = foreground
         scorelabell.textColor = foreground
         self.multiplierLabel.textColor = foreground
@@ -182,14 +179,7 @@ class GameViewController: UIViewController {
     }
     
     func nextRound() {
-        print("\n\nSetting up next round\n\n")
-        
-        
-        
         self.round += 1
-        
-        //self.substractAmount += 1
-        
         if self.round % 5 == 0 {
             self.substractAmount += 1
         }
@@ -198,18 +188,9 @@ class GameViewController: UIViewController {
             warningLabel.presentTextToStay(newText: "Match the colors to the rings", duration: 0.5)
         } else if self.round == 2 {
             warningLabel.presentTextToStay(newText: "Get higher scores by playing faster", duration: 0.5)
-//            self.tapTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: (#selector(self.addMilisecond)), userInfo: nil, repeats: true)
         } else {
             warningLabel.dismissText(duration: 0.5)
         }
-        
-        
-        
-        
-        
-        
-        
-//        if self.round % self.round == 0 {
         
         if true {
             if self.colourBin.count < colorIndices.count {
@@ -224,24 +205,15 @@ class GameViewController: UIViewController {
         let newColor = returnRandomItem(self.colourBin.filter({$0 != self.colorIndex}))
         self.colorIndex = newColor
         
-//        self.warningLabel.changeColor(self.masterColors[self.colorIndex], 0.5)
-//        self.TimeLabel.changeColor(self.masterColors[self.colorIndex], 0.5)
-//        self.ScoreLabel.changeColor(self.masterColors[self.colorIndex], 0.5)
-        
         UINotificationFeedbackGenerator().notificationOccurred(.success)
         for i in self.buttons {
-            //i.pulsate(duration: 0.2)
             i.scaling([(0.2, 1.05, 1.1), (0.2, 1, 1)])
             i.changeBorderColor(to: self.masterColors[self.colorIndex], duration: 0.5)
         }
-//        UIView.animate(withDuration: 1, delay: 0, options: .allowUserInteraction, animations: {
-//
-//            self.view.backgroundColor = self.masterColors[newColor]
-//        })
     }
     
+    
     func checkAfter() {
-        
         let currentUUID = UUID().uuidString
         self.nextRoundUUID = currentUUID
         print("\nsending DISPATCHQUEUE: \(currentUUID)")
@@ -257,16 +229,16 @@ class GameViewController: UIViewController {
         })
     }
     
+    
     func checkForComplete() {
         if self.buttons.filter({$0.colorIndex != self.colorIndex}).count == 0 {
             checkAfter()
         }
     }
     
+    
     func checkAllSame(_ but: ColorCircle) {
-        
         but.scale(time: 0.1, x: 1.0, y: 1.0)
-        
         self.tapTimerValue = 0.0
         if self.isFirstTap {
             warningLabel.dismissText(duration: 1)
@@ -275,25 +247,17 @@ class GameViewController: UIViewController {
             self.timeSinceLastTap = Date()
         }
         self.isFirstTap = false
-        
         let elapsedTime = Date().timeIntervalSince(self.timeSinceLastTap)
         self.timeSinceLastTap = Date()
-        
-        
         if self.buttons.filter({$0.colorIndex != self.colorIndex}).count == 1 && but.colorIndex != self.colorIndex {
             print("1 button left of diff color")
             but.colorIndex = self.colorIndex
             but.changeColor(self.masterColors[self.colorIndex])
-//            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-            //but.pulsate(duration: 0.2)
             self.score += calcPoints(numOfButtons: 1, timeBetweenTaps: elapsedTime)
             checkAfter()
         } else {
             let oldColor = but.colorIndex + 0
             var butNums = 0
-            
-            
-            
             for i in self.buttons {
                 if i.colorIndex == oldColor {
                     print("----------------\nfound but of index \(i.colorIndex)")
@@ -329,19 +293,12 @@ class GameViewController: UIViewController {
                     
                     ScoreLabel.shake()
                     print("was different color")
-                
-//                    self.score = Int(Double(self.score) * 0.75)
                     if self.score < 0 {
                         self.score = 0
                         
                     }
                 }
             } else {
-                // UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                //but.pulsate(duration: 0.2)
-                
-//                print("\nbutNums: \(butNums)\nelapsedTime: \(elapsedTime)\nelapsedTime + 1: \(Double(Int(elapsedTime) + 1))\ntime - wholeNum: \(elapsedTime - Double(Int(elapsedTime)))\nfinal: \(Int(Double(butNums) / (elapsedTime - Double(Int(elapsedTime))) / Double(Int(elapsedTime) + 1)))\n")
-//                self.score += Int(Double(butNums) / (elapsedTime - Double(Int(elapsedTime))) / Double(Int(elapsedTime) + 1))
                 self.score += calcPoints(numOfButtons: butNums, timeBetweenTaps: elapsedTime)
             }
             
@@ -362,18 +319,16 @@ class GameViewController: UIViewController {
     
 
     @IBAction func circleTouchDown(_ sender: ColorCircle) {
-        self.view.bringSubview(toFront: sender)
+        if traitCollection.forceTouchCapability == .available {
+            sender.scale(time: 0.2, x: 0.95, y: 0.95)
+        } else {
+            sender.scale(time: 0.2, x: 0.4, y: 0.4)
+        }
         
+        self.view.bringSubview(toFront: sender)
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         sender.dateSinceTouchDown = Date()
-        
-        
-        
-        
     }
-    
-    
-
     
     
     @IBAction func circlePressed(_ sender: ColorCircle) {
@@ -401,98 +356,5 @@ class GameViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
 
-}
-
-struct actionUUIDStorage {
-    
-    static var actionUUID: String = ""
-}
-
-extension UILabel {
-    
-    var actionUUID: String {
-        get {
-            guard let selfValue = objc_getAssociatedObject(self, &actionUUIDStorage.actionUUID) as? String else {
-                return ""
-            }
-            return selfValue
-        }
-        set {
-            objc_setAssociatedObject(self, &actionUUIDStorage.actionUUID, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
-    
-    
-    
-    
-    func changeColor(_ to: UIColor?, _ time: Double, delay: Double = 0.0) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {UIView.transition(with: self, duration: time, options: .transitionCrossDissolve, animations: {self.textColor = to})})
-        
-    }
-    func pulsate(duration: Double, from: Double = 1, to: Double = 0.8) {
-        let pulse = CASpringAnimation(keyPath: "transform.scale")
-        pulse.duration = duration
-        pulse.fromValue = from
-        pulse.toValue = to
-        pulse.autoreverses = true
-        pulse.repeatCount = 0
-        pulse.initialVelocity = 4
-        pulse.damping = 1.0
-        layer.add(pulse, forKey: "pulse")
-    }
-    func shake() {
-        let shake = CABasicAnimation(keyPath: "position")
-        shake.duration = 0.1
-        shake.repeatCount = 2
-        shake.autoreverses = true
-        let fromPoint = CGPoint(x: center.x - 5, y: center.y)
-        let fromValue = NSValue(cgPoint: fromPoint)
-        let toPoint = CGPoint(x: center.x + 5, y: center.y)
-        let toValue = NSValue(cgPoint: toPoint)
-        shake.fromValue = fromValue
-        shake.toValue = toValue
-        layer.add(shake, forKey: "position")
-    }
-    
-    func presentText(newText: String, duration: Double, stayFor: Double) {
-//        var oldText = ""
-//        if self.text != nil && self.text! != "" {
-//            oldText = self.text!
-//        }
-        let newUUID = UUID().uuidString
-        self.actionUUID = newUUID
-        self.text = newText
-        UIView.animate(withDuration: duration, delay: 0, options: .allowUserInteraction, animations: {
-            self.alpha = 1.0
-        })
-        DispatchQueue.main.asyncAfter(deadline: .now() + stayFor, execute: {
-            if self.actionUUID == newUUID {
-                UIView.animate(withDuration: duration, delay: 0, options: .allowUserInteraction, animations: {
-                    self.alpha = 0.0
-                })
-            }
-//            if oldText != "" {
-//                self.text = oldText
-//                UIView.animate(withDuration: duration, delay: 0, options: .allowUserInteraction, animations: {
-//                    self.alpha = 1.0
-//                })
-//            }
-            
-        })
-        
-    }
-    
-    func presentTextToStay(newText: String, duration: Double) {
-        self.text = newText
-        UIView.animate(withDuration: duration, delay: 0, options: .allowUserInteraction, animations: {
-            self.alpha = 1.0
-        })
-    }
-    
-    func dismissText(duration: Double) {
-        UIView.animate(withDuration: duration, delay: 0, options: .allowUserInteraction, animations: {
-            self.alpha = 0.0
-        })
-    }
 }
 

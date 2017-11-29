@@ -8,14 +8,7 @@
 
 import UIKit
 
-class colorSetsObject: NSObject {
-    let colorSetsArray: [colorScheme]
-    
-    
-    init(sets: [colorScheme]) {
-        self.colorSetsArray = sets
-    }
-}
+
 
 class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -24,29 +17,22 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
  */
     
     @IBOutlet weak var colorInteractor: UIButton!
-    @IBOutlet weak var setName: UILabel!
     @IBOutlet weak var creditsLabel: UILabel!
     @IBOutlet weak var colorTableView: UITableView!
-    @IBOutlet weak var b1: ColorCircle!
-    @IBOutlet weak var b2: ColorCircle!
-    @IBOutlet weak var b3: ColorCircle!
-    @IBOutlet weak var b4: ColorCircle!
-    @IBOutlet weak var b5: ColorCircle!
     
     let transitionManager = TransitionManager()
     
     var localScheme: colorScheme = currentScheme
     
-    var colorIndex = 0
+    let localArrayToUse = colorHandler.setWithCurrentFirst
     
-    var colorTime = Timer()
     
     var rowSelected: IndexPath? = nil
     
     var scrollToPath: IndexPath? = nil
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return colorSets.count
+        return localArrayToUse.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,37 +48,31 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
         row.thirdColor.layer.cornerRadius = CGFloat(size / 2)
         row.fourthColor.layer.cornerRadius = CGFloat(size / 2)
         row.fifthColor.layer.cornerRadius = CGFloat(size / 2)
-        row.cColorScheme = colorSets[indexPath.row]
-        row.layer.borderColor = UIColor.gray.cgColor
         
+        row.cColorScheme = localArrayToUse[indexPath.row]
+        row.layer.borderColor = UIColor.gray.cgColor
+        row.layer.borderWidth = 0
         if let path = self.rowSelected {
-            if path == indexPath {
-                _ = 0
-                
-            } else {
+            if path != indexPath {
                 row.layer.borderWidth = 0
             }
         }
-        
-        if row.cColorScheme.name == colorSets[DataManager.themeInUse].name {
-            self.scrollToPath = indexPath
+        if row.cColorScheme.id == colorHandler.themeInUse.id {
             row.layer.borderColor = UIColor.brown.cgColor
             row.layer.borderWidth = 5
         }
-        
-        row.backgroundColor = row.cColorScheme.background
+        row.backgroundColor = colorHandler.background
         UIView.transition(with: row, duration: 0.75, options: [.transitionCrossDissolve, .allowUserInteraction], animations: {
-            if DataManager.themeInUse == indexPath.row {
-                row.nameLabel?.text = "\(row.cColorScheme.name) (current theme)"
-            } else if colorSets[indexPath.row].name == self.localScheme.name {
-                row.nameLabel?.text = "\(row.cColorScheme.name)"
-            } else {
-                row.nameLabel?.text = "\(row.cColorScheme.name)"
-            }
-            
-            row.nameLabel?.textColor = row.cColorScheme.foreground
+            row.backgroundLabel.textColor = colorHandler.foreground
+            row.backgroundColorView.backgroundColor = row.cColorScheme.background
+            row.backgroundColorView.layer.masksToBounds = true
+            row.backgroundColorView.layer.borderWidth = 2
+            row.backgroundColorView.layer.borderColor = colorHandler.foreground.cgColor
+            row.backgroundColorView.layer.cornerRadius = 8
+            row.nameLabel?.text = "\(row.cColorScheme.name)"
+            row.nameLabel?.textColor = colorHandler.foreground
             row.priceLabel.text = "Price: \(row.cColorScheme.price) pts"
-            row.priceLabel?.textColor = row.cColorScheme.foreground
+            row.priceLabel?.textColor = colorHandler.foreground
             row.firstColor.backgroundColor = row.cColorScheme.bin[0]
             row.secondColor.backgroundColor = row.cColorScheme.bin[1]
             row.thirdColor.backgroundColor = row.cColorScheme.bin[2]
@@ -108,30 +88,25 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        localScheme = colorSets[indexPath.row]
-        self.colorIndex = 0
+        localScheme = localArrayToUse[indexPath.row]
+
         if let path = self.rowSelected {
             if let row: colorTableViewCell = self.colorTableView.cellForRow(at: path) as? colorTableViewCell {
                 
-                if row.cColorScheme.name == colorSets[DataManager.themeInUse].name {
-                    _ = 0
-                } else {
+                if row.cColorScheme.name != colorHandler.themeInUse.name {
                     row.layer.borderWidth = 0
                 }
             }
         }
         if let row: colorTableViewCell = self.colorTableView.cellForRow(at: indexPath) as? colorTableViewCell {
-            if row.cColorScheme.name == colorSets[DataManager.themeInUse].name {
-                _ = 0
-            } else {
+            if row.cColorScheme.name != colorHandler.themeInUse.name {
                 row.layer.borderWidth = 5
+                
+                self.colorInteractor.setTitle("Purchase \(row.cColorScheme.name)", for: .normal)
             }
         }
         self.rowSelected = indexPath
-        UIView.transition(with: self.colorTableView, duration: 0.1, options: [.transitionCrossDissolve, .allowUserInteraction], animations: {
-            self.setName.text = self.localScheme.name
-            
-        }, completion: nil)
+        
     
     }
     
@@ -148,48 +123,33 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        DataManager.themeInUse = 4
-        
-
-        
-        
+        DataManager.themeInUse = 2
         colorTableView.delegate = self
         colorTableView.dataSource = self
-        
-        
-        
-        
         self.view.backgroundColor = localScheme.background
-        
-        
-        
         self.colorInteractor.setTitleColor(localScheme.foreground, for: .normal)
-        self.colorInteractor.setTitle("", for: .normal)
-        
+        self.colorInteractor.setTitle("\(colorHandler.name) is in use", for: .normal)
         creditsLabel.textColor = localScheme.foreground
         creditsLabel.text = "Points: \(DataManager.totalCredits)"
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
-            self.colorTableView.scrollToRow(at: self.scrollToPath!, at: .bottom, animated: false)
-        })
-        
-        
-        
+        colorTableView.separatorColor = colorHandler.foreground
         
     }
+    
+    
 
-    @IBAction func donePressed(_ sender: Any) {
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @IBAction func swipedDown(_ sender: Any) {
         
     }
     
+    @IBAction func interactorPressed(_ sender: Any) {
+        if let path = self.rowSelected {
+            colorHandler.changeThemeFromScheme(scheme: self.localArrayToUse[path.row])
+            colorTableView.cellForRow(at: path)?.layer.borderColor = UIColor.brown.cgColor
+            
+        }
+    }
     
         
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
