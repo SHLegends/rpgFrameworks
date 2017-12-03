@@ -23,6 +23,7 @@
 		8E8450DE1F895678005094C0 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8450DD1F895678005094C0 /* GameViewController.swift */; };
 		8E8450E01F89572A005094C0 /* ColorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8450DF1F89572A005094C0 /* ColorController.swift */; };
 		8EAB1BD21FCC72480044E7E8 /* GameplayFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAB1BD11FCC72480044E7E8 /* GameplayFunctions.swift */; };
+		8ED832AE1FD38DE900C726E5 /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED832AD1FD38DE900C726E5 /* DismissAnimator.swift */; };
 		8EE3C6501FB20B0F0027D562 /* themesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3C64F1FB20B0F0027D562 /* themesHandler.swift */; };
 		8EE3C6521FB605CD0027D562 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3C6511FB605CD0027D562 /* TransitionManager.swift */; };
 		8EE3C69A1FBB4EFB0027D562 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3C6991FBB4EFB0027D562 /* LaunchViewController.swift */; };
@@ -50,6 +51,7 @@
 		8E8450DD1F895678005094C0 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		8E8450DF1F89572A005094C0 /* ColorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorController.swift; sourceTree = "<group>"; };
 		8EAB1BD11FCC72480044E7E8 /* GameplayFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayFunctions.swift; sourceTree = "<group>"; };
+		8ED832AD1FD38DE900C726E5 /* DismissAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
 		8EE3C64F1FB20B0F0027D562 /* themesHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = themesHandler.swift; sourceTree = "<group>"; };
 		8EE3C6511FB605CD0027D562 /* TransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
 		8EE3C6991FBB4EFB0027D562 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				8EE3C64F1FB20B0F0027D562 /* themesHandler.swift */,
 				8EE3C6511FB605CD0027D562 /* TransitionManager.swift */,
 				8EE3C6991FBB4EFB0027D562 /* LaunchViewController.swift */,
+				8ED832AD1FD38DE900C726E5 /* DismissAnimator.swift */,
 			);
 			path = Shift;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				8E24E7E91F9B7EE900D15567 /* ColorPickerViewController.swift in Sources */,
 				8EAB1BD21FCC72480044E7E8 /* GameplayFunctions.swift in Sources */,
 				8E24E7F51F9D351000D15567 /* colorTableViewCell.swift in Sources */,
+				8ED832AE1FD38DE900C726E5 /* DismissAnimator.swift in Sources */,
 				8E24E7E51F940D2300D15567 /* MenuViewController.swift in Sources */,
 				8E24E7ED1F9B934900D15567 /* GameOverViewController.swift in Sources */,
 				8EEB35291FC21C4600EFE8D1 /* InteractiveTransitionManager.swift in Sources */,

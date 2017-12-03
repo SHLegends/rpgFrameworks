@@ -22,7 +22,7 @@ class GameOverViewController: UIViewController {
     @IBOutlet weak var highscoreNum: UILabel!
     @IBOutlet weak var highScoreLabel: UILabel!
     
-    let transitionManager = TransitionManager()
+//    let transitionManager = TransitionManager()
     var transitionType = "normal"
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,9 +79,9 @@ class GameOverViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         
-        let toViewController = segue.destination as UIViewController
-        self.transitionManager.direction = self.transitionType
-        toViewController.transitioningDelegate = self.transitionManager
+//        let toViewController = segue.destination as UIViewController
+//        self.transitionManager.direction = self.transitionType
+//        toViewController.transitioningDelegate = self.transitionManager
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }

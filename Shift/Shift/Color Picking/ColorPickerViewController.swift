@@ -16,11 +16,12 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
      set up color interactor
  */
     
-    @IBOutlet weak var colorInteractor: UIButton!
+    @IBOutlet weak var themeLabel: UILabel!
+    
     @IBOutlet weak var creditsLabel: UILabel!
     @IBOutlet weak var colorTableView: UITableView!
     
-    let transitionManager = TransitionManager()
+//    let transitionManager = TransitionManager()
     
     var localScheme: colorScheme = currentScheme
     
@@ -37,47 +38,33 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! colorTableViewCell
-        let size = 50
-        row.firstColor.layer.masksToBounds = true
-        row.secondColor.layer.masksToBounds = true
-        row.thirdColor.layer.masksToBounds = true
-        row.fourthColor.layer.masksToBounds = true
-        row.fifthColor.layer.masksToBounds = true
-        row.firstColor.layer.cornerRadius = CGFloat(size / 2)
-        row.secondColor.layer.cornerRadius = CGFloat(size / 2)
-        row.thirdColor.layer.cornerRadius = CGFloat(size / 2)
-        row.fourthColor.layer.cornerRadius = CGFloat(size / 2)
-        row.fifthColor.layer.cornerRadius = CGFloat(size / 2)
-        
+
         row.cColorScheme = localArrayToUse[indexPath.row]
-        row.layer.borderColor = UIColor.gray.cgColor
-        row.layer.borderWidth = 0
-        if let path = self.rowSelected {
-            if path != indexPath {
-                row.layer.borderWidth = 0
-            }
-        }
-        if row.cColorScheme.id == colorHandler.themeInUse.id {
-            row.layer.borderColor = UIColor.brown.cgColor
-            row.layer.borderWidth = 5
-        }
+        
+
+        
+        row.stateOfAction = .normal
+        
+        
+        
+        
         row.backgroundColor = colorHandler.background
         UIView.transition(with: row, duration: 0.75, options: [.transitionCrossDissolve, .allowUserInteraction], animations: {
-            row.backgroundLabel.textColor = colorHandler.foreground
-            row.backgroundColorView.backgroundColor = row.cColorScheme.background
-            row.backgroundColorView.layer.masksToBounds = true
-            row.backgroundColorView.layer.borderWidth = 2
-            row.backgroundColorView.layer.borderColor = colorHandler.foreground.cgColor
-            row.backgroundColorView.layer.cornerRadius = 8
+//            row.backgroundLabel.textColor = colorHandler.foreground
+//            row.backgroundColorView.backgroundColor = row.cColorScheme.background
+//            row.backgroundColorView.layer.masksToBounds = true
+//            row.backgroundColorView.layer.borderWidth = 2
+//            row.backgroundColorView.layer.borderColor = colorHandler.foreground.cgColor
+//            row.backgroundColorView.layer.cornerRadius = 8
             row.nameLabel?.text = "\(row.cColorScheme.name)"
             row.nameLabel?.textColor = colorHandler.foreground
-            row.priceLabel.text = "Price: \(row.cColorScheme.price) pts"
+            
             row.priceLabel?.textColor = colorHandler.foreground
-            row.firstColor.backgroundColor = row.cColorScheme.bin[0]
-            row.secondColor.backgroundColor = row.cColorScheme.bin[1]
-            row.thirdColor.backgroundColor = row.cColorScheme.bin[2]
-            row.fourthColor.backgroundColor = row.cColorScheme.bin[3]
-            row.fifthColor.backgroundColor = row.cColorScheme.bin[4]
+//            row.firstColor.backgroundColor = row.cColorScheme.bin[0]
+//            row.secondColor.backgroundColor = row.cColorScheme.bin[1]
+//            row.thirdColor.backgroundColor = row.cColorScheme.bin[2]
+//            row.fourthColor.backgroundColor = row.cColorScheme.bin[3]
+//            row.fifthColor.backgroundColor = row.cColorScheme.bin[4]
         }, completion: nil)
         return row
     }
@@ -88,51 +75,96 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        localScheme = localArrayToUse[indexPath.row]
-
+        
         if let path = self.rowSelected {
-            if let row: colorTableViewCell = self.colorTableView.cellForRow(at: path) as? colorTableViewCell {
-                
-                if row.cColorScheme.name != colorHandler.themeInUse.name {
-                    row.layer.borderWidth = 0
+            if path.row == indexPath.row {
+                if let row: colorTableViewCell = self.colorTableView.cellForRow(at: indexPath) as? colorTableViewCell {
+                    if row.stateOfAction == .wasTapped {
+                        row.stateOfAction = .wasTappedAgain
+                        
+                        
+                        self.view.backgroundColor = colorHandler.themeInUse.background
+                        
+                        self.colorTableView.separatorColor = colorHandler.foreground
+                        self.themeLabel.textColor = colorHandler.foreground
+                        self.creditsLabel.textColor = colorHandler.foreground
+                        for i in self.colorTableView.visibleCells {
+                            if let newRow: colorTableViewCell = i as? colorTableViewCell {
+                                newRow.backgroundColor = colorHandler.background
+                                newRow.nameLabel.textColor = colorHandler.foreground
+                                newRow.priceLabel.textColor = colorHandler.foreground
+                                var rowArray: [colorTableViewCell] = self.colorTableView.visibleCells as! [colorTableViewCell]
+                                rowArray = rowArray.filter({$0.cColorScheme.id != row.cColorScheme.id})
+                                for t in rowArray {
+                                    t.stateOfAction = .normal
+                                }
+                                
+                            }
+                        }
+                    } else if row.stateOfAction == .normal {
+                        row.stateOfAction = .wasTapped
+                    }
+                    
+                }
+            } else {
+                if let oldRow: colorTableViewCell = self.colorTableView.cellForRow(at: path) as? colorTableViewCell {
+                    oldRow.stateOfAction = .normal
+                }
+                if let row: colorTableViewCell = self.colorTableView.cellForRow(at: indexPath) as? colorTableViewCell {
+                    row.stateOfAction = .wasTapped
+                }
+            }
+        } else {
+            if let row: colorTableViewCell = self.colorTableView.cellForRow(at: indexPath) as? colorTableViewCell {
+                if row.stateOfAction == .normal {
+                    row.stateOfAction = .wasTapped
                 }
             }
         }
-        if let row: colorTableViewCell = self.colorTableView.cellForRow(at: indexPath) as? colorTableViewCell {
-            if row.cColorScheme.name != colorHandler.themeInUse.name {
-                row.layer.borderWidth = 5
-                
-                self.colorInteractor.setTitle("Purchase \(row.cColorScheme.name)", for: .normal)
-            }
-        }
-        self.rowSelected = indexPath
         
-    
+        if Int(self.creditsLabel.text!) != DataManager.totalCredits {
+            
+            self.creditsLabel.text = "\(DataManager.totalCredits)"
+            
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        self.rowSelected = indexPath
     }
     
     override var prefersStatusBarHidden: Bool {return true}
     
-    func updateBackgroundTheme() {
-        UIView.transition(with: self.view, duration: 1, options: [.transitionCrossDissolve, .allowUserInteraction], animations: {
-            self.view.backgroundColor = self.localScheme.background
-            
-        }, completion: nil)
-    }
+//    func updateBackgroundTheme() {
+//        UIView.transition(with: self.view, duration: 1, options: [.transitionCrossDissolve, .allowUserInteraction], animations: {
+//            self.view.backgroundColor = self.localScheme.background
+//
+//        }, completion: nil)
+//    }
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DataManager.themeInUse = 2
+        self.themeLabel.changeColor(localScheme.foreground, 0)
+        
         colorTableView.delegate = self
         colorTableView.dataSource = self
         self.view.backgroundColor = localScheme.background
-        self.colorInteractor.setTitleColor(localScheme.foreground, for: .normal)
-        self.colorInteractor.setTitle("\(colorHandler.name) is in use", for: .normal)
         creditsLabel.textColor = localScheme.foreground
-        creditsLabel.text = "Points: \(DataManager.totalCredits)"
+        creditsLabel.text = "\(DataManager.totalCredits)"
         
         colorTableView.separatorColor = colorHandler.foreground
+        
+        
         
     }
     
@@ -143,22 +175,16 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
         
     }
     
-    @IBAction func interactorPressed(_ sender: Any) {
-        if let path = self.rowSelected {
-            colorHandler.changeThemeFromScheme(scheme: self.localArrayToUse[path.row])
-            colorTableView.cellForRow(at: path)?.layer.borderColor = UIColor.brown.cgColor
-            
-        }
-    }
+
     
         
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
 //        self.colorTime.invalidate()
-        let toViewController = segue.destination as UIViewController
-        self.transitionManager.direction = "E"
-        toViewController.transitioningDelegate = self.transitionManager
+//        let toViewController = segue.destination as UIViewController
+//        self.transitionManager.direction = "E"
+//        toViewController.transitioningDelegate = self.transitionManager
     }
 }
 

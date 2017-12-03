@@ -20,14 +20,14 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var I: UILabel!
     @IBOutlet weak var F: UILabel!
     @IBOutlet weak var T: UILabel!
-    let transitionManager = TransitionManager()
+//    let transitionManager = TransitionManager()
     var colorTimer = Timer()
     var masterColors: [UIColor] {get{return Colors}}
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.transitionManager.sourceViewController = self
+//        self.transitionManager.sourceViewController = self
         self.view.backgroundColor = themeColor
         let newColor = self.masterColors[colorIndices[0]]
         self.swipeMessage.textColor = foreground
@@ -53,11 +53,21 @@ class MenuViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         self.colorTimer.invalidate()
-        let toViewController = segue.destination as UIViewController
-        self.transitionManager.direction = "W"
-        toViewController.transitioningDelegate = self.transitionManager
+//        let toViewController = segue.destination as UIViewController
+//        self.transitionManager.direction = "W"
+//        toViewController.transitioningDelegate = self.transitionManager
+        
+//        if let destinationViewController: UIViewController = segue.destination {
+//            destinationViewController.transitioningDelegate = self
+//        }
+        
     }
- 
+    @IBAction func goToPicker(_ sender: UISwipeGestureRecognizer) {
+        self.performSegue(withIdentifier: "toPicker", sender: nil)
+        
+        
+    }
+    
     
     @objc func animateTitle() {
         let newColor = randColor(Colors)
@@ -68,4 +78,20 @@ class MenuViewController: UIViewController {
         self.T.changeColor(newColor, 0.5, delay: 0.8)
     }
         
+    @IBAction func resetData(_ sender: Any) {
+        DataManager.highScore = 0
+        DataManager.defaults.set(nil, forKey: "setsData")
+        DataManager.totalCredits = 0
+        DataManager.themeInUse = 0
+        DataManager.totalCredits = 0
+    }
 }
+
+
+
+//extension MenuViewController : UIViewControllerTransitioningDelegate {
+//    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        return DismissAnimator()
+//    }
+//}
+

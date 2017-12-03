@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hxL-Nw-y0j">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eFZ-N8-4ws">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -14,6 +14,21 @@
         </array>
     </customFonts>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Zf1-Fz-prD">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="eFZ-N8-4ws" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3t8-nW-Jko">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="hxL-Nw-y0j" kind="relationship" relationship="rootViewController" id="KRj-wh-VAb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JuB-BV-g5b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1149" y="84"/>
+        </scene>
         <!--MainMenuController-->
         <scene sceneID="ELt-P2-61L">
             <objects>
@@ -93,6 +108,7 @@
                             <outletCollection property="gestureRecognizers" destination="FdK-zA-pL5" appends="YES" id="AJo-rd-4oj"/>
                         </connections>
                     </view>
+                    <navigationItem key="navigationItem" id="tRi-hS-sQW"/>
                     <connections>
                         <outlet property="F" destination="Mwo-dx-ZWz" id="0nR-bS-N9F"/>
                         <outlet property="H" destination="Xtm-Tk-LwV" id="iwd-jR-xe7"/>
@@ -103,6 +119,8 @@
                         <outlet property="swipeMessage" destination="dtp-PC-OzT" id="dyq-a9-aXF"/>
                         <outlet property="tapLabel" destination="KJW-Ab-PcK" id="8RU-Wp-cbM"/>
                         <outlet property="view" destination="XZj-2m-XD2" id="IDc-Gl-Alh"/>
+                        <segue destination="xHh-PC-3bv" kind="show" identifier="toPicker" animates="NO" id="igg-Ax-8ji"/>
+                        <segue destination="xHh-PC-3bv" kind="show" id="8Vk-tC-qKA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OEb-NJ-YZW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -113,12 +131,12 @@
                 </tapGestureRecognizer>
                 <swipeGestureRecognizer direction="right" id="BCV-ne-Pt6">
                     <connections>
-                        <segue destination="xHh-PC-3bv" kind="presentation" modalTransitionStyle="coverVertical" id="PV7-92-cuq"/>
+                        <action selector="goToPicker:" destination="hxL-Nw-y0j" id="lTk-cA-8pq"/>
                     </connections>
                 </swipeGestureRecognizer>
                 <rotationGestureRecognizer id="FdK-zA-pL5">
                     <connections>
-                        <action selector="resetData:" destination="hxL-Nw-y0j" id="GAr-yZ-k82"/>
+                        <action selector="resetData:" destination="hxL-Nw-y0j" id="ojl-PU-J4n"/>
                     </connections>
                 </rotationGestureRecognizer>
             </objects>
@@ -141,4 +159,7 @@
             <point key="canvasLocation" x="393" y="201"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="igg-Ax-8ji"/>
+    </inferredMetricsTieBreakers>
 </document>

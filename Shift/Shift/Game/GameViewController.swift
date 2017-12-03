@@ -28,7 +28,7 @@ class GameViewController: UIViewController {
     
     var substractAmount = 1
     
-    let transitionManager = TransitionManager()
+//    let transitionManager = TransitionManager()
     
     var isFirstTap = true
     var numOfSameColorTaps = 3
@@ -349,9 +349,9 @@ class GameViewController: UIViewController {
         self.tapTimer.invalidate()
         self.ScoreLabel.textColor = themeColor
         
-        let toViewController = segue.destination as UIViewController
-        self.transitionManager.direction = "normal"
-        toViewController.transitioningDelegate = self.transitionManager
+//        let toViewController = segue.destination as UIViewController
+//        self.transitionManager.direction = "normal"
+//        toViewController.transitioningDelegate = self.transitionManager
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }

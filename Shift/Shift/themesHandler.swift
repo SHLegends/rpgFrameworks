@@ -61,18 +61,11 @@ class themeHandler {
         
     }
     
-    var setWithCurrentFirst: [colorScheme] {
-        var colorsLeft = self.masterColorSets
+    var setWithCurrentFirst: [colorScheme] {        
         var newArray = [colorScheme]()
         newArray.append(self.themeInUse)
-        colorsLeft = colorsLeft.filter({$0.name != self.themeInUse.name})
-        while !colorsLeft.isEmpty {
-            let ofSameColor = colorsLeft.filter({$0.background != newArray.last!.background})
-            if !ofSameColor.isEmpty {
-                let color = ofSameColor.first!
-                newArray.append(color)
-                colorsLeft = colorsLeft.filter({$0.name != color.name})
-            }
+        for i in self.masterColorSets.filter({$0.id != self.themeInUse.id}) {
+            newArray.append(i)
         }
         
         
@@ -81,19 +74,30 @@ class themeHandler {
     }
     
     
+    
+    
     func changeTheme(index: Int) {
         self.themeInUseIndex = index
     }
     
-    func changeThemeFromScheme(scheme: colorScheme) {
+    
+    
+    func indexFor(scheme: colorScheme) -> Int {
         var idArray: [String] { get{
             var idArray = [String]()
             for i in self.masterColorSets {
                 idArray.append(i.id)
             }
             return idArray
-            }}
-        self.themeInUseIndex = idArray.index(of: scheme.id)!
+            }
+            
+        }
+       
+        return idArray.index(of: scheme.id)!
+    }
+    
+    func changeThemeFromScheme(scheme: colorScheme) {
+        self.themeInUseIndex = self.indexFor(scheme: scheme)
         DataManager.themeInUse = self.themeInUseIndex
     }
     
