@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class GameViewController: UIViewController {
     
@@ -27,6 +28,14 @@ class GameViewController: UIViewController {
     @IBOutlet weak var multiplierLabel: UILabel!
     
     var substractAmount = 1
+    
+    
+    
+    
+    
+    let indexToSound: [Int: String] = [0: "breakingGlass", 1: "breakingGlass", 2: "breakingGlass", 3: "breakingGlass", 4: "breakingGlass"]
+    
+    
     
 //    let transitionManager = TransitionManager()
     
@@ -101,11 +110,16 @@ class GameViewController: UIViewController {
         
         self.view.backgroundColor = themeColor
         print("Basic Game Setup DONE")
+        
+        DataManager.mute = false
+        
+        
     }
 
     
     func endGame() {
         
+        AudioHandler.playSound("Sad_Trombone", ".mp3")
         gameScore = self.score
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.0, execute: {self.performSegue(withIdentifier: "gameOverSegue", sender: nil)})
         
@@ -179,6 +193,7 @@ class GameViewController: UIViewController {
     }
     
     func nextRound() {
+        
         self.round += 1
         if self.round % 5 == 0 {
             self.substractAmount += 1
@@ -187,7 +202,7 @@ class GameViewController: UIViewController {
         if self.round == 1 {
             warningLabel.presentTextToStay(newText: "Match the colors to the rings", duration: 0.5)
         } else if self.round == 2 {
-            warningLabel.presentTextToStay(newText: "Get higher scores by playing faster", duration: 0.5)
+            warningLabel.presentTextToStay(newText: "Get more points by playing faster", duration: 0.5)
         } else {
             warningLabel.dismissText(duration: 0.5)
         }
@@ -205,6 +220,11 @@ class GameViewController: UIViewController {
         let newColor = returnRandomItem(self.colourBin.filter({$0 != self.colorIndex}))
         self.colorIndex = newColor
         
+        AudioHandler.playSound("glass_ping", "mp3")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+            AudioHandler.playSound("glass_ping", "mp3")
+        })
+        
         UINotificationFeedbackGenerator().notificationOccurred(.success)
         for i in self.buttons {
             i.scaling([(0.2, 1.05, 1.1), (0.2, 1, 1)])
@@ -214,6 +234,9 @@ class GameViewController: UIViewController {
     
     
     func checkAfter() {
+        
+        
+        
         let currentUUID = UUID().uuidString
         self.nextRoundUUID = currentUUID
         print("\nsending DISPATCHQUEUE: \(currentUUID)")
@@ -238,6 +261,9 @@ class GameViewController: UIViewController {
     
     
     func checkAllSame(_ but: ColorCircle) {
+        
+       
+        
         but.scale(time: 0.1, x: 1.0, y: 1.0)
         self.tapTimerValue = 0.0
         if self.isFirstTap {
@@ -258,8 +284,11 @@ class GameViewController: UIViewController {
         } else {
             let oldColor = but.colorIndex + 0
             var butNums = 0
+            var timeBetween = 0.0
             for i in self.buttons {
                 if i.colorIndex == oldColor {
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + timeBetween, execute: {AudioHandler.playSound("breakingGlass", "mp3")})
+                    timeBetween += 0.1
                     print("----------------\nfound but of index \(i.colorIndex)")
                     let newColor = returnRandomItem(self.colourBin.filter({$0 != i.colorIndex}))
                     print("\nchanged to \(newColor) | self.colorIndex = \(self.colorIndex)")
@@ -267,13 +296,17 @@ class GameViewController: UIViewController {
 
                     i.changeColor(self.masterColors[newColor], duration: 0.5)
                     
+                    
+                    
                     butNums += 1
                 }
             }
             
             
             if oldColor == self.colorIndex {
+                AudioHandler.playSound("alarmSound", "mp3")
                 UINotificationFeedbackGenerator().notificationOccurred(.error)
+                
                 self.numOfSameColorTaps -= 1
                 if self.numOfSameColorTaps == 0 {
                     self.view.bringSubview(toFront: but)
@@ -299,6 +332,7 @@ class GameViewController: UIViewController {
                     }
                 }
             } else {
+                AudioHandler.playSound("breakingGlass", "mp3")
                 self.score += calcPoints(numOfButtons: butNums, timeBetweenTaps: elapsedTime)
             }
             
@@ -326,6 +360,7 @@ class GameViewController: UIViewController {
         }
         
         self.view.bringSubview(toFront: sender)
+        
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         sender.dateSinceTouchDown = Date()
     }
@@ -335,7 +370,8 @@ class GameViewController: UIViewController {
         
         print(Date().timeIntervalSince(sender.dateSinceTouchDown))
         if Date().timeIntervalSince(sender.dateSinceTouchDown) > 0.2 {
-            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+//            AudioHandler.playSound(self.indexToSound[sender.colorIndex]!, "mp3")
+            //UIImpactFeedbackGenerator(style: .light).impactOccurred()
         }
         checkAllSame(sender)
     }

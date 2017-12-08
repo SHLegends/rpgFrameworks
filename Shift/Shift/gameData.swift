@@ -21,6 +21,15 @@ struct GameDataManager {
     let defaults = UserDefaults.standard
     
     
+    var mute: Bool {
+        get {
+            return defaults.bool(forKey: "mute")
+        }
+        set {
+            defaults.set(newValue, forKey: "mute")
+        }
+    }
+    
     
     var setsData: [Int] {
         get {
@@ -102,3 +111,4 @@ struct GameDataManager {
 }
 
 var DataManager =  GameDataManager()
+

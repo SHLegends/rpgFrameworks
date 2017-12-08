@@ -20,6 +20,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var I: UILabel!
     @IBOutlet weak var F: UILabel!
     @IBOutlet weak var T: UILabel!
+    
 //    let transitionManager = TransitionManager()
     var colorTimer = Timer()
     var masterColors: [UIColor] {get{return Colors}}
@@ -35,11 +36,11 @@ class MenuViewController: UIViewController {
         self.highscoreLabel.textColor = foreground
         self.highscoreLabel.text = "Highscore: \(DataManager.highScore)"
         
-        self.S.textColor = newColor
-        self.H.textColor = newColor
-        self.I.textColor = newColor
-        self.F.textColor = newColor
-        self.T.textColor = newColor
+        self.S.textColor = colorHandler.background
+        self.H.textColor = colorHandler.background
+        self.I.textColor = colorHandler.background
+        self.F.textColor = colorHandler.background
+        self.T.textColor = colorHandler.background
         
         self.animateTitle()
         self.colorTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self,   selector: (#selector(self.animateTitle)), userInfo: nil, repeats: true)

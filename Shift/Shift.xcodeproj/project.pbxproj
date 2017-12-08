@@ -14,6 +14,12 @@
 		8E24E7ED1F9B934900D15567 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E24E7EC1F9B934900D15567 /* GameOverViewController.swift */; };
 		8E24E7F31F9D093900D15567 /* gameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E24E7F21F9D093900D15567 /* gameData.swift */; };
 		8E24E7F51F9D351000D15567 /* colorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E24E7F41F9D351000D15567 /* colorTableViewCell.swift */; };
+		8E81309A1FD5A8190021BFA0 /* SoundHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8130991FD5A8190021BFA0 /* SoundHandler.swift */; };
+		8E81309C1FD625F50021BFA0 /* breakingGlass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8E81309B1FD625F50021BFA0 /* breakingGlass.mp3 */; };
+		8E81309E1FD631B00021BFA0 /* applause3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8E81309D1FD631B00021BFA0 /* applause3.mp3 */; };
+		8E8130A01FD631BB0021BFA0 /* Sad_Trombone.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8E81309F1FD631BB0021BFA0 /* Sad_Trombone.mp3 */; };
+		8E8130A41FD631D40021BFA0 /* glass_ping.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8E8130A31FD631D40021BFA0 /* glass_ping.mp3 */; };
+		8E8130A61FD6323A0021BFA0 /* alarmSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8E8130A51FD632390021BFA0 /* alarmSound.mp3 */; };
 		8E8450C71F894390005094C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8450C61F894390005094C0 /* AppDelegate.swift */; };
 		8E8450CC1F894390005094C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E8450CA1F894390005094C0 /* Main.storyboard */; };
 		8E8450CF1F894390005094C0 /* Shift.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8E8450CD1F894390005094C0 /* Shift.xcdatamodeld */; };
@@ -40,6 +46,12 @@
 		8E24E7EC1F9B934900D15567 /* GameOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 		8E24E7F21F9D093900D15567 /* gameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameData.swift; sourceTree = "<group>"; };
 		8E24E7F41F9D351000D15567 /* colorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorTableViewCell.swift; sourceTree = "<group>"; };
+		8E8130991FD5A8190021BFA0 /* SoundHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundHandler.swift; sourceTree = "<group>"; };
+		8E81309B1FD625F50021BFA0 /* breakingGlass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = breakingGlass.mp3; sourceTree = "<group>"; };
+		8E81309D1FD631B00021BFA0 /* applause3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = applause3.mp3; sourceTree = "<group>"; };
+		8E81309F1FD631BB0021BFA0 /* Sad_Trombone.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sad_Trombone.mp3; sourceTree = "<group>"; };
+		8E8130A31FD631D40021BFA0 /* glass_ping.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = glass_ping.mp3; sourceTree = "<group>"; };
+		8E8130A51FD632390021BFA0 /* alarmSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarmSound.mp3; sourceTree = "<group>"; };
 		8E8450C31F894390005094C0 /* Shift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E8450C61F894390005094C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E8450CB1F894390005094C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -130,6 +142,11 @@
 		8E8450C51F894390005094C0 /* Shift */ = {
 			isa = PBXGroup;
 			children = (
+				8E81309B1FD625F50021BFA0 /* breakingGlass.mp3 */,
+				8E8130A51FD632390021BFA0 /* alarmSound.mp3 */,
+				8E81309F1FD631BB0021BFA0 /* Sad_Trombone.mp3 */,
+				8E8130A31FD631D40021BFA0 /* glass_ping.mp3 */,
+				8E81309D1FD631B00021BFA0 /* applause3.mp3 */,
 				8E24E7F11F9B93B400D15567 /* Color Picking */,
 				8E24E7F01F9B939600D15567 /* Game Over */,
 				8E24E7EF1F9B936C00D15567 /* Game */,
@@ -146,6 +163,7 @@
 				8EE3C6511FB605CD0027D562 /* TransitionManager.swift */,
 				8EE3C6991FBB4EFB0027D562 /* LaunchViewController.swift */,
 				8ED832AD1FD38DE900C726E5 /* DismissAnimator.swift */,
+				8E8130991FD5A8190021BFA0 /* SoundHandler.swift */,
 			);
 			path = Shift;
 			sourceTree = "<group>";
@@ -209,9 +227,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E24E7EB1F9B92FD00D15567 /* GameOver.storyboard in Resources */,
+				8E8130A61FD6323A0021BFA0 /* alarmSound.mp3 in Resources */,
 				8E24E7E71F991A8100D15567 /* ColorPicking.storyboard in Resources */,
+				8E8130A41FD631D40021BFA0 /* glass_ping.mp3 in Resources */,
 				8EF94AFF1F93C0CF005DB246 /* MainMenu.storyboard in Resources */,
+				8E81309C1FD625F50021BFA0 /* breakingGlass.mp3 in Resources */,
 				8E8450D41F894390005094C0 /* LaunchScreen.storyboard in Resources */,
+				8E8130A01FD631BB0021BFA0 /* Sad_Trombone.mp3 in Resources */,
+				8E81309E1FD631B00021BFA0 /* applause3.mp3 in Resources */,
 				8E8450D11F894390005094C0 /* Assets.xcassets in Resources */,
 				8E8450CC1F894390005094C0 /* Main.storyboard in Resources */,
 			);
@@ -236,6 +259,7 @@
 				8E8450CF1F894390005094C0 /* Shift.xcdatamodeld in Sources */,
 				8E24E7E91F9B7EE900D15567 /* ColorPickerViewController.swift in Sources */,
 				8EAB1BD21FCC72480044E7E8 /* GameplayFunctions.swift in Sources */,
+				8E81309A1FD5A8190021BFA0 /* SoundHandler.swift in Sources */,
 				8E24E7F51F9D351000D15567 /* colorTableViewCell.swift in Sources */,
 				8ED832AE1FD38DE900C726E5 /* DismissAnimator.swift in Sources */,
 				8E24E7E51F940D2300D15567 /* MenuViewController.swift in Sources */,

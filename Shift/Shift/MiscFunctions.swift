@@ -23,7 +23,6 @@ func returnRandNumInRange(_ start: Int, _ end: Int)-> Int {
 }
 
 func ring(_ distance: Int, _ point: coor)-> [coor] {
-    // return ring of coors from point by distance
     var coors = [coor]()
     for i in point.x-distance+1...point.x+distance-1 {
         coors += [(i, point.y+distance)]

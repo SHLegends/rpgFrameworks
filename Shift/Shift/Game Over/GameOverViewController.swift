@@ -8,8 +8,12 @@
 
 import UIKit
 
+import AVFoundation
+
 class GameOverViewController: UIViewController {
 	override var prefersStatusBarHidden: Bool {return true}
+    
+    
     
     @IBOutlet weak var gameOver: UILabel!
     @IBOutlet weak var scoreNum: UILabel!
@@ -21,6 +25,8 @@ class GameOverViewController: UIViewController {
     @IBOutlet weak var creditsNum: UILabel!
     @IBOutlet weak var highscoreNum: UILabel!
     @IBOutlet weak var highScoreLabel: UILabel!
+    
+    
     
 //    let transitionManager = TransitionManager()
     var transitionType = "normal"
