@@ -120,6 +120,9 @@ class GameViewController: UIViewController {
     func endGame() {
         
         AudioHandler.playSound("Sad_Trombone", ".mp3")
+        if self.score < 0 {
+            self.score = 0
+        }
         gameScore = self.score
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.0, execute: {self.performSegue(withIdentifier: "gameOverSegue", sender: nil)})
         

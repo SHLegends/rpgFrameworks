@@ -106,6 +106,7 @@
                             <outletCollection property="gestureRecognizers" destination="lCt-rY-9hI" appends="YES" id="i9i-5l-4B7"/>
                             <outletCollection property="gestureRecognizers" destination="BCV-ne-Pt6" appends="YES" id="N5T-s4-rdf"/>
                             <outletCollection property="gestureRecognizers" destination="FdK-zA-pL5" appends="YES" id="AJo-rd-4oj"/>
+                            <outletCollection property="gestureRecognizers" destination="RTn-Ch-r5D" appends="YES" id="AxH-Wk-KDS"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="tRi-hS-sQW"/>
@@ -126,7 +127,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OEb-NJ-YZW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="lCt-rY-9hI">
                     <connections>
-                        <segue destination="nMw-al-LXF" kind="presentation" modalTransitionStyle="flipHorizontal" id="6hw-Wa-Ewc"/>
+                        <segue destination="nMw-al-LXF" kind="presentation" modalTransitionStyle="crossDissolve" id="6hw-Wa-Ewc"/>
                     </connections>
                 </tapGestureRecognizer>
                 <swipeGestureRecognizer direction="right" id="BCV-ne-Pt6">
@@ -139,6 +140,11 @@
                         <action selector="resetData:" destination="hxL-Nw-y0j" id="ojl-PU-J4n"/>
                     </connections>
                 </rotationGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="RTn-Ch-r5D">
+                    <connections>
+                        <segue destination="g6h-PP-HgC" kind="presentation" modalTransitionStyle="crossDissolve" id="ZmU-X6-mWq"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-250.72463768115944" y="83.967391304347828"/>
         </scene>
@@ -149,6 +155,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wxq-4f-dHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="359" y="-86"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="k2L-Gb-FyP">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="g6h-PP-HgC" userLabel="Settings" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s5M-ca-owX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="407" y="75"/>
         </scene>
         <!--ColorPicking-->
         <scene sceneID="U0V-n3-KnR">
