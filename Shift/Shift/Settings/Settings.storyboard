@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rNG-6v-cZO">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -14,8 +14,24 @@
             <objects>
                 <viewController storyboardIdentifier="Settings" title="SettingsView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rNG-6v-cZO" customClass="SetttingsViewController" customModule="Shift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DnK-ZC-wLd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Y7-nG-bZG">
+                                <rect key="frame" x="217" y="160" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="soundSwitch:" destination="rNG-6v-cZO" eventType="valueChanged" id="vrU-Gg-gCH"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sound:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0n4-Kg-cPx">
+                                <rect key="frame" x="106" y="152" width="103" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="rYn-Zk-eS0"/>
@@ -23,15 +39,19 @@
                             <outletCollection property="gestureRecognizers" destination="1Oz-LU-ur8" appends="YES" id="oZ5-Br-M7Z"/>
                         </connections>
                     </view>
+                    <connections>
+                        <outlet property="soundLabel" destination="0n4-Kg-cPx" id="pOD-E9-gVe"/>
+                        <outlet property="soundSwitchOutlet" destination="0Y7-nG-bZG" id="MWI-A6-nqQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rpB-mZ-cqz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="right" id="1Oz-LU-ur8">
                     <connections>
-                        <segue destination="oJC-t3-Hb4" kind="presentation" modalTransitionStyle="crossDissolve" id="Qwu-LU-dkk"/>
+                        <action selector="close:" destination="rNG-6v-cZO" id="Gnk-h0-lL1"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="111" y="107"/>
+            <point key="canvasLocation" x="108.69565217391305" y="105.97826086956522"/>
         </scene>
         <!--MainMenu-->
         <scene sceneID="Onb-bn-EHH">

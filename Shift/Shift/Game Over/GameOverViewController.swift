@@ -8,14 +8,12 @@
 
 import UIKit
 
-import AVFoundation
-
 class GameOverViewController: UIViewController {
 	override var prefersStatusBarHidden: Bool {return true}
     
     
     
-    @IBOutlet weak var gameOver: UILabel!
+ 
     @IBOutlet weak var scoreNum: UILabel!
     @IBOutlet weak var scoreWord: UILabel!
     @IBOutlet weak var playAgain: UIButton!
@@ -33,7 +31,6 @@ class GameOverViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = themeColor
-        gameOver.textColor = foreground
         scoreNum.textColor = foreground
         scoreWord.textColor = foreground
         playAgain.setTitleColor(foreground, for: .normal)

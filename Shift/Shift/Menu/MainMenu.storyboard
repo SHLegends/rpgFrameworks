@@ -58,8 +58,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="swipe up to change colors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtp-PC-OzT">
-                                <rect key="frame" x="107.66666666666669" y="694" width="199" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="swipe right/left for options" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtp-PC-OzT">
+                                <rect key="frame" x="106" y="694" width="202" height="24"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -120,14 +120,15 @@
                         <outlet property="swipeMessage" destination="dtp-PC-OzT" id="dyq-a9-aXF"/>
                         <outlet property="tapLabel" destination="KJW-Ab-PcK" id="8RU-Wp-cbM"/>
                         <outlet property="view" destination="XZj-2m-XD2" id="IDc-Gl-Alh"/>
-                        <segue destination="xHh-PC-3bv" kind="show" identifier="toPicker" animates="NO" id="igg-Ax-8ji"/>
-                        <segue destination="xHh-PC-3bv" kind="show" id="8Vk-tC-qKA"/>
+                        <segue destination="xHh-PC-3bv" kind="show" identifier="toColorPicker" id="h2N-BW-ig2"/>
+                        <segue destination="g6h-PP-HgC" kind="show" identifier="toSettings" id="fST-RW-pn9"/>
+                        <segue destination="nMw-al-LXF" kind="show" identifier="toMain" id="b76-yI-og1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OEb-NJ-YZW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="lCt-rY-9hI">
                     <connections>
-                        <segue destination="nMw-al-LXF" kind="presentation" modalTransitionStyle="crossDissolve" id="6hw-Wa-Ewc"/>
+                        <action selector="goToMain:" destination="hxL-Nw-y0j" id="OE8-M6-S6J"/>
                     </connections>
                 </tapGestureRecognizer>
                 <swipeGestureRecognizer direction="right" id="BCV-ne-Pt6">
@@ -142,7 +143,7 @@
                 </rotationGestureRecognizer>
                 <swipeGestureRecognizer direction="left" id="RTn-Ch-r5D">
                     <connections>
-                        <segue destination="g6h-PP-HgC" kind="presentation" modalTransitionStyle="crossDissolve" id="ZmU-X6-mWq"/>
+                        <action selector="goToSettings:" destination="hxL-Nw-y0j" id="P02-5v-2Oh"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
@@ -173,7 +174,4 @@
             <point key="canvasLocation" x="393" y="201"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="igg-Ax-8ji"/>
-    </inferredMetricsTieBreakers>
 </document>

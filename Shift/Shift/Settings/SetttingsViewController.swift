@@ -8,23 +8,33 @@
 
 import UIKit
 
-class SetttingsViewController: UIViewController {
+class SetttingsViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
+    let customPresentAnimationController = CustomPresentAnimationController()
+    
+    @IBOutlet weak var soundSwitchOutlet: UISwitch!
+    @IBOutlet weak var soundLabel: UILabel!
     override var prefersStatusBarHidden: Bool {return true}
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = colorHandler.background
-
+        self.soundLabel.textColor = colorHandler.foreground
+        self.soundSwitchOutlet.isOn = !DataManager.mute
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func soundSwitch(_ sender: UISwitch) {
+        DataManager.mute = !sender.isOn
     }
     
-
+    @IBAction func close(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
 

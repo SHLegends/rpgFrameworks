@@ -194,9 +194,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Over" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zd8-cs-Tub">
+                                <rect key="frame" x="64.333333333333343" y="332.33333333333331" width="287.33333333333326" height="71.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="zd8-cs-Tub" firstAttribute="centerY" secondItem="Weq-4f-PB4" secondAttribute="centerY" id="1CQ-fL-A50"/>
                             <constraint firstItem="BhX-U6-vSe" firstAttribute="bottom" secondItem="0do-fJ-Tlh" secondAttribute="bottom" constant="20" id="2KA-DE-RJd"/>
                             <constraint firstItem="1VR-dP-M4J" firstAttribute="centerY" secondItem="Weq-4f-PB4" secondAttribute="centerY" constant="268.5" id="2M2-1E-bD7"/>
                             <constraint firstItem="GIS-5d-gVN" firstAttribute="centerY" secondItem="Weq-4f-PB4" secondAttribute="centerY" constant="-348" id="4D6-qJ-gCG"/>
@@ -207,12 +214,14 @@
                             <constraint firstItem="0do-fJ-Tlh" firstAttribute="top" secondItem="CZU-Yc-sMA" secondAttribute="bottom" constant="29.670000000000002" id="m0i-bZ-paA"/>
                             <constraint firstItem="GIS-5d-gVN" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="r4X-bg-FHT"/>
                             <constraint firstItem="1VR-dP-M4J" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="szQ-ls-FKp"/>
+                            <constraint firstItem="zd8-cs-Tub" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="zzE-MO-zvg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BhX-U6-vSe"/>
                     </view>
                     <connections>
                         <outlet property="C" destination="3ox-cB-Qr2" id="4pw-T7-aEI"/>
                         <outlet property="E" destination="Kb1-ls-GUj" id="POa-z8-vs1"/>
+                        <outlet property="GameOver" destination="zd8-cs-Tub" id="gOx-Dv-yRB"/>
                         <outlet property="N" destination="dCb-CU-tcm" id="1r7-Mc-9HT"/>
                         <outlet property="NE" destination="QTQ-xK-m9F" id="y4O-Yd-yNm"/>
                         <outlet property="NW" destination="Nso-Nk-0Dz" id="dMP-8C-zII"/>
@@ -225,7 +234,6 @@
                         <outlet property="multiplierLabel" destination="1VR-dP-M4J" id="jNe-oa-b7G"/>
                         <outlet property="scorelabell" destination="TUf-zz-V03" id="yM8-G9-5Xw"/>
                         <outlet property="warningLabel" destination="HEU-Mw-BaP" id="ncy-xw-NKM"/>
-                        <segue destination="mhk-35-4Zt" kind="presentation" identifier="gameOverSegue" modalTransitionStyle="crossDissolve" id="ESm-qB-teW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xzE-Ld-as6" userLabel="First Responder" sceneMemberID="firstResponder"/>

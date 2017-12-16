@@ -48,8 +48,10 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
         
         
         
-        row.backgroundColor = colorHandler.background
+        
         UIView.transition(with: row, duration: 0.75, options: [.transitionCrossDissolve, .allowUserInteraction], animations: {
+            row.backgroundColor = colorHandler.background
+            
 //            row.backgroundLabel.textColor = colorHandler.foreground
 //            row.backgroundColorView.backgroundColor = row.cColorScheme.background
 //            row.backgroundColorView.layer.masksToBounds = true
@@ -82,25 +84,31 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
                     if row.stateOfAction == .wasTapped {
                         row.stateOfAction = .wasTappedAgain
                         
-                        
-                        self.view.backgroundColor = colorHandler.themeInUse.background
-                        
-                        self.colorTableView.separatorColor = colorHandler.foreground
-                        self.themeLabel.textColor = colorHandler.foreground
-                        self.creditsLabel.textColor = colorHandler.foreground
-                        for i in self.colorTableView.visibleCells {
-                            if let newRow: colorTableViewCell = i as? colorTableViewCell {
-                                newRow.backgroundColor = colorHandler.background
-                                newRow.nameLabel.textColor = colorHandler.foreground
-                                newRow.priceLabel.textColor = colorHandler.foreground
-                                var rowArray: [colorTableViewCell] = self.colorTableView.visibleCells as! [colorTableViewCell]
-                                rowArray = rowArray.filter({$0.cColorScheme.id != row.cColorScheme.id})
-                                for t in rowArray {
-                                    t.stateOfAction = .normal
+                        UIView.animate(withDuration: 0.75, delay: 0, options: [.allowUserInteraction], animations: {
+                            self.view.backgroundColor = colorHandler.themeInUse.background
+                            
+                            self.colorTableView.separatorColor = colorHandler.foreground
+                            self.themeLabel.textColor = colorHandler.foreground
+                            self.creditsLabel.textColor = colorHandler.foreground
+                            
+                            
+                            for i in self.colorTableView.visibleCells {
+                                if let newRow: colorTableViewCell = i as? colorTableViewCell {
+                                    newRow.backgroundColor = colorHandler.background
+                                    newRow.nameLabel.textColor = colorHandler.foreground
+                                    newRow.priceLabel.textColor = colorHandler.foreground
+                                    var rowArray: [colorTableViewCell] = self.colorTableView.visibleCells as! [colorTableViewCell]
+                                    rowArray = rowArray.filter({$0.cColorScheme.id != row.cColorScheme.id})
+                                    for t in rowArray {
+                                        t.stateOfAction = .normal
+                                    }
+                                    
                                 }
-                                
                             }
-                        }
+                            
+                        }, completion: nil)
+                        
+                        
                     } else if row.stateOfAction == .normal {
                         row.stateOfAction = .wasTapped
                     }
@@ -170,9 +178,9 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
     
     
 
-    
-    @IBAction func swipedDown(_ sender: Any) {
-        
+
+    @IBAction func close(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
     
 

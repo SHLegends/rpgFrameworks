@@ -33,6 +33,7 @@ enum colorBins {
     
     static let coldWinter: colorScheme = ("Cold Winter", UIColor.init(red: 0/255, green: 0/255, blue: 42/255, alpha: 1), UIColor.white, [UIColor.init(red: 0/255, green: 0/255, blue: 84/255, alpha: 1), UIColor.init(red: 0/255, green: 0/255, blue: 128/255, alpha: 1), UIColor.init(red: 0/255, green: 0/255, blue: 170/255, alpha: 1), UIColor.init(red: 0/255, green: 0/255, blue: 212/255, alpha: 1), UIColor.init(red: 0/255, green: 0/255, blue: 255/255, alpha: 1)], 10, UUID.init().uuidString)
     
+    
 }
 
 let colorSets: [colorScheme] = [colorBins.betaBlack, colorBins.betaWhite, colorBins.flat, colorBins.greyWhite, colorBins.beta2Black, colorBins.beta2White, colorBins.coldWinter]

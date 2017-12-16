@@ -12,6 +12,8 @@ import AVFoundation
 class GameViewController: UIViewController {
     
     override var prefersStatusBarHidden: Bool {return true}
+    
+    @IBOutlet weak var GameOver: UILabel!
     @IBOutlet weak var ScoreLabel: UILabel!
     @IBOutlet weak var NW: ColorCircle!
     @IBOutlet weak var N: ColorCircle!
@@ -104,30 +106,201 @@ class GameViewController: UIViewController {
         scorelabell.textColor = foreground
         self.multiplierLabel.textColor = foreground
         
+        GameOver.textColor = foreground
+        GameOver.alpha = 0
+        
         
         self.colorIndex = self.colourBin[1]
         
         
         self.view.backgroundColor = themeColor
+        
+        for i in self.buttons {
+            i.alpha = 0
+        }
+        self.ScoreLabel.alpha = 0
+        self.warningLabel.alpha = 0
         print("Basic Game Setup DONE")
         
-        DataManager.mute = false
         
         
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        gameStartAnimation()
     }
 
     
     func endGame() {
+        
+        tapTimer.invalidate()
         
         AudioHandler.playSound("Sad_Trombone", ".mp3")
         if self.score < 0 {
             self.score = 0
         }
         gameScore = self.score
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0, execute: {self.performSegue(withIdentifier: "gameOverSegue", sender: nil)})
+        gameEndAnimation()
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0, execute: {self.performSegue(withIdentifier: "gameOverSegue", sender: nil)})
         
         
         
+    }
+    
+    func gameEndAnimation() {
+        var delay = 0.0
+        let by = 0.2
+        let duration = 1.5
+        
+        for i in buttons {
+            i.isEnabled = false
+        }
+        
+        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
+            self.ScoreLabel.alpha = 0
+        }, completion: nil)
+        
+        delay += by
+        
+        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
+            self.SE.alpha = 0
+        }, completion: nil)
+        
+        delay += by
+        
+        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
+            self.S.alpha = 0
+        }, completion: nil)
+        
+        delay += by
+        
+        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
+            self.SW.alpha = 0
+        }, completion: nil)
+        
+        delay += by
+        
+        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
+            self.W.alpha = 0
+        }, completion: nil)
+        
+        delay += by
+        
+        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
+            self.C.alpha = 0
+            self.GameOver.alpha = 1
+        }, completion: nil)
+        
+        delay += by
+        
+        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
+            self.E.alpha = 0
+        }, completion: nil)
+        
+        delay += by
+        
+        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
+            self.NE.alpha = 0
+        }, completion: nil)
+        
+        delay += by
+        
+        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
+            self.N.alpha = 0
+        }, completion: nil)
+        
+        delay += by
+        
+        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
+            self.NW.alpha = 0
+        }, completion: nil)
+        
+        delay += by
+        
+        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
+            self.warningLabel.alpha = 0
+        }, completion: nil)
+        
+        delay += by
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay+duration, execute: {
+//            let VC = GameOverViewController()
+            
+//            self.navigationController?.pushViewController(VC, animated: true)
+            self.navigationController?.popViewController(animated: true)
+        })
+    }
+    
+    func gameStartAnimation() {
+        
+        var delay = 0.1
+        let by = 0.2
+        
+        UIView.animate(withDuration: 1, delay: delay, options: [.allowUserInteraction], animations: {
+            self.warningLabel.alpha = 1
+        }, completion: nil)
+        
+        delay += by
+        
+        UIView.animate(withDuration: 1, delay: delay, options: [.allowUserInteraction], animations: {
+            self.N.alpha = 1
+            self.NE.alpha = 1
+            self.NW.alpha = 1
+            
+        }, completion: nil)
+        
+        delay += by
+        
+        UIView.animate(withDuration: 1, delay: delay, options: [.allowUserInteraction], animations: {
+            self.C.alpha = 1
+            
+            self.E.alpha = 1
+            self.W.alpha = 1
+            
+        }, completion: nil)
+        
+        delay += by
+        
+        UIView.animate(withDuration: 1, delay: delay, options: [.allowUserInteraction], animations: {
+            
+            self.S.alpha = 1
+            self.SE.alpha = 1
+            self.SW.alpha = 1
+            
+        }, completion: nil)
+        
+        delay += by
+        
+        UIView.animate(withDuration: 1, delay: delay, options: [.allowUserInteraction], animations: {
+            self.ScoreLabel.alpha = 1
+            
+        }, completion: nil)
+        
+//        UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
+//            self.C.alpha = 1
+//
+//            }, completion: { (true) in
+//                UIView.animate(withDuration: 0.5, animations: {
+//                    self.N.alpha = 1
+//                    self.S.alpha = 1
+//                    self.E.alpha = 1
+//                    self.W.alpha = 1
+//
+//                }, completion: { (true) in
+//                    UIView.animate(withDuration: 0.5, animations: {
+//                        self.NE.alpha = 1
+//                        self.NW.alpha = 1
+//                        self.SE.alpha = 1
+//                        self.SW.alpha = 1
+//
+//                    })
+//                })
+//        })
     }
     
     func calcPoints(numOfButtons: Int, timeBetweenTaps: Double)-> Int {
@@ -280,6 +453,7 @@ class GameViewController: UIViewController {
         self.timeSinceLastTap = Date()
         if self.buttons.filter({$0.colorIndex != self.colorIndex}).count == 1 && but.colorIndex != self.colorIndex {
             print("1 button left of diff color")
+            AudioHandler.playSound("breakingGlass", "mp3")
             but.colorIndex = self.colorIndex
             but.changeColor(self.masterColors[self.colorIndex])
             self.score += calcPoints(numOfButtons: 1, timeBetweenTaps: elapsedTime)
@@ -307,17 +481,18 @@ class GameViewController: UIViewController {
             
             
             if oldColor == self.colorIndex {
-                AudioHandler.playSound("alarmSound", "mp3")
+                
                 UINotificationFeedbackGenerator().notificationOccurred(.error)
                 
                 self.numOfSameColorTaps -= 1
                 if self.numOfSameColorTaps == 0 {
                     self.view.bringSubview(toFront: but)
                     
-                    but.scale(time: 0.2, x: 3, y: 3)
+//                    but.scale(time: 0.2, x: 3, y: 3)
                     //but.pulsate(duration: 0.6, from: 0.1, to: 10.0)
                     endGame()
                 } else {
+                    AudioHandler.playSound("wrong", "mp3")
                     self.view.bringSubview(toFront: but)
                     but.scaling([(0.2, 2, 2), (0.1, 1, 1)])
                     //but.pulsate(duration: 0.2, from: 1.0, to: 4.0)

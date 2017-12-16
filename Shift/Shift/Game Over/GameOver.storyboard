@@ -32,16 +32,9 @@
                                     <segue destination="heD-ng-Rvt" kind="presentation" modalTransitionStyle="crossDissolve" id="X5Z-Wt-Agn"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIc-Kr-HpU">
-                                <rect key="frame" x="193.66666666666666" y="334.66666666666669" width="27" height="67"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="49"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VfF-v2-TFL">
-                                <rect key="frame" x="186" y="399" width="41" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VfF-v2-TFL">
+                                <rect key="frame" x="176.33333333333334" y="351.33333333333331" width="62.666666666666657" height="34.333333333333314"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -55,35 +48,33 @@
                                     <segue destination="sb7-w1-8Cw" kind="presentation" modalTransitionStyle="flipHorizontal" id="qbg-7c-3Ah"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3u-IN-aPB">
-                                <rect key="frame" x="200" y="463" width="14" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3u-IN-aPB">
+                                <rect key="frame" x="200" y="489" width="14" height="36"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Highscore" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZiK-O2-0cw">
-                                <rect key="frame" x="168.66666666666666" y="499" width="77" height="23"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOd-hQ-d0L">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOd-hQ-d0L">
                                 <rect key="frame" x="202" y="55" width="10" height="23"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Over" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bie-Vt-5aY">
-                                <rect key="frame" x="140" y="176" width="135" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="25"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgz-OO-aJu">
+                                <rect key="frame" x="164" y="23" width="85" height="24"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgz-OO-aJu">
-                                <rect key="frame" x="164" y="23" width="85" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Highscore" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZiK-O2-0cw">
+                                <rect key="frame" x="169" y="458" width="77" height="23"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIc-Kr-HpU">
+                                <rect key="frame" x="194" y="293" width="27" height="67"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="49"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -91,20 +82,23 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="HOd-hQ-d0L" firstAttribute="centerY" secondItem="Amv-cs-vCq" secondAttribute="centerY" constant="-301.5" id="8zF-y0-7GF"/>
-                            <constraint firstItem="PIc-Kr-HpU" firstAttribute="centerY" secondItem="Amv-cs-vCq" secondAttribute="centerY" id="ElB-Co-let"/>
+                            <constraint firstItem="PIc-Kr-HpU" firstAttribute="centerY" secondItem="Amv-cs-vCq" secondAttribute="centerY" constant="-41.5" id="CQa-6R-mXn"/>
                             <constraint firstItem="HOd-hQ-d0L" firstAttribute="centerX" secondItem="Amv-cs-vCq" secondAttribute="centerX" id="KWj-dz-d02"/>
-                            <constraint firstItem="ZiK-O2-0cw" firstAttribute="centerX" secondItem="Amv-cs-vCq" secondAttribute="centerX" id="aXD-OE-aL7"/>
-                            <constraint firstItem="i3u-IN-aPB" firstAttribute="centerX" secondItem="Amv-cs-vCq" secondAttribute="centerX" id="ag3-yJ-rtM"/>
-                            <constraint firstItem="i3u-IN-aPB" firstAttribute="centerY" secondItem="Amv-cs-vCq" secondAttribute="centerY" constant="113" id="dOt-ts-UMU"/>
-                            <constraint firstItem="PIc-Kr-HpU" firstAttribute="centerX" secondItem="Amv-cs-vCq" secondAttribute="centerX" id="gV0-X2-zPS"/>
-                            <constraint firstItem="ZiK-O2-0cw" firstAttribute="centerY" secondItem="Amv-cs-vCq" secondAttribute="centerY" constant="142.5" id="v0r-Zb-2q8"/>
+                            <constraint firstItem="lgz-OO-aJu" firstAttribute="centerX" secondItem="Amv-cs-vCq" secondAttribute="centerX" id="REl-J3-EJz"/>
+                            <constraint firstItem="lgz-OO-aJu" firstAttribute="centerY" secondItem="Amv-cs-vCq" secondAttribute="centerY" constant="-333" id="Vo2-Dj-Dds"/>
+                            <constraint firstItem="VfF-v2-TFL" firstAttribute="centerY" secondItem="Amv-cs-vCq" secondAttribute="centerY" id="ctH-DK-zbZ"/>
+                            <constraint firstItem="VfF-v2-TFL" firstAttribute="centerX" secondItem="Amv-cs-vCq" secondAttribute="centerX" id="fLG-Ja-QQ9"/>
+                            <constraint firstItem="i3u-IN-aPB" firstAttribute="centerY" secondItem="Amv-cs-vCq" secondAttribute="centerY" constant="139" id="kgP-mn-exD"/>
+                            <constraint firstItem="ZiK-O2-0cw" firstAttribute="centerX" secondItem="Amv-cs-vCq" secondAttribute="centerX" id="oL6-Ya-I26"/>
+                            <constraint firstItem="PIc-Kr-HpU" firstAttribute="centerX" secondItem="Amv-cs-vCq" secondAttribute="centerX" id="ugm-BK-FT2"/>
+                            <constraint firstItem="i3u-IN-aPB" firstAttribute="centerX" secondItem="Amv-cs-vCq" secondAttribute="centerX" id="wWN-f1-dhP"/>
+                            <constraint firstItem="ZiK-O2-0cw" firstAttribute="centerY" secondItem="Amv-cs-vCq" secondAttribute="centerY" constant="101.5" id="yig-IQ-o03"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="X7B-T7-Qpr"/>
                     </view>
                     <connections>
                         <outlet property="creditsLabel" destination="lgz-OO-aJu" id="s0A-ds-E4n"/>
                         <outlet property="creditsNum" destination="HOd-hQ-d0L" id="miI-s6-W9S"/>
-                        <outlet property="gameOver" destination="bie-Vt-5aY" id="hra-66-9dF"/>
                         <outlet property="highScoreLabel" destination="ZiK-O2-0cw" id="b8x-lQ-PK4"/>
                         <outlet property="highscoreNum" destination="i3u-IN-aPB" id="fct-aU-236"/>
                         <outlet property="mainMenu" destination="hoV-mZ-yM2" id="vA7-3Y-e3C"/>

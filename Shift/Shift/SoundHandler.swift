@@ -21,52 +21,60 @@ class SoundHandler {
     
     func setUpSession() {
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+            if AVAudioSession.sharedInstance().isOtherAudioPlaying {
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
+            } else {
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            }
             try AVAudioSession.sharedInstance().setActive(true)
+
         } catch let error {
             print(error.localizedDescription)
         }
     }
     
     func playSound(_ sound: String, _ format: String) {
-        let vol: Float = 0.1
-        if !DataManager.mute {
-            self.duplicates = duplicates.filter({$0.isPlaying})
-            if !self.players.filter({$0.key == sound}).isEmpty {
-                if !self.players[sound]!.isPlaying {
-                    self.players[sound]!.prepareToPlay()
-                    print("found sound for: \(sound)")
-                    self.players[sound]!.play()
+        DispatchQueue.main.async {
+            let vol: Float = 0.1
+            if !DataManager.mute {
+                self.duplicates = self.duplicates.filter({$0.isPlaying})
+                if !self.players.filter({$0.key == sound}).isEmpty {
+                    if !self.players[sound]!.isPlaying {
+                        self.players[sound]!.prepareToPlay()
+                        print("found sound for: \(sound)")
+                        self.players[sound]!.play()
+                    } else {
+                        guard let url = Bundle.main.url(forResource: sound, withExtension: format) else { return }
+                        let index = self.duplicates.count
+                        self.duplicates.append(AVAudioPlayer())
+                        do {
+                            self.duplicates[index] = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+                            self.duplicates[index].volume = vol
+                            self.duplicates[index].prepareToPlay()
+                            print("made duplicate of sound for: \(sound)")
+                            self.duplicates[index].play()
+                        } catch let error {
+                            print(error.localizedDescription)
+                        }
+                    }
                 } else {
                     guard let url = Bundle.main.url(forResource: sound, withExtension: format) else { return }
-                    let index = self.duplicates.count
-                    self.duplicates.append(AVAudioPlayer())
+                    self.players[sound] = AVAudioPlayer()
                     do {
-                        self.duplicates[index] = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
-                        self.duplicates[index].volume = vol
-                        self.duplicates[index].prepareToPlay()
-                        print("made duplicate of sound for: \(sound)")
-                        self.duplicates[index].play()
+                        self.players[sound] = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+                        guard let player = self.players[sound] else { return }
+                        player.volume = vol
+                        player.prepareToPlay()
+                        print("new sound for: \(sound)")
+                        player.play()
                     } catch let error {
                         print(error.localizedDescription)
                     }
                 }
-            } else {
-                guard let url = Bundle.main.url(forResource: sound, withExtension: format) else { return }
-                self.players[sound] = AVAudioPlayer()
-                do {
-                    self.players[sound] = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
-                    guard let player = self.players[sound] else { return }
-                    player.volume = vol
-                    player.prepareToPlay()
-                    print("new sound for: \(sound)")
-                    player.play()
-                } catch let error {
-                    print(error.localizedDescription)
-                }
             }
         }
-    }
+        }
+        
 }
 
 

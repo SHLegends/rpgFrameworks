@@ -8,7 +8,19 @@
 
 import UIKit
 
-class MenuViewController: UIViewController {
+class MenuViewController: UIViewController, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
+    
+//    let customPresentAnimationController = CustomPresentAnimationController()
+    
+    let customNavigationAnimationController = CustomNavigationAnimationController()
+    
+    let customInteractionController = CustomInteractionController()
+    
+    
+    
+//    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        return customPresentAnimationController
+//    }
 
     override var prefersStatusBarHidden: Bool {return true}
     @IBOutlet weak var tapLabel: UILabel!
@@ -45,7 +57,23 @@ class MenuViewController: UIViewController {
         self.animateTitle()
         self.colorTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self,   selector: (#selector(self.animateTitle)), userInfo: nil, repeats: true)
         // Do any additional setup after loading the view.
+        
+        navigationController?.delegate = self as? UINavigationControllerDelegate
+        
     }
+    
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if operation == .push {
+            customInteractionController.attachToViewController(viewController: toVC)
+        }
+        customNavigationAnimationController.reverse = operation == .pop
+        return customNavigationAnimationController
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return customInteractionController.transitionInprogress ? customInteractionController : nil
+    }
+    
 
     
 
@@ -53,21 +81,30 @@ class MenuViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        self.colorTimer.invalidate()
-//        let toViewController = segue.destination as UIViewController
-//        self.transitionManager.direction = "W"
-//        toViewController.transitioningDelegate = self.transitionManager
+
+        if segue.identifier == "toSettings" {
+            let toViewController = segue.destination as UIViewController
+            toViewController.transitioningDelegate = self
+        }
         
-//        if let destinationViewController: UIViewController = segue.destination {
-//            destinationViewController.transitioningDelegate = self
-//        }
         
     }
+    
+    
     @IBAction func goToPicker(_ sender: UISwipeGestureRecognizer) {
-        self.performSegue(withIdentifier: "toPicker", sender: nil)
+        self.performSegue(withIdentifier: "toColorPicker", sender: nil)
         
         
     }
+    
+    @IBAction func goToMain(_ sender: Any) {
+        self.performSegue(withIdentifier: "toMain", sender: nil)
+    }
+    
+    @IBAction func goToSettings(_ sender: Any) {
+        self.performSegue(withIdentifier: "toSettings", sender: nil)
+    }
+    
     
     
     @objc func animateTitle() {
