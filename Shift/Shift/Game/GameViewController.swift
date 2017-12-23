@@ -9,12 +9,13 @@
 import UIKit
 import AVFoundation
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, GameDelgate {
+    
+    
     
     override var prefersStatusBarHidden: Bool {return true}
     
     @IBOutlet weak var GameOver: UILabel!
-    @IBOutlet weak var ScoreLabel: UILabel!
     @IBOutlet weak var NW: ColorCircle!
     @IBOutlet weak var N: ColorCircle!
     @IBOutlet weak var NE: ColorCircle!
@@ -28,18 +29,16 @@ class GameViewController: UIViewController {
     @IBOutlet weak var liveslabel: UILabel!
     @IBOutlet weak var scorelabell: UILabel!
     @IBOutlet weak var multiplierLabel: UILabel!
+    @IBOutlet weak var ScoreLabel: UILabel!
     
     var substractAmount = 1
     
     
-    
+    var EndGameDelegate: GameOverDelegate?
     
     
     let indexToSound: [Int: String] = [0: "breakingGlass", 1: "breakingGlass", 2: "breakingGlass", 3: "breakingGlass", 4: "breakingGlass"]
     
-    
-    
-//    let transitionManager = TransitionManager()
     
     var isFirstTap = true
     var numOfSameColorTaps = 3
@@ -53,13 +52,12 @@ class GameViewController: UIViewController {
     var buttons = [ColorCircle]()
     var buttons2D = [Int: [Int: ColorCircle]]()
     var nextRoundUUID = String()
-    
     var tapTimer = Timer()
     var tapTimerValue = 0.0
-    
     var mutiplierUUID = ""
     
     @objc func addMilisecond() {
+        
         self.tapTimerValue += 0.1
         if self.score - 1 >= 0 {
             self.score -= self.substractAmount
@@ -71,16 +69,32 @@ class GameViewController: UIViewController {
         
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func restartGame() {
+//        resetGame()
+//        screenLoad()
+//        gameStartAnimation()
+    }
+    
+    func resetGame() {
+        tapTimerValue = 0.0
+        score = 0
+        numOfSameColorTaps = 3
+        round = 0
+        timeSinceLastTap = Date()
+        substractAmount = 1
+        colourBin = [Int]()
+        colorIndex = 1
+        buttons = [ColorCircle]()
+        buttons2D = [Int: [Int: ColorCircle]]()
+        nextRoundUUID = String()
+        isFirstTap = true
+    }
+    
+    func screenLoad() {
         colorIndices = randomizeColors(masterColors: Colors)
-       
         self.multiplierLabel.text = ""
-        
         self.scorelabell.text = ""
         self.liveslabel.text = ""
-        
-        
         self.buttons = [NW!, N!, NE!, W!, C!, E!, SW!, S!, SE!]
         self.buttons2D = [0: [0: NW!, 1: N!, 2: NE!], 1: [0: W!, 1: C!, 2: E!], 2: [0: SW!, 1: S!, 2: SE!]]
         for i in 0..<self.buttons2D.count {
@@ -88,48 +102,34 @@ class GameViewController: UIViewController {
                 self.buttons2D[i]![t]!.selfCoor = (t, i)
             }
         }
-        
-        self.tapTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: (#selector(self.addMilisecond)), userInfo: nil, repeats: true)
-        
-        
         warningLabel.presentTextToStay(newText: "Tap a circle", duration: 1)
-        
-        
         colourBin = [colorIndices[0], colorIndices[1]]
-
-        
         for i in buttons {i.changeColor(self.masterColors[self.colourBin[0]]); i.colorIndex = self.colourBin[0]; i.changeBorderColor(to: self.masterColors[self.colourBin[1]])}
-
         warningLabel.textColor = foreground
         ScoreLabel.textColor = foreground
         liveslabel.textColor = foreground
         scorelabell.textColor = foreground
         self.multiplierLabel.textColor = foreground
-        
         GameOver.textColor = foreground
         GameOver.alpha = 0
-        
-        
         self.colorIndex = self.colourBin[1]
-        
-        
         self.view.backgroundColor = themeColor
-        
         for i in self.buttons {
             i.alpha = 0
         }
         self.ScoreLabel.alpha = 0
         self.warningLabel.alpha = 0
         print("Basic Game Setup DONE")
-        
-        
-        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("GameView Loaded")
+        self.tapTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: (#selector(self.addMilisecond)), userInfo: nil, repeats: true)
+        screenLoad()
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         gameStartAnimation()
@@ -146,6 +146,7 @@ class GameViewController: UIViewController {
         }
         gameScore = self.score
         gameEndAnimation()
+        
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0, execute: {self.performSegue(withIdentifier: "gameOverSegue", sender: nil)})
         
         
@@ -160,68 +161,47 @@ class GameViewController: UIViewController {
         for i in buttons {
             i.isEnabled = false
         }
-        
         UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
             self.ScoreLabel.alpha = 0
         }, completion: nil)
-        
         delay += by
-        
         UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
             self.SE.alpha = 0
         }, completion: nil)
-        
         delay += by
-        
         UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
             self.S.alpha = 0
         }, completion: nil)
-        
         delay += by
-        
         UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
             self.SW.alpha = 0
         }, completion: nil)
-        
         delay += by
-        
         UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
             self.W.alpha = 0
         }, completion: nil)
-        
         delay += by
-        
         UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
             self.C.alpha = 0
             self.GameOver.alpha = 1
         }, completion: nil)
-        
         delay += by
-        
         UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
             self.E.alpha = 0
         }, completion: nil)
-        
         delay += by
-        
         UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
             self.NE.alpha = 0
         }, completion: nil)
-        
         delay += by
-        
         UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
             self.N.alpha = 0
         }, completion: nil)
-        
         delay += by
-        
         UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
             self.NW.alpha = 0
         }, completion: nil)
-        
         delay += by
-        
         UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
             self.warningLabel.alpha = 0
         }, completion: nil)
@@ -229,10 +209,16 @@ class GameViewController: UIViewController {
         delay += by
         
         DispatchQueue.main.asyncAfter(deadline: .now() + delay+duration, execute: {
-//            let VC = GameOverViewController()
-            
-//            self.navigationController?.pushViewController(VC, animated: true)
-            self.navigationController?.popViewController(animated: true)
+            print("Go to GameOverScreen")
+//            print(self.navigationController?.viewControllers)
+//            let storyBoard: UIStoryboard = UIStoryboard(name: "GameOver", bundle: nil)
+//            let vc = storyBoard.instantiateViewController(withIdentifier: "GameOverView") as! GameOverViewController
+//            vc.gameDelegate = self
+//            vc.score = self.score
+//            self.navigationController!.pushViewController(vc, animated: true)
+//            print(self.navigationController?.viewControllers)
+            print(self.navigationController?.viewControllers)
+            self.EndGameDelegate?.gameOver(score: self.score, delVC: self)
         })
     }
     
@@ -281,26 +267,7 @@ class GameViewController: UIViewController {
             
         }, completion: nil)
         
-//        UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
-//            self.C.alpha = 1
-//
-//            }, completion: { (true) in
-//                UIView.animate(withDuration: 0.5, animations: {
-//                    self.N.alpha = 1
-//                    self.S.alpha = 1
-//                    self.E.alpha = 1
-//                    self.W.alpha = 1
-//
-//                }, completion: { (true) in
-//                    UIView.animate(withDuration: 0.5, animations: {
-//                        self.NE.alpha = 1
-//                        self.NW.alpha = 1
-//                        self.SE.alpha = 1
-//                        self.SW.alpha = 1
-//
-//                    })
-//                })
-//        })
+
     }
     
     func calcPoints(numOfButtons: Int, timeBetweenTaps: Double)-> Int {
@@ -386,10 +353,9 @@ class GameViewController: UIViewController {
         if true {
             if self.colourBin.count < colorIndices.count {
                 self.colourBin.append(colorIndices[self.colourBin.count])
-                print("\(self.colourBin)\n")
-                print("SUCCESS GRAB NEW COLOR")
-            } else {
-                print("FAILED GRAB NEW COLOR")}
+                //print("\(self.colourBin)\n")
+                //print("SUCCESS GRAB NEW COLOR")
+            }
         }
         
         
@@ -452,7 +418,7 @@ class GameViewController: UIViewController {
         let elapsedTime = Date().timeIntervalSince(self.timeSinceLastTap)
         self.timeSinceLastTap = Date()
         if self.buttons.filter({$0.colorIndex != self.colorIndex}).count == 1 && but.colorIndex != self.colorIndex {
-            print("1 button left of diff color")
+           // print("1 button left of diff color")
             AudioHandler.playSound("breakingGlass", "mp3")
             but.colorIndex = self.colorIndex
             but.changeColor(self.masterColors[self.colorIndex])
@@ -466,9 +432,9 @@ class GameViewController: UIViewController {
                 if i.colorIndex == oldColor {
 //                    DispatchQueue.main.asyncAfter(deadline: .now() + timeBetween, execute: {AudioHandler.playSound("breakingGlass", "mp3")})
                     timeBetween += 0.1
-                    print("----------------\nfound but of index \(i.colorIndex)")
+                    //print("----------------\nfound but of index \(i.colorIndex)")
                     let newColor = returnRandomItem(self.colourBin.filter({$0 != i.colorIndex}))
-                    print("\nchanged to \(newColor) | self.colorIndex = \(self.colorIndex)")
+                    //print("\nchanged to \(newColor) | self.colorIndex = \(self.colorIndex)")
                     i.colorIndex = newColor
 
                     i.changeColor(self.masterColors[newColor], duration: 0.5)
@@ -503,7 +469,7 @@ class GameViewController: UIViewController {
                     }
                     
                     ScoreLabel.shake()
-                    print("was different color")
+                    //print("was different color")
                     if self.score < 0 {
                         self.score = 0
                         
@@ -546,7 +512,7 @@ class GameViewController: UIViewController {
     
     @IBAction func circlePressed(_ sender: ColorCircle) {
         
-        print(Date().timeIntervalSince(sender.dateSinceTouchDown))
+        //print(Date().timeIntervalSince(sender.dateSinceTouchDown))
         if Date().timeIntervalSince(sender.dateSinceTouchDown) > 0.2 {
 //            AudioHandler.playSound(self.indexToSound[sender.colorIndex]!, "mp3")
             //UIImpactFeedbackGenerator(style: .light).impactOccurred()

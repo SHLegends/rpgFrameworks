@@ -12,6 +12,7 @@ import UIKit
 class CustomNavigationAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
     
     var reverse: Bool = false
+    var fade: Bool = true
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 1.5
@@ -39,15 +40,19 @@ class CustomNavigationAnimationController: NSObject, UIViewControllerAnimatedTra
         containerView.addSubview(toView)
         
         UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: {
-            containerView.transform = CGAffineTransform(translationX: -direction * containerView.frame.size.width / 2.0, y: 0)
-            fromView.layer.transform = viewFromTransform
-            toView.layer.transform = CATransform3DIdentity
+            
+                containerView.transform = CGAffineTransform(translationX: -direction * containerView.frame.size.width / 2.0, y: 0)
+                fromView.layer.transform = viewFromTransform
+                toView.layer.transform = CATransform3DIdentity
+            
         }) { finished in
-            containerView.transform = CGAffineTransform.identity
-            fromView.layer.transform = CATransform3DIdentity
-            toView.layer.transform = CATransform3DIdentity
-            fromView.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-            toView.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            
+                containerView.transform = CGAffineTransform.identity
+                fromView.layer.transform = CATransform3DIdentity
+                toView.layer.transform = CATransform3DIdentity
+                fromView.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+                toView.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            
             
             if (transitionContext.transitionWasCancelled) {
                 toView.removeFromSuperview()

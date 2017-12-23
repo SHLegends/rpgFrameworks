@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol GameDelgate {
+    func restartGame()
+}
+
 class GameOverViewController: UIViewController {
 	override var prefersStatusBarHidden: Bool {return true}
     
@@ -24,6 +28,10 @@ class GameOverViewController: UIViewController {
     @IBOutlet weak var highscoreNum: UILabel!
     @IBOutlet weak var highScoreLabel: UILabel!
     
+    var score: Int?
+    var PlayAgainDelegate: GameOverDelegate?
+    
+    var gameDelegate: GameDelgate?
     
     
 //    let transitionManager = TransitionManager()
@@ -41,7 +49,7 @@ class GameOverViewController: UIViewController {
         highScoreLabel.textColor = foreground
         
         
-        scoreNum.text = String(gameScore)
+        scoreNum.text = String(score!)
         
         if gameScore > DataManager.highScore {
            DataManager.highScore = gameScore
@@ -64,14 +72,16 @@ class GameOverViewController: UIViewController {
     }
     
     @IBAction func playAgainPressed(_ sender: Any) {
-        self.transitionType = "normal"
+        
+        self.gameDelegate!.restartGame()
+        
+        navigationController?.popViewController(animated: true)
 
     }
     
     @IBAction func mainMenuPressed(_ sender: Any) {
-        self.transitionType = "W"
+        navigationController!.popToViewController(navigationController!.viewControllers.first!, animated: true)
 
-        
     }
     
     

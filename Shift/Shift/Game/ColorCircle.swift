@@ -42,7 +42,7 @@ public class ColorCircle: UIButton {
     public func handleTouch(_ touches: Set<UITouch>) {
         let touch = touches.first
         if traitCollection.forceTouchCapability == .available {
-            print(touch!.force )
+            //print(touch!.force )
             let time = 0.2
             switch Int(touch!.force) {
             case 1:

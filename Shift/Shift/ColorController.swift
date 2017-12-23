@@ -42,13 +42,13 @@ var foreground: UIColor {get{return currentScheme.foreground}}
 
 func randColor(_ colors: [UIColor])-> UIColor? {
     if colors.isEmpty {
-        print("colors.isEmpty")
+        //print("colors.isEmpty")
         return nil
     } else {
-        print(colors)
-        print("\(colors.count)")
+        //print(colors)
+        //print("\(colors.count)")
         let foo = Int(arc4random_uniform(UInt32(colors.count)))
-        print(foo)
+        //print(foo)
         return colors[foo]
     }
 }

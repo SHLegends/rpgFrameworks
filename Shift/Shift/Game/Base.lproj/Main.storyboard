@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="efS-jn-s1g">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="efS-jn-s1g">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -228,7 +228,7 @@
                         <outlet property="S" destination="V7c-ni-0Pi" id="xTV-Wl-aP3"/>
                         <outlet property="SE" destination="1HD-ek-THk" id="Ekv-78-nPs"/>
                         <outlet property="SW" destination="nFP-RR-pxX" id="0LT-Q4-5GP"/>
-                        <outlet property="ScoreLabel" destination="0do-fJ-Tlh" id="WnC-nj-GyZ"/>
+                        <outlet property="ScoreLabel" destination="0do-fJ-Tlh" id="Sbk-4c-F34"/>
                         <outlet property="W" destination="4Ud-zL-74R" id="c7e-m2-Idq"/>
                         <outlet property="liveslabel" destination="GIS-5d-gVN" id="i5Q-ns-3hr"/>
                         <outlet property="multiplierLabel" destination="1VR-dP-M4J" id="jNe-oa-b7G"/>

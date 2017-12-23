@@ -180,6 +180,7 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
 
 
     @IBAction func close(_ sender: Any) {
+        customNavigationAnimator.reverse = true
         navigationController?.popViewController(animated: true)
     }
     

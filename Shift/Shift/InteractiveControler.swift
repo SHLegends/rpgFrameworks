@@ -11,6 +11,13 @@ class CustomInteractionController: UIPercentDrivenInteractiveTransition {
     var navigationController: UINavigationController!
     var shouldCompleteTransition = false
     var transitionInprogress = false
+    
+    var pullLeft: Bool = true
+    
+    var shouldPop: Bool = true
+    
+    var forPush: (storyboard: String, VC: String)?
+    
     var completionSeed: CGFloat {
         return 1 - percentComplete
     }
@@ -21,6 +28,7 @@ class CustomInteractionController: UIPercentDrivenInteractiveTransition {
     }
     
     private func setupGestureRecognizer(_ view: UIView) {
+        
         view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: (#selector(self.handlePanGesture(gestureRecognizer:)))))
     }
     
@@ -28,10 +36,23 @@ class CustomInteractionController: UIPercentDrivenInteractiveTransition {
         let viewTranslation = gestureRecognizer.translation(in: gestureRecognizer.view!.superview!)
         switch gestureRecognizer.state {
         case .began:
+            
             transitionInprogress = true
-            navigationController.popViewController(animated: true)
+            if self.shouldPop {
+                navigationController.popViewController(animated: true)
+                print(navigationController.viewControllers)
+            } else {
+                let storyboard = UIStoryboard.init(name: forPush!.storyboard, bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: forPush!.VC)
+                navigationController.pushViewController(vc, animated: true)
+                print(navigationController.viewControllers)
+            }
+            
         case .changed:
-            var const = CGFloat(fminf(fmaxf(Float(viewTranslation.x / 200.0), 0.0), 1.0))
+            let viewtranslationX = pullLeft ? viewTranslation.x : -viewTranslation.x
+            //print(viewtranslationX)
+            //print(CGFloat(fminf(fmaxf(Float(viewtranslationX / 400.0), 0.0), 1.0)))
+            var const = CGFloat(fminf(fmaxf(Float(viewtranslationX / 400.0), 0.0), 1.0))
             shouldCompleteTransition = const > 0.5
             update(const)
         case .cancelled, .ended:

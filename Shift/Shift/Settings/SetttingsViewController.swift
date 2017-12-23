@@ -30,6 +30,8 @@ class SetttingsViewController: UIViewController, UIViewControllerTransitioningDe
     }
     
     @IBAction func close(_ sender: Any) {
+        
+        
         navigationController?.popViewController(animated: true)
     }
     
