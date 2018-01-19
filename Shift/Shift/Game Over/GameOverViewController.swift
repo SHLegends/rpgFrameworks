@@ -31,7 +31,7 @@ class GameOverViewController: UIViewController {
     var score: Int?
     var PlayAgainDelegate: GameOverDelegate?
     
-    var gameDelegate: GameDelgate?
+    var gameDelegate: GameViewController?
     
     
 //    let transitionManager = TransitionManager()
@@ -62,6 +62,8 @@ class GameOverViewController: UIViewController {
         
         creditsNum.text = String(DataManager.totalCredits)
         
+        self.modalTransitionStyle = .crossDissolve
+        
 
         // Do any additional setup after loading the view.
     }
@@ -73,14 +75,17 @@ class GameOverViewController: UIViewController {
     
     @IBAction func playAgainPressed(_ sender: Any) {
         
-        self.gameDelegate!.restartGame()
+//        self.gameDelegate!.restartGame()
         
-        navigationController?.popViewController(animated: true)
+        //self.dismiss(animated: false, completion: nil)
+        
+//        self.presentingViewController!.dismiss(animated: true, completion: nil)
+            //self.performSegue(withIdentifier: "unwindToGame", sender: self)
 
     }
     
     @IBAction func mainMenuPressed(_ sender: Any) {
-        navigationController!.popToViewController(navigationController!.viewControllers.first!, animated: true)
+        //self.performSegue(withIdentifier: "unwindToMenu", sender: self)
 
     }
     

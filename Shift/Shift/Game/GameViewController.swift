@@ -9,11 +9,17 @@
 import UIKit
 import AVFoundation
 
+protocol GamePusher {
+    func pushGame()
+}
+
 class GameViewController: UIViewController, GameDelgate {
     
     
     
     override var prefersStatusBarHidden: Bool {return true}
+    
+    @IBAction func unwindToGame(segue: UIStoryboardSegue) { }
     
     @IBOutlet weak var GameOver: UILabel!
     @IBOutlet weak var NW: ColorCircle!
@@ -35,6 +41,8 @@ class GameViewController: UIViewController, GameDelgate {
     
     
     var EndGameDelegate: GameOverDelegate?
+    
+    
     
     
     let indexToSound: [Int: String] = [0: "breakingGlass", 1: "breakingGlass", 2: "breakingGlass", 3: "breakingGlass", 4: "breakingGlass"]
@@ -70,9 +78,9 @@ class GameViewController: UIViewController, GameDelgate {
     }
     
     func restartGame() {
-//        resetGame()
-//        screenLoad()
-//        gameStartAnimation()
+        resetGame()
+        screenLoad()
+        gameStartAnimation()
     }
     
     func resetGame() {
@@ -116,23 +124,34 @@ class GameViewController: UIViewController, GameDelgate {
         self.view.backgroundColor = themeColor
         for i in self.buttons {
             i.alpha = 0
+            i.isEnabled = true
         }
         self.ScoreLabel.alpha = 0
+        self.ScoreLabel.text = "\(self.score)"
         self.warningLabel.alpha = 0
         print("Basic Game Setup DONE")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.modalTransitionStyle = .crossDissolve
+        
+        
+        
         print("GameView Loaded")
-        self.tapTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: (#selector(self.addMilisecond)), userInfo: nil, repeats: true)
-        screenLoad()
+        
         
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
-        gameStartAnimation()
+        restartGame()
+        self.tapTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: (#selector(self.addMilisecond)), userInfo: nil, repeats: true)
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
     }
 
     
@@ -154,6 +173,7 @@ class GameViewController: UIViewController, GameDelgate {
     }
     
     func gameEndAnimation() {
+        print("gameEnd triggered")
         var delay = 0.0
         let by = 0.2
         let duration = 1.5
@@ -210,15 +230,16 @@ class GameViewController: UIViewController, GameDelgate {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + delay+duration, execute: {
             print("Go to GameOverScreen")
-//            print(self.navigationController?.viewControllers)
-//            let storyBoard: UIStoryboard = UIStoryboard(name: "GameOver", bundle: nil)
-//            let vc = storyBoard.instantiateViewController(withIdentifier: "GameOverView") as! GameOverViewController
-//            vc.gameDelegate = self
-//            vc.score = self.score
-//            self.navigationController!.pushViewController(vc, animated: true)
-//            print(self.navigationController?.viewControllers)
-            print(self.navigationController?.viewControllers)
-            self.EndGameDelegate?.gameOver(score: self.score, delVC: self)
+            self.tapTimer.invalidate()
+            let storyBoard: UIStoryboard = UIStoryboard(name: "GameOver", bundle: nil)
+            let vc = storyBoard.instantiateViewController(withIdentifier: "GameOverView") as! GameOverViewController
+            vc.score = self.score
+            vc.gameDelegate = self
+            
+            //self.present(vc, animated: true, completion: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+            
         })
     }
     

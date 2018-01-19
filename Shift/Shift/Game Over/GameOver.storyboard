@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aix-RQ-z5j">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aix-RQ-z5j">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,7 +29,7 @@
                                 <state key="normal" title="Play Again"/>
                                 <connections>
                                     <action selector="playAgainPressed:" destination="aix-RQ-z5j" eventType="touchUpInside" id="YIb-52-1Dt"/>
-                                    <segue destination="heD-ng-Rvt" kind="presentation" modalTransitionStyle="crossDissolve" id="X5Z-Wt-Agn"/>
+                                    <segue destination="VH0-Wk-gYv" kind="unwind" unwindAction="unwindToGameWithSegue:" id="GEh-Zl-yv2"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VfF-v2-TFL">
@@ -45,7 +45,7 @@
                                 <state key="normal" title="Main Menu"/>
                                 <connections>
                                     <action selector="mainMenuPressed:" destination="aix-RQ-z5j" eventType="touchUpInside" id="kvX-hw-klL"/>
-                                    <segue destination="sb7-w1-8Cw" kind="presentation" modalTransitionStyle="flipHorizontal" id="qbg-7c-3Ah"/>
+                                    <segue destination="VH0-Wk-gYv" kind="unwind" unwindAction="unwindToMenuWithSegue:" id="ov0-Ib-wPe"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3u-IN-aPB">
@@ -108,8 +108,17 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RDm-LV-D69" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="VH0-Wk-gYv" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-343.47826086956525" y="-18.75"/>
+        </scene>
+        <!--GameView-->
+        <scene sceneID="lG1-YM-lHn">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="GameView" id="NLV-T3-53J" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gzz-TL-pHn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="278" y="-266"/>
         </scene>
         <!--Main-->
         <scene sceneID="V7c-Bo-TYF">

@@ -172,6 +172,8 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
         
         colorTableView.separatorColor = colorHandler.foreground
         
+        customNavigationAnimator.reverse = false
+        
         
         
     }
@@ -180,8 +182,8 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
 
 
     @IBAction func close(_ sender: Any) {
-        customNavigationAnimator.reverse = true
-        navigationController?.popViewController(animated: true)
+//        customNavigationAnimator.reverse = true
+//        navigationController?.popViewController(animated: true)
     }
     
 

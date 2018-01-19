@@ -9,7 +9,7 @@
 import UIKit
 
 protocol GameOverDelegate {
-    func gameOver(score: Int, delVC: GameDelgate)
+    func gameOver(score: Int, delVC: GameViewController)
     func playAgain()
     
 }
@@ -20,7 +20,11 @@ var customNavigationAnimator = CustomNavigationAnimationController()
 
 class MenuViewController: UIViewController, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate, GameOverDelegate {
     
-    func gameOver(score: Int, delVC: GameDelgate) {
+    
+    @IBAction func unwindToMenu(segue: UIStoryboardSegue) { }
+    
+    
+    func gameOver(score: Int, delVC: GameViewController) {
 //        if let vc = navigationController?.viewControllers.filter({$0 as? GameViewController != nil})[0] {
 //            vc.dismiss(animated: false, completion: nil)
 //        } else {
@@ -100,6 +104,8 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    
+        
         //self.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: (#selector(self.handlePanGesture(gestureRecognizer:)))))
         
 //        self.transitionManager.sourceViewController = self
@@ -122,16 +128,25 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
         
         customInteractionController.shouldPop = false
         customInteractionController.forPush = ("ColorPicking", "ColorPickerView")
-        customInteractionController.attachToViewController(viewController: self)
+        
         
         navigationController?.delegate = self as UINavigationControllerDelegate
         
+        customInteractionController.shouldPop = false
         
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("Menu did appear")
+        customInteractionController.attachToViewController(viewController: self)
+        customInteractionController.shouldPop = false
     }
     
     @objc func handlePanGesture(gestureRecognizer: UIPanGestureRecognizer) {
         print("panned")
         if gestureRecognizer.translation(in: self.view).x > 0 {
+            
             print("right")
             print(gestureRecognizer.translation(in: self.view).x)
         } else {
@@ -144,14 +159,31 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
     
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if operation == .push {
-            if ((toVC as? ColorPickerViewController) != nil) {
+            if ((toVC as? ColorPickerViewController) != nil) && ((fromVC as? MenuViewController) != nil) {
+                customInteractionController.attachToViewController(viewController: toVC)
                 customInteractionController.pullLeft = false
-            } else {
+            
+            } else if ((toVC as? SetttingsViewController) != nil) && ((fromVC as? MenuViewController) != nil) {
+                customInteractionController.attachToViewController(viewController: toVC)
                 customInteractionController.pullLeft = true
             }
-            customInteractionController.attachToViewController(viewController: toVC)
+            
+            
+            
+        } else {
+//            if let vc: MenuViewController = toVC as? MenuViewController {
+//                //customInteractionController.attachToViewController(viewController: vc)
+//            }
+            if ((toVC as? MenuViewController) != nil) && ((fromVC as? ColorPickerViewController) != nil) {
+                customInteractionController.pullLeft = true
+            } else if ((toVC as? MenuViewController) != nil) && ((fromVC as? SetttingsViewController) != nil) {
+                customInteractionController.pullLeft = false
+                
+            }
+            
         }
 //        customNavigationAnimationController.reverse = operation == .pop
+        customNavigationAnimationController.reverse = customInteractionController.pullLeft
         return customNavigationAnimationController
     }
     
@@ -202,7 +234,12 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
         let vc = storyBoard.instantiateViewController(withIdentifier: "GameView") as! GameViewController
         vc.EndGameDelegate = self
         
+        //navigationController!.present(vc, animated: true, completion: nil)
+        
         navigationController?.pushViewController(vc, animated: true)
+        
+        
+        //self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func goToSettings(_ sender: Any) {

@@ -218,6 +218,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BhX-U6-vSe"/>
                     </view>
+                    <navigationItem key="navigationItem" id="FPH-BQ-2Cd"/>
                     <connections>
                         <outlet property="C" destination="3ox-cB-Qr2" id="4pw-T7-aEI"/>
                         <outlet property="E" destination="Kb1-ls-GUj" id="POa-z8-vs1"/>
