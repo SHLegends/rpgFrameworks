@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="efS-jn-s1g">
-    <device id="retina5_5" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="Avenir.ttc">
             <string>Avenir-Book</string>
+        </array>
+        <array key="Menlo.ttc">
+            <string>Menlo-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -19,202 +23,266 @@
             <objects>
                 <viewController storyboardIdentifier="GameView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="efS-jn-s1g" customClass="GameViewController" customModule="Shift" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Weq-4f-PB4">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ud-zL-74R" customClass="ColorCircle" customModule="Shift" customModuleProvider="target">
-                                <rect key="frame" x="20" y="311" width="115" height="115"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="circleOut:" destination="efS-jn-s1g" eventType="touchUpOutside" id="0A9-sg-Dyl"/>
-                                    <action selector="circlePressed:" destination="efS-jn-s1g" eventType="touchUpInside" id="KGT-oP-Gus"/>
-                                    <action selector="circleTouchDown:" destination="efS-jn-s1g" eventType="touchDown" id="FqP-Jh-wNE"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kb1-ls-GUj" customClass="ColorCircle" customModule="Shift" customModuleProvider="target">
-                                <rect key="frame" x="279" y="311" width="115" height="115"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="circleOut:" destination="efS-jn-s1g" eventType="touchUpOutside" id="19F-wU-HEn"/>
-                                    <action selector="circlePressed:" destination="efS-jn-s1g" eventType="touchUpInside" id="lCO-NF-bFd"/>
-                                    <action selector="circleTouchDown:" destination="efS-jn-s1g" eventType="touchDown" id="4se-Z1-7wf"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ox-cB-Qr2" customClass="ColorCircle" customModule="Shift" customModuleProvider="target">
-                                <rect key="frame" x="150" y="311" width="115" height="115"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="circleOut:" destination="efS-jn-s1g" eventType="touchUpOutside" id="Dzh-dZ-H4f"/>
-                                    <action selector="circlePressed:" destination="efS-jn-s1g" eventType="touchUpInside" id="lp9-wR-zXz"/>
-                                    <action selector="circleTouchDown:" destination="efS-jn-s1g" eventType="touchDown" id="JHv-Qb-bG7"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFP-RR-pxX" customClass="ColorCircle" customModule="Shift" customModuleProvider="target">
-                                <rect key="frame" x="20" y="441" width="115" height="115"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="circleOut:" destination="efS-jn-s1g" eventType="touchUpOutside" id="Uwr-HB-Llr"/>
-                                    <action selector="circlePressed:" destination="efS-jn-s1g" eventType="touchUpInside" id="Hgd-al-cby"/>
-                                    <action selector="circleTouchDown:" destination="efS-jn-s1g" eventType="touchDown" id="hQ6-AA-upg"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7c-ni-0Pi" customClass="ColorCircle" customModule="Shift" customModuleProvider="target">
-                                <rect key="frame" x="150" y="440" width="115" height="115"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="circleOut:" destination="efS-jn-s1g" eventType="touchUpOutside" id="AoH-Oa-Gpn"/>
-                                    <action selector="circlePressed:" destination="efS-jn-s1g" eventType="touchUpInside" id="6ZW-Wg-aw3"/>
-                                    <action selector="circleTouchDown:" destination="efS-jn-s1g" eventType="touchDown" id="68w-yK-KqF"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1HD-ek-THk" customClass="ColorCircle" customModule="Shift" customModuleProvider="target">
-                                <rect key="frame" x="279" y="441" width="115" height="115"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="circleOut:" destination="efS-jn-s1g" eventType="touchUpOutside" id="GqZ-mc-t3p"/>
-                                    <action selector="circlePressed:" destination="efS-jn-s1g" eventType="touchUpInside" id="6zP-xt-EeN"/>
-                                    <action selector="circleTouchDown:" destination="efS-jn-s1g" eventType="touchDown" id="S6g-Zg-I3Y"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QTQ-xK-m9F" customClass="ColorCircle" customModule="Shift" customModuleProvider="target">
-                                <rect key="frame" x="279" y="181" width="115" height="115"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="circleOut:" destination="efS-jn-s1g" eventType="touchUpOutside" id="zpy-tz-zga"/>
-                                    <action selector="circlePressed:" destination="efS-jn-s1g" eventType="touchUpInside" id="Ldw-AL-vBr"/>
-                                    <action selector="circleTouchDown:" destination="efS-jn-s1g" eventType="touchDown" id="rkd-Me-bo7"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCb-CU-tcm" customClass="ColorCircle" customModule="Shift" customModuleProvider="target">
-                                <rect key="frame" x="150" y="181" width="115" height="115"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="circleOut:" destination="efS-jn-s1g" eventType="touchUpOutside" id="Nx0-XG-4Ir"/>
-                                    <action selector="circlePressed:" destination="efS-jn-s1g" eventType="touchUpInside" id="NDp-uZ-pTy"/>
-                                    <action selector="circleTouchDown:" destination="efS-jn-s1g" eventType="touchDown" id="Pfq-Ev-Msb"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nso-Nk-0Dz" customClass="ColorCircle" customModule="Shift" customModuleProvider="target">
-                                <rect key="frame" x="20" y="181" width="115" height="115"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="circleOut:" destination="efS-jn-s1g" eventType="touchUpOutside" id="hbB-b9-qKT"/>
-                                    <action selector="circlePressed:" destination="efS-jn-s1g" eventType="touchUpInside" id="IPQ-gR-xPT"/>
-                                    <action selector="circleTouchDown:" destination="efS-jn-s1g" eventType="touchDown" id="5bn-v8-0og"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0do-fJ-Tlh">
-                                <rect key="frame" x="193" y="647.66666666666663" width="28" height="68.333333333333371"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="50"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0do-fJ-Tlh">
+                                <rect key="frame" x="145" y="500.5" width="30.5" height="58.5"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="50"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZU-Yc-sMA">
-                                <rect key="frame" x="200" y="618" width="14" height="0.0"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time between taps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GIS-5d-gVN">
-                                <rect key="frame" x="136" y="8" width="142" height="24"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUf-zz-V03">
-                                <rect key="frame" x="187" y="701" width="41" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZU-Yc-sMA">
+                                <rect key="frame" x="200" y="314.5" width="14" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1VR-dP-M4J">
-                                <rect key="frame" x="182" y="622.33333333333337" width="51" height="29"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="21"/>
+                                <rect key="frame" x="128.5" y="444" width="63.5" height="49"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEU-Mw-BaP">
-                                <rect key="frame" x="193" y="109" width="28" height="23.333333333333343"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HEU-Mw-BaP">
+                                <rect key="frame" x="10" y="109.5" width="300" height="14.5"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Over" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zd8-cs-Tub">
-                                <rect key="frame" x="64.333333333333343" y="332.33333333333331" width="287.33333333333326" height="71.666666666666686"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Over" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zd8-cs-Tub">
+                                <rect key="frame" x="307" y="659" width="87" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="60"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5kp-Sw-U7A">
+                                <rect key="frame" x="15" y="139" width="290" height="290"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="rAe-Pl-mHw">
+                                        <rect key="frame" x="0.0" y="0.0" width="290" height="83.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nso-Nk-0Dz" customClass="ColorCircle" customModule="Shift" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="83.5" height="83.5"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Nso-Nk-0Dz" secondAttribute="height" multiplier="1:1" id="MPL-Xx-c4W"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="circleOut:" destination="efS-jn-s1g" eventType="touchUpOutside" id="hbB-b9-qKT"/>
+                                                    <action selector="circlePressed:" destination="efS-jn-s1g" eventType="touchUpInside" id="IPQ-gR-xPT"/>
+                                                    <action selector="circleTouchDown:" destination="efS-jn-s1g" eventType="touchDown" id="5bn-v8-0og"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCb-CU-tcm" customClass="ColorCircle" customModule="Shift" customModuleProvider="target">
+                                                <rect key="frame" x="103.5" y="0.0" width="83.5" height="83.5"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="dCb-CU-tcm" secondAttribute="height" multiplier="1:1" id="0NY-oO-BcC"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="circleOut:" destination="efS-jn-s1g" eventType="touchUpOutside" id="Nx0-XG-4Ir"/>
+                                                    <action selector="circlePressed:" destination="efS-jn-s1g" eventType="touchUpInside" id="NDp-uZ-pTy"/>
+                                                    <action selector="circleTouchDown:" destination="efS-jn-s1g" eventType="touchDown" id="Pfq-Ev-Msb"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QTQ-xK-m9F" customClass="ColorCircle" customModule="Shift" customModuleProvider="target">
+                                                <rect key="frame" x="207" y="0.0" width="83" height="83.5"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="QTQ-xK-m9F" secondAttribute="height" multiplier="1:1" id="sSH-xG-sYa"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="circleOut:" destination="efS-jn-s1g" eventType="touchUpOutside" id="zpy-tz-zga"/>
+                                                    <action selector="circlePressed:" destination="efS-jn-s1g" eventType="touchUpInside" id="Ldw-AL-vBr"/>
+                                                    <action selector="circleTouchDown:" destination="efS-jn-s1g" eventType="touchDown" id="rkd-Me-bo7"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="QTQ-xK-m9F" firstAttribute="height" secondItem="Nso-Nk-0Dz" secondAttribute="height" id="Jra-uS-GUH"/>
+                                            <constraint firstItem="dCb-CU-tcm" firstAttribute="width" secondItem="Nso-Nk-0Dz" secondAttribute="width" id="fud-zK-eJK"/>
+                                            <constraint firstItem="QTQ-xK-m9F" firstAttribute="width" secondItem="Nso-Nk-0Dz" secondAttribute="width" id="v8D-5t-VJD"/>
+                                            <constraint firstItem="dCb-CU-tcm" firstAttribute="height" secondItem="Nso-Nk-0Dz" secondAttribute="height" id="zpt-Gg-K1X"/>
+                                        </constraints>
+                                        <variation key="heightClass=regular-widthClass=regular" spacing="40"/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="KlG-rR-Rti">
+                                        <rect key="frame" x="0.0" y="103.5" width="290" height="83.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ud-zL-74R" customClass="ColorCircle" customModule="Shift" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="83.5" height="83.5"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="4Ud-zL-74R" secondAttribute="height" multiplier="1:1" id="wFe-zq-ILf"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="circleOut:" destination="efS-jn-s1g" eventType="touchUpOutside" id="0A9-sg-Dyl"/>
+                                                    <action selector="circlePressed:" destination="efS-jn-s1g" eventType="touchUpInside" id="KGT-oP-Gus"/>
+                                                    <action selector="circleTouchDown:" destination="efS-jn-s1g" eventType="touchDown" id="FqP-Jh-wNE"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ox-cB-Qr2" customClass="ColorCircle" customModule="Shift" customModuleProvider="target">
+                                                <rect key="frame" x="103.5" y="0.0" width="83.5" height="83.5"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="3ox-cB-Qr2" secondAttribute="height" multiplier="1:1" id="Vah-bE-EZv"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="circleOut:" destination="efS-jn-s1g" eventType="touchUpOutside" id="Dzh-dZ-H4f"/>
+                                                    <action selector="circlePressed:" destination="efS-jn-s1g" eventType="touchUpInside" id="lp9-wR-zXz"/>
+                                                    <action selector="circleTouchDown:" destination="efS-jn-s1g" eventType="touchDown" id="JHv-Qb-bG7"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kb1-ls-GUj" customClass="ColorCircle" customModule="Shift" customModuleProvider="target">
+                                                <rect key="frame" x="207" y="0.0" width="83" height="83.5"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Kb1-ls-GUj" secondAttribute="height" multiplier="1:1" id="UlI-dZ-CLo"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="circleOut:" destination="efS-jn-s1g" eventType="touchUpOutside" id="19F-wU-HEn"/>
+                                                    <action selector="circlePressed:" destination="efS-jn-s1g" eventType="touchUpInside" id="lCO-NF-bFd"/>
+                                                    <action selector="circleTouchDown:" destination="efS-jn-s1g" eventType="touchDown" id="4se-Z1-7wf"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Kb1-ls-GUj" firstAttribute="width" secondItem="4Ud-zL-74R" secondAttribute="width" id="6F1-xO-yYe"/>
+                                            <constraint firstItem="3ox-cB-Qr2" firstAttribute="height" secondItem="4Ud-zL-74R" secondAttribute="height" id="8NR-bm-FQL"/>
+                                            <constraint firstItem="3ox-cB-Qr2" firstAttribute="width" secondItem="4Ud-zL-74R" secondAttribute="width" id="D0t-c1-9eS"/>
+                                            <constraint firstItem="Kb1-ls-GUj" firstAttribute="height" secondItem="4Ud-zL-74R" secondAttribute="height" id="k0y-Ve-cQS"/>
+                                        </constraints>
+                                        <variation key="heightClass=regular-widthClass=regular" spacing="40"/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="aey-pR-qRo">
+                                        <rect key="frame" x="0.0" y="207" width="290" height="83"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFP-RR-pxX" customClass="ColorCircle" customModule="Shift" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="83.5" height="83"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="nFP-RR-pxX" secondAttribute="height" multiplier="1:1" id="dde-H7-2Bq"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="circleOut:" destination="efS-jn-s1g" eventType="touchUpOutside" id="Uwr-HB-Llr"/>
+                                                    <action selector="circlePressed:" destination="efS-jn-s1g" eventType="touchUpInside" id="Hgd-al-cby"/>
+                                                    <action selector="circleTouchDown:" destination="efS-jn-s1g" eventType="touchDown" id="hQ6-AA-upg"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7c-ni-0Pi" customClass="ColorCircle" customModule="Shift" customModuleProvider="target">
+                                                <rect key="frame" x="103.5" y="0.0" width="83.5" height="83"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="V7c-ni-0Pi" secondAttribute="height" multiplier="1:1" id="1Q0-B7-0jl"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="circleOut:" destination="efS-jn-s1g" eventType="touchUpOutside" id="AoH-Oa-Gpn"/>
+                                                    <action selector="circlePressed:" destination="efS-jn-s1g" eventType="touchUpInside" id="6ZW-Wg-aw3"/>
+                                                    <action selector="circleTouchDown:" destination="efS-jn-s1g" eventType="touchDown" id="68w-yK-KqF"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1HD-ek-THk" customClass="ColorCircle" customModule="Shift" customModuleProvider="target">
+                                                <rect key="frame" x="207" y="0.0" width="83" height="83"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="1HD-ek-THk" secondAttribute="height" multiplier="1:1" id="PPC-F2-Thg"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="circleOut:" destination="efS-jn-s1g" eventType="touchUpOutside" id="GqZ-mc-t3p"/>
+                                                    <action selector="circlePressed:" destination="efS-jn-s1g" eventType="touchUpInside" id="6zP-xt-EeN"/>
+                                                    <action selector="circleTouchDown:" destination="efS-jn-s1g" eventType="touchDown" id="S6g-Zg-I3Y"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="V7c-ni-0Pi" firstAttribute="width" secondItem="nFP-RR-pxX" secondAttribute="width" id="IkQ-rM-1U4"/>
+                                            <constraint firstItem="1HD-ek-THk" firstAttribute="height" secondItem="nFP-RR-pxX" secondAttribute="height" id="WiL-9P-8gj"/>
+                                            <constraint firstItem="1HD-ek-THk" firstAttribute="width" secondItem="nFP-RR-pxX" secondAttribute="width" id="fPv-gb-nZJ"/>
+                                            <constraint firstItem="V7c-ni-0Pi" firstAttribute="height" secondItem="nFP-RR-pxX" secondAttribute="height" id="kVH-ye-LOO"/>
+                                        </constraints>
+                                        <variation key="heightClass=regular-widthClass=regular" spacing="40"/>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="aey-pR-qRo" firstAttribute="height" secondItem="rAe-Pl-mHw" secondAttribute="height" id="4qc-9t-Z8g"/>
+                                    <constraint firstItem="aey-pR-qRo" firstAttribute="width" secondItem="rAe-Pl-mHw" secondAttribute="width" id="PKw-BA-TP6"/>
+                                    <constraint firstItem="KlG-rR-Rti" firstAttribute="height" secondItem="rAe-Pl-mHw" secondAttribute="height" id="Qg0-PB-KbA"/>
+                                    <constraint firstItem="KlG-rR-Rti" firstAttribute="width" secondItem="rAe-Pl-mHw" secondAttribute="width" id="cF8-2e-xFg"/>
+                                </constraints>
+                                <variation key="heightClass=regular-widthClass=regular" spacing="40"/>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="zd8-cs-Tub" firstAttribute="centerY" secondItem="Weq-4f-PB4" secondAttribute="centerY" id="1CQ-fL-A50"/>
-                            <constraint firstItem="BhX-U6-vSe" firstAttribute="bottom" secondItem="0do-fJ-Tlh" secondAttribute="bottom" constant="20" id="2KA-DE-RJd"/>
-                            <constraint firstItem="1VR-dP-M4J" firstAttribute="centerY" secondItem="Weq-4f-PB4" secondAttribute="centerY" constant="268.5" id="2M2-1E-bD7"/>
-                            <constraint firstItem="GIS-5d-gVN" firstAttribute="centerY" secondItem="Weq-4f-PB4" secondAttribute="centerY" constant="-348" id="4D6-qJ-gCG"/>
-                            <constraint firstItem="HEU-Mw-BaP" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="7t1-g9-34A"/>
-                            <constraint firstItem="HEU-Mw-BaP" firstAttribute="centerY" secondItem="Weq-4f-PB4" secondAttribute="centerY" constant="-247.33000000000001" id="8x2-GO-Jr2"/>
-                            <constraint firstItem="0do-fJ-Tlh" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="AkR-Ii-4HT"/>
-                            <constraint firstItem="CZU-Yc-sMA" firstAttribute="centerY" secondItem="Weq-4f-PB4" secondAttribute="centerY" constant="250" id="J5Z-yY-YAe"/>
-                            <constraint firstItem="0do-fJ-Tlh" firstAttribute="top" secondItem="CZU-Yc-sMA" secondAttribute="bottom" constant="29.670000000000002" id="m0i-bZ-paA"/>
-                            <constraint firstItem="GIS-5d-gVN" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="r4X-bg-FHT"/>
-                            <constraint firstItem="1VR-dP-M4J" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="szQ-ls-FKp"/>
-                            <constraint firstItem="zd8-cs-Tub" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="zzE-MO-zvg"/>
+                            <constraint firstItem="BhX-U6-vSe" firstAttribute="trailing" secondItem="5kp-Sw-U7A" secondAttribute="trailing" constant="15" id="5Kf-bf-rlr">
+                                <variation key="heightClass=regular-widthClass=regular" constant="60"/>
+                            </constraint>
+                            <constraint firstItem="BhX-U6-vSe" firstAttribute="bottom" secondItem="0do-fJ-Tlh" secondAttribute="bottom" constant="9" id="6Nk-0w-WFC"/>
+                            <constraint firstItem="0do-fJ-Tlh" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="9Lr-RU-grA"/>
+                            <constraint firstItem="1VR-dP-M4J" firstAttribute="top" secondItem="5kp-Sw-U7A" secondAttribute="bottom" constant="15" id="Hza-E2-z7a">
+                                <variation key="heightClass=regular-widthClass=regular" constant="60"/>
+                            </constraint>
+                            <constraint firstItem="HEU-Mw-BaP" firstAttribute="leading" secondItem="BhX-U6-vSe" secondAttribute="leading" constant="10" id="Iz5-QO-Eyg"/>
+                            <constraint firstItem="BhX-U6-vSe" firstAttribute="trailing" secondItem="HEU-Mw-BaP" secondAttribute="trailing" constant="10" id="T2X-uN-zR3"/>
+                            <constraint firstItem="HEU-Mw-BaP" firstAttribute="top" secondItem="BhX-U6-vSe" secondAttribute="top" constant="89" id="W0q-g6-kmR"/>
+                            <constraint firstItem="5kp-Sw-U7A" firstAttribute="top" secondItem="HEU-Mw-BaP" secondAttribute="bottom" constant="15" id="Zhl-fG-FWG">
+                                <variation key="heightClass=regular-widthClass=regular" constant="60"/>
+                            </constraint>
+                            <constraint firstItem="0do-fJ-Tlh" firstAttribute="top" secondItem="1VR-dP-M4J" secondAttribute="bottom" constant="7.5" id="iwb-Ex-FPC"/>
+                            <constraint firstItem="5kp-Sw-U7A" firstAttribute="centerY" secondItem="Weq-4f-PB4" secondAttribute="centerY" id="oeH-tC-R26"/>
+                            <constraint firstItem="5kp-Sw-U7A" firstAttribute="leading" secondItem="BhX-U6-vSe" secondAttribute="leading" constant="15" id="p4s-gt-Yg6">
+                                <variation key="heightClass=regular-widthClass=regular" constant="60"/>
+                            </constraint>
+                            <constraint firstItem="HEU-Mw-BaP" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="wvY-8f-3JC"/>
+                            <constraint firstItem="1VR-dP-M4J" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="x0X-NN-Sa3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BhX-U6-vSe"/>
                     </view>
@@ -231,9 +299,7 @@
                         <outlet property="SW" destination="nFP-RR-pxX" id="0LT-Q4-5GP"/>
                         <outlet property="ScoreLabel" destination="0do-fJ-Tlh" id="Sbk-4c-F34"/>
                         <outlet property="W" destination="4Ud-zL-74R" id="c7e-m2-Idq"/>
-                        <outlet property="liveslabel" destination="GIS-5d-gVN" id="i5Q-ns-3hr"/>
                         <outlet property="multiplierLabel" destination="1VR-dP-M4J" id="jNe-oa-b7G"/>
-                        <outlet property="scorelabell" destination="TUf-zz-V03" id="yM8-G9-5Xw"/>
                         <outlet property="warningLabel" destination="HEU-Mw-BaP" id="ncy-xw-NKM"/>
                     </connections>
                 </viewController>

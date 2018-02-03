@@ -101,8 +101,7 @@ class GameViewController: UIViewController, GameDelgate {
     func screenLoad() {
         colorIndices = randomizeColors(masterColors: Colors)
         self.multiplierLabel.text = ""
-        self.scorelabell.text = ""
-        self.liveslabel.text = ""
+        
         self.buttons = [NW!, N!, NE!, W!, C!, E!, SW!, S!, SE!]
         self.buttons2D = [0: [0: NW!, 1: N!, 2: NE!], 1: [0: W!, 1: C!, 2: E!], 2: [0: SW!, 1: S!, 2: SE!]]
         for i in 0..<self.buttons2D.count {
@@ -115,8 +114,8 @@ class GameViewController: UIViewController, GameDelgate {
         for i in buttons {i.changeColor(self.masterColors[self.colourBin[0]]); i.colorIndex = self.colourBin[0]; i.changeBorderColor(to: self.masterColors[self.colourBin[1]])}
         warningLabel.textColor = foreground
         ScoreLabel.textColor = foreground
-        liveslabel.textColor = foreground
-        scorelabell.textColor = foreground
+        
+        
         self.multiplierLabel.textColor = foreground
         GameOver.textColor = foreground
         GameOver.alpha = 0
@@ -125,16 +124,26 @@ class GameViewController: UIViewController, GameDelgate {
         for i in self.buttons {
             i.alpha = 0
             i.isEnabled = true
+//            i.bounds.size.height = i.bounds.size.width
+//            i.layer.cornerRadius = i.bounds.size.width / 2
         }
         self.ScoreLabel.alpha = 0
         self.ScoreLabel.text = "\(self.score)"
         self.warningLabel.alpha = 0
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+            for i in self.buttons {
+                i.bounds.size.height = i.bounds.size.width
+                i.layer.cornerRadius = i.bounds.size.width / 2
+            }
+        })
+        
         print("Basic Game Setup DONE")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.modalTransitionStyle = .crossDissolve
+        
         
         
         
@@ -175,7 +184,7 @@ class GameViewController: UIViewController, GameDelgate {
     func gameEndAnimation() {
         print("gameEnd triggered")
         var delay = 0.0
-        let by = 0.2
+        let by = 0.05
         let duration = 1.5
         
         for i in buttons {
@@ -431,8 +440,7 @@ class GameViewController: UIViewController, GameDelgate {
         self.tapTimerValue = 0.0
         if self.isFirstTap {
             warningLabel.dismissText(duration: 1)
-            scorelabell.changeColor(themeColor, 0.5)
-            liveslabel.changeColor(themeColor, 0.5)
+            
             self.timeSinceLastTap = Date()
         }
         self.isFirstTap = false

@@ -23,10 +23,13 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
     
 //    let transitionManager = TransitionManager()
     
+    var menuDelegate: MenuSetupDelegate?
+    
     var localScheme: colorScheme = currentScheme
     
     let localArrayToUse = colorHandler.setWithCurrentFirst
     
+    let animationTime = 0.1
     
     var rowSelected: IndexPath? = nil
     
@@ -49,7 +52,7 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
         
         
         
-        UIView.transition(with: row, duration: 0.75, options: [.transitionCrossDissolve, .allowUserInteraction], animations: {
+        UIView.transition(with: row, duration: animationTime, options: [.transitionCrossDissolve, .allowUserInteraction], animations: {
             row.backgroundColor = colorHandler.background
             
 //            row.backgroundLabel.textColor = colorHandler.foreground
@@ -83,8 +86,8 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
                 if let row: colorTableViewCell = self.colorTableView.cellForRow(at: indexPath) as? colorTableViewCell {
                     if row.stateOfAction == .wasTapped {
                         row.stateOfAction = .wasTappedAgain
-                        
-                        UIView.animate(withDuration: 0.75, delay: 0, options: [.allowUserInteraction], animations: {
+                        menuDelegate!.loadViewColors()
+                        UIView.animate(withDuration: animationTime, delay: 0, options: [.allowUserInteraction], animations: {
                             self.view.backgroundColor = colorHandler.themeInUse.background
                             
                             self.colorTableView.separatorColor = colorHandler.foreground

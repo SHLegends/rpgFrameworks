@@ -14,13 +14,17 @@ protocol GameOverDelegate {
     
 }
 
+protocol MenuSetupDelegate {
+    func loadViewColors()
+}
 
 
 var customNavigationAnimator = CustomNavigationAnimationController()
 
-class MenuViewController: UIViewController, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate, GameOverDelegate {
+class MenuViewController: UIViewController, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate, GameOverDelegate, MenuSetupDelegate {
     
     
+
     @IBAction func unwindToMenu(segue: UIStoryboardSegue) { }
     
     
@@ -101,26 +105,125 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
     var masterColors: [UIColor] {get{return Colors}}
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    
-        
-        //self.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: (#selector(self.handlePanGesture(gestureRecognizer:)))))
-        
-//        self.transitionManager.sourceViewController = self
+    func loadViewColors() {
+        navigationController?.view.backgroundColor = themeColor
         self.view.backgroundColor = themeColor
-        let newColor = self.masterColors[colorIndices[0]]
+        
         self.swipeMessage.textColor = foreground
         self.tapLabel.textColor = foreground
         self.highscoreLabel.textColor = foreground
         self.highscoreLabel.text = "Highscore: \(DataManager.highScore)"
+    }
+    
+    var colorShiftNum = 0
+    
+    var colorShiftCurrent = colorHandler.Colors.first!
+    var colorShiftTo = colorHandler.Colors[1]
+    
+    @objc func attributedColorShift() {
+        var attributedString = NSMutableAttributedString(string: "CELOX")
+        
+        if colorShiftNum < attributedString.length {
+            var increment = 0
+            while increment <= colorShiftNum {
+                attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: colorShiftTo, range: NSRange(location: increment, length: 1))
+                
+                increment += 1
+            }
+            if increment < attributedString.length {
+                for i in increment..<attributedString.length {
+                    attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: colorShiftCurrent, range: NSRange(location: i, length: 1))
+                }
+            }
+            
+            colorShiftNum += 1
+            
+            
+            
+        } else {
+            colorShiftCurrent = colorShiftTo
+            colorShiftTo = randColor(Colors.filter({$0 != colorShiftCurrent}))!
+            
+            colorShiftNum = 0
+        }
+        
+        for i in 0..<attributedString.length {
+            attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: colorHandler.Colors[i], range: NSRange(location: i, length: 1))
+        }
+        
+        //attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.red, range: NSRange(location: 0, length: attributedString.length - 2))
+        
+        //        TitleLabel.text = nil
+        //        TitleLabel.attributedText = attributedString
+        
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        attributedColorShift()
+        
+        //self.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: (#selector(self.handlePanGesture(gestureRecognizer:)))))
+        
+//        self.transitionManager.sourceViewController = self
+        
+        
+        loadViewColors()
+        let newColor = self.masterColors[colorIndices[0]]
+        
+        let basicFont = UIFont.monospacedDigitSystemFont(ofSize: 100, weight: UIFont.Weight(rawValue: 10))
+        
+        let fontFeatures = [
+            [UIFontDescriptor.FeatureKey.featureIdentifier: kNumberSpacingType,
+             UIFontDescriptor.FeatureKey.typeIdentifier: kMonospacedTextSelector]
+        ]
+        
+//        self.S.font = basicFont
+//        self.H.font = basicFont
+//        self.I.font = basicFont
+//        self.F.font = basicFont
+//        self.T.font = basicFont
+        
+        
+        self.highscoreLabel.text = "Highscore: \(DataManager.highScore)"
+        
+        let kernValue: CGFloat = 20.0
         
         self.S.textColor = colorHandler.background
+        
+//        let cString = NSMutableAttributedString(string: "C")
+//        cString.addAttribute(NSAttributedStringKey.kern, value: kernValue, range: NSRange(location: 0, length: 1))
+//        self.S.text = nil
+//        self.S.attributedText = cString
+        
         self.H.textColor = colorHandler.background
+        
+//        let hString = NSMutableAttributedString(string: "E")
+//        hString.addAttribute(NSAttributedStringKey.kern, value: kernValue, range: NSRange(location: 0, length: 1))
+//        self.H.text = nil
+//        self.H.attributedText = hString
+        
         self.I.textColor = colorHandler.background
+        
+//        let iString = NSMutableAttributedString(string: "L")
+//        iString.addAttribute(NSAttributedStringKey.kern, value: kernValue, range: NSRange(location: 0, length: 1))
+//        self.I.text = nil
+//        self.I.attributedText = iString
+        
         self.F.textColor = colorHandler.background
+        
+//        let fString = NSMutableAttributedString(string: "O")
+//        fString.addAttribute(NSAttributedStringKey.kern, value: kernValue, range: NSRange(location: 0, length: 1))
+//        self.F.text = nil
+//        self.F.attributedText = fString
+        
         self.T.textColor = colorHandler.background
+        
+//        let tString = NSMutableAttributedString(string: "X")
+//        tString.addAttribute(NSAttributedStringKey.kern, value: kernValue, range: NSRange(location: 0, length: 1))
+//        self.T.text = nil
+//        self.T.attributedText = tString
         
         self.animateTitle()
         self.colorTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self,   selector: (#selector(self.animateTitle)), userInfo: nil, repeats: true)
@@ -135,13 +238,27 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
         customInteractionController.shouldPop = false
         
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//            self.S.font = self.T.font
+//            self.H.font = self.T.font
+//            self.I.font = self.T.font
+//            self.F.font = self.T.font
+            
+        }
+        
+        
+        
     }
+    
+    
     
     override func viewDidAppear(_ animated: Bool) {
         print("Menu did appear")
         customInteractionController.attachToViewController(viewController: self)
         customInteractionController.shouldPop = false
     }
+    
+    
     
     @objc func handlePanGesture(gestureRecognizer: UIPanGestureRecognizer) {
         print("panned")
@@ -160,12 +277,17 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if operation == .push {
             if ((toVC as? ColorPickerViewController) != nil) && ((fromVC as? MenuViewController) != nil) {
+                customNavigationAnimationController.fade = false
                 customInteractionController.attachToViewController(viewController: toVC)
                 customInteractionController.pullLeft = false
             
             } else if ((toVC as? SetttingsViewController) != nil) && ((fromVC as? MenuViewController) != nil) {
+                customNavigationAnimationController.fade = false
                 customInteractionController.attachToViewController(viewController: toVC)
                 customInteractionController.pullLeft = true
+            } else {
+                
+                customNavigationAnimationController.fade = true
             }
             
             
@@ -176,9 +298,13 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
 //            }
             if ((toVC as? MenuViewController) != nil) && ((fromVC as? ColorPickerViewController) != nil) {
                 customInteractionController.pullLeft = true
+                customNavigationAnimationController.fade = false
             } else if ((toVC as? MenuViewController) != nil) && ((fromVC as? SetttingsViewController) != nil) {
                 customInteractionController.pullLeft = false
+                customNavigationAnimationController.fade = false
                 
+            } else {
+                customNavigationAnimationController.fade = true
             }
             
         }
@@ -207,10 +333,14 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-
+        print("preparing for segue")
         if segue.identifier == "toSettings" {
             let toViewController = segue.destination as UIViewController
             toViewController.transitioningDelegate = self
+        }
+        
+        if let toVC: ColorPickerViewController = segue.destination as? ColorPickerViewController {
+            toVC.menuDelegate = self
         }
         
         

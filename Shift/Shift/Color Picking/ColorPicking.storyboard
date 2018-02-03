@@ -9,8 +9,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Avenir.ttc">
-            <string>Avenir-Book</string>
+        <array key="Menlo.ttc">
+            <string>Menlo-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -22,33 +22,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gGo-pA-b2R">
-                                <rect key="frame" x="0.0" y="139" width="414" height="597"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gGo-pA-b2R">
+                                <rect key="frame" x="0.0" y="106" width="414" height="630"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="150" id="zXU-rv-cmY" customClass="colorTableViewCell" customModule="Shift" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zXU-rv-cmY" id="yOv-sl-435" customClass="colorTableViewCell" customModule="Shift" customModuleProvider="target">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zXU-rv-cmY" id="yOv-sl-435" customClass="UITableViewCellContentView">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="149.66666666666666"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZR-Ie-HGZ">
-                                                    <rect key="frame" x="15" y="42" width="384" height="34"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="25"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZR-Ie-HGZ">
+                                                    <rect key="frame" x="177" y="45" width="60.333333333333343" height="29.333333333333329"/>
+                                                    <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="25"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZN5-Pe-4xv">
-                                                    <rect key="frame" x="15" y="84" width="384" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="Price" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZN5-Pe-4xv">
+                                                    <rect key="frame" x="181.66666666666666" y="82.333333333333329" width="51.333333333333343" height="20"/>
+                                                    <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ZN5-Pe-4xv" firstAttribute="centerX" secondItem="yOv-sl-435" secondAttribute="centerX" id="04v-Xm-jeP"/>
+                                                <constraint firstItem="mZR-Ie-HGZ" firstAttribute="centerY" secondItem="yOv-sl-435" secondAttribute="centerY" constant="-15.83" id="8ip-dJ-uux"/>
+                                                <constraint firstItem="mZR-Ie-HGZ" firstAttribute="centerX" secondItem="yOv-sl-435" secondAttribute="centerX" id="eE5-ZZ-7Vs"/>
+                                                <constraint firstItem="ZN5-Pe-4xv" firstAttribute="top" secondItem="mZR-Ie-HGZ" secondAttribute="bottom" constant="8" id="eEi-v2-oyI"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -60,15 +64,15 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credits:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJs-eb-7qN">
-                                <rect key="frame" x="177.33333333333334" y="99" width="59.666666666666657" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alX-If-XhY">
+                                <rect key="frame" x="171.33333333333334" y="38" width="71.666666666666657" height="20"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alX-If-XhY">
-                                <rect key="frame" x="181" y="60" width="52" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Credits:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJs-eb-7qN">
+                                <rect key="frame" x="166" y="66" width="82" height="20"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -76,14 +80,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="gGo-pA-b2R" firstAttribute="leading" secondItem="MJn-eR-JTC" secondAttribute="leading" id="776-qL-0sC"/>
-                            <constraint firstItem="alX-If-XhY" firstAttribute="centerX" secondItem="Dx4-Xv-vN0" secondAttribute="centerX" id="7ZC-Cu-67Z"/>
-                            <constraint firstItem="gGo-pA-b2R" firstAttribute="bottom" secondItem="MJn-eR-JTC" secondAttribute="bottom" id="7ql-ht-gNQ"/>
-                            <constraint firstItem="alX-If-XhY" firstAttribute="centerY" secondItem="Dx4-Xv-vN0" secondAttribute="centerY" constant="-297.5" id="JPR-mO-AaP"/>
-                            <constraint firstItem="HJs-eb-7qN" firstAttribute="centerY" secondItem="Dx4-Xv-vN0" secondAttribute="centerY" constant="-258.5" id="Nf7-qg-wxL"/>
-                            <constraint firstItem="gGo-pA-b2R" firstAttribute="top" secondItem="HJs-eb-7qN" secondAttribute="bottom" constant="19" id="Xzt-lM-A3p"/>
-                            <constraint firstItem="gGo-pA-b2R" firstAttribute="trailing" secondItem="MJn-eR-JTC" secondAttribute="trailing" id="gOE-fb-46z"/>
-                            <constraint firstItem="HJs-eb-7qN" firstAttribute="centerX" secondItem="Dx4-Xv-vN0" secondAttribute="centerX" id="pCs-hU-xku"/>
+                            <constraint firstItem="HJs-eb-7qN" firstAttribute="top" secondItem="alX-If-XhY" secondAttribute="bottom" constant="8" id="3XF-fK-6g5"/>
+                            <constraint firstItem="alX-If-XhY" firstAttribute="top" secondItem="MJn-eR-JTC" secondAttribute="top" constant="18" id="ORw-ZR-cJz"/>
+                            <constraint firstItem="gGo-pA-b2R" firstAttribute="top" secondItem="HJs-eb-7qN" secondAttribute="bottom" constant="20" id="OXz-3u-kHw"/>
+                            <constraint firstItem="gGo-pA-b2R" firstAttribute="leading" secondItem="MJn-eR-JTC" secondAttribute="leading" id="X8x-TK-Duh"/>
+                            <constraint firstItem="alX-If-XhY" firstAttribute="centerX" secondItem="Dx4-Xv-vN0" secondAttribute="centerX" id="ZaB-ds-dxh"/>
+                            <constraint firstItem="gGo-pA-b2R" firstAttribute="centerX" secondItem="Dx4-Xv-vN0" secondAttribute="centerX" id="bsb-db-gbn"/>
+                            <constraint firstItem="gGo-pA-b2R" firstAttribute="trailing" secondItem="MJn-eR-JTC" secondAttribute="trailing" id="h8w-dP-X4W"/>
+                            <constraint firstItem="HJs-eb-7qN" firstAttribute="centerX" secondItem="Dx4-Xv-vN0" secondAttribute="centerX" id="loK-2m-2q5"/>
+                            <constraint firstItem="gGo-pA-b2R" firstAttribute="bottom" secondItem="MJn-eR-JTC" secondAttribute="bottom" id="mSu-ef-RLq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MJn-eR-JTC"/>
                         <connections>
@@ -104,14 +109,6 @@
                 </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="56.521739130434788" y="136.95652173913044"/>
-        </scene>
-        <!--MainMenu-->
-        <scene sceneID="nLk-RF-ybJ">
-            <objects>
-                <viewControllerPlaceholder storyboardName="MainMenu" id="Ql2-j5-uLS" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9Py-QP-ysY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="683" y="8"/>
         </scene>
     </scenes>
 </document>
