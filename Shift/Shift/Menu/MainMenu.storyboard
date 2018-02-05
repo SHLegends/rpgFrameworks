@@ -50,19 +50,20 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Highscore" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crC-ty-qID">
-                                <rect key="frame" x="161" y="38" width="92.333333333333314" height="20"/>
+                                <rect key="frame" x="161" y="40" width="92.333333333333314" height="20"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uq1-3V-3be">
-                                <rect key="frame" x="50" y="239.66666666666666" width="314" height="116.66666666666666"/>
+                                <rect key="frame" x="50" y="239.99999999999997" width="314" height="116.66666666666666"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="C" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DXK-0k-yzd">
                                         <rect key="frame" x="0.0" y="0.0" width="62.666666666666664" height="116.66666666666667"/>
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="100"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <size key="shadowOffset" width="3" height="4"/>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="300"/>
                                         </variation>
@@ -72,6 +73,7 @@
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="100"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <size key="shadowOffset" width="3" height="4"/>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="300"/>
                                         </variation>
@@ -81,6 +83,7 @@
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="100"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <size key="shadowOffset" width="3" height="4"/>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="300"/>
                                         </variation>
@@ -90,15 +93,17 @@
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="100"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <size key="shadowOffset" width="3" height="4"/>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="300"/>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VCp-jK-qAQ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VCp-jK-qAQ">
                                         <rect key="frame" x="251.33333333333329" y="0.0" width="62.666666666666657" height="116.66666666666667"/>
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="100"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <size key="shadowOffset" width="3" height="4"/>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="300"/>
                                         </variation>
@@ -119,7 +124,7 @@
                                 <variation key="heightClass=regular-widthClass=regular" constant="100"/>
                             </constraint>
                             <constraint firstItem="dtp-PC-OzT" firstAttribute="centerX" secondItem="XZj-2m-XD2" secondAttribute="centerX" id="7vd-9G-YFu"/>
-                            <constraint firstItem="crC-ty-qID" firstAttribute="top" secondItem="Hau-Hi-2VV" secondAttribute="top" constant="18" id="ADr-2h-igt"/>
+                            <constraint firstItem="crC-ty-qID" firstAttribute="top" secondItem="Hau-Hi-2VV" secondAttribute="top" constant="20" id="ADr-2h-igt"/>
                             <constraint firstItem="Hau-Hi-2VV" firstAttribute="bottom" secondItem="dtp-PC-OzT" secondAttribute="bottom" constant="18" id="RHS-hP-8XO"/>
                             <constraint firstItem="Hau-Hi-2VV" firstAttribute="trailing" secondItem="uq1-3V-3be" secondAttribute="trailing" constant="50" id="bzO-XB-Umb">
                                 <variation key="heightClass=regular-widthClass=regular" constant="100"/>
@@ -149,8 +154,6 @@
                         <outlet property="swipeMessage" destination="dtp-PC-OzT" id="dyq-a9-aXF"/>
                         <outlet property="tapLabel" destination="KJW-Ab-PcK" id="8RU-Wp-cbM"/>
                         <outlet property="view" destination="XZj-2m-XD2" id="IDc-Gl-Alh"/>
-                        <segue destination="xHh-PC-3bv" kind="show" identifier="toColorPicker" id="h2N-BW-ig2"/>
-                        <segue destination="g6h-PP-HgC" kind="show" identifier="toSettings" id="fST-RW-pn9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OEb-NJ-YZW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -184,22 +187,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wxq-4f-dHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="359" y="-86"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="k2L-Gb-FyP">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Settings" id="g6h-PP-HgC" userLabel="Settings" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="s5M-ca-owX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="407" y="75"/>
-        </scene>
-        <!--ColorPicking-->
-        <scene sceneID="U0V-n3-KnR">
-            <objects>
-                <viewControllerPlaceholder storyboardName="ColorPicking" id="xHh-PC-3bv" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ufR-G5-PiN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="393" y="201"/>
         </scene>
     </scenes>
 </document>

@@ -58,7 +58,7 @@ class CustomNavigationAnimationController: NSObject, UIViewControllerAnimatedTra
             
             containerView.addSubview(toView)
             toView.frame.origin.x = reverse ? UIScreen.main.bounds.minX - UIScreen.main.bounds.maxX : UIScreen.main.bounds.maxX
-            var fromViewTo = reverse ? UIScreen.main.bounds.maxX : UIScreen.main.bounds.minX - UIScreen.main.bounds.maxX
+            let fromViewTo = reverse ? UIScreen.main.bounds.maxX : UIScreen.main.bounds.minX - UIScreen.main.bounds.maxX
             
             
             UIView.animate(withDuration: transitionDuration(using: transitionContext)/2, delay: 0.0, options: [], animations: {

@@ -31,8 +31,20 @@ public class ColorCircle: UIButton {
         self.layer.cornerRadius = self.bounds.size.width / 2
         self.clipsToBounds = true
         self.backgroundColor = self.color
-        self.layer.borderWidth = 8
+        
+        print(traitCollection.verticalSizeClass.hashValue)
+        print(traitCollection.horizontalSizeClass.hashValue)
+        
+        
+//        if traitCollection.verticalSizeClass == .regular {
+//            self.layer.borderWidth = 20
+//        } else {
+//
+//        }
        
+        
+        self.layer.borderWidth = 8
+        
     }
     
     override public func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -91,4 +103,35 @@ public class ColorCircle: UIButton {
      }
      */
     
+}
+
+extension UIView {
+    
+    @IBInspectable var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+            layer.masksToBounds = newValue > 0
+        }
+    }
+    
+    @IBInspectable var borderWidth: CGFloat {
+        get {
+            return layer.borderWidth
+        }
+        set {
+            layer.borderWidth = newValue
+        }
+    }
+    
+    @IBInspectable var borderColor: UIColor? {
+        get {
+            return UIColor(cgColor: layer.borderColor!)
+        }
+        set {
+            layer.borderColor = newValue?.cgColor
+        }
+    }
 }

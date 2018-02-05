@@ -30,6 +30,15 @@ struct GameDataManager {
         }
     }
     
+    var tapticMute: Bool {
+        get {
+            return defaults.bool(forKey: "tactileMute")
+        }
+        set {
+            defaults.set(newValue, forKey: "tactileMute")
+        }
+    }
+    
     
     var setsData: [Int] {
         get {
@@ -78,7 +87,6 @@ struct GameDataManager {
     
     var themeInUse: Int {
         get {
-//            return defaults.integer(forKey: "themeInUse")
             for i in 0..<self.setsData.count {
                 switch self.stateOfSets[i] {
                 case .inUse:
@@ -99,12 +107,12 @@ struct GameDataManager {
     
     mutating func setOwned(of: Int) {
         var oldArray = self.setsData
-        if let state: Int = oldArray[of] {
-            if state == 0 {
-                oldArray[of] = 1
-                self.setsData = oldArray
-            }
+         let state: Int = oldArray[of]
+        if state == 0 {
+            oldArray[of] = 1
+            self.setsData = oldArray
         }
+        
     }
     
     

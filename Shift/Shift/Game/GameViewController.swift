@@ -37,10 +37,12 @@ class GameViewController: UIViewController, GameDelgate {
     @IBOutlet weak var multiplierLabel: UILabel!
     @IBOutlet weak var ScoreLabel: UILabel!
     
-    var substractAmount = 1
+    var substractAmount = 2
     
     
     var EndGameDelegate: GameOverDelegate?
+    
+    var roundMultiplier = 1.0
     
     
     
@@ -68,7 +70,8 @@ class GameViewController: UIViewController, GameDelgate {
         
         self.tapTimerValue += 0.1
         if self.score - 1 >= 0 {
-            self.score -= self.substractAmount
+            self.score -= Int(Double(self.substractAmount) * roundMultiplier)
+            print(Int(Double(self.substractAmount) * roundMultiplier), substractAmount, roundMultiplier, round)
             self.ScoreLabel.text = String(self.score)
         } else if self.isFirstTap == false {
             endGame()
@@ -89,7 +92,7 @@ class GameViewController: UIViewController, GameDelgate {
         numOfSameColorTaps = 3
         round = 0
         timeSinceLastTap = Date()
-        substractAmount = 1
+        substractAmount = 2
         colourBin = [Int]()
         colorIndex = 1
         buttons = [ColorCircle]()
@@ -139,6 +142,14 @@ class GameViewController: UIViewController, GameDelgate {
         })
         
         print("Basic Game Setup DONE")
+    }
+    
+    override func viewWillLayoutSubviews() {
+        if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
+            for i in self.buttons {
+                i.layer.borderWidth = 14
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -368,9 +379,10 @@ class GameViewController: UIViewController, GameDelgate {
     func nextRound() {
         
         self.round += 1
-        if self.round % 5 == 0 {
-            self.substractAmount += 1
-        }
+        self.roundMultiplier += 0.25
+//        if self.round % 5 == 0 {
+//            self.substractAmount
+//        }
         
         if self.round == 1 {
             warningLabel.presentTextToStay(newText: "Match the colors to the rings", duration: 0.5)
@@ -397,7 +409,9 @@ class GameViewController: UIViewController, GameDelgate {
             AudioHandler.playSound("glass_ping", "mp3")
         })
         
-        UINotificationFeedbackGenerator().notificationOccurred(.success)
+        if !DataManager.tapticMute {
+            UINotificationFeedbackGenerator().notificationOccurred(.success)
+        }
         for i in self.buttons {
             i.scaling([(0.2, 1.05, 1.1), (0.2, 1, 1)])
             i.changeBorderColor(to: self.masterColors[self.colorIndex], duration: 0.5)
@@ -451,7 +465,7 @@ class GameViewController: UIViewController, GameDelgate {
             AudioHandler.playSound("breakingGlass", "mp3")
             but.colorIndex = self.colorIndex
             but.changeColor(self.masterColors[self.colorIndex])
-            self.score += calcPoints(numOfButtons: 1, timeBetweenTaps: elapsedTime)
+            self.score += Int(Double(calcPoints(numOfButtons: 1, timeBetweenTaps: elapsedTime)) * roundMultiplier)
             checkAfter()
         } else {
             let oldColor = but.colorIndex + 0
@@ -477,19 +491,24 @@ class GameViewController: UIViewController, GameDelgate {
             
             if oldColor == self.colorIndex {
                 
-                UINotificationFeedbackGenerator().notificationOccurred(.error)
+                if !DataManager.tapticMute {
+                    UINotificationFeedbackGenerator().notificationOccurred(.error)
+                }
+                
+                
                 
                 self.numOfSameColorTaps -= 1
+                self.view.bringSubview(toFront: but)
+                but.scaling([(0.2, 1, 0.1), (0.1, 1, 1)])
+                
                 if self.numOfSameColorTaps == 0 {
-                    self.view.bringSubview(toFront: but)
+                    
                     
 //                    but.scale(time: 0.2, x: 3, y: 3)
                     //but.pulsate(duration: 0.6, from: 0.1, to: 10.0)
                     endGame()
                 } else {
                     AudioHandler.playSound("wrong", "mp3")
-                    self.view.bringSubview(toFront: but)
-                    but.scaling([(0.2, 2, 2), (0.1, 1, 1)])
                     //but.pulsate(duration: 0.2, from: 1.0, to: 4.0)
                     if numOfSameColorTaps > 1 {
                         warningLabel.presentText(newText: "Warning: Don't tap single colored buttons", duration: 1, stayFor: 2)
@@ -506,7 +525,7 @@ class GameViewController: UIViewController, GameDelgate {
                 }
             } else {
                 AudioHandler.playSound("breakingGlass", "mp3")
-                self.score += calcPoints(numOfButtons: butNums, timeBetweenTaps: elapsedTime)
+                self.score += Int(Double(calcPoints(numOfButtons: butNums, timeBetweenTaps: elapsedTime)) * roundMultiplier)
             }
             
             ScoreLabel.text = String(self.score)
@@ -533,8 +552,9 @@ class GameViewController: UIViewController, GameDelgate {
         }
         
         self.view.bringSubview(toFront: sender)
-        
-        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+        if !DataManager.tapticMute {
+            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+        }
         sender.dateSinceTouchDown = Date()
     }
     
@@ -544,7 +564,9 @@ class GameViewController: UIViewController, GameDelgate {
         //print(Date().timeIntervalSince(sender.dateSinceTouchDown))
         if Date().timeIntervalSince(sender.dateSinceTouchDown) > 0.2 {
 //            AudioHandler.playSound(self.indexToSound[sender.colorIndex]!, "mp3")
-            //UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            if !DataManager.tapticMute {
+                UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            }
         }
         checkAllSame(sender)
     }

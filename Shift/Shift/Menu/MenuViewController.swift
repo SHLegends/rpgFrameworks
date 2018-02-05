@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreMotion
 
 protocol GameOverDelegate {
     func gameOver(score: Int, delVC: GameViewController)
@@ -44,13 +45,11 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
 //        }
         
         
-        print(navigationController?.viewControllers)
         let storyBoard: UIStoryboard = UIStoryboard(name: "GameOver", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "GameOverView") as! GameOverViewController
         vc.score = score
         vc.gameDelegate = delVC
         navigationController?.pushViewController(vc, animated: true)
-        print(navigationController?.viewControllers)
     }
     
     func playAgain() {
@@ -105,6 +104,9 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
     var masterColors: [UIColor] {get{return Colors}}
     
     
+    
+    
+    
     func loadViewColors() {
         navigationController?.view.backgroundColor = themeColor
         self.view.backgroundColor = themeColor
@@ -121,7 +123,7 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
     var colorShiftTo = colorHandler.Colors[1]
     
     @objc func attributedColorShift() {
-        var attributedString = NSMutableAttributedString(string: "CELOX")
+        let attributedString = NSMutableAttributedString(string: "CELOX")
         
         if colorShiftNum < attributedString.length {
             var increment = 0
@@ -170,14 +172,14 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
         
         
         loadViewColors()
-        let newColor = self.masterColors[colorIndices[0]]
-        
-        let basicFont = UIFont.monospacedDigitSystemFont(ofSize: 100, weight: UIFont.Weight(rawValue: 10))
-        
-        let fontFeatures = [
-            [UIFontDescriptor.FeatureKey.featureIdentifier: kNumberSpacingType,
-             UIFontDescriptor.FeatureKey.typeIdentifier: kMonospacedTextSelector]
-        ]
+//        let newColor = self.masterColors[colorIndices[0]]
+//
+//        let basicFont = UIFont.monospacedDigitSystemFont(ofSize: 100, weight: UIFont.Weight(rawValue: 10))
+//
+//        let fontFeatures = [
+//            [UIFontDescriptor.FeatureKey.featureIdentifier: kNumberSpacingType,
+//             UIFontDescriptor.FeatureKey.typeIdentifier: kMonospacedTextSelector]
+//        ]
         
 //        self.S.font = basicFont
 //        self.H.font = basicFont
@@ -186,9 +188,8 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
 //        self.T.font = basicFont
         
         
-        self.highscoreLabel.text = "Highscore: \(DataManager.highScore)"
         
-        let kernValue: CGFloat = 20.0
+        
         
         self.S.textColor = colorHandler.background
         
@@ -256,6 +257,7 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
         print("Menu did appear")
         customInteractionController.attachToViewController(viewController: self)
         customInteractionController.shouldPop = false
+        self.highscoreLabel.text = "Highscore: \(DataManager.highScore)"
     }
     
     

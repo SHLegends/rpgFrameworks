@@ -18,10 +18,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Game View Controller-->
+        <!--GameVC-->
         <scene sceneID="Cr4-cN-77R">
             <objects>
-                <viewController storyboardIdentifier="GameView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="efS-jn-s1g" customClass="GameViewController" customModule="Shift" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameView" title="GameVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="efS-jn-s1g" customClass="GameViewController" customModule="Shift" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Weq-4f-PB4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -45,16 +45,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HEU-Mw-BaP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HEU-Mw-BaP">
                                 <rect key="frame" x="10" y="109.5" width="300" height="14.5"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Over" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zd8-cs-Tub">
-                                <rect key="frame" x="307" y="659" width="87" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Over" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zd8-cs-Tub">
+                                <rect key="frame" x="10" y="249" width="300" height="70"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="60"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -262,26 +261,28 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="BhX-U6-vSe" firstAttribute="trailing" secondItem="HEU-Mw-BaP" secondAttribute="trailing" constant="10" id="46U-fc-bDE"/>
                             <constraint firstItem="BhX-U6-vSe" firstAttribute="trailing" secondItem="5kp-Sw-U7A" secondAttribute="trailing" constant="15" id="5Kf-bf-rlr">
                                 <variation key="heightClass=regular-widthClass=regular" constant="60"/>
                             </constraint>
                             <constraint firstItem="BhX-U6-vSe" firstAttribute="bottom" secondItem="0do-fJ-Tlh" secondAttribute="bottom" constant="9" id="6Nk-0w-WFC"/>
                             <constraint firstItem="0do-fJ-Tlh" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="9Lr-RU-grA"/>
+                            <constraint firstItem="HEU-Mw-BaP" firstAttribute="leading" secondItem="BhX-U6-vSe" secondAttribute="leading" constant="10" id="Eqv-Ih-WS8"/>
                             <constraint firstItem="1VR-dP-M4J" firstAttribute="top" secondItem="5kp-Sw-U7A" secondAttribute="bottom" constant="15" id="Hza-E2-z7a">
                                 <variation key="heightClass=regular-widthClass=regular" constant="60"/>
                             </constraint>
-                            <constraint firstItem="HEU-Mw-BaP" firstAttribute="leading" secondItem="BhX-U6-vSe" secondAttribute="leading" constant="10" id="Iz5-QO-Eyg"/>
-                            <constraint firstItem="BhX-U6-vSe" firstAttribute="trailing" secondItem="HEU-Mw-BaP" secondAttribute="trailing" constant="10" id="T2X-uN-zR3"/>
                             <constraint firstItem="HEU-Mw-BaP" firstAttribute="top" secondItem="BhX-U6-vSe" secondAttribute="top" constant="89" id="W0q-g6-kmR"/>
+                            <constraint firstItem="zd8-cs-Tub" firstAttribute="centerY" secondItem="Weq-4f-PB4" secondAttribute="centerY" id="WzF-yz-aGu"/>
                             <constraint firstItem="5kp-Sw-U7A" firstAttribute="top" secondItem="HEU-Mw-BaP" secondAttribute="bottom" constant="15" id="Zhl-fG-FWG">
                                 <variation key="heightClass=regular-widthClass=regular" constant="60"/>
                             </constraint>
+                            <constraint firstAttribute="trailing" secondItem="zd8-cs-Tub" secondAttribute="trailing" constant="10" id="hun-lw-Roq"/>
                             <constraint firstItem="0do-fJ-Tlh" firstAttribute="top" secondItem="1VR-dP-M4J" secondAttribute="bottom" constant="7.5" id="iwb-Ex-FPC"/>
+                            <constraint firstItem="zd8-cs-Tub" firstAttribute="leading" secondItem="Weq-4f-PB4" secondAttribute="leading" constant="10" id="kDc-bj-HKo"/>
                             <constraint firstItem="5kp-Sw-U7A" firstAttribute="centerY" secondItem="Weq-4f-PB4" secondAttribute="centerY" id="oeH-tC-R26"/>
                             <constraint firstItem="5kp-Sw-U7A" firstAttribute="leading" secondItem="BhX-U6-vSe" secondAttribute="leading" constant="15" id="p4s-gt-Yg6">
                                 <variation key="heightClass=regular-widthClass=regular" constant="60"/>
                             </constraint>
-                            <constraint firstItem="HEU-Mw-BaP" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="wvY-8f-3JC"/>
                             <constraint firstItem="1VR-dP-M4J" firstAttribute="centerX" secondItem="Weq-4f-PB4" secondAttribute="centerX" id="x0X-NN-Sa3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BhX-U6-vSe"/>
@@ -306,14 +307,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xzE-Ld-as6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1360.8695652173915" y="77.445652173913047"/>
-        </scene>
-        <!--GameOver-->
-        <scene sceneID="9YU-eQ-nq8">
-            <objects>
-                <viewControllerPlaceholder storyboardName="GameOver" id="mhk-35-4Zt" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hZO-h7-r4h" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2087" y="101"/>
         </scene>
     </scenes>
 </document>

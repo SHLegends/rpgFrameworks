@@ -14,10 +14,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Game Over View Controller-->
+        <!--MainMenuVC-->
         <scene sceneID="mlk-Qz-3p8">
             <objects>
-                <viewController storyboardIdentifier="GameOverView" id="aix-RQ-z5j" customClass="GameOverViewController" customModule="Shift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameOverView" title="MainMenuVC" id="aix-RQ-z5j" customClass="GameOverViewController" customModule="Shift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Amv-cs-vCq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -53,13 +53,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOd-hQ-d0L">
-                                <rect key="frame" x="182.5" y="50" width="10" height="20"/>
+                                <rect key="frame" x="182.5" y="65" width="10" height="20"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgz-OO-aJu">
-                                <rect key="frame" x="131" y="25" width="113" height="20"/>
+                                <rect key="frame" x="131" y="40" width="113" height="20"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -83,7 +83,7 @@
                             <constraint firstItem="i3u-IN-aPB" firstAttribute="centerX" secondItem="Amv-cs-vCq" secondAttribute="centerX" id="EFe-if-7MN"/>
                             <constraint firstItem="lgz-OO-aJu" firstAttribute="centerX" secondItem="Amv-cs-vCq" secondAttribute="centerX" id="Ecc-6h-5GR"/>
                             <constraint firstItem="X7B-T7-Qpr" firstAttribute="bottom" secondItem="hoV-mZ-yM2" secondAttribute="bottom" constant="20" id="RAN-Yt-TX3"/>
-                            <constraint firstItem="lgz-OO-aJu" firstAttribute="top" secondItem="X7B-T7-Qpr" secondAttribute="top" constant="5" id="UTP-xn-jb9"/>
+                            <constraint firstItem="lgz-OO-aJu" firstAttribute="top" secondItem="X7B-T7-Qpr" secondAttribute="top" constant="20" id="UTP-xn-jb9"/>
                             <constraint firstItem="HOd-hQ-d0L" firstAttribute="top" secondItem="lgz-OO-aJu" secondAttribute="bottom" constant="5" id="XdR-KT-fGX"/>
                             <constraint firstItem="ZiK-O2-0cw" firstAttribute="top" secondItem="VfF-v2-TFL" secondAttribute="bottom" constant="70" id="aar-ux-TLh"/>
                             <constraint firstItem="VfF-v2-TFL" firstAttribute="centerY" secondItem="Amv-cs-vCq" secondAttribute="centerY" id="aoz-Fb-gn0"/>
@@ -113,30 +113,6 @@
                 <exit id="VH0-Wk-gYv" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-343.47826086956525" y="-18.75"/>
-        </scene>
-        <!--GameView-->
-        <scene sceneID="lG1-YM-lHn">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="GameView" id="NLV-T3-53J" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gzz-TL-pHn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="278" y="-266"/>
-        </scene>
-        <!--Main-->
-        <scene sceneID="V7c-Bo-TYF">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" id="heD-ng-Rvt" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Z6J-CE-W6X" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="570" y="-130"/>
-        </scene>
-        <!--MainMenu-->
-        <scene sceneID="Ryq-ow-drd">
-            <objects>
-                <viewControllerPlaceholder storyboardName="MainMenu" id="sb7-w1-8Cw" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zh5-3C-wLV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="518" y="37"/>
         </scene>
     </scenes>
 </document>

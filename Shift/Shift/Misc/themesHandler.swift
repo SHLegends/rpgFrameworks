@@ -17,9 +17,9 @@ typealias colorScheme = (name: String, background: UIColor, foreground: UIColor,
 enum colorBins {
     
     
-    static let alpha: colorScheme = ("alpha", UIColor.black, UIColor.white, [UIColor.blue, UIColor.white, UIColor.red, UIColor.green, UIColor.brown, UIColor.cyan, UIColor.magenta, UIColor.gray, UIColor.orange, UIColor.purple], 5000, UUID.init().uuidString)
+    static let classic: colorScheme = ("Classic", UIColor.black, UIColor.white, [UIColor.blue, UIColor.white, UIColor.red, UIColor.green, UIColor.brown, UIColor.cyan, UIColor.magenta, UIColor.gray, UIColor.orange, UIColor.purple], 0, UUID.init().uuidString)
     
-    static let betaWhite: colorScheme = ("beta white", UIColor.white, UIColor.black, [UIColor.blue, UIColor.red, UIColor.black, UIColor.green, UIColor.purple], 1000, UUID.init().uuidString)
+    static let classicW: colorScheme = ("Classic(White)", UIColor.white, UIColor.black, [UIColor.blue, UIColor.red, UIColor.black, UIColor.green, UIColor.purple], 0, UUID.init().uuidString)
     
     static let betaBlack: colorScheme = ("beta black", UIColor.black, UIColor.white, [UIColor.blue, UIColor.red, UIColor.white, UIColor.green, UIColor.purple], 0, UUID.init().uuidString)
     
@@ -36,7 +36,7 @@ enum colorBins {
     
 }
 
-let colorSets: [colorScheme] = [colorBins.betaBlack, colorBins.betaWhite, colorBins.flat, colorBins.greyWhite, colorBins.beta2Black, colorBins.beta2White, colorBins.coldWinter]
+let colorSets: [colorScheme] = [colorBins.classic, colorBins.classicW]
 
 
 

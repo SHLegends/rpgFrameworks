@@ -22,29 +22,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="aY2-6q-UJV">
-                                <rect key="frame" x="125.66666666666667" y="351" width="164.66666666666663" height="35"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="f72-0l-2w2">
+                                <rect key="frame" x="10" y="312" width="394" height="112"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0n4-Kg-cPx">
-                                        <rect key="frame" x="0.0" y="0.0" width="108.66666666666667" height="35"/>
-                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="30"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Y7-nG-bZG">
-                                        <rect key="frame" x="115.66666666666669" y="2" width="51" height="31"/>
-                                        <connections>
-                                            <action selector="soundSwitch:" destination="rNG-6v-cZO" eventType="valueChanged" id="vrU-Gg-gCH"/>
-                                        </connections>
-                                    </switch>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="aY2-6q-UJV">
+                                        <rect key="frame" x="133" y="0.0" width="128.33333333333337" height="31"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0n4-Kg-cPx">
+                                                <rect key="frame" x="0.0" y="4" width="72.333333333333329" height="23.333333333333332"/>
+                                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Y7-nG-bZG">
+                                                <rect key="frame" x="79.333333333333343" y="0.0" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="soundSwitch:" destination="rNG-6v-cZO" eventType="valueChanged" id="vrU-Gg-gCH"/>
+                                                </connections>
+                                            </switch>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="tmr-Ah-EVU">
+                                        <rect key="frame" x="33.666666666666657" y="81" width="327" height="31"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taptic Feedback(if available):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dy1-oW-kGS">
+                                                <rect key="frame" x="0.0" y="0.0" width="271" height="31"/>
+                                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OVM-6v-esE">
+                                                <rect key="frame" x="278" y="0.0" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="tapticSwitch:" destination="rNG-6v-cZO" eventType="valueChanged" id="mtO-Yn-c9Q"/>
+                                                </connections>
+                                            </switch>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="aY2-6q-UJV" firstAttribute="centerY" secondItem="DnK-ZC-wLd" secondAttribute="centerY" id="IFz-td-42R"/>
-                            <constraint firstItem="aY2-6q-UJV" firstAttribute="centerX" secondItem="DnK-ZC-wLd" secondAttribute="centerX" id="YRi-qb-3m0"/>
+                            <constraint firstItem="rYn-Zk-eS0" firstAttribute="trailing" secondItem="f72-0l-2w2" secondAttribute="trailing" constant="10" id="C4d-j8-d3t"/>
+                            <constraint firstItem="f72-0l-2w2" firstAttribute="centerY" secondItem="DnK-ZC-wLd" secondAttribute="centerY" id="Mt5-kz-KRh"/>
+                            <constraint firstItem="f72-0l-2w2" firstAttribute="centerX" secondItem="DnK-ZC-wLd" secondAttribute="centerX" id="Z4D-os-5U1"/>
+                            <constraint firstItem="f72-0l-2w2" firstAttribute="leading" secondItem="rYn-Zk-eS0" secondAttribute="leading" constant="10" id="w6U-mL-xXz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rYn-Zk-eS0"/>
                         <connections>
@@ -54,6 +78,8 @@
                     <connections>
                         <outlet property="soundLabel" destination="0n4-Kg-cPx" id="pOD-E9-gVe"/>
                         <outlet property="soundSwitchOutlet" destination="0Y7-nG-bZG" id="MWI-A6-nqQ"/>
+                        <outlet property="tapticLabel" destination="dy1-oW-kGS" id="dZ0-IV-QPu"/>
+                        <outlet property="tapticSwitchOutlet" destination="OVM-6v-esE" id="Ozc-Xj-HfD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rpB-mZ-cqz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -64,14 +90,6 @@
                 </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="108.69565217391305" y="105.97826086956522"/>
-        </scene>
-        <!--MainMenu-->
-        <scene sceneID="Onb-bn-EHH">
-            <objects>
-                <viewControllerPlaceholder storyboardName="MainMenu" id="oJC-t3-Hb4" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3xb-09-BVg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="870" y="92"/>
         </scene>
     </scenes>
 </document>
