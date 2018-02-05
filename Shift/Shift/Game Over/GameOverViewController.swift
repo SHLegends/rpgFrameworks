@@ -15,9 +15,6 @@ protocol GameDelgate {
 class GameOverViewController: UIViewController {
 	override var prefersStatusBarHidden: Bool {return true}
     
-    
-    
- 
     @IBOutlet weak var scoreNum: UILabel!
     @IBOutlet weak var scoreWord: UILabel!
     @IBOutlet weak var playAgain: UIButton!
@@ -29,12 +26,9 @@ class GameOverViewController: UIViewController {
     @IBOutlet weak var highScoreLabel: UILabel!
     
     var score: Int?
-    var PlayAgainDelegate: GameOverDelegate?
     
     var gameDelegate: GameViewController?
     
-    
-//    let transitionManager = TransitionManager()
     var transitionType = "normal"
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,45 +58,6 @@ class GameOverViewController: UIViewController {
         
         self.modalTransitionStyle = .crossDissolve
         
-
-        // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func playAgainPressed(_ sender: Any) {
-        
-//        self.gameDelegate!.restartGame()
-        
-        //self.dismiss(animated: false, completion: nil)
-        
-//        self.presentingViewController!.dismiss(animated: true, completion: nil)
-            //self.performSegue(withIdentifier: "unwindToGame", sender: self)
-
-    }
-    
-    @IBAction func mainMenuPressed(_ sender: Any) {
-        //self.performSegue(withIdentifier: "unwindToMenu", sender: self)
-
-    }
-    
-    
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        
-//        let toViewController = segue.destination as UIViewController
-//        self.transitionManager.direction = self.transitionType
-//        toViewController.transitioningDelegate = self.transitionManager
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
- 
 
 }

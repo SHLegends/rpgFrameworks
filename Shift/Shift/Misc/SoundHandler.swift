@@ -41,7 +41,6 @@ class SoundHandler {
                 if !self.players.filter({$0.key == sound}).isEmpty {
                     if !self.players[sound]!.isPlaying {
                         self.players[sound]!.prepareToPlay()
-                        print("found sound for: \(sound)")
                         self.players[sound]!.play()
                     } else {
                         guard let url = Bundle.main.url(forResource: sound, withExtension: format) else { return }
@@ -51,7 +50,6 @@ class SoundHandler {
                             self.duplicates[index] = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
                             self.duplicates[index].volume = vol
                             self.duplicates[index].prepareToPlay()
-                            print("made duplicate of sound for: \(sound)")
                             self.duplicates[index].play()
                         } catch let error {
                             print(error.localizedDescription)
@@ -65,7 +63,6 @@ class SoundHandler {
                         guard let player = self.players[sound] else { return }
                         player.volume = vol
                         player.prepareToPlay()
-                        print("new sound for: \(sound)")
                         player.play()
                     } catch let error {
                         print(error.localizedDescription)

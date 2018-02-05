@@ -12,8 +12,6 @@ import UIKit
 public class ColorCircle: UIButton {
     @IBInspectable var color: UIColor? = nil
     
-    
-
     var foo = 0
     
     func getColor()-> UIColor? {
@@ -32,16 +30,6 @@ public class ColorCircle: UIButton {
         self.clipsToBounds = true
         self.backgroundColor = self.color
         
-        print(traitCollection.verticalSizeClass.hashValue)
-        print(traitCollection.horizontalSizeClass.hashValue)
-        
-        
-//        if traitCollection.verticalSizeClass == .regular {
-//            self.layer.borderWidth = 20
-//        } else {
-//
-//        }
-       
         
         self.layer.borderWidth = 8
         
@@ -51,10 +39,10 @@ public class ColorCircle: UIButton {
         self.scale(time: 0.2, x: 1, y: 1)
     }
     
+    
     public func handleTouch(_ touches: Set<UITouch>) {
         let touch = touches.first
         if traitCollection.forceTouchCapability == .available {
-            //print(touch!.force )
             let time = 0.2
             switch Int(touch!.force) {
             case 1:
@@ -80,30 +68,11 @@ public class ColorCircle: UIButton {
     }
     
     
-    
-//    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        handleTouch(touches)
-//    }
-//
     override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         handleTouch(touches)
     }
-//
-//    override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        self.scale(time: 0.2, x: 1, y: 1)
-//
-//    }
-    
-
-    /*
-     // Only override draw() if you perform custom drawing.
-     // An empty implementation adversely affects performance during animation.
-     override func draw(_ rect: CGRect) {
-     // Drawing code
-     }
-     */
-    
 }
+
 
 extension UIView {
     

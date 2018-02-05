@@ -138,9 +138,6 @@
                         <viewLayoutGuide key="safeArea" id="Hau-Hi-2VV"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="lCt-rY-9hI" appends="YES" id="i9i-5l-4B7"/>
-                            <outletCollection property="gestureRecognizers" destination="BCV-ne-Pt6" appends="YES" id="N5T-s4-rdf"/>
-                            <outletCollection property="gestureRecognizers" destination="FdK-zA-pL5" appends="YES" id="AJo-rd-4oj"/>
-                            <outletCollection property="gestureRecognizers" destination="RTn-Ch-r5D" appends="YES" id="AxH-Wk-KDS"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="tRi-hS-sQW"/>
@@ -162,21 +159,6 @@
                         <action selector="goToMain:" destination="hxL-Nw-y0j" id="OE8-M6-S6J"/>
                     </connections>
                 </tapGestureRecognizer>
-                <swipeGestureRecognizer direction="right" id="BCV-ne-Pt6">
-                    <connections>
-                        <action selector="goToPicker:" destination="hxL-Nw-y0j" id="lTk-cA-8pq"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <rotationGestureRecognizer id="FdK-zA-pL5">
-                    <connections>
-                        <action selector="resetData:" destination="hxL-Nw-y0j" id="ojl-PU-J4n"/>
-                    </connections>
-                </rotationGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="RTn-Ch-r5D">
-                    <connections>
-                        <action selector="goToSettings:" destination="hxL-Nw-y0j" id="P02-5v-2Oh"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-251" y="83"/>
         </scene>

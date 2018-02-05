@@ -28,9 +28,6 @@ extension UILabel {
         }
     }
     
-    
-    
-    
     func changeColor(_ to: UIColor?, _ time: Double, delay: Double = 0.0) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {UIView.transition(with: self, duration: time, options: .transitionCrossDissolve, animations: {self.textColor = to})})
         
@@ -109,8 +106,6 @@ extension UIButton {
             waitTime += i.time
         }
     }
-    
-    
     
     func pulsate(duration: Double, from: Double = 1, to: Double = 0.8) {
         let pulse = CASpringAnimation(keyPath: "transform.scale")

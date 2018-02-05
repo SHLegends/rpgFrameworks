@@ -12,16 +12,12 @@ import UIKit
 
 class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    /*
-     set up color interactor
- */
     
     @IBOutlet weak var themeLabel: UILabel!
     
     @IBOutlet weak var creditsLabel: UILabel!
     @IBOutlet weak var colorTableView: UITableView!
     
-//    let transitionManager = TransitionManager()
     
     var menuDelegate: MenuSetupDelegate?
     
@@ -35,41 +31,26 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
     
     var scrollToPath: IndexPath? = nil
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return localArrayToUse.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! colorTableViewCell
 
         row.cColorScheme = localArrayToUse[indexPath.row]
         
-
-        
         row.stateOfAction = .normal
-        
-        
-        
-        
-        
+      
         UIView.transition(with: row, duration: animationTime, options: [.transitionCrossDissolve, .allowUserInteraction], animations: {
             row.backgroundColor = colorHandler.background
             
-//            row.backgroundLabel.textColor = colorHandler.foreground
-//            row.backgroundColorView.backgroundColor = row.cColorScheme.background
-//            row.backgroundColorView.layer.masksToBounds = true
-//            row.backgroundColorView.layer.borderWidth = 2
-//            row.backgroundColorView.layer.borderColor = colorHandler.foreground.cgColor
-//            row.backgroundColorView.layer.cornerRadius = 8
             row.nameLabel?.text = "\(row.cColorScheme.name)"
             row.nameLabel?.textColor = colorHandler.foreground
             
             row.priceLabel?.textColor = colorHandler.foreground
-//            row.firstColor.backgroundColor = row.cColorScheme.bin[0]
-//            row.secondColor.backgroundColor = row.cColorScheme.bin[1]
-//            row.thirdColor.backgroundColor = row.cColorScheme.bin[2]
-//            row.fourthColor.backgroundColor = row.cColorScheme.bin[3]
-//            row.fifthColor.backgroundColor = row.cColorScheme.bin[4]
         }, completion: nil)
         return row
     }
@@ -137,30 +118,11 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
             
             self.creditsLabel.text = "\(DataManager.totalCredits)"
             
-            
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         self.rowSelected = indexPath
     }
     
     override var prefersStatusBarHidden: Bool {return true}
-    
-//    func updateBackgroundTheme() {
-//        UIView.transition(with: self.view, duration: 1, options: [.transitionCrossDissolve, .allowUserInteraction], animations: {
-//            self.view.backgroundColor = self.localScheme.background
-//
-//        }, completion: nil)
-//    }
-    
     
     
     override func viewDidLoad() {
@@ -176,30 +138,9 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
         colorTableView.separatorColor = colorHandler.foreground
         
         customNavigationAnimator.reverse = false
-        
-        
-        
-    }
-    
-    
 
-
-    @IBAction func close(_ sender: Any) {
-//        customNavigationAnimator.reverse = true
-//        navigationController?.popViewController(animated: true)
     }
-    
 
-    
-        
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-//        self.colorTime.invalidate()
-//        let toViewController = segue.destination as UIViewController
-//        self.transitionManager.direction = "E"
-//        toViewController.transitioningDelegate = self.transitionManager
-    }
 }
 
 

@@ -75,30 +75,14 @@ class colorTableViewCell: UITableViewCell {
         
     }
     
-//    @IBOutlet weak var backgroundLabel: UILabel!
-//    @IBOutlet weak var backgroundColorView: UILabel!
-    
-//    @IBOutlet weak var firstColor: UILabel!
-//    @IBOutlet weak var secondColor: UILabel!
-//    @IBOutlet weak var thirdColor: UILabel!
-//    @IBOutlet weak var fourthColor: UILabel!
-//    @IBOutlet weak var fifthColor: UILabel!
-    
-    
     
     var cColorScheme: colorScheme = colorSets[0]
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        
         self.selectionStyle = .none
-        
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
+    
 
 }

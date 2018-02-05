@@ -27,7 +27,6 @@
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <state key="normal" title="Play Again"/>
                                 <connections>
-                                    <action selector="playAgainPressed:" destination="aix-RQ-z5j" eventType="touchUpInside" id="YIb-52-1Dt"/>
                                     <segue destination="VH0-Wk-gYv" kind="unwind" unwindAction="unwindToGameWithSegue:" id="GEh-Zl-yv2"/>
                                 </connections>
                             </button>
@@ -42,7 +41,6 @@
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <state key="normal" title="Main Menu"/>
                                 <connections>
-                                    <action selector="mainMenuPressed:" destination="aix-RQ-z5j" eventType="touchUpInside" id="kvX-hw-klL"/>
                                     <segue destination="VH0-Wk-gYv" kind="unwind" unwindAction="unwindToMenuWithSegue:" id="ov0-Ib-wPe"/>
                                 </connections>
                             </button>

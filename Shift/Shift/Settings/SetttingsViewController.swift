@@ -10,7 +10,6 @@ import UIKit
 
 class SetttingsViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
-    let customPresentAnimationController = CustomPresentAnimationController()
     
     @IBOutlet weak var soundSwitchOutlet: UISwitch!
     @IBOutlet weak var soundLabel: UILabel!
@@ -29,7 +28,6 @@ class SetttingsViewController: UIViewController, UIViewControllerTransitioningDe
         self.tapticLabel.textColor = colorHandler.foreground
         self.tapticSwitchOutlet.isOn = !DataManager.tapticMute
         
-        // Do any additional setup after loading the view.
     }
 
     
@@ -41,20 +39,4 @@ class SetttingsViewController: UIViewController, UIViewControllerTransitioningDe
     }
     
     
-    @IBAction func close(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

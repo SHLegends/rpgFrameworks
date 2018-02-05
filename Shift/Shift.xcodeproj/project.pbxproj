@@ -30,13 +30,9 @@
 		8EAC32EA1FDAEA64003B1FF6 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EAC32E91FDAEA64003B1FF6 /* Settings.storyboard */; };
 		8EAC32EC1FDAEA83003B1FF6 /* SetttingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EAC32EB1FDAEA83003B1FF6 /* SetttingsViewController.swift */; };
 		8EC697231FE0B87F000197A5 /* breakingGlass.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8EC697221FE0B87F000197A5 /* breakingGlass.mp3 */; };
-		8EC697251FE0B945000197A5 /* Sad_Trombone.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8EC697241FE0B945000197A5 /* Sad_Trombone.mp3 */; };
 		8EC6972A1FE0BCC6000197A5 /* wrong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8EC697291FE0BCC6000197A5 /* wrong.mp3 */; };
 		8EC6972C1FE423C4000197A5 /* InteractiveControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC6972B1FE423C4000197A5 /* InteractiveControler.swift */; };
-		8ED832AE1FD38DE900C726E5 /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED832AD1FD38DE900C726E5 /* DismissAnimator.swift */; };
 		8EE3C6501FB20B0F0027D562 /* themesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3C64F1FB20B0F0027D562 /* themesHandler.swift */; };
-		8EE3C6521FB605CD0027D562 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE3C6511FB605CD0027D562 /* TransitionManager.swift */; };
-		8EEB35291FC21C4600EFE8D1 /* InteractiveTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEB35281FC21C4600EFE8D1 /* InteractiveTransitionManager.swift */; };
 		8EF74A641FFBF6C800DB530C /* MenuNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF74A631FFBF6C800DB530C /* MenuNavController.swift */; };
 		8EF94AFD1F8C37B1005DB246 /* MiscFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF94AFC1F8C37B1005DB246 /* MiscFunctions.swift */; };
 		8EF94AFF1F93C0CF005DB246 /* MainMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EF94AFE1F93C0CF005DB246 /* MainMenu.storyboard */; };
@@ -71,13 +67,9 @@
 		8EAC32E91FDAEA64003B1FF6 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		8EAC32EB1FDAEA83003B1FF6 /* SetttingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetttingsViewController.swift; sourceTree = "<group>"; };
 		8EC697221FE0B87F000197A5 /* breakingGlass.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = breakingGlass.mp3; sourceTree = "<group>"; };
-		8EC697241FE0B945000197A5 /* Sad_Trombone.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Sad_Trombone.mp3; path = ../../../../../Sad_Trombone.mp3; sourceTree = "<group>"; };
 		8EC697291FE0BCC6000197A5 /* wrong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wrong.mp3; sourceTree = "<group>"; };
 		8EC6972B1FE423C4000197A5 /* InteractiveControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveControler.swift; sourceTree = "<group>"; };
-		8ED832AD1FD38DE900C726E5 /* DismissAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
 		8EE3C64F1FB20B0F0027D562 /* themesHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = themesHandler.swift; sourceTree = "<group>"; };
-		8EE3C6511FB605CD0027D562 /* TransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
-		8EEB35281FC21C4600EFE8D1 /* InteractiveTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTransitionManager.swift; sourceTree = "<group>"; };
 		8EF74A631FFBF6C800DB530C /* MenuNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuNavController.swift; sourceTree = "<group>"; };
 		8EF94AFC1F8C37B1005DB246 /* MiscFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscFunctions.swift; sourceTree = "<group>"; };
 		8EF94AFE1F93C0CF005DB246 /* MainMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainMenu.storyboard; sourceTree = "<group>"; };
@@ -141,7 +133,6 @@
 				8E24E7E61F991A8100D15567 /* ColorPicking.storyboard */,
 				8E24E7E81F9B7EE900D15567 /* ColorPickerViewController.swift */,
 				8E24E7F41F9D351000D15567 /* colorTableViewCell.swift */,
-				8EEB35281FC21C4600EFE8D1 /* InteractiveTransitionManager.swift */,
 			);
 			path = "Color Picking";
 			sourceTree = "<group>";
@@ -165,8 +156,6 @@
 				8EF94AFC1F8C37B1005DB246 /* MiscFunctions.swift */,
 				8E24E7F21F9D093900D15567 /* gameData.swift */,
 				8EE3C64F1FB20B0F0027D562 /* themesHandler.swift */,
-				8EE3C6511FB605CD0027D562 /* TransitionManager.swift */,
-				8ED832AD1FD38DE900C726E5 /* DismissAnimator.swift */,
 				8E8130991FD5A8190021BFA0 /* SoundHandler.swift */,
 				8EC6972B1FE423C4000197A5 /* InteractiveControler.swift */,
 				8E4EF30D1FE5AD2500518CB6 /* CustomNavigation.swift */,
@@ -216,7 +205,6 @@
 			children = (
 				8EAC32E91FDAEA64003B1FF6 /* Settings.storyboard */,
 				8EAC32EB1FDAEA83003B1FF6 /* SetttingsViewController.swift */,
-				8EC697241FE0B945000197A5 /* Sad_Trombone.mp3 */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -291,7 +279,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EC697251FE0B945000197A5 /* Sad_Trombone.mp3 in Resources */,
 				8E24E7EB1F9B92FD00D15567 /* GameOver.storyboard in Resources */,
 				8E24E7E71F991A8100D15567 /* ColorPicking.storyboard in Resources */,
 				8EC697231FE0B87F000197A5 /* breakingGlass.mp3 in Resources */,
@@ -372,7 +359,6 @@
 				8EF74A641FFBF6C800DB530C /* MenuNavController.swift in Sources */,
 				8EE3C6501FB20B0F0027D562 /* themesHandler.swift in Sources */,
 				8EC6972C1FE423C4000197A5 /* InteractiveControler.swift in Sources */,
-				8EE3C6521FB605CD0027D562 /* TransitionManager.swift in Sources */,
 				8E8450E01F89572A005094C0 /* ColorController.swift in Sources */,
 				8EF94AFD1F8C37B1005DB246 /* MiscFunctions.swift in Sources */,
 				8E8450DC1F8943C0005094C0 /* ColorCircle.swift in Sources */,
@@ -384,10 +370,8 @@
 				8E4EF30E1FE5AD2500518CB6 /* CustomNavigation.swift in Sources */,
 				8E81309A1FD5A8190021BFA0 /* SoundHandler.swift in Sources */,
 				8E24E7F51F9D351000D15567 /* colorTableViewCell.swift in Sources */,
-				8ED832AE1FD38DE900C726E5 /* DismissAnimator.swift in Sources */,
 				8E24E7E51F940D2300D15567 /* MenuViewController.swift in Sources */,
 				8E24E7ED1F9B934900D15567 /* GameOverViewController.swift in Sources */,
-				8EEB35291FC21C4600EFE8D1 /* InteractiveTransitionManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

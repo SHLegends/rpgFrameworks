@@ -15,8 +15,6 @@ protocol GamePusher {
 
 class GameViewController: UIViewController, GameDelgate {
     
-    
-    
     override var prefersStatusBarHidden: Bool {return true}
     
     @IBAction func unwindToGame(segue: UIStoryboardSegue) { }
@@ -39,13 +37,7 @@ class GameViewController: UIViewController, GameDelgate {
     
     var substractAmount = 2
     
-    
-    var EndGameDelegate: GameOverDelegate?
-    
     var roundMultiplier = 1.0
-    
-    
-    
     
     let indexToSound: [Int: String] = [0: "breakingGlass", 1: "breakingGlass", 2: "breakingGlass", 3: "breakingGlass", 4: "breakingGlass"]
     
@@ -127,8 +119,6 @@ class GameViewController: UIViewController, GameDelgate {
         for i in self.buttons {
             i.alpha = 0
             i.isEnabled = true
-//            i.bounds.size.height = i.bounds.size.width
-//            i.layer.cornerRadius = i.bounds.size.width / 2
         }
         self.ScoreLabel.alpha = 0
         self.ScoreLabel.text = "\(self.score)"
@@ -155,12 +145,6 @@ class GameViewController: UIViewController, GameDelgate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        
-        print("GameView Loaded")
-        
-        
     }
     
     
@@ -176,9 +160,7 @@ class GameViewController: UIViewController, GameDelgate {
 
     
     func endGame() {
-        
         tapTimer.invalidate()
-        
         AudioHandler.playSound("Sad_Trombone", ".mp3")
         if self.score < 0 {
             self.score = 0
@@ -186,14 +168,10 @@ class GameViewController: UIViewController, GameDelgate {
         gameScore = self.score
         gameEndAnimation()
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0, execute: {self.performSegue(withIdentifier: "gameOverSegue", sender: nil)})
-        
-        
-        
     }
     
+    
     func gameEndAnimation() {
-        print("gameEnd triggered")
         var delay = 0.0
         let by = 0.05
         let duration = 1.5
@@ -255,8 +233,6 @@ class GameViewController: UIViewController, GameDelgate {
             let vc = storyBoard.instantiateViewController(withIdentifier: "GameOverView") as! GameOverViewController
             vc.score = self.score
             vc.gameDelegate = self
-            
-            //self.present(vc, animated: true, completion: nil)
             self.navigationController?.pushViewController(vc, animated: true)
             
             
@@ -264,10 +240,9 @@ class GameViewController: UIViewController, GameDelgate {
     }
     
     func gameStartAnimation() {
-        
         var delay = 0.1
         let by = 0.2
-        
+
         UIView.animate(withDuration: 1, delay: delay, options: [.allowUserInteraction], animations: {
             self.warningLabel.alpha = 1
         }, completion: nil)
@@ -377,12 +352,8 @@ class GameViewController: UIViewController, GameDelgate {
     }
     
     func nextRound() {
-        
         self.round += 1
         self.roundMultiplier += 0.25
-//        if self.round % 5 == 0 {
-//            self.substractAmount
-//        }
         
         if self.round == 1 {
             warningLabel.presentTextToStay(newText: "Match the colors to the rings", duration: 0.5)
@@ -395,8 +366,6 @@ class GameViewController: UIViewController, GameDelgate {
         if true {
             if self.colourBin.count < colorIndices.count {
                 self.colourBin.append(colorIndices[self.colourBin.count])
-                //print("\(self.colourBin)\n")
-                //print("SUCCESS GRAB NEW COLOR")
             }
         }
         
@@ -448,8 +417,6 @@ class GameViewController: UIViewController, GameDelgate {
     
     func checkAllSame(_ but: ColorCircle) {
         
-       
-        
         but.scale(time: 0.1, x: 1.0, y: 1.0)
         self.tapTimerValue = 0.0
         if self.isFirstTap {
@@ -461,7 +428,6 @@ class GameViewController: UIViewController, GameDelgate {
         let elapsedTime = Date().timeIntervalSince(self.timeSinceLastTap)
         self.timeSinceLastTap = Date()
         if self.buttons.filter({$0.colorIndex != self.colorIndex}).count == 1 && but.colorIndex != self.colorIndex {
-           // print("1 button left of diff color")
             AudioHandler.playSound("breakingGlass", "mp3")
             but.colorIndex = self.colorIndex
             but.changeColor(self.masterColors[self.colorIndex])
@@ -473,17 +439,10 @@ class GameViewController: UIViewController, GameDelgate {
             var timeBetween = 0.0
             for i in self.buttons {
                 if i.colorIndex == oldColor {
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + timeBetween, execute: {AudioHandler.playSound("breakingGlass", "mp3")})
                     timeBetween += 0.1
-                    //print("----------------\nfound but of index \(i.colorIndex)")
                     let newColor = returnRandomItem(self.colourBin.filter({$0 != i.colorIndex}))
-                    //print("\nchanged to \(newColor) | self.colorIndex = \(self.colorIndex)")
                     i.colorIndex = newColor
-
                     i.changeColor(self.masterColors[newColor], duration: 0.5)
-                    
-                    
-                    
                     butNums += 1
                 }
             }
@@ -495,21 +454,14 @@ class GameViewController: UIViewController, GameDelgate {
                     UINotificationFeedbackGenerator().notificationOccurred(.error)
                 }
                 
-                
-                
                 self.numOfSameColorTaps -= 1
                 self.view.bringSubview(toFront: but)
                 but.scaling([(0.2, 1, 0.1), (0.1, 1, 1)])
                 
                 if self.numOfSameColorTaps == 0 {
-                    
-                    
-//                    but.scale(time: 0.2, x: 3, y: 3)
-                    //but.pulsate(duration: 0.6, from: 0.1, to: 10.0)
                     endGame()
                 } else {
                     AudioHandler.playSound("wrong", "mp3")
-                    //but.pulsate(duration: 0.2, from: 1.0, to: 4.0)
                     if numOfSameColorTaps > 1 {
                         warningLabel.presentText(newText: "Warning: Don't tap single colored buttons", duration: 1, stayFor: 2)
                     } else if numOfSameColorTaps == 1 {
@@ -517,7 +469,6 @@ class GameViewController: UIViewController, GameDelgate {
                     }
                     
                     ScoreLabel.shake()
-                    //print("was different color")
                     if self.score < 0 {
                         self.score = 0
                         
@@ -561,9 +512,7 @@ class GameViewController: UIViewController, GameDelgate {
     
     @IBAction func circlePressed(_ sender: ColorCircle) {
         
-        //print(Date().timeIntervalSince(sender.dateSinceTouchDown))
         if Date().timeIntervalSince(sender.dateSinceTouchDown) > 0.2 {
-//            AudioHandler.playSound(self.indexToSound[sender.colorIndex]!, "mp3")
             if !DataManager.tapticMute {
                 UIImpactFeedbackGenerator(style: .light).impactOccurred()
             }
@@ -572,19 +521,10 @@ class GameViewController: UIViewController, GameDelgate {
     }
 
     
-
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         self.tapTimer.invalidate()
         self.ScoreLabel.textColor = themeColor
         
-//        let toViewController = segue.destination as UIViewController
-//        self.transitionManager.direction = "normal"
-//        toViewController.transitioningDelegate = self.transitionManager
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
 
 }

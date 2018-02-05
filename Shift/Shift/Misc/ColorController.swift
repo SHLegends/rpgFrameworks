@@ -23,14 +23,7 @@ func randomizeColors(masterColors: [UIColor])-> [Int] {
     return rColors
 }
 
-
-
-
-
-
-
 var currentScheme: colorScheme {get{return colorHandler.themeInUse}}
-
 
 var themeColor: UIColor {get{return currentScheme.background}}
 
@@ -42,13 +35,9 @@ var foreground: UIColor {get{return currentScheme.foreground}}
 
 func randColor(_ colors: [UIColor])-> UIColor? {
     if colors.isEmpty {
-        //print("colors.isEmpty")
         return nil
     } else {
-        //print(colors)
-        //print("\(colors.count)")
         let foo = Int(arc4random_uniform(UInt32(colors.count)))
-        //print(foo)
         return colors[foo]
     }
 }

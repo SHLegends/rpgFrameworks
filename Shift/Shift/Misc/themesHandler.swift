@@ -11,12 +11,8 @@ import UIKit
 
 typealias colorScheme = (name: String, background: UIColor, foreground: UIColor, bin: [UIColor], price: Int, id: String)
 
-
-
-
 enum colorBins {
-    
-    
+
     static let classic: colorScheme = ("Classic", UIColor.black, UIColor.white, [UIColor.blue, UIColor.white, UIColor.red, UIColor.green, UIColor.brown, UIColor.cyan, UIColor.magenta, UIColor.gray, UIColor.orange, UIColor.purple], 0, UUID.init().uuidString)
     
     static let classicW: colorScheme = ("Classic(White)", UIColor.white, UIColor.black, [UIColor.blue, UIColor.red, UIColor.black, UIColor.green, UIColor.purple], 0, UUID.init().uuidString)
@@ -33,28 +29,18 @@ enum colorBins {
     
     static let coldWinter: colorScheme = ("Cold Winter", UIColor.init(red: 0/255, green: 0/255, blue: 42/255, alpha: 1), UIColor.white, [UIColor.init(red: 0/255, green: 0/255, blue: 84/255, alpha: 1), UIColor.init(red: 0/255, green: 0/255, blue: 128/255, alpha: 1), UIColor.init(red: 0/255, green: 0/255, blue: 170/255, alpha: 1), UIColor.init(red: 0/255, green: 0/255, blue: 212/255, alpha: 1), UIColor.init(red: 0/255, green: 0/255, blue: 255/255, alpha: 1)], 10, UUID.init().uuidString)
     
-    
 }
 
 let colorSets: [colorScheme] = [colorBins.classic, colorBins.classicW]
 
-
-
 class themeHandler {
-    
     var themeInUseIndex: Int
-    
     var themeInUse: colorScheme {get{return colorSets[self.themeInUseIndex]}}
-    
     var masterColorSets: [colorScheme] = colorSets
-    
-    
-    
     var background: UIColor {get{return self.themeInUse.background}}
     var foreground: UIColor {get{return self.themeInUse.foreground}}
     var Colors: [UIColor] {get{return self.themeInUse.bin}}
     var name: String {get{return self.themeInUse.name}}
-    
     
     
     init() {
@@ -76,12 +62,9 @@ class themeHandler {
     }
     
     
-    
-    
     func changeTheme(index: Int) {
         self.themeInUseIndex = index
     }
-    
     
     
     func indexFor(scheme: colorScheme) -> Int {
@@ -102,9 +85,6 @@ class themeHandler {
         self.themeInUseIndex = self.indexFor(scheme: scheme)
         DataManager.themeInUse = self.themeInUseIndex
     }
-    
-    
-    
 }
 
 var colorHandler = themeHandler()
