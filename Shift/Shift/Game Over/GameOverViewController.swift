@@ -25,6 +25,9 @@ class GameOverViewController: UIViewController {
     @IBOutlet weak var highscoreNum: UILabel!
     @IBOutlet weak var highScoreLabel: UILabel!
     
+    var highScoreUpdateDelegate: UpdateHighScoreDelegate? = nil
+
+    
     var score: Int?
     
     var gameDelegate: GameViewController?
@@ -59,5 +62,12 @@ class GameOverViewController: UIViewController {
         self.modalTransitionStyle = .crossDissolve
         
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.destination as? MenuViewController != nil {
+            highScoreUpdateDelegate!.updateHighScore()
+        }
+    }
+    
 }

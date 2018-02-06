@@ -41,6 +41,7 @@ class GameViewController: UIViewController, GameDelgate {
     
     let indexToSound: [Int: String] = [0: "breakingGlass", 1: "breakingGlass", 2: "breakingGlass", 3: "breakingGlass", 4: "breakingGlass"]
     
+    var highScoreUpdateDelegate: UpdateHighScoreDelegate? = nil
     
     var isFirstTap = true
     var numOfSameColorTaps = 3
@@ -63,7 +64,6 @@ class GameViewController: UIViewController, GameDelgate {
         self.tapTimerValue += 0.1
         if self.score - 1 >= 0 {
             self.score -= Int(Double(self.substractAmount) * roundMultiplier)
-            print(Int(Double(self.substractAmount) * roundMultiplier), substractAmount, roundMultiplier, round)
             self.ScoreLabel.text = String(self.score)
         } else if self.isFirstTap == false {
             endGame()
@@ -131,7 +131,6 @@ class GameViewController: UIViewController, GameDelgate {
             }
         })
         
-        print("Basic Game Setup DONE")
     }
     
     override func viewWillLayoutSubviews() {
@@ -154,10 +153,6 @@ class GameViewController: UIViewController, GameDelgate {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
-
     
     func endGame() {
         tapTimer.invalidate()
@@ -227,12 +222,12 @@ class GameViewController: UIViewController, GameDelgate {
         delay += by
         
         DispatchQueue.main.asyncAfter(deadline: .now() + delay+duration, execute: {
-            print("Go to GameOverScreen")
             self.tapTimer.invalidate()
             let storyBoard: UIStoryboard = UIStoryboard(name: "GameOver", bundle: nil)
             let vc = storyBoard.instantiateViewController(withIdentifier: "GameOverView") as! GameOverViewController
             vc.score = self.score
             vc.gameDelegate = self
+            vc.highScoreUpdateDelegate = self.highScoreUpdateDelegate!
             self.navigationController?.pushViewController(vc, animated: true)
             
             
@@ -389,19 +384,12 @@ class GameViewController: UIViewController, GameDelgate {
     
     
     func checkAfter() {
-        
-        
-        
         let currentUUID = UUID().uuidString
         self.nextRoundUUID = currentUUID
-        print("\nsending DISPATCHQUEUE: \(currentUUID)")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
             if self.buttons.filter({$0.colorIndex != self.colorIndex}).count == 0 {
                 if self.nextRoundUUID == currentUUID {
-                    print("\nSUCCESS - DISPATCHQUEUE: \(currentUUID)")
                     self.nextRound()
-                } else {
-                    print("\nQueue FAILED ... DISPATCHQUEUE: \(currentUUID)")
                 }
             }
         })
@@ -511,7 +499,6 @@ class GameViewController: UIViewController, GameDelgate {
     
     
     @IBAction func circlePressed(_ sender: ColorCircle) {
-        
         if Date().timeIntervalSince(sender.dateSinceTouchDown) > 0.2 {
             if !DataManager.tapticMute {
                 UIImpactFeedbackGenerator(style: .light).impactOccurred()
@@ -523,8 +510,6 @@ class GameViewController: UIViewController, GameDelgate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         self.tapTimer.invalidate()
-        self.ScoreLabel.textColor = themeColor
-        
     }
 
 }

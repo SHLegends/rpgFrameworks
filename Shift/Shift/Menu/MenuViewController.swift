@@ -7,17 +7,28 @@
 //
 
 import UIKit
-import CoreMotion
 
 
 protocol MenuSetupDelegate {
     func loadViewColors()
 }
 
+protocol UpdateHighScoreDelegate {
+    func updateHighScore()
+}
+
 
 var customNavigationAnimator = CustomNavigationAnimationController()
 
-class MenuViewController: UIViewController, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate, MenuSetupDelegate {
+class MenuViewController: UIViewController, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate, MenuSetupDelegate, UpdateHighScoreDelegate {
+    
+    func updateHighScore() {
+        if DataManager.highScore == 0 {
+            self.highscoreLabel.text = ""
+        } else {
+            self.highscoreLabel.text = "Highscore: \(DataManager.highScore)"
+        }
+    }
     
     @IBAction func unwindToMenu(segue: UIStoryboardSegue) { }
     
@@ -59,7 +70,11 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
         self.swipeMessage.textColor = foreground
         self.tapLabel.textColor = foreground
         self.highscoreLabel.textColor = foreground
-        self.highscoreLabel.text = "Highscore: \(DataManager.highScore)"
+        if DataManager.highScore == 0 {
+            self.highscoreLabel.text = ""
+        } else {
+            self.highscoreLabel.text = "Highscore: \(DataManager.highScore)"
+        }
     }
     
     
@@ -93,7 +108,12 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
         print("Menu did appear")
         customInteractionController.attachToViewController(viewController: self)
         customInteractionController.shouldPop = false
-        self.highscoreLabel.text = "Highscore: \(DataManager.highScore)"
+        if DataManager.highScore == 0 {
+            self.highscoreLabel.text = ""
+        } else {
+            self.highscoreLabel.text = "Highscore: \(DataManager.highScore)"
+        }
+        
     }
     
     @objc func animateTitle() {
@@ -166,24 +186,13 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
             customNavigationAnimationController.reverse = true
         }
     }
-    
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("preparing for segue")
-        if segue.identifier == "toSettings" {
-            let toViewController = segue.destination as UIViewController
-            toViewController.transitioningDelegate = self
-        }
         
-        if let toVC: ColorPickerViewController = segue.destination as? ColorPickerViewController {
-            toVC.menuDelegate = self
-        }
-    }
-    
     
     @IBAction func goToMain(_ sender: Any) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "GameView") as! GameViewController
+        
+        vc.highScoreUpdateDelegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
    

@@ -13,11 +13,11 @@ typealias colorScheme = (name: String, background: UIColor, foreground: UIColor,
 
 enum colorBins {
 
-    static let classic: colorScheme = ("Classic", UIColor.black, UIColor.white, [UIColor.blue, UIColor.white, UIColor.red, UIColor.green, UIColor.brown, UIColor.cyan, UIColor.magenta, UIColor.gray, UIColor.orange, UIColor.purple], 0, UUID.init().uuidString)
+    static let classic: colorScheme = ("Classic", UIColor.black, UIColor.white, [UIColor.blue, UIColor.red, UIColor.white, UIColor.green, UIColor.purple], 0, UUID.init().uuidString)
     
     static let classicW: colorScheme = ("Classic(White)", UIColor.white, UIColor.black, [UIColor.blue, UIColor.red, UIColor.black, UIColor.green, UIColor.purple], 0, UUID.init().uuidString)
     
-    static let betaBlack: colorScheme = ("beta black", UIColor.black, UIColor.white, [UIColor.blue, UIColor.red, UIColor.white, UIColor.green, UIColor.purple], 0, UUID.init().uuidString)
+    static let old: colorScheme = ("beta black", UIColor.black, UIColor.white, [UIColor.blue, UIColor.white, UIColor.red, UIColor.green, UIColor.brown, UIColor.cyan, UIColor.magenta, UIColor.gray, UIColor.orange, UIColor.purple], 0, UUID.init().uuidString)
     
     static let greyWhite: colorScheme = ("Grey White", UIColor.white, UIColor.black, [UIColor.init(red: 0.1, green: 0.1, blue: 0.1, alpha: 1), UIColor.init(red: 0.2, green: 0.2, blue: 0.2, alpha: 1), UIColor.init(red: 0.3, green: 0.3, blue: 0.3, alpha: 1), UIColor.init(red: 0.4, green: 0.4, blue: 0.4, alpha: 1), UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)], 5000, UUID.init().uuidString)
     
@@ -45,8 +45,6 @@ class themeHandler {
     
     init() {
         self.themeInUseIndex = DataManager.themeInUse
-        
-        
     }
     
     var setWithCurrentFirst: [colorScheme] {        
@@ -55,10 +53,7 @@ class themeHandler {
         for i in self.masterColorSets.filter({$0.id != self.themeInUse.id}) {
             newArray.append(i)
         }
-        
-        
         return newArray
-        
     }
     
     

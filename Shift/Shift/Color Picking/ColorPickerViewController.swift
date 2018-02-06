@@ -23,7 +23,7 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
     
     var localScheme: colorScheme = currentScheme
     
-    let localArrayToUse = colorHandler.setWithCurrentFirst
+    let localArrayToUse = colorHandler.masterColorSets
     
     let animationTime = 0.1
     
@@ -74,7 +74,6 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
                             self.colorTableView.separatorColor = colorHandler.foreground
                             self.themeLabel.textColor = colorHandler.foreground
                             self.creditsLabel.textColor = colorHandler.foreground
-                            
                             
                             for i in self.colorTableView.visibleCells {
                                 if let newRow: colorTableViewCell = i as? colorTableViewCell {
