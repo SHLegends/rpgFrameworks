@@ -44,8 +44,12 @@ struct GameDataManager {
         get {
             if defaults.array(forKey: "setsData") == nil {
                 var statesOfSets: [Int] = []
-                for _ in 0..<colorSets.count {
-                    statesOfSets.append(0)
+                for i in 0..<colorSets.count {
+                    if colorSets[i].price == 0 {
+                        statesOfSets.append(1)
+                    } else {
+                        statesOfSets.append(0)
+                    }
                 }
                 statesOfSets[0] = 2
                 defaults.set(statesOfSets, forKey: "setsData")
@@ -107,7 +111,7 @@ struct GameDataManager {
     
     mutating func setOwned(of: Int) {
         var oldArray = self.setsData
-         let state: Int = oldArray[of]
+        let state: Int = oldArray[of]
         if state == 0 {
             oldArray[of] = 1
             self.setsData = oldArray

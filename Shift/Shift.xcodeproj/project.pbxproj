@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E1F1E7C202DD53400F599A6 /* Sad_Trombone.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8E1F1E7B202DD53400F599A6 /* Sad_Trombone.mp3 */; };
 		8E24E7E51F940D2300D15567 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E24E7E41F940D2300D15567 /* MenuViewController.swift */; };
 		8E24E7E71F991A8100D15567 /* ColorPicking.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E24E7E61F991A8100D15567 /* ColorPicking.storyboard */; };
 		8E24E7E91F9B7EE900D15567 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E24E7E81F9B7EE900D15567 /* ColorPickerViewController.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		40BF24FEE5B9FE91FC7B47B7 /* Pods-Shift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shift.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shift/Pods-Shift.release.xcconfig"; sourceTree = "<group>"; };
+		8E1F1E7B202DD53400F599A6 /* Sad_Trombone.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Sad_Trombone.mp3; sourceTree = "<group>"; };
 		8E24E7E41F940D2300D15567 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		8E24E7E61F991A8100D15567 /* ColorPicking.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ColorPicking.storyboard; sourceTree = "<group>"; };
 		8E24E7E81F9B7EE900D15567 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
@@ -48,7 +50,6 @@
 		8E24E7EC1F9B934900D15567 /* GameOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 		8E24E7F21F9D093900D15567 /* gameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameData.swift; sourceTree = "<group>"; };
 		8E24E7F41F9D351000D15567 /* colorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorTableViewCell.swift; sourceTree = "<group>"; };
-		8E38514B1FEF341B0076849B /* Sad_Trombone.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Sad_Trombone.mp3; path = ../../../../../Sad_Trombone.mp3; sourceTree = "<group>"; };
 		8E4EF30D1FE5AD2500518CB6 /* CustomNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigation.swift; sourceTree = "<group>"; };
 		8E8130991FD5A8190021BFA0 /* SoundHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundHandler.swift; sourceTree = "<group>"; };
 		8E81309D1FD631B00021BFA0 /* applause3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = applause3.mp3; sourceTree = "<group>"; };
@@ -141,8 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				8EC697221FE0B87F000197A5 /* breakingGlass.mp3 */,
-				8E38514B1FEF341B0076849B /* Sad_Trombone.mp3 */,
 				8EC697291FE0BCC6000197A5 /* wrong.mp3 */,
+				8E1F1E7B202DD53400F599A6 /* Sad_Trombone.mp3 */,
 				8E8130A31FD631D40021BFA0 /* glass_ping.mp3 */,
 				8E81309D1FD631B00021BFA0 /* applause3.mp3 */,
 			);
@@ -282,6 +283,7 @@
 				8E24E7EB1F9B92FD00D15567 /* GameOver.storyboard in Resources */,
 				8E24E7E71F991A8100D15567 /* ColorPicking.storyboard in Resources */,
 				8EC697231FE0B87F000197A5 /* breakingGlass.mp3 in Resources */,
+				8E1F1E7C202DD53400F599A6 /* Sad_Trombone.mp3 in Resources */,
 				8EC6972A1FE0BCC6000197A5 /* wrong.mp3 in Resources */,
 				8EAC32EA1FDAEA64003B1FF6 /* Settings.storyboard in Resources */,
 				8E8130A41FD631D40021BFA0 /* glass_ping.mp3 in Resources */,

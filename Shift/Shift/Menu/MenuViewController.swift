@@ -105,7 +105,6 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
     
     
     override func viewDidAppear(_ animated: Bool) {
-        print("Menu did appear")
         customInteractionController.attachToViewController(viewController: self)
         customInteractionController.shouldPop = false
         if DataManager.highScore == 0 {
@@ -113,7 +112,6 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
         } else {
             self.highscoreLabel.text = "Highscore: \(DataManager.highScore)"
         }
-        
     }
     
     @objc func animateTitle() {

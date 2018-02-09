@@ -64,7 +64,9 @@ class GameViewController: UIViewController, GameDelgate {
         self.tapTimerValue += 0.1
         if self.score - 1 >= 0 {
             self.score -= Int(Double(self.substractAmount) * roundMultiplier)
+            if self.score < 0 { self.score = 0 }
             self.ScoreLabel.text = String(self.score)
+            
         } else if self.isFirstTap == false {
             endGame()
         }
@@ -340,7 +342,6 @@ class GameViewController: UIViewController, GameDelgate {
             self.multiplierLabel.presentText(newText: "x2", duration: 0.2, stayFor: duration)
             return numOfButtons * 2
         } else {
-            self.multiplierLabel.presentText(newText: "x1", duration: 0.2, stayFor: duration)
             return numOfButtons * 1
         }
         
@@ -351,9 +352,9 @@ class GameViewController: UIViewController, GameDelgate {
         self.roundMultiplier += 0.25
         
         if self.round == 1 {
-            warningLabel.presentTextToStay(newText: "Match the colors to the rings", duration: 0.5)
+            warningLabel.presentTextToStay(newText: "Match inner color to outer", duration: 0.5)
         } else if self.round == 2 {
-            warningLabel.presentTextToStay(newText: "Get more points by playing faster", duration: 0.5)
+            warningLabel.presentTextToStay(newText: "Play faster for more points", duration: 0.5)
         } else {
             warningLabel.dismissText(duration: 0.5)
         }
@@ -451,7 +452,7 @@ class GameViewController: UIViewController, GameDelgate {
                 } else {
                     AudioHandler.playSound("wrong", "mp3")
                     if numOfSameColorTaps > 1 {
-                        warningLabel.presentText(newText: "Warning: Don't tap single colored buttons", duration: 1, stayFor: 2)
+                        warningLabel.presentText(newText: "Warning: Don't tap single colored circles", duration: 1, stayFor: 2)
                     } else if numOfSameColorTaps == 1 {
                         warningLabel.presentText(newText: "Warning: Last Chance", duration: 1, stayFor: 2)
                     }

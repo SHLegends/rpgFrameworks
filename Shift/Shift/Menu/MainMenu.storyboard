@@ -58,7 +58,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uq1-3V-3be">
                                 <rect key="frame" x="50" y="239.99999999999997" width="314" height="116.66666666666666"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="C" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DXK-0k-yzd">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="C" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="DXK-0k-yzd">
                                         <rect key="frame" x="0.0" y="0.0" width="62.666666666666664" height="116.66666666666667"/>
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="100"/>
                                         <nil key="textColor"/>
@@ -68,7 +68,7 @@
                                             <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="300"/>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xtm-Tk-LwV">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Xtm-Tk-LwV">
                                         <rect key="frame" x="62.666666666666671" y="0.0" width="63.333333333333329" height="116.66666666666667"/>
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="100"/>
                                         <nil key="textColor"/>
@@ -78,7 +78,7 @@
                                             <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="300"/>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="L" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wuH-Pj-Ci4">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="L" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wuH-Pj-Ci4">
                                         <rect key="frame" x="126.00000000000001" y="0.0" width="62.666666666666671" height="116.66666666666667"/>
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="100"/>
                                         <nil key="textColor"/>
@@ -88,7 +88,7 @@
                                             <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="300"/>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mwo-dx-ZWz">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Mwo-dx-ZWz">
                                         <rect key="frame" x="188.66666666666666" y="0.0" width="62.666666666666657" height="116.66666666666667"/>
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="100"/>
                                         <nil key="textColor"/>
@@ -161,14 +161,6 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-251" y="83"/>
-        </scene>
-        <!--Main-->
-        <scene sceneID="cgU-Zb-cve">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="GameView" storyboardName="Main" id="nMw-al-LXF" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wxq-4f-dHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="359" y="-86"/>
         </scene>
     </scenes>
 </document>
