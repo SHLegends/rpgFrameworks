@@ -63,10 +63,11 @@ class GameViewController: UIViewController, GameDelgate {
         
         self.tapTimerValue += 0.1
         if self.score - 1 >= 0 {
-            self.score -= Int(Double(self.substractAmount) * roundMultiplier)
-            if self.score < 0 { self.score = 0 }
-            self.ScoreLabel.text = String(self.score)
-            
+            if self.round >= 3 {
+                self.score -= Int(Double(self.substractAmount) * roundMultiplier)
+                if self.score < 0 { self.score = 0 }
+                self.ScoreLabel.text = String(self.score)
+            }
         } else if self.isFirstTap == false {
             endGame()
         }
@@ -352,7 +353,7 @@ class GameViewController: UIViewController, GameDelgate {
         self.roundMultiplier += 0.25
         
         if self.round == 1 {
-            warningLabel.presentTextToStay(newText: "Match inner color to outer", duration: 0.5)
+            warningLabel.presentTextToStay(newText: "Only tap circles with two colors", duration: 0.5)
         } else if self.round == 2 {
             warningLabel.presentTextToStay(newText: "Play faster for more points", duration: 0.5)
         } else {

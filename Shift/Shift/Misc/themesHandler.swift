@@ -93,35 +93,30 @@ enum colorBins {
     
     static let classicW: colorScheme = ("Classic(White)", .white, .black, [.blue, .red, .black, .green, .purple], 0, UUID.init().uuidString)
     
-    static let bumblebee: colorScheme = ("Bumblebee", .black, .yellow, [.yellow, .orange, .red, .green, .purple], 0, UUID.init().uuidString)
+    static let bumblebee: colorScheme = ("Bumblebee", .black, .yellow, [.yellow, .orange, .red, .green, .purple], 2500, UUID.init().uuidString)
     
-    static let faded: colorScheme = ("Faded", allColors.ghostWhite, allColors.coldGray, [allColors.sepia, allColors.coral, allColors.royalBlue, allColors.lightSkyBlue, allColors.chartreuse], 0, UUID.init().uuidString)
+    static let faded: colorScheme = ("Faded", allColors.ghostWhite, allColors.coldGray, [allColors.sepia, allColors.coral, allColors.royalBlue, allColors.lightSkyBlue, allColors.chartreuse], 5000, UUID.init().uuidString)
     
-    static let wildwood: colorScheme = ("Wildwood", allColors.darkOlive, allColors.ghostWhite, [allColors.sepia, allColors.beet, allColors.wheat, allColors.crimson, allColors.turquoiseBlue], 0, UUID.init().uuidString)
+    static let wildwood: colorScheme = ("Wildwood", allColors.darkOlive, allColors.ghostWhite, [allColors.sepia, allColors.beet, allColors.wheat, allColors.crimson, allColors.turquoiseBlue], 7500, UUID.init().uuidString)
     
-    static let inferno: colorScheme = ("Inferno", allColors.wheat, allColors.ivoryBlack, [allColors.goldenRod, allColors.darkOrange, allColors.rawSienna, allColors.firebrick, allColors.gold], 0, UUID.init().uuidString)
+    static let inferno: colorScheme = ("Inferno", allColors.wheat, allColors.ivoryBlack, [allColors.goldenRod, allColors.darkOrange, allColors.rawSienna, allColors.firebrick, allColors.gold], 10000, UUID.init().uuidString)
     
-    static let honeydew: colorScheme = ("Honeydew", allColors.honeydew, allColors.ivoryBlack, [allColors.ivory, allColors.ivoryBlack, allColors.royalBlue, allColors.darkGreen, allColors.firebrick], 0, UUID.init().uuidString)
+    static let honeydew: colorScheme = ("Honeydew", allColors.honeydew, allColors.ivoryBlack, [allColors.ivory, allColors.ivoryBlack, allColors.royalBlue, allColors.darkGreen, allColors.firebrick], 12500, UUID.init().uuidString)
     
-    static let slate: colorScheme = ("Slate", allColors.coldGray, allColors.ghostWhite, [allColors.indianRed, allColors.midnightBlue, allColors.maroon, allColors.azure, allColors.chartreuse], 0, UUID.init().uuidString)
+    static let slate: colorScheme = ("Slate", allColors.coldGray, allColors.ghostWhite, [allColors.indianRed, allColors.midnightBlue, allColors.maroon, allColors.azure, allColors.chartreuse], 15000, UUID.init().uuidString)
     
     static let grayscale: colorScheme = ("Greyscale", allColors.ivory, allColors.ivoryBlack, [allColors.gray1, allColors.gray2, allColors.gray3, allColors.gray4, allColors.gray5], 0, UUID.init().uuidString)
     
-//    static let old: colorScheme = ("beta black", UIColor.black, UIColor.white, [UIColor.blue, UIColor.white, UIColor.red, UIColor.green, UIColor.brown, UIColor.cyan, UIColor.magenta, UIColor.gray, UIColor.orange, UIColor.purple], 0, UUID.init().uuidString)
-//
-//    static let greyWhite: colorScheme = ("Grey White", UIColor.white, UIColor.black, [UIColor.init(red: 0.1, green: 0.1, blue: 0.1, alpha: 1), UIColor.init(red: 0.2, green: 0.2, blue: 0.2, alpha: 1), UIColor.init(red: 0.3, green: 0.3, blue: 0.3, alpha: 1), UIColor.init(red: 0.4, green: 0.4, blue: 0.4, alpha: 1), UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)], 5000, UUID.init().uuidString)
-//
-//    static let flat: colorScheme = ("Flat", UIColor.black, UIColor.init(red: 253/255, green: 227/255, blue: 167/255, alpha: 1), [UIColor.init(red: 235/255, green: 149/255, blue: 50/255, alpha: 1), UIColor.init(red: 247/255, green: 202/255, blue: 24/255, alpha: 1), UIColor.init(red: 63/255, green: 195/255, blue: 128/255, alpha: 1), UIColor.init(red: 27/255, green: 163/255, blue: 156/255, alpha: 1), UIColor.init(red: 148/255, green: 124/255, blue: 176/255, alpha: 1)], 10000, UUID.init().uuidString)
-//
-//    static let beta2Black: colorScheme = ("beta2 black", UIColor.black, UIColor.orange, [UIColor.brown, UIColor.cyan, UIColor.magenta, UIColor.gray, UIColor.orange], 6000, UUID.init().uuidString)
-//
-//    static let beta2White: colorScheme = ("beta2 white", UIColor.white, UIColor.orange, [UIColor.brown, UIColor.cyan, UIColor.magenta, UIColor.gray, UIColor.orange], 6000, UUID.init().uuidString)
-//
-//    static let coldWinter: colorScheme = ("Cold Winter", UIColor.init(red: 0/255, green: 0/255, blue: 42/255, alpha: 1), UIColor.white, [UIColor.init(red: 0/255, green: 0/255, blue: 84/255, alpha: 1), UIColor.init(red: 0/255, green: 0/255, blue: 128/255, alpha: 1), UIColor.init(red: 0/255, green: 0/255, blue: 170/255, alpha: 1), UIColor.init(red: 0/255, green: 0/255, blue: 212/255, alpha: 1), UIColor.init(red: 0/255, green: 0/255, blue: 255/255, alpha: 1)], 10, UUID.init().uuidString)
+    static let tenebrous: colorScheme = ("Tenebrous", allColors.black, allColors.ivory, [allColors.indianRed, allColors.goldenRod, allColors.gold, allColors.ivory, allColors.midnightBlue], 17500, UUID.init().uuidString)
+    
+    static let soft: colorScheme = ("Soft", allColors.powderBlue, allColors.black, [allColors.brown, allColors.maroon, allColors.coral, allColors.lemonShiffon, allColors.chartreuse], 20000, UUID.init().uuidString)
+    
+    static let x: colorScheme = ("X", allColors.black, allColors.red, [allColors.brown, allColors.maroon, allColors.midnightBlue, allColors.orange, allColors.yellow], 50000, UUID.init().uuidString)
+    
     
 }
 
-let colorSets: [colorScheme] = [colorBins.classic, colorBins.classicW, colorBins.grayscale, colorBins.bumblebee, colorBins.faded, colorBins.wildwood, colorBins.inferno, colorBins.honeydew, colorBins.slate]
+let colorSets: [colorScheme] = [colorBins.classic, colorBins.classicW, colorBins.grayscale, colorBins.bumblebee, colorBins.faded, colorBins.wildwood, colorBins.inferno, colorBins.honeydew, colorBins.slate, colorBins.tenebrous, colorBins.soft, colorBins.x]
 
 class themeHandler {
     var themeInUseIndex: Int

@@ -53,6 +53,19 @@ struct GameDataManager {
                 }
                 statesOfSets[0] = 2
                 defaults.set(statesOfSets, forKey: "setsData")
+            } else if colorSets.count != (defaults.array(forKey: "setsData") as! [Int]).count {
+                var statesOfSets: [Int] = []
+                let savedSetInfo = defaults.array(forKey: "setsData") as! [Int]
+                for i in 0..<colorSets.count {
+                    if i+1 < colorSets.count {
+                        statesOfSets.append(savedSetInfo[i])
+                    } else if colorSets[i].price == 0 {
+                        statesOfSets.append(1)
+                    } else {
+                        statesOfSets.append(0)
+                    }
+                }
+                defaults.set(statesOfSets, forKey: "setsData")
             }
             return defaults.array(forKey: "setsData") as! [Int]
         }
