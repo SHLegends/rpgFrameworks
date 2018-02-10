@@ -56,8 +56,20 @@ class GameViewController: UIViewController, GameDelgate {
     var buttons2D = [Int: [Int: ColorCircle]]()
     var nextRoundUUID = String()
     var tapTimer = Timer()
+    var hintTimer = Timer()
     var tapTimerValue = 0.0
     var mutiplierUUID = ""
+    var gameOver = false
+    
+    @objc func hint() {
+        if (tapTimerValue > 1 || tapTimerValue == 0) && !gameOver {
+            let hintButs = buttons.filter({$0.backgroundColor != $0.borderColor})
+            if !hintButs.isEmpty {
+                let but = returnRandomItem(hintButs)
+                but.scaling([(0.2, 1.2, 1.2), (0.1, 1, 1)])
+            }
+        }
+    }
     
     @objc func addMilisecond() {
         
@@ -79,6 +91,7 @@ class GameViewController: UIViewController, GameDelgate {
         resetGame()
         screenLoad()
         gameStartAnimation()
+        
     }
     
     func resetGame() {
@@ -99,7 +112,7 @@ class GameViewController: UIViewController, GameDelgate {
     func screenLoad() {
         colorIndices = randomizeColors(masterColors: Colors)
         self.multiplierLabel.text = ""
-        
+        self.gameOver = false
         self.buttons = [NW!, N!, NE!, W!, C!, E!, SW!, S!, SE!]
         self.buttons2D = [0: [0: NW!, 1: N!, 2: NE!], 1: [0: W!, 1: C!, 2: E!], 2: [0: SW!, 1: S!, 2: SE!]]
         for i in 0..<self.buttons2D.count {
@@ -153,12 +166,14 @@ class GameViewController: UIViewController, GameDelgate {
     override func viewWillAppear(_ animated: Bool) {
         restartGame()
         self.tapTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: (#selector(self.addMilisecond)), userInfo: nil, repeats: true)
-        
+        self.hintTimer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: (#selector(self.hint)), userInfo: nil, repeats: true)
     }
     
     
     func endGame() {
+        hintTimer.invalidate()
         tapTimer.invalidate()
+        self.gameOver = true
         AudioHandler.playSound("Sad_Trombone", ".mp3")
         if self.score < 0 {
             self.score = 0
@@ -172,7 +187,7 @@ class GameViewController: UIViewController, GameDelgate {
     func gameEndAnimation() {
         var delay = 0.0
         let by = 0.05
-        let duration = 1.5
+        let duration = 1.0
         
         for i in buttons {
             i.isEnabled = false
@@ -197,7 +212,7 @@ class GameViewController: UIViewController, GameDelgate {
             self.W.alpha = 0
         }, completion: nil)
         delay += by
-        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
+        UIView.animate(withDuration: 0.5, delay: 0.1, options: [], animations: {
             self.C.alpha = 0
             self.GameOver.alpha = 1
         }, completion: nil)
@@ -224,7 +239,7 @@ class GameViewController: UIViewController, GameDelgate {
         
         delay += by
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + delay+duration, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay+duration + 1, execute: {
             self.tapTimer.invalidate()
             let storyBoard: UIStoryboard = UIStoryboard(name: "GameOver", bundle: nil)
             let vc = storyBoard.instantiateViewController(withIdentifier: "GameOverView") as! GameOverViewController
@@ -512,6 +527,7 @@ class GameViewController: UIViewController, GameDelgate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         self.tapTimer.invalidate()
+        self.hintTimer.invalidate()
     }
 
 }
