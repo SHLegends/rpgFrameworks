@@ -15,6 +15,8 @@ class SetttingsViewController: UIViewController, UIViewControllerTransitioningDe
     @IBOutlet weak var soundLabel: UILabel!
     @IBOutlet weak var tapticLabel: UILabel!
     @IBOutlet weak var tapticSwitchOutlet: UISwitch!
+    @IBOutlet weak var hintsLabel: UILabel!
+    @IBOutlet weak var hintsSwitchOutlet: UISwitch!
     
     
     override var prefersStatusBarHidden: Bool {return true}
@@ -28,6 +30,9 @@ class SetttingsViewController: UIViewController, UIViewControllerTransitioningDe
         self.tapticLabel.textColor = colorHandler.foreground
         self.tapticSwitchOutlet.isOn = !DataManager.tapticMute
         
+        self.hintsLabel.textColor = colorHandler.foreground
+        self.hintsSwitchOutlet.isOn = !DataManager.hintsOff
+        
     }
 
     
@@ -36,6 +41,9 @@ class SetttingsViewController: UIViewController, UIViewControllerTransitioningDe
     }
     @IBAction func tapticSwitch(_ sender: UISwitch) {
         DataManager.tapticMute = !sender.isOn
+    }
+    @IBAction func hintsSwitch(_ sender: UISwitch) {
+        DataManager.hintsOff = !sender.isOn
     }
     
     

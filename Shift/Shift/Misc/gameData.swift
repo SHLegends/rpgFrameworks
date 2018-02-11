@@ -20,9 +20,18 @@ enum setState: Int {
 struct GameDataManager {
     let defaults = UserDefaults.standard
     
+    var hintsOff: Bool {
+        get {
+            return defaults.bool(forKey: "hintsOff")
+        }
+        set {
+            defaults.set(newValue, forKey: "hintsOff")
+        }
+    }
     
     var mute: Bool {
         get {
+            print()
             return defaults.bool(forKey: "mute")
         }
         set {

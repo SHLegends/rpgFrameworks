@@ -62,7 +62,7 @@ class GameViewController: UIViewController, GameDelgate {
     var gameOver = false
     
     @objc func hint() {
-        if (tapTimerValue > 1 || tapTimerValue == 0) && !gameOver {
+        if (tapTimerValue > 1 || tapTimerValue == 0) && !gameOver && !DataManager.hintsOff {
             let hintButs = buttons.filter({$0.backgroundColor != $0.borderColor})
             if !hintButs.isEmpty {
                 let but = returnRandomItem(hintButs)
@@ -193,6 +193,7 @@ class GameViewController: UIViewController, GameDelgate {
             i.isEnabled = false
         }
         UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
+            self.multiplierLabel.alpha = 0
             self.ScoreLabel.alpha = 0
         }, completion: nil)
         delay += by
