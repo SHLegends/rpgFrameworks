@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 class CustomInteractionController: UIPercentDrivenInteractiveTransition {
     var navigationController: UINavigationController!
     var shouldCompleteTransition = false

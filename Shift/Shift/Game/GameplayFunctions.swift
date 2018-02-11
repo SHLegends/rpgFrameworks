@@ -6,7 +6,6 @@
 //  Copyright © 2017 Joel Huggett. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 struct actionUUIDStorage {

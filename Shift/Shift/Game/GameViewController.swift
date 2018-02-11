@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AVFoundation
 
 protocol GamePusher {
     func pushGame()
@@ -526,10 +525,6 @@ class GameViewController: UIViewController, GameDelgate {
     }
 
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        self.tapTimer.invalidate()
-        self.hintTimer.invalidate()
-    }
 
 }
 

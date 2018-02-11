@@ -63,11 +63,4 @@ class GameOverViewController: UIViewController {
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.destination as? MenuViewController != nil {
-            highScoreUpdateDelegate!.updateHighScore()
-        }
-    }
-    
 }
