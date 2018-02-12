@@ -22,8 +22,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="44H-p7-OT5">
-                                <rect key="frame" x="10" y="296.66666666666669" width="394" height="143"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ofK-ba-kFk">
+                                <rect key="frame" x="10" y="276" width="394" height="184"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="aY2-6q-UJV">
                                         <rect key="frame" x="133" y="0.0" width="128.33333333333337" height="31"/>
@@ -43,7 +43,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="tmr-Ah-EVU">
-                                        <rect key="frame" x="33.666666666666657" y="56" width="327" height="31"/>
+                                        <rect key="frame" x="33.666666666666657" y="51" width="327" height="31"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taptic Feedback(if available):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dy1-oW-kGS">
                                                 <rect key="frame" x="0.0" y="0.0" width="271" height="31"/>
@@ -60,7 +60,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Oho-ZC-qkz">
-                                        <rect key="frame" x="138.33333333333334" y="112" width="117.66666666666666" height="31"/>
+                                        <rect key="frame" x="138.33333333333334" y="102" width="117.66666666666666" height="31"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hints:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="2UB-tI-VgN">
                                                 <rect key="frame" x="0.0" y="0.0" width="61.666666666666664" height="31"/>
@@ -76,16 +76,33 @@
                                             </switch>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="HOj-IX-fNI">
+                                        <rect key="frame" x="123.00000000000001" y="153" width="148.33333333333337" height="31"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tutorial:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UaX-06-zgD">
+                                                <rect key="frame" x="0.0" y="0.0" width="92.333333333333329" height="31"/>
+                                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9M9-my-c0m">
+                                                <rect key="frame" x="99.333333333333343" y="0.0" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="tutorialSwitch:" destination="rNG-6v-cZO" eventType="valueChanged" id="fC7-2z-p1v"/>
+                                                </connections>
+                                            </switch>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="44H-p7-OT5" firstAttribute="centerX" secondItem="DnK-ZC-wLd" secondAttribute="centerX" id="98d-ba-fGd"/>
-                            <constraint firstItem="rYn-Zk-eS0" firstAttribute="trailing" secondItem="44H-p7-OT5" secondAttribute="trailing" constant="10" id="AhM-cj-WZJ"/>
-                            <constraint firstItem="44H-p7-OT5" firstAttribute="leading" secondItem="rYn-Zk-eS0" secondAttribute="leading" constant="10" id="BRH-dn-LMN"/>
-                            <constraint firstItem="44H-p7-OT5" firstAttribute="centerY" secondItem="DnK-ZC-wLd" secondAttribute="centerY" id="nNC-b3-opi"/>
+                            <constraint firstItem="rYn-Zk-eS0" firstAttribute="trailing" secondItem="ofK-ba-kFk" secondAttribute="trailing" constant="10" id="5rA-Dq-K6v"/>
+                            <constraint firstItem="ofK-ba-kFk" firstAttribute="leading" secondItem="rYn-Zk-eS0" secondAttribute="leading" constant="10" id="kau-Xb-OhJ"/>
+                            <constraint firstItem="ofK-ba-kFk" firstAttribute="centerX" secondItem="DnK-ZC-wLd" secondAttribute="centerX" id="sTe-zi-CyE"/>
+                            <constraint firstItem="ofK-ba-kFk" firstAttribute="centerY" secondItem="DnK-ZC-wLd" secondAttribute="centerY" id="v8m-Ge-PFH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rYn-Zk-eS0"/>
                         <connections>
@@ -99,6 +116,8 @@
                         <outlet property="soundSwitchOutlet" destination="0Y7-nG-bZG" id="MWI-A6-nqQ"/>
                         <outlet property="tapticLabel" destination="dy1-oW-kGS" id="dZ0-IV-QPu"/>
                         <outlet property="tapticSwitchOutlet" destination="OVM-6v-esE" id="Ozc-Xj-HfD"/>
+                        <outlet property="tutorialLabel" destination="UaX-06-zgD" id="phI-mg-klc"/>
+                        <outlet property="tutorialSwitchOutlet" destination="9M9-my-c0m" id="PJ5-Ko-Ffk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rpB-mZ-cqz" userLabel="First Responder" sceneMemberID="firstResponder"/>

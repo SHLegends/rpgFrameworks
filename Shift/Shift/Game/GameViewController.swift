@@ -38,6 +38,8 @@ class GameViewController: UIViewController, GameDelgate {
     
     var roundMultiplier = 1.0
     
+    var timeSinceLastHint = Date()
+    
     let indexToSound: [Int: String] = [0: "breakingGlass", 1: "breakingGlass", 2: "breakingGlass", 3: "breakingGlass", 4: "breakingGlass"]
     
     var highScoreUpdateDelegate: UpdateHighScoreDelegate? = nil
@@ -61,7 +63,8 @@ class GameViewController: UIViewController, GameDelgate {
     var gameOver = false
     
     @objc func hint() {
-        if (tapTimerValue > 1 || tapTimerValue == 0) && !gameOver && !DataManager.hintsOff {
+        if (tapTimerValue > 4.0 && Date().timeIntervalSince(timeSinceLastHint) > 2.0) && !gameOver && !DataManager.hintsOff {
+            timeSinceLastHint = Date()
             let hintButs = buttons.filter({$0.backgroundColor != $0.borderColor})
             if !hintButs.isEmpty {
                 let but = returnRandomItem(hintButs)
@@ -74,7 +77,7 @@ class GameViewController: UIViewController, GameDelgate {
         
         self.tapTimerValue += 0.1
         if self.score - 1 >= 0 {
-            if self.round >= 3 {
+            if self.round >= 3 || DataManager.tutorialOff {
                 self.score -= Int(Double(self.substractAmount) * roundMultiplier)
                 if self.score < 0 { self.score = 0 }
                 self.ScoreLabel.text = String(self.score)
@@ -119,12 +122,16 @@ class GameViewController: UIViewController, GameDelgate {
                 self.buttons2D[i]![t]!.selfCoor = (t, i)
             }
         }
-        warningLabel.presentTextToStay(newText: "Tap a circle", duration: 1)
+        
+        if !DataManager.tutorialOff {
+            warningLabel.presentTextToStay(newText: "Tap a circle", duration: 1)
+        }
         colourBin = [colorIndices[0], colorIndices[1]]
         for i in buttons {i.changeColor(self.masterColors[self.colourBin[0]]); i.colorIndex = self.colourBin[0]; i.changeBorderColor(to: self.masterColors[self.colourBin[1]])}
         warningLabel.textColor = foreground
         ScoreLabel.textColor = foreground
         
+        warningLabel.text = ""
         
         self.multiplierLabel.textColor = foreground
         GameOver.textColor = foreground
@@ -165,13 +172,19 @@ class GameViewController: UIViewController, GameDelgate {
     override func viewWillAppear(_ animated: Bool) {
         restartGame()
         self.tapTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: (#selector(self.addMilisecond)), userInfo: nil, repeats: true)
-        self.hintTimer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: (#selector(self.hint)), userInfo: nil, repeats: true)
+        self.hintTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: (#selector(self.hint)), userInfo: nil, repeats: true)
     }
     
     
     func endGame() {
         hintTimer.invalidate()
         tapTimer.invalidate()
+        
+        if !DataManager.hasPlayedBefore {
+            DataManager.hasPlayedBefore = true
+            DataManager.tutorialOff = true
+        }
+        
         self.gameOver = true
         AudioHandler.playSound("Sad_Trombone", ".mp3")
         if self.score < 0 {
@@ -184,62 +197,45 @@ class GameViewController: UIViewController, GameDelgate {
     
     
     func gameEndAnimation() {
-        var delay = 0.0
-        let by = 0.05
-        let duration = 1.0
+        
         
         for i in buttons {
             i.isEnabled = false
         }
-        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
+        
+        UIView.animate(withDuration: 1, delay: 0, options: [], animations: {
             self.multiplierLabel.alpha = 0
             self.ScoreLabel.alpha = 0
         }, completion: nil)
-        delay += by
-        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
+        
+        UIView.animate(withDuration: 1, delay: 0.2, options: [], animations: {
             self.SE.alpha = 0
-        }, completion: nil)
-        delay += by
-        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
             self.S.alpha = 0
-        }, completion: nil)
-        delay += by
-        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
             self.SW.alpha = 0
         }, completion: nil)
-        delay += by
-        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
+        
+        UIView.animate(withDuration: 1, delay: 0.4, options: [], animations: {
             self.W.alpha = 0
-        }, completion: nil)
-        delay += by
-        UIView.animate(withDuration: 0.5, delay: 0.1, options: [], animations: {
             self.C.alpha = 0
-            self.GameOver.alpha = 1
-        }, completion: nil)
-        delay += by
-        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
             self.E.alpha = 0
         }, completion: nil)
-        delay += by
-        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
+        
+        UIView.animate(withDuration: 1.0, delay: 1.5, options: [], animations: {
+            self.GameOver.alpha = 1
+        }, completion: nil)
+       
+        UIView.animate(withDuration: 1, delay: 0.6, options: [], animations: {
             self.NE.alpha = 0
-        }, completion: nil)
-        delay += by
-        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
             self.N.alpha = 0
-        }, completion: nil)
-        delay += by
-        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
             self.NW.alpha = 0
         }, completion: nil)
-        delay += by
-        UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
+        
+        UIView.animate(withDuration: 1, delay: 0.8, options: [], animations: {
             self.warningLabel.alpha = 0
         }, completion: nil)
         
-        delay += by
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + delay+duration + 1, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
             self.tapTimer.invalidate()
             let storyBoard: UIStoryboard = UIStoryboard(name: "GameOver", bundle: nil)
             let vc = storyBoard.instantiateViewController(withIdentifier: "GameOverView") as! GameOverViewController
@@ -367,12 +363,14 @@ class GameViewController: UIViewController, GameDelgate {
         self.round += 1
         self.roundMultiplier += 0.25
         
-        if self.round == 1 {
-            warningLabel.presentTextToStay(newText: "Only tap circles with two colors", duration: 0.5)
-        } else if self.round == 2 {
-            warningLabel.presentTextToStay(newText: "Play faster for more points", duration: 0.5)
-        } else {
-            warningLabel.dismissText(duration: 0.5)
+        if !DataManager.tutorialOff {
+            if self.round == 1 {
+                warningLabel.presentTextToStay(newText: "Only tap circles with two colors", duration: 0.5)
+            } else if self.round == 2 {
+                warningLabel.presentTextToStay(newText: "Play faster for more points", duration: 0.5)
+            } else {
+                warningLabel.dismissText(duration: 0.5)
+            }
         }
         
         if true {

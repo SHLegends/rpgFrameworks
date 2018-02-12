@@ -31,11 +31,29 @@ struct GameDataManager {
     
     var mute: Bool {
         get {
-            print()
             return defaults.bool(forKey: "mute")
         }
         set {
             defaults.set(newValue, forKey: "mute")
+        }
+    }
+    
+    var hasPlayedBefore: Bool {
+        get {
+            return defaults.bool(forKey: "hasPlayedBefore")
+        }
+        set {
+            defaults.set(newValue, forKey: "hasPlayedBefore")
+        }
+    }
+    
+    var tutorialOff: Bool {
+        get {
+            print()
+            return defaults.bool(forKey: "tutorialOff")
+        }
+        set {
+            defaults.set(newValue, forKey: "tutorialOff")
         }
     }
     
