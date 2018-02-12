@@ -122,7 +122,7 @@ class GameViewController: UIViewController, GameDelgate {
                 self.buttons2D[i]![t]!.selfCoor = (t, i)
             }
         }
-        
+        warningLabel.text = ""
         if !DataManager.tutorialOff {
             warningLabel.presentTextToStay(newText: "Tap a circle", duration: 1)
         }
@@ -131,7 +131,7 @@ class GameViewController: UIViewController, GameDelgate {
         warningLabel.textColor = foreground
         ScoreLabel.textColor = foreground
         
-        warningLabel.text = ""
+        
         
         self.multiplierLabel.textColor = foreground
         GameOver.textColor = foreground
