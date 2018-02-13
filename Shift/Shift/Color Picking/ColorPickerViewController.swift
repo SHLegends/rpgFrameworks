@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CALayerDelegate {
     
     
     @IBOutlet weak var themeLabel: UILabel!
@@ -18,6 +18,7 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var creditsLabel: UILabel!
     @IBOutlet weak var colorTableView: UITableView!
     
+    var gradient: CAGradientLayer!
     
     var menuDelegate: MenuSetupDelegate?
     
@@ -31,8 +32,10 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
     
     var scrollToPath: IndexPath? = nil
     
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        updateGradient()
         return localArrayToUse.count
     }
     
@@ -43,6 +46,10 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
         row.cColorScheme = localArrayToUse[indexPath.row]
         
         row.stateOfAction = .normal
+        
+        row.clipsToBounds = true
+        
+        
       
         UIView.transition(with: row, duration: animationTime, options: [.transitionCrossDissolve, .allowUserInteraction], animations: {
             row.backgroundColor = colorHandler.background
@@ -53,6 +60,44 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
             row.priceLabel?.textColor = colorHandler.foreground
         }, completion: nil)
         return row
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        updateGradient()
+    }
+    
+    func updateGradient() {
+        gradient.frame = CGRect(
+            x: 0,
+            y: colorTableView.contentOffset.y,
+            width: colorTableView.bounds.width,
+            height: colorTableView.bounds.height
+        )
+        
+        
+        self.gradient.colors = [UIColor.clear.cgColor, colorHandler.background.cgColor, colorHandler.background.cgColor]
+        self.gradient.locations = [0.0, 0.1, 1]
+        
+        
+        
+        
+//            if self.colorTableView.contentOffset.y == 0 {
+//                // at top
+//                self.gradient.colors = [colorHandler.background.cgColor, colorHandler.background.cgColor, UIColor.clear.cgColor]
+//                self.gradient.locations = [0.0, 0.9, 1]
+//            } else if self.colorTableView.contentOffset.y >= (self.colorTableView.contentSize.height - self.colorTableView.frame.size.height) {
+//                // at bottom
+//
+//                self.gradient.colors = [UIColor.clear.cgColor, colorHandler.background.cgColor, colorHandler.background.cgColor]
+//                self.gradient.locations = [0.0, 0.1, 1]
+//            } else {
+//                // anywhere else
+//                self.gradient.colors = [UIColor.clear.cgColor, colorHandler.background.cgColor,  colorHandler.background.cgColor, UIColor.clear.cgColor]
+//                self.gradient.locations = [0.0, 0.1, 0.9, 1]
+//
+//            }
+        
+        
     }
     
     
@@ -74,7 +119,7 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
                             self.colorTableView.separatorColor = colorHandler.foreground
                             self.themeLabel.textColor = colorHandler.foreground
                             self.creditsLabel.textColor = colorHandler.foreground
-                            
+                            self.updateGradient()
                             for i in self.colorTableView.visibleCells {
                                 if let newRow: colorTableViewCell = i as? colorTableViewCell {
                                     newRow.backgroundColor = colorHandler.background
@@ -121,6 +166,10 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
         self.rowSelected = indexPath
     }
     
+    func action(for layer: CALayer, forKey event: String) -> CAAction? {
+        return NSNull()
+    }
+    
     override var prefersStatusBarHidden: Bool {return true}
     
     
@@ -137,7 +186,15 @@ class ColorPickerViewController: UIViewController, UITableViewDelegate, UITableV
         colorTableView.separatorColor = colorHandler.foreground
         
         customNavigationAnimator.reverse = false
-
+        
+        gradient = CAGradientLayer()
+        gradient.delegate = self
+        gradient.frame = colorTableView.bounds
+        self.gradient.colors = [UIColor.clear.cgColor, colorHandler.background.cgColor, colorHandler.background.cgColor]
+        self.gradient.locations = [0.0, 0.0, 1]
+        colorTableView.layer.mask = gradient
+        updateGradient()
+        
     }
 
 }
