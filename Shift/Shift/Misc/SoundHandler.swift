@@ -24,7 +24,7 @@ class SoundHandler {
             if AVAudioSession.sharedInstance().isOtherAudioPlaying {
                 try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
             } else {
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
             }
             try AVAudioSession.sharedInstance().setActive(true)
 

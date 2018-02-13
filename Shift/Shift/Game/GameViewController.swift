@@ -78,7 +78,7 @@ class GameViewController: UIViewController, GameDelgate {
         self.tapTimerValue += 0.1
         if self.score - 1 >= 0 {
             if self.round >= 3 || DataManager.tutorialOff {
-                self.score -= Int(Double(self.substractAmount) * roundMultiplier)
+                self.score -= Int(Double(self.substractAmount) * roundMultiplier / 2)
                 if self.score < 0 { self.score = 0 }
                 self.ScoreLabel.text = String(self.score)
             }
@@ -302,32 +302,32 @@ class GameViewController: UIViewController, GameDelgate {
             switch Double(Int(timeBetweenTaps * 10))/10 {
             case 0.0:
                 self.multiplierLabel.pulsate(duration: 0.2, from: 1.0, to: 2.0)
-                self.multiplierLabel.presentText(newText: "x20", duration: 0.2, stayFor: duration)
-                return numOfButtons * 20
+                self.multiplierLabel.presentText(newText: "x10", duration: 0.2, stayFor: duration)
+                return numOfButtons * 10
             case 0.1:
                 self.multiplierLabel.pulsate(duration: 0.2, from: 1.0, to: 1.9)
-                self.multiplierLabel.presentText(newText: "x17", duration: 0.2, stayFor: duration)
-                return numOfButtons * 17
+                self.multiplierLabel.presentText(newText: "x10", duration: 0.2, stayFor: duration)
+                return numOfButtons * 10
             case 0.2:
                 self.multiplierLabel.pulsate(duration: 0.2, from: 1.0, to: 1.8)
-                self.multiplierLabel.presentText(newText: "x15", duration: 0.2, stayFor: duration)
-                return numOfButtons * 15
+                self.multiplierLabel.presentText(newText: "x10", duration: 0.2, stayFor: duration)
+                return numOfButtons * 10
             case 0.3:
                 self.multiplierLabel.pulsate(duration: 0.2, from: 1.0, to: 1.7)
-                self.multiplierLabel.presentText(newText: "x12", duration: 0.2, stayFor: duration)
-                return numOfButtons * 12
+                self.multiplierLabel.presentText(newText: "x10", duration: 0.2, stayFor: duration)
+                return numOfButtons * 10
             case 0.4:
                 self.multiplierLabel.pulsate(duration: 0.2, from: 1.0, to: 1.6)
                 self.multiplierLabel.presentText(newText: "x10", duration: 0.2, stayFor: duration)
                 return numOfButtons * 10
             case 0.5:
                 self.multiplierLabel.pulsate(duration: 0.2, from: 1.0, to: 1.5)
-                self.multiplierLabel.presentText(newText: "x9", duration: 0.2, stayFor: duration)
-                return numOfButtons * 9
+                self.multiplierLabel.presentText(newText: "x10", duration: 0.2, stayFor: duration)
+                return numOfButtons * 10
             case 0.6:
                 self.multiplierLabel.pulsate(duration: 0.2, from: 1.0, to: 1.4)
-                self.multiplierLabel.presentText(newText: "x8", duration: 0.2, stayFor: duration)
-                return numOfButtons * 8
+                self.multiplierLabel.presentText(newText: "x10", duration: 0.2, stayFor: duration)
+                return numOfButtons * 10
             case 0.7:
                 self.multiplierLabel.pulsate(duration: 0.2, from: 1.0, to: 1.3)
                 self.multiplierLabel.presentText(newText: "x7", duration: 0.2, stayFor: duration)
