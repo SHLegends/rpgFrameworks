@@ -16,7 +16,6 @@ class SoundHandler {
     
     init() {
         self.setUpSession()
-        
     }
     
     func setUpSession() {

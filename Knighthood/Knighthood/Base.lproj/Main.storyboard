@@ -24,20 +24,39 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ps3-xi-hog" userLabel="LeftStep">
+                                <rect key="frame" x="0.0" y="0.0" width="96" height="667"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mdW-NI-uKz" userLabel="RightStep">
+                                <rect key="frame" x="279" y="0.0" width="96" height="667"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="ps3-xi-hog" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="4gs-qG-rBI"/>
+                            <constraint firstItem="ps3-xi-hog" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="CNM-aY-nF2"/>
+                            <constraint firstItem="mdW-NI-uKz" firstAttribute="leading" secondItem="gKz-WF-B9U" secondAttribute="trailing" constant="71" id="F1j-ES-XbD"/>
+                            <constraint firstItem="gKz-WF-B9U" firstAttribute="leading" secondItem="ps3-xi-hog" secondAttribute="trailing" constant="70" id="IM3-ew-FbW"/>
+                            <constraint firstItem="mdW-NI-uKz" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="JXs-7G-2vm"/>
+                            <constraint firstItem="ps3-xi-hog" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="LX8-pT-Nzt"/>
                             <constraint firstItem="gKz-WF-B9U" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OxI-3U-XK6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mdW-NI-uKz" secondAttribute="trailing" id="QNl-wI-FoU"/>
                             <constraint firstItem="gKz-WF-B9U" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="iVr-58-RI8"/>
+                            <constraint firstItem="mdW-NI-uKz" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="l6n-gb-X2f"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="LeftSide" destination="ps3-xi-hog" id="63Z-Rk-1nP"/>
                         <outlet property="OutputLabel" destination="gKz-WF-B9U" id="ZCg-b4-FHD"/>
+                        <outlet property="RightSide" destination="mdW-NI-uKz" id="xpH-aY-RIx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="141.59999999999999" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>

@@ -13,6 +13,8 @@
 		8E1F1E92203316CB00F599A6 /* Knighthood.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8E1F1E90203316CB00F599A6 /* Knighthood.xcdatamodeld */; };
 		8E1F1E94203316CB00F599A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E1F1E93203316CB00F599A6 /* Assets.xcassets */; };
 		8E1F1E97203316CB00F599A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E1F1E95203316CB00F599A6 /* LaunchScreen.storyboard */; };
+		8E1F1E9F2034F21D00F599A6 /* Hub.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E1F1E9E2034F21D00F599A6 /* Hub.storyboard */; };
+		8E1F1EA12034F23D00F599A6 /* HubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1F1EA02034F23D00F599A6 /* HubViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		8E1F1E93203316CB00F599A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E1F1E96203316CB00F599A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8E1F1E98203316CB00F599A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E1F1E9E2034F21D00F599A6 /* Hub.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Hub.storyboard; sourceTree = "<group>"; };
+		8E1F1EA02034F23D00F599A6 /* HubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HubViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				8E1F1E95203316CB00F599A6 /* LaunchScreen.storyboard */,
 				8E1F1E98203316CB00F599A6 /* Info.plist */,
 				8E1F1E90203316CB00F599A6 /* Knighthood.xcdatamodeld */,
+				8E1F1EA02034F23D00F599A6 /* HubViewController.swift */,
+				8E1F1E9E2034F21D00F599A6 /* Hub.storyboard */,
 			);
 			path = Knighthood;
 			sourceTree = "<group>";
@@ -126,6 +132,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E1F1E9F2034F21D00F599A6 /* Hub.storyboard in Resources */,
 				8E1F1E97203316CB00F599A6 /* LaunchScreen.storyboard in Resources */,
 				8E1F1E94203316CB00F599A6 /* Assets.xcassets in Resources */,
 				8E1F1E8F203316CB00F599A6 /* Main.storyboard in Resources */,
@@ -139,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E1F1EA12034F23D00F599A6 /* HubViewController.swift in Sources */,
 				8E1F1E8C203316CB00F599A6 /* MainViewController.swift in Sources */,
 				8E1F1E8A203316CB00F599A6 /* AppDelegate.swift in Sources */,
 				8E1F1E92203316CB00F599A6 /* Knighthood.xcdatamodeld in Sources */,
